@@ -1,6 +1,7 @@
 # Install NVM(node version manager)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-source ~/.bashrc
+source /home/linaro/.bashrc
+
 # Install nodejs lts version
 nvm install 20.11.1
 nvm use 20.11.1
