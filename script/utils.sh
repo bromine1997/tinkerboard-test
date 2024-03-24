@@ -2,7 +2,7 @@
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 source /home/linaro/.bashrc
 
-# Install nodejs lts version
+# Install nodejs LTS version
 nvm install 20.11.1
 nvm use 20.11.1
 
