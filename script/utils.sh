@@ -1,3 +1,11 @@
+sudo apt-get update
+
+# Disable swap memeory
+sudo swapoff -a
+
+# Install utils
+sudo apt-get install wget curl
+
 # Install NVM(node version manager)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 source /home/linaro/.bashrc
@@ -11,3 +19,5 @@ npm install -g npm@latest
 npm install -g yarn
 npm install -g @nestjs/cli
 npm install -g ts-node
+
+sudo apt-get autoremove
