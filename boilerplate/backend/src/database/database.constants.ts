@@ -1,0 +1,3 @@
+export const MONGO_CONNECTION = 'MONGO_CONNECTION';
+
+export const WORD_CHECKER_DB = 'WORD_CHECKER_DB';
