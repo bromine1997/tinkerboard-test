@@ -4,22 +4,21 @@ import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify
 import { AppModule } from './app.module';
 import { ShutdownSignal, ValidationPipe } from '@nestjs/common';
 import config from './config';
-import MetricsPlugin from 'fastify-metrics';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({ trustProxy: true }));
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.enableShutdownHooks([ShutdownSignal.SIGTERM, ShutdownSignal.SIGINT]);
 
-  await app.register(MetricsPlugin, {
+  await app.register(require('fastify-metrics'), {
     endpoint: '/metrics',
     routeMetrics: {
-      routeBlacklist: ['/swagger', '/health'],
+      routeBlacklist: ['/metrics', '/health', '/swagger'],
     },
   });
 
   if (config.env !== 'real') {
-    const options = new DocumentBuilder().setTitle('Word Checker API').setVersion('1.0').build();
+    const options = new DocumentBuilder().setTitle('Backend API').setVersion('1.0').build();
     const document = SwaggerModule.createDocument(app, options);
     SwaggerModule.setup('swagger', app, document);
   }
