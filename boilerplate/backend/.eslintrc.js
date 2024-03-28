@@ -15,7 +15,7 @@ module.exports = {
     'sourceType': 'module',
   },
   'igrnoePatterns': ['.eslintrc.js'],
-  'plugins': ['@typescript-eslint/eslint-plugin'],
+  'plugins': ['@typescript-eslint'],
   'rules': {
     'quotes': ['error', 'single'],
     'semi': ['error', 'always'],
@@ -23,5 +23,6 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     'require-atomic-updates': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
   },
 };
