@@ -1,11 +1,29 @@
-import { format } from 'winston';
-import { ConfigModel } from '..';
+import { format, transports } from 'winston';
+import { ConfigModel } from '../model';
 
+// TODO: logger 설정 변경 필요(dev 환경에 맞게), 현재는 console 로그
+// TODO: dev 환경용 mongodb 환경설정 필요
 export const config: ConfigModel = {
   env: 'dev',
   winstonOptions: {
     level: 'debug',
-    exitOnError: false,
+    transports: new transports.Console({
+      format: format.combine(
+        format.timestamp({
+          format: 'YYYY-MM-DD HH:mm:ss',
+        }),
+        format.colorize(),
+        format.printf((info) => {
+          const message = `${info.traceId} ${info.messgae}`;
+          return `[${info.timestamp}] ${info.level}: ${message}`;
+        })
+      ),
+    }),
   },
-  mongodbCipherText: '',
+  mongo: {
+    uri: 'mongodb://localhost:27017',
+    authSource: 'test',
+    username: 'root',
+    password: 'root',
+  },
 };

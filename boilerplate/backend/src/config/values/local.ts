@@ -1,5 +1,5 @@
 import { format, transports } from 'winston';
-import { ConfigModel } from '..';
+import { ConfigModel } from '../model';
 
 export const config: ConfigModel = {
   env: 'local',
@@ -11,9 +11,17 @@ export const config: ConfigModel = {
           format: 'YYYY-MM-DD HH:mm:ss',
         }),
         format.colorize(),
-        format.printf((info) => `[${info.timestamp}] ${info.level}: ${info.prefix || ''}${info.message}`)
+        format.printf((info) => {
+          const message = `${info.traceId} ${info.messgae}`;
+          return `[${info.timestamp}] ${info.level}: ${message}`;
+        })
       ),
     }),
   },
-  mongodbCipherText: '',
+  mongo: {
+    uri: 'mongodb://localhost:27017',
+    authSource: 'test',
+    username: 'root',
+    password: 'root',
+  },
 };
