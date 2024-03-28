@@ -1,3 +1,5 @@
 export const MONGO_CONNECTION = 'MONGO_CONNECTION';
 
-export const WORD_CHECKER_DB = 'WORD_CHECKER_DB';
+export const TEST_DB = 'TEST_DB';
+
+export const TEST_COLLECTION = 'TEST_COLLECTION';

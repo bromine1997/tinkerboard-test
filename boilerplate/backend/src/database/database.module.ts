@@ -11,6 +11,7 @@ export class DatabaseModule implements BeforeApplicationShutdown {
   constructor(@Inject(MONGO_CONNECTION) private readonly mongoClient: MongoClient) {}
 
   beforeApplicationShutdown(signal?: string): Promise<void> {
+    console.log(`Application shutdown by signal: ${signal}`);
     return this.mongoClient.close();
   }
 }

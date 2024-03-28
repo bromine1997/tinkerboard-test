@@ -1,12 +1,12 @@
-import { Db, MongoClient } from 'mongodb';
+import { Collection, Db, MongoClient } from 'mongodb';
 import config from '../config';
-import { MONGO_CONNECTION, WORD_CHECKER_DB } from './database.constants';
+import { MONGO_CONNECTION, TEST_DB, TEST_COLLECTION } from './database.constants';
 
 export const databaseProviders = [
   {
     provide: MONGO_CONNECTION,
     useFactory: async (): Promise<MongoClient> => {
-      const { authSource, username, password } = JSON.parse(config.mongodbCipherText);
+      const { authSource, username, password } = config.mongo;
       const mongoClient = new MongoClient('', {
         ignoreUndefined: true,
         authSource,
@@ -22,10 +22,17 @@ export const databaseProviders = [
     },
   },
   {
-    provide: WORD_CHECKER_DB,
+    provide: TEST_DB,
     useFactory: (mongoClient: MongoClient): Db => {
-      return mongoClient.db('word_checker');
+      return mongoClient.db('test');
     },
     inject: [MONGO_CONNECTION],
-  },
+  }, // 테스트용 DB
+  {
+    provide: TEST_COLLECTION,
+    useFactory: (db: Db): Collection => {
+      return db.collection('test');
+    },
+    inject: [TEST_DB],
+  }, // 테스트용 DB Collection
 ];
