@@ -20,7 +20,7 @@ export const config: ConfigModel = {
   },
   mongo: {
     uri: 'mongodb://localhost:27017',
-    authSource: 'test',
+    authSource: 'admin',
     username: 'root',
     password: 'root',
   },
