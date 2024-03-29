@@ -12,7 +12,7 @@ export const config: ConfigModel = {
         }),
         format.colorize(),
         format.printf((info) => {
-          const message = `${info.traceId} ${info.messgae}`;
+          const message = `${info.traceId} ${info.message}`;
           return `[${info.timestamp}] ${info.level}: ${message}`;
         })
       ),
