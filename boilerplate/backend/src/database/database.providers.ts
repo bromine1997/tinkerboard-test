@@ -6,8 +6,8 @@ export const databaseProviders = [
   {
     provide: MONGO_CONNECTION,
     useFactory: async (): Promise<MongoClient> => {
-      const { authSource, username, password } = config.mongo;
-      const mongoClient = new MongoClient('', {
+      const { uri, authSource, username, password } = config.mongo;
+      const mongoClient = new MongoClient(uri, {
         ignoreUndefined: true,
         authSource,
         auth: {
