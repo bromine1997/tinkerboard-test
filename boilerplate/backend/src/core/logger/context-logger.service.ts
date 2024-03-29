@@ -1,7 +1,7 @@
 import { Injectable, LoggerService } from '@nestjs/common';
 import { AsyncLocalStorage } from 'async_hooks';
 import { format, createLogger, Logger, LoggerOptions } from 'winston';
-import config from '../config';
+import config from '../../config';
 
 export const asyncLocalStorage = new AsyncLocalStorage();
 
@@ -36,6 +36,11 @@ export class ContextLoggerService implements LoggerService {
 
   debug(message: any, ...optionalParams: any[]): any {
     return this.winstonLogger.debug(message, ...optionalParams);
+  }
+
+  getTraceId(): string {
+    const store: any = asyncLocalStorage.getStore() || {};
+    return store.traceId;
   }
 }
 

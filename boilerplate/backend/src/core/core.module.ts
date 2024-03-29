@@ -1,6 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { ContextLogger } from './context-logger.service';
-import { RequestContextMiddleware } from './request-context.middleware';
+import { ContextLogger } from './logger/context-logger.service';
+import { RequestContextMiddleware } from './middleware/request-context.middleware';
 
 @Module({
   providers: [ContextLogger],
@@ -8,6 +8,6 @@ import { RequestContextMiddleware } from './request-context.middleware';
 })
 export class CoreModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(RequestContextMiddleware).forRoutes('/');
+    consumer.apply(RequestContextMiddleware).exclude('/health', 'metrics').forRoutes('*');
   }
 }
