@@ -1,0 +1,10 @@
+replicas: 2
+
+image:
+  app:
+    name: node
+    tag:  lts-alpine3.19
+
+env:
+  NODE_ENV: production
+  SERVER_ENV: dev
