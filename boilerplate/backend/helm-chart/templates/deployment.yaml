@@ -1,23 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.ncc.instance }}-{{ .Values.ncc.installation }}
+  name: backend-deployment
 spec:
   replicas: {{ .Values.replicas }}
   template:
-    metadata:
-      annotations:
-        prometheus.io/container.scrape: "true"
-        prometheus.io/container.path: /metrics
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- range . }}
-        - name: {{ . }}
-        {{- end }}
-      {{- end }}
-      securityContext:
-        fsGroup: 1001
       containers:
         - name: nginx
           image: "{{ .Values.image.nginx.name }}:{{ .Values.image.nginx.tag }}"
@@ -33,6 +21,7 @@ spec:
               name: http-metrics
           volumeMounts:
             - name: nginx-conf-volume
+              # TODO 변경필요
               mountPath: /home1/irteam/apps/nginx/conf/nginx.conf
               subPath: nginx.conf
               readOnly: true
@@ -40,16 +29,6 @@ spec:
             preStop:
               exec:
                 command: ["sleep", "15"]
-        - name: nginx-prometheus-exporter
-          image: {{ .Values.image.nginx_prometheus_exporter.name }}:{{ .Values.image.nginx_prometheus_exporter.tag }}
-          resources: 
-            limits: 
-              cpu: "1000m"
-          args:
-            - -nginx.scrape-uri=http://localhost:80/basic_status
-          ports:
-            - containerPort: 9113
-              name: nginx-metrics
         - name: nodejs
           image: {{ .Values.image.app.name }}:{{ .Values.image.app.tag }}
           resources: 
@@ -73,7 +52,7 @@ spec:
           livenessProbe:
             failureThreshold: 5
             httpGet:
-              path: /v1
+              path: /health-check
               port: 80
             initialDelaySeconds: 15
             periodSeconds: 15
@@ -82,7 +61,7 @@ spec:
           readinessProbe:
             failureThreshold: 3
             httpGet:
-              path: /v1
+              path: /health-check
               port: 80
             initialDelaySeconds: 10
             periodSeconds: 10
@@ -91,4 +70,4 @@ spec:
       volumes:
         - name: nginx-conf-volume
           configMap:
-            name: {{ .Values.ncc.instance }}-{{ .Values.ncc.installation }}
+            name: backend-configmap
