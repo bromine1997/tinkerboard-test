@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deployment
+  labels:
+    app: backend-deployment
 spec:
   replicas: {{ .Values.replicas }}
   template:
@@ -21,8 +23,7 @@ spec:
               name: http-metrics
           volumeMounts:
             - name: nginx-conf-volume
-              # TODO 변경필요
-              mountPath: /home1/irteam/apps/nginx/conf/nginx.conf
+              mountPath: /etc/nginx/nginx.conf
               subPath: nginx.conf
               readOnly: true
           lifecycle:

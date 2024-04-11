@@ -13,4 +13,4 @@ spec:
       protocol: "TCP"
       name: web
   selector:
-    {{- $nccLabels | nindent 4 }}
+    app: backend-deployment

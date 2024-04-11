@@ -1,6 +1,9 @@
 replicas: 2
 
 image:
+  nginx:
+    name: nginx
+    tag:  stable
   app:
     name: node
     tag:  lts-alpine3.19
