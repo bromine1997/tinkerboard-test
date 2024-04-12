@@ -1,0 +1,7 @@
+replicas: 2
+apiServerDomain: localhost:8080
+
+image:
+  app:
+    name: nginx
+    tag: stable
