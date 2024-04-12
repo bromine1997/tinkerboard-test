@@ -1,0 +1,12 @@
+.DS_Store
+.git
+.gitignore
+.idea
+.vscode
+
+*Dockerfile*
+*docker-compose*
+
+node_modules
+dist
+helm-chart
