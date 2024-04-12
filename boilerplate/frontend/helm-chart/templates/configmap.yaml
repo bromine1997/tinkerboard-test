@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-configmap
+data:
+{{ -$spiServerDomain := .Values.apiServerDomain }}
+{{ (.Files.Glob "configs/*").AsConfig | indent 2 }}

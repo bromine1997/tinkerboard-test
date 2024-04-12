@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend-deployment
+spec:
+  replicas: {{ .Values.replicas }}
+  template:
+    spec:
+      containers:
+        - name: nginx
+          image: "{{ .Values.image.app.name }}:{{ .Values.image.app.tag }}"
+          resources: 
+            limits: 
+              cpu: "1000m"
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 0
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 80
+              name: web
+          volumeMounts:
+            - name: nginx-conf-volume
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              readOnly: true
+          readinessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 3
+            timeoutSeconds: 2
+      volumes:
+        - name: nginx-conf-volume
+          configMap:
+            name: frontend-configmap
