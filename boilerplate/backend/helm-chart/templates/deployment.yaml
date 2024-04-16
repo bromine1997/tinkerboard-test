@@ -2,11 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-deployment
-  labels:
-    app: backend-deployment
 spec:
   replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: backend-deployment
   template:
+    metadata:
+      labels:
+        app: backend-deployment
     spec:
       containers:
         - name: nginx
@@ -31,7 +35,7 @@ spec:
               exec:
                 command: ["sleep", "15"]
         - name: nodejs
-          image: {{ .Values.image.app.name }}:{{ .Values.image.app.tag }}
+          image: "{{ .Values.image.app.name }}:{{ .Values.image.app.tag }}"
           resources: 
             limits: 
               cpu: "2000m"

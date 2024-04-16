@@ -5,8 +5,8 @@ image:
     name: nginx
     tag:  stable
   app:
-    name: node
-    tag:  lts-alpine3.19
+    name: khyw407/backend # TODO: 변경예정
+    tag:  0.1 # TODO: 변경예정
 
 env:
   NODE_ENV: production
