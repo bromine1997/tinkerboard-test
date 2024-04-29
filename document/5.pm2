@@ -1,0 +1,12 @@
+# 1. About pm2
+- [Document](https://pm2.keymetrics.io/docs/usage/quick-start/)
+- [pm2-logrotate](https://github.com/keymetrics/pm2-logrotate)
+
+# 2. Installation
+```bash
+# install pm2
+$ npm install -g pm2@latest
+
+# install pm2-logrotate
+$ pm2 install pm2-logrotate
+```
