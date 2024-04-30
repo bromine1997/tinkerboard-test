@@ -1,7 +1,14 @@
 #!/bin/bash
 # 백엔드 배포 스크립트
-
+package_directory="/home/linaro/deploy/backend/package"
 archive_directory="/home/linaro/deploy/backend/archive"
+
+if [ ! -d "$package_directory" ]; then
+    mkdir -p "$package_directory"
+    echo "Package directory created."
+else
+    echo "Package directory already exists."
+fi
 
 if [ ! -d "$archive_directory" ]; then
     mkdir -p "$archive_directory"
@@ -30,11 +37,8 @@ fi
 
 mv "$archive_name" "$new_archive_name"
 
-# 압축해제 & 심볼릭링크 설정
-package_directory="/home/linaro/deploy/backend/package"
+# 압축해제
 mv "$new_archive_name" "$archive_directory"
-
-ln -s "$archive_directory/tinkerboard-master-$timestamp" "$package_directory"
 
 if [ -f "$new_archive_name" ]; then
     tar -zxvf "$new_archive_name" -C "$package_directory" --strip-components=1
