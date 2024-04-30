@@ -47,9 +47,10 @@ fi
 
 # pm2 재실행
 # path는 임시(마음대로 지정 가능)
-cd "$package_directory/boilerplate/backend" && npm install && npm run build && pm2 delete ecosystem.config.js && pm2 start ecosystem.config.js
+backend_directory="$package_directory/boilerplate/backend"
+cd "$backend_directory" && npm install && npm run build && pm2 delete ecosystem.config.js && pm2 start ecosystem.config.js
 
 # 파일 최근 10개만 관리
 cd "$archive_directory"
-files_to_keep=$(ls -t | head -1)
+files_to_keep=$(ls -t | head -10)
 ls | grep -v -e "$files_to_keep" | xargs rm
