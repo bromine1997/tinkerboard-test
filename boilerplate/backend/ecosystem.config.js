@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'backend',
-      cwd: '/home/apps/backend/package/',
+      cwd: '/home/linaro/deploy/backend/package/',
       script: './dist/main.js',
       exec_mode: 'cluster',
       instances: 6,
@@ -10,8 +10,8 @@ module.exports = {
       listen_timeout: 3000,
       kill_timeout: 3000,
       restart_delay: 3000,
-      out_file: '~/apps/backend/logs/backend-api.log',
-      error_file: '~/apps/backend/logs/backend-api.log',
+      out_file: '~/deploy/backend/logs/backend-api.log',
+      error_file: '~/deploy/backend/logs/backend-api.log',
       merge_logs: true,
       env: {
         NODE_ENV: 'development',
