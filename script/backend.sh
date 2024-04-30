@@ -14,7 +14,7 @@ fi
 
 # GitHub 프로젝트 주소와 압축 파일 이름을 지정 (마음대로 지정 가능)
 github_url="https://github.com/khyw407/tinkerboard-test/archive/master.tar.gz"
-archive_name="tinkerboard-master.tar.gz"
+archive_name="master.tar.gz"
 timestamp=$(date +"%Y%m%d%H%M%S")
 new_archive_name="tinkerboard-master-$timestamp.tar.gz"
 
