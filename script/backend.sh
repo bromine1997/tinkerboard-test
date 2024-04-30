@@ -39,4 +39,6 @@ if [ -f "$new_archive_name" ]; then
     echo "압축 해제 완료"
 fi
 
-cd $package_directory && pm2 delete ecosystem.config.js && pm2 start ecosystem.config.js
+# pm2 재실행
+backend_directory="$package_directory/boilerplate/backend" # 임시 path(마음대로 지정 가능)
+cd "$backend_directory" && npm install && npm run build && pm2 delete ecosystem.config.js && pm2 start ecosystem.config.js
