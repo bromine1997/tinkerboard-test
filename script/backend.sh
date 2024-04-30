@@ -35,7 +35,7 @@ mv "$archive_name" "$new_archive_name"
 # 압축해제 & 심볼릭링크 설정
 
 if [ -f "$new_archive_name" ]; then
-    tar -zxvf "$new_archive_name" -C "$package_directory"
+    tar -zxvf "$new_archive_name" -C "$package_directory" --strip-components=1
     echo "압축 해제 완료"
 fi
 
