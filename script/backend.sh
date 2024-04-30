@@ -47,8 +47,4 @@ fi
 
 # pm2 재실행
 # path는 임시(마음대로 지정 가능)
-cd "$package_directory/boilerplate/backend" 
-  && npm install 
-  && npm run build 
-  && pm2 delete ecosystem.config.js 
-  && pm2 start ecosystem.config.js
+cd "$package_directory/boilerplate/backend" && npm install && npm run build && pm2 delete ecosystem.config.js && pm2 start ecosystem.config.js
