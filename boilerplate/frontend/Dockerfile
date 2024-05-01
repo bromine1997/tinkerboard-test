@@ -1,7 +1,6 @@
 FROM node:lts-alpine3.19 as build
 WORKDIR /home/node/build
-COPY package.json .
-COPY package-lock.json .
+COPY . .
 RUN npm install && npm run build
 
 FROM nginx:stable
