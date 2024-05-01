@@ -1,7 +1,9 @@
 FROM node:lts-alpine3.19 as build
 WORKDIR /home/node/build
 COPY . .
-RUN npm install
+RUN npm cache clean --force && \
+    npm install -g npm@latest && \
+    npm install
 RUN npm run build
 
 FROM nginx:stable
