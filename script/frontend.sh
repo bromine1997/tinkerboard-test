@@ -45,7 +45,12 @@ fi
 
 # docker 빌드 & 실행
 frontend_directory="$package_directory/boilerplate/frontend" # 임시 path(마음대로 지정 가능)
-cd "$frontend_directory" && docker build . && docker run -d -p 3000:80 --restart always --name frontend && docker image prune -f
+cd "$frontend_directory"
+docker build -t "frontend-$timestamp" .
+docker stop frontend
+docker rm frontend
+docker run -d -p 3000:80 --restart always --name frontend "frontend-$timestamp"
+docker image prune -f
 
 # 파일 최근 10개만 관리
 cd "$archive_directory"

@@ -8,5 +8,6 @@ EXPOSE 80
 
 WORKDIR /home/node/frontend
 COPY --from=build /home/node/build/dist /home/node/frontend
+COPY --from=build /home/node/build/nginx /etc/nginx
 
 ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
