@@ -1,7 +1,8 @@
 FROM node:lts-alpine3.19 as build
 WORKDIR /home/node/build
 COPY . .
-RUN npm install && npm run build
+RUN npm install
+RUN npm run build
 
 FROM nginx:stable
 EXPOSE 80
