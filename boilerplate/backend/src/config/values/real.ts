@@ -21,7 +21,7 @@ export const config: ConfigModel = {
     }),
   },
   mongo: {
-    uri: 'mongodb://localhost:27017',
+    uri: 'mongodb://mongodb:27017',
     authSource: 'admin',
     username: 'root',
     password: 'root',
