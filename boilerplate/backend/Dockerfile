@@ -2,7 +2,9 @@ FROM node:lts-alpine3.19 as node_modules
 WORKDIR /home/node/install
 COPY package.json .
 COPY package-lock.json .
-RUN npm install
+RUN npm cache clean --force && \
+    npm install -g npm@latest && \
+    npm install
 
 FROM node:lts-alpine3.19 as build
 EXPOSE 8080
