@@ -9,7 +9,6 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({ trustProxy: true }));
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.enableShutdownHooks([ShutdownSignal.SIGTERM, ShutdownSignal.SIGINT]);
-  app.enableCors();
 
   await app.register(require('fastify-metrics'), {
     endpoint: '/metrics',
@@ -24,7 +23,7 @@ async function bootstrap() {
     SwaggerModule.setup('swagger', app, document);
   }
 
-  await app.listen(process.env.PORT || 8080, (err: Error, address: string) => {
+  await app.listen(`0.0.0.0:${process.env.PORT || 8080}`, (err: Error, address: string) => {
     console.log(`server started on ${address}`);
     if (process.send) {
       process.send('ready');
