@@ -46,12 +46,14 @@ if [ -f "$new_archive_name" ]; then
 fi
 
 # docker 빌드 & 실행
+# docker network 설정을 통해 mongodb와 연동이 필요
+# 참고: https://github.com/khyw407/tinkerboard-test/issues/5
 backend_directory="$package_directory/boilerplate/backend" # path는 임시(마음대로 지정 가능)
 cd "$backend_directory"
 docker build -t "backend-$timestamp" .
 docker stop backend
 docker rm backend
-docker run -d -p 8080:8080 --restart always --name backend "backend-$timestamp"
+docker run -d -p 8080:8080 --restart always --name backend "backend-$timestamp" --network backend-network
 docker image prune -f
 
 # pm2 재실행
