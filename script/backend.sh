@@ -52,7 +52,7 @@ cd "$backend_directory"
 npm install
 npm run build
 pm2 delete ecosystem.config.js
-pm2 start ecosystem.config.js --env PORT=8000
+pm2 start ecosystem.config.js
 
 # 파일 최근 10개만 관리
 cd "$archive_directory"
