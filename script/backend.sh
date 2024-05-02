@@ -59,7 +59,7 @@ docker network connect backend-network backend
 docker build -t "nginx-$timestamp" -f Dockerfile.nginx .
 docker stop nginx
 docker rm nginx
-docker run -d -p 8080:80 always --name nginx "nginx-$timestamp"
+docker run -d -p 8080:80 --restart always --name nginx "nginx-$timestamp"
 docker network connect backend-network nginx
 docker image prune -f
 
