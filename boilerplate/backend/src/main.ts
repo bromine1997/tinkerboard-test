@@ -23,7 +23,7 @@ async function bootstrap() {
     SwaggerModule.setup('swagger', app, document);
   }
 
-  await app.listen(process.env.PORT || 8000, (err: Error, address: string) => {
+  await app.listen(process.env.PORT || 8080, (err: Error, address: string) => {
     console.log(`server started on ${address}`);
     if (process.send) {
       process.send('ready');
