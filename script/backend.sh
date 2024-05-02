@@ -50,17 +50,17 @@ fi
 # 참고: https://github.com/khyw407/tinkerboard-test/issues/5
 backend_directory="$package_directory/boilerplate/backend" # path는 임시(마음대로 지정 가능)
 cd "$backend_directory"
-docker build -t "backend-$timestamp" .
-docker stop backend
-docker rm backend
-docker run -d --restart always --name backend "backend-$timestamp"
-docker network connect backend-network backend
+#docker build -t "backend-$timestamp" .
+#docker stop backend
+#docker rm backend
+#docker run -d --restart always --name backend "backend-$timestamp"
+#docker network connect backend-network backend
 
 # pm2 재실행
-#npm install
-#npm run build
-#pm2 delete ecosystem.config.js
-#pm2 start ecosystem.config.js
+npm install
+npm run build
+pm2 delete ecosystem.config.js
+pm2 start ecosystem.config.js
 
 # 파일 최근 10개만 관리
 cd "$archive_directory"
