@@ -53,7 +53,8 @@ cd "$backend_directory"
 docker build -t "backend-$timestamp" .
 docker stop backend
 docker rm backend
-docker run -d -p 8080:8080 --restart always --name backend "backend-$timestamp" --network backend-network
+docker run -d -p 8080:8080 --restart always --name backend "backend-$timestamp"
+docker network connect backend-network backend
 docker image prune -f
 
 # pm2 재실행
