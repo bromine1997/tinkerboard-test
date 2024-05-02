@@ -45,14 +45,20 @@ if [ -f "$new_archive_name" ]; then
     echo "압축 해제 완료"
 fi
 
-# pm2 재실행
-# path는 임시(마음대로 지정 가능)
-backend_directory="$package_directory/boilerplate/backend"
+# docker 빌드 & 실행
+backend_directory="$package_directory/boilerplate/backend" # path는 임시(마음대로 지정 가능)
 cd "$backend_directory"
-npm install
-npm run build
-pm2 delete ecosystem.config.js
-pm2 start ecosystem.config.js
+docker build -t "backend-$timestamp" .
+docker stop backend
+docker rm backend
+docker run -d -p 8080:8080 --restart always --name backend "backend-$timestamp"
+docker image prune -f
+
+# pm2 재실행
+#npm install
+#npm run build
+#pm2 delete ecosystem.config.js
+#pm2 start ecosystem.config.js
 
 # 파일 최근 10개만 관리
 cd "$archive_directory"
