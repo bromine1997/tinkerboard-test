@@ -23,12 +23,15 @@ async function bootstrap() {
     SwaggerModule.setup('swagger', app, document);
   }
 
+  /*
   await app.listen(process.env.PORT || 8080, '0.0.0.0', (err: Error, address: string) => {
     console.log(`server started on ${address}`);
     if (process.send) {
       process.send('ready');
     }
   });
+  */
+  await app.listen(process.env.PORT || 8080, '0.0.0.0');
 }
 
 bootstrap();
