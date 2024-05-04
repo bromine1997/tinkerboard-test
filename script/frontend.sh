@@ -1,5 +1,6 @@
 #!/bin/bash
 # 프론트엔드 배포 스크립트
+# path 수정 가능
 package_directory="/home/linaro/deploy/frontend/package"
 archive_directory="/home/linaro/deploy/frontend/archive"
 

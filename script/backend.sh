@@ -1,5 +1,6 @@
 #!/bin/bash
 # 백엔드 배포 스크립트
+# path 수정 가능
 package_directory="/home/linaro/deploy/backend/package"
 archive_directory="/home/linaro/deploy/backend/archive"
 
