@@ -1,8 +1,8 @@
 #!/bin/bash
 # 백엔드 배포 스크립트
 # path 수정 가능
-package_directory="/mnt/c/Users/bromine/deploy/backend/package"
-archive_directory="/mnt/c/Users/bromine/deploy/backend/archive"
+package_directory="/home/bromine/deploy/backend/package"
+archive_directory="/home/bromine/deploy/backend/archive"
 
 if [ ! -d "$package_directory" ]; then
     mkdir -p "$package_directory"
@@ -63,8 +63,3 @@ pm2 start ecosystem.config.js || { echo "ecosystem.config.js not found"; exit 1;
 cd "$archive_directory"
 files_to_keep=$(ls -t | head -10)
 ls | grep -v -e "$(echo $files_to_keep | tr ' ' '\n' | paste -sd '|' -)" | xargs rm || { echo "No files to remove"; }
-
-# 파일 최근 10개만 관리
-cd "$archive_directory"
-files_to_keep=$(ls -t | head -10)
-ls | grep -v -e "$files_to_keep" | xargs rm
