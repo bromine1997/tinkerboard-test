@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'backend',
-      cwd: '/home/linaro/deploy/backend/package/boilerplate/backend',
+      cwd: '/home/bromine/deploy/backend/package/boilerplate/backend',
       script: './dist/main.js',
       exec_mode: 'cluster',
       instances: 4,
