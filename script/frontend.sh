@@ -1,8 +1,9 @@
 #!/bin/bash
 # 프론트엔드 배포 스크립트
 # path 수정 가능
-package_directory="/mnt/c/bromine/deploy/frontend/package"
-archive_directory="/mnt/c/bromine/deploy/frontend/archive"
+package_directory="/home/bromine/deploy/frontend/package"
+archive_directory="/home/bromine/deploy/frontend/archive"
+
 
 if [ ! -d "$package_directory" ]; then
     mkdir -p "$package_directory"
@@ -30,7 +31,7 @@ cd "$archive_directory" || exit
 # 이미 파일이 존재하는지 확인하고, 없으면 다운로드합니다.
 if [ ! -f "$archive_name" ]; then
     echo "다운로드 중: $github_url"
-    wget "$github_url"
+    curl -L -o "$archive_name" "$github_url"
     echo "다운로드 완료: $archive_name"
 else
     echo "이미 파일이 존재합니다: $archive_name"
@@ -46,7 +47,7 @@ fi
 
 # docker 빌드 & 실행
 frontend_directory="$package_directory/boilerplate/frontend" # 임시 path(마음대로 지정 가능)
-cd "$frontend_directory"
+cd "$frontend_directory" || { echo "디렉토리 이동 실패: $frontend_directory"; exit 1; }
 docker build -t "frontend-$timestamp" .
 docker stop frontend
 docker rm frontend
@@ -56,4 +57,4 @@ docker image prune -f
 # 파일 최근 10개만 관리
 cd "$archive_directory"
 files_to_keep=$(ls -t | head -10)
-ls | grep -v -e "$files_to_keep" | xargs rm
+ls | grep -v -e "$(echo $files_to_keep | tr ' ' '\n' | paste -sd '|' -)" | xargs rm || { echo "No files to remove"; }
