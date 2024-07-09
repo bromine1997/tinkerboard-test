@@ -54,7 +54,14 @@ docker rm frontend
 docker run -d -p 3000:80 --restart always --name frontend "frontend-$timestamp"
 docker image prune -f
 
+
 # 파일 최근 10개만 관리
 cd "$archive_directory"
 files_to_keep=$(ls -t | head -10)
-ls | grep -v -e "$(echo $files_to_keep | tr ' ' '\n' | paste -sd '|' -)" | xargs rm || { echo "No files to remove"; }
+files_to_delete=$(ls | grep -v -e "$(echo $files_to_keep | tr ' ' '\n' | paste -sd '|' -)")
+
+if [ -n "$files_to_delete" ]; then
+    echo "$files_to_delete" | xargs rm
+else
+    echo "No files to remove"
+fi
