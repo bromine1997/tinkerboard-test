@@ -1,8 +1,8 @@
 #!/bin/bash
 # 백엔드 배포 스크립트
 # path 수정 가능
-package_directory="/home/linaro/deploy/backend/package"
-archive_directory="/home/linaro/deploy/backend/archive"
+package_directory="/home/bromine/deploy/backend/package"
+archive_directory="/home/bromine/deploy/backend/archive"
 
 if [ ! -d "$package_directory" ]; then
     mkdir -p "$package_directory"
@@ -19,7 +19,7 @@ else
 fi
 
 # GitHub 프로젝트 주소와 압축 파일 이름을 지정 (마음대로 지정 가능)
-github_url="https://github.com/khyw407/tinkerboard-test/archive/master.tar.gz"
+github_url="https://github.com/bromine1997/tinkerboard-test/archive/master.tar.gz"
 archive_name="master.tar.gz"
 timestamp=$(date +"%Y%m%d%H%M%S")
 new_archive_name="tinkerboard-master-$timestamp.tar.gz"
