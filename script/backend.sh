@@ -30,7 +30,7 @@ cd "$archive_directory" || exit
 # 이미 파일이 존재하는지 확인하고, 없으면 다운로드합니다.
 if [ ! -f "$archive_name" ]; then
     echo "다운로드 중: $github_url"
-    wget "$github_url"
+    curl -L -o "$archive_name" "$github_url"
     echo "다운로드 완료: $archive_name"
 else
     echo "이미 파일이 존재합니다: $archive_name"
