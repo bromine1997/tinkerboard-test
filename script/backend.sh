@@ -1,8 +1,8 @@
 #!/bin/bash
 # 백엔드 배포 스크립트
 # path 수정 가능
-package_directory="/mnt/c/bromine/deploy/backend/package"
-archive_directory="/mnt/c/bromine/deploy/backend/archive"
+package_directory="/mnt/c/Users/bromine/deploy/backend/package"
+archive_directory="/mnt/c/Users/bromine/deploy/backend/archive"
 
 if [ ! -d "$package_directory" ]; then
     mkdir -p "$package_directory"
@@ -39,29 +39,30 @@ fi
 mv "$archive_name" "$new_archive_name"
 
 # 압축해제
-mv "$new_archive_name" "$archive_directory"
-
 if [ -f "$new_archive_name" ]; then
     tar -zxvf "$new_archive_name" -C "$package_directory" --strip-components=1
     echo "압축 해제 완료"
+else
+    echo "압축 파일이 존재하지 않습니다: $new_archive_name"
+    exit 1
 fi
 
-# docker 빌드 & 실행
-# docker network 설정을 통해 mongodb와 연동이 필요
-# 참고: https://github.com/khyw407/tinkerboard-test/issues/5
+# backend_directory 설정
 backend_directory="$package_directory/boilerplate/backend" # path는 임시(마음대로 지정 가능)
-cd "$backend_directory"
-#docker build -t "backend-$timestamp" .
-#docker stop backend
-#docker rm backend
-#docker run -d --restart always --name backend "backend-$timestamp"
-#docker network connect backend-network backend
+cd "$backend_directory" || { echo "디렉토리 이동 실패: $backend_directory"; exit 1; }
+
+# npm 설치 및 빌드
+npm install || { echo "npm install 실패"; exit 1; }
+npm run build || { echo "Build script missing or failed"; exit 1; }
 
 # pm2 재실행
-npm install
-npm run build
-pm2 delete ecosystem.config.js
-pm2 start ecosystem.config.js
+pm2 delete ecosystem.config.js || { echo "ecosystem.config.js 삭제 실패"; exit 1; }
+pm2 start ecosystem.config.js || { echo "ecosystem.config.js not found"; exit 1; }
+
+# 파일 최근 10개만 관리
+cd "$archive_directory"
+files_to_keep=$(ls -t | head -10)
+ls | grep -v -e "$(echo $files_to_keep | tr ' ' '\n' | paste -sd '|' -)" | xargs rm || { echo "No files to remove"; }
 
 # 파일 최근 10개만 관리
 cd "$archive_directory"
