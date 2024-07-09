@@ -1,8 +1,8 @@
 #!/bin/bash
 # 백엔드 배포 스크립트
 # path 수정 가능
-package_directory="/home/bromine/deploy/backend/package"
-archive_directory="/home/bromine/deploy/backend/archive"
+package_directory="/mnt/c/bromine/deploy/backend/package"
+archive_directory="/mnt/c/bromine/deploy/backend/archive"
 
 if [ ! -d "$package_directory" ]; then
     mkdir -p "$package_directory"
