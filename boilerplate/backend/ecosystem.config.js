@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'backend',
-      cwd: '/home/bromine/deploy/backend/package/boilerplate/backend',
+      cwd: '/mnt/c/Users/bromine/deploy/backend/package/boilerplate/backend',
       script: './dist/main.js',
       exec_mode: 'cluster',
       instances: 4,
@@ -10,8 +10,8 @@ module.exports = {
       listen_timeout: 3000,
       kill_timeout: 3000,
       restart_delay: 3000,
-      out_file: '~/deploy/backend/logs/backend-api.log',
-      error_file: '~/deploy/backend/logs/backend-api.log',
+      out_file: '/mnt/c/Users/bromine/deploy/backend/logs/backend-api.log',
+      error_file: '/mnt/c/Users/bromine/deploy/backend/logs/backend-api.log',
       merge_logs: true,
       env: {
         NODE_ENV: 'development',
@@ -27,4 +27,5 @@ module.exports = {
       },
     },
   ],
-}
+};
+
