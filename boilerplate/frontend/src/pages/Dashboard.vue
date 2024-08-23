@@ -7,7 +7,7 @@
 
       <!-- 압력 프로필 Line Chart -->
       <div class="col-12 mb-4">
-        <card type="chart" class="chart-card">
+        <card type="chart" class="chart-card large-chart-card">
           <div class="chart-header">
             <h4>압력 프로필</h4>
           </div>
@@ -37,9 +37,9 @@
 
       <!-- 챔버 제어 버튼들 -->
       <div class="col-12 text-center">
-        <button class="control-button" @click="startChamber">RUN</button>
-        <button class="control-button" @click="stopChamber">STOP</button>
-        <button class="control-button" @click="pauseChamber">일시정지</button>
+        <button class="control-button large-control-button" @click="startChamber">RUN</button>
+        <button class="control-button large-control-button" @click="stopChamber">STOP</button>
+        <button class="control-button large-control-button" @click="pauseChamber">일시정지</button>
       </div>
     </div>
   </div>
@@ -116,6 +116,11 @@ export default {
   padding: 20px;
 }
 
+.large-chart-card {
+  height: 600px;
+  width: 100%;
+}
+
 .chart-header {
   margin-bottom: 15px;
 }
@@ -133,6 +138,11 @@ export default {
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.large-control-button {
+  padding: 15px 30px;
+  font-size: 16px;
 }
 
 .control-button:hover {
