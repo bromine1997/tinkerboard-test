@@ -71,9 +71,22 @@ export default {
       pressureChartData: {
         datasets: [
           {
-            label: '압력 PROFILE',
+            label: '기준 프로필',
+            borderColor: 'red',
+            data: [
+              { x: 0, y: 1.5 },
+              { x: 10, y: 2 },
+              { x: 20, y: 1.8 },
+              { x: 30, y: 1.6 },
+              { x: 40, y: 1.2 },
+            ],
+            fill: false,
+          },
+          {
+            label: '실시간 압력',
             borderColor: 'blue',
             data: [],
+            fill: false,
           },
         ],
       },
@@ -85,17 +98,17 @@ export default {
         Co2: 0.04,
       },
       predefinedData: [
-        { x: 0, y: 3 },
-        { x: 1, y: 2.8 },
-        { x: 2, y: 2.6 },
-        { x: 3, y: 3 },
-        { x: 4, y: 3 },
+        { x: 0, y: 2 },
+        { x: 1, y: 1.8 },
+        { x: 2, y: 1.5 },
+        { x: 3, y: 1.2 },
+        { x: 4, y: 1.0 },
       ], // 미리 정의된 데이터 배열
       runTime: 0, // 초 단위로 동작 시간 저장
       timer: null,
       dataIndex: 0, // 데이터를 하나씩 추가할 때 사용할 인덱스
       chartOptions: {
-        responsive: false, // 반응형을 비활성화하여 크기에 따라 스케일이 변하지 않도록 함
+        responsive: false, // 반응형 비활성화
         maintainAspectRatio: false, // 종횡비 유지 비활성화
         scales: {
           x: {
@@ -105,11 +118,13 @@ export default {
               text: 'Time (seconds)', // X축 레이블
               color: 'white',
             },
+            min: 0, // X축의 최소값 설정
+            max: 40, // X축의 최대값 설정 (기준 프로필의 총 시간에 맞춤)
           },
           y: {
             beginAtZero: true,
-            min: 0, // Y축의 최소값을 0으로 설정
-            max: 2.5, // Y축의 최대값을 2.5로 설정하여 데이터가 잘리지 않도록 함
+            min: 1.0, // Y축의 최소값을 기준 프로필의 최소값에 맞춤
+            max: 2.5, // Y축의 최대값을 기준 프로필의 최대값에 맞춤
             ticks: {
               stepSize: 0.5, // Y축 스케일을 0.5 단위로 설정
             },
@@ -166,7 +181,7 @@ export default {
       this.timer = setInterval(() => {
         if (this.dataIndex < this.predefinedData.length) {
           const newDataPoint = this.predefinedData[this.dataIndex];
-          this.pressureChartData.datasets[0].data.push(newDataPoint);
+          this.pressureChartData.datasets[1].data.push(newDataPoint); // 실시간 데이터셋에 데이터 추가
           this.$refs.lineChart.update(); // 차트를 업데이트
           this.dataIndex++;
         } else {
