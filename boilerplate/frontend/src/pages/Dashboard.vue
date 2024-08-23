@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col-12 mb-4">
-        <h2 class="text-center">IoT 장비 모니터링 및 제어</h2>
+        <h2 class="text-center">IOT HBOT Chamber Monitoring System</h2>
       </div>
 
       <!-- 압력 프로필 Line Chart -->
@@ -31,6 +31,18 @@
             <p>온도: {{ sensorData.temperature }} °C</p>
             <p>습도: {{ sensorData.humidity }} %</p>
             <p>압력: {{ sensorData.pressure }} Pa</p>
+          </div>
+        </card>
+      </div>
+
+      <!-- 동작 시간 표시 -->
+      <div class="col-12 mb-4">
+        <card type="chart" class="chart-card">
+          <div class="chart-header">
+            <h4>동작 시간</h4>
+          </div>
+          <div class="timer-display">
+            <p>{{ formattedRunTime }}</p>
           </div>
         </card>
       </div>
@@ -74,6 +86,8 @@ export default {
         humidity: 60,
         pressure: 101325,
       },
+      runTime: 0, // 초 단위로 동작 시간 저장
+      timer: null,
       chartOptions: {
         scales: {
           x: {
@@ -87,19 +101,53 @@ export default {
       },
     };
   },
+  computed: {
+    formattedRunTime() {
+      const hours = Math.floor(this.runTime / 3600);
+      const minutes = Math.floor((this.runTime % 3600) / 60);
+      const seconds = this.runTime % 60;
+      return `${hours}시간 ${minutes}분 ${seconds}초`;
+    },
+  },
   methods: {
     startChamber() {
-      // 챔버 시작 로직
+      this.syncWithDevice('run');
+      this.startTimer();
       alert("챔버가 시작되었습니다.");
     },
     stopChamber() {
-      // 챔버 정지 로직
+      this.syncWithDevice('stop');
+      this.stopTimer();
       alert("챔버가 정지되었습니다.");
     },
     pauseChamber() {
-      // 챔버 일시정지 로직
+      this.syncWithDevice('pause');
+      this.stopTimer();
       alert("챔버가 일시정지되었습니다.");
     },
+    syncWithDevice(action) {
+      // 이 함수에서 장비와의 통신을 통해 동작 명령을 전달하고, 장비의 현재 상태를 동기화
+      // 예를 들어, REST API 호출이나 WebSocket 메시지를 통해 수행할 수 있음.
+      // axios.post('/api/device/control', { action })
+    },
+    startTimer() {
+      if (this.timer) {
+        clearInterval(this.timer);
+      }
+      this.timer = setInterval(() => {
+        this.runTime++;
+      }, 1000);
+    },
+    stopTimer() {
+      if (this.timer) {
+        clearInterval(this.timer);
+      }
+    },
+  },
+  beforeDestroy() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
   },
 };
 </script>
@@ -130,18 +178,20 @@ export default {
   line-height: 1.6;
 }
 
+.timer-display {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 10px;
+}
+
 .control-button {
   background-color: #4caf50;
   border: none;
   color: white;
-  padding: 10px 20px;
+  padding: 15px 30px;
   margin: 5px;
   border-radius: 5px;
   cursor: pointer;
-}
-
-.large-control-button {
-  padding: 15px 30px;
   font-size: 16px;
 }
 
