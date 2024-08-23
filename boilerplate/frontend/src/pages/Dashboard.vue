@@ -71,7 +71,7 @@ export default {
       pressureChartData: {
         datasets: [
           {
-            label: '압력 profile',
+            label: '압력 프로필',
             borderColor: 'blue',
             data: [
               { x: 0, y: 1 },
@@ -95,11 +95,23 @@ export default {
       chartOptions: {
         scales: {
           x: {
-            type: 'linear',
-            position: 'bottom',
+            type: 'time', // X축을 시간 축으로 설정
+            time: {
+              unit: 'second',
+            },
+            title: {
+              display: true,
+              text: 'Time (seconds)', // X축 레이블
+              color: 'white',
+            },
           },
           y: {
             beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Pressure (Pa)', // Y축 레이블
+              color: 'white',
+            },
           },
         },
       },
