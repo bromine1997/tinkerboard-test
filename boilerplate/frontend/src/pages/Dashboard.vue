@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col-12 mb-4">
-        <h2 class="text-center">IoT 장비 모니터링 및 제어</h2>
+        <h2 class="text-center">IoT HBOT CHAMBER MONITORING</h2>
       </div>
 
       <!-- 압력 Profile Line Chart -->
