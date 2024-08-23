@@ -5,11 +5,11 @@
         <h2 class="text-center">IOT HBOT Chamber Monitoring System</h2>
       </div>
 
-      <!-- 압력 프로필 Line Chart -->
+      <!-- 압력 Profile Line Chart -->
       <div class="col-12 mb-4">
         <card type="chart" class="chart-card large-chart-card">
           <div class="chart-header">
-            <h4>압력 프로필</h4>
+            <h4>PRESSURE PROFILE</h4>
           </div>
           <div class="chart-area">
             <line-chart
@@ -25,12 +25,14 @@
       <div class="col-12 mb-4">
         <card type="chart" class="chart-card">
           <div class="chart-header">
-            <h4>센서 데이터 모니터링</h4>
+            <h4>Sensor DATA MONITORING</h4>
           </div>
           <div class="sensor-data">
             <p>온도: {{ sensorData.temperature }} °C</p>
             <p>습도: {{ sensorData.humidity }} %</p>
             <p>압력: {{ sensorData.pressure }} Pa</p>
+            <p>산소: {{ sensorData.O2 }} Pa</p>
+            <p>이산화탄소: {{ sensorData.CO2 }} Pa</p>
           </div>
         </card>
       </div>
