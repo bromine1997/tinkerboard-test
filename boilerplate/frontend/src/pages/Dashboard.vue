@@ -39,12 +39,9 @@
 
       <!-- 챔버 제어 버튼들 -->
       <div class="col-12 text-center">
-        <button class="control-button" @click="startChamber">RUN</button>
-        <button class="control-button" @click="stopChamber">STOP</button>
-        <button class="control-button" @click="pauseChamber">일시정지</button>
         <button class="control-button large-control-button" @click="startChamber">RUN</button>
-        <button class="control-button large-control-button" @click="stopChamber">STOP</button>
         <button class="control-button large-control-button" @click="pauseChamber">일시정지</button>
+        <button class="control-button large-control-button" @click="stopChamber">STOP</button>
       </div>
     </div>
   </div>
@@ -64,10 +61,10 @@ export default {
             borderColor: 'blue',
             data: [
               { x: 0, y: 1 },
-              { x: 1, y: 0.5 },
-              { x: 2, y: 1.5 },
-              { x: 3, y: 0.8 },
-              { x: 4, y: 1.2 },
+              { x: 1, y: 1 },
+              { x: 2, y: 1 },
+              { x: 3, y: 1 },
+              { x: 4, y: 1 },
             ],
           },
         ],
