@@ -95,12 +95,11 @@ export default {
       timer: null,
       dataIndex: 0, // 데이터를 하나씩 추가할 때 사용할 인덱스
       chartOptions: {
+        responsive: false, // 반응형을 비활성화하여 크기에 따라 스케일이 변하지 않도록 함
+        maintainAspectRatio: false, // 종횡비 유지 비활성화
         scales: {
           x: {
-            type: 'time', // X축을 시간 축으로 설정
-            time: {
-              unit: 'second',
-            },
+            type: 'linear', // X축을 선형 축으로 설정
             title: {
               display: true,
               text: 'Time (seconds)', // X축 레이블
@@ -193,6 +192,7 @@ export default {
   color: white;
   border-radius: 10px;
   padding: 20px;
+  height: 500px; /* 차트 카드의 고정된 높이 설정 */
 }
 .large-chart-card {
   height: 600px;
