@@ -3,8 +3,7 @@
     <div class="row">
       <div class="col-12">
         <line-chart
-      
-          style="height: 400px;"  <!-- 높이 조정 -->
+          style="height: 30%;"
           ref="bigChart"
           chart-id="big-line-chart"
         >
