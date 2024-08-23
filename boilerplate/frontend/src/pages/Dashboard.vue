@@ -71,7 +71,7 @@ export default {
       pressureChartData: {
         datasets: [
           {
-            label: '기준 프로필',
+            label: 'SET PROFILE ',
             borderColor: 'red',
             data: [
               { x: 0, y: 1.5 },
@@ -83,7 +83,7 @@ export default {
             fill: false,
           },
           {
-            label: '실시간 압력',
+            label: '실시간 PRESSURE',
             borderColor: 'blue',
             data: [],
             fill: false,
