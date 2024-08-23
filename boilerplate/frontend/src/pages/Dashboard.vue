@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col-12 mb-4">
-        <h2 class="text-center">IoT HBOT CHAMBER MONITORING</h2>
+        <h2 class="text-center">IoT 장비 모니터링 및 제어</h2>
       </div>
 
       <!-- 압력 Profile Line Chart -->
@@ -71,14 +71,14 @@ export default {
       pressureChartData: {
         datasets: [
           {
-            label: '압력 Profile',
+            label: '압력 프로필',
             borderColor: 'blue',
             data: [
               { x: 0, y: 2 },
-              { x: 1, y: 1 },
-              { x: 2, y: 1 },
-              { x: 3, y: 1 },
-              { x: 4, y: 1 },
+              { x: 1, y: 1.8 },
+              { x: 2, y: 1.5 },
+              { x: 3, y: 1.2 },
+              { x: 4, y: 1.0 },
             ],
           },
         ],
@@ -107,6 +107,11 @@ export default {
           },
           y: {
             beginAtZero: true,
+            min: 0, // Y축의 최소값을 0으로 설정
+            max: 2.5, // Y축의 최대값을 2.5로 설정하여 데이터가 잘리지 않도록 함
+            ticks: {
+              stepSize: 0.5, // Y축 스케일을 0.5 단위로 설정
+            },
             title: {
               display: true,
               text: 'Pressure (Pa)', // Y축 레이블
@@ -206,4 +211,3 @@ export default {
   background-color: #45a049;
 }
 </style>
-
