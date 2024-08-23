@@ -31,8 +31,8 @@
             <p>온도: {{ sensorData.temperature }} °C</p>
             <p>습도: {{ sensorData.humidity }} %</p>
             <p>압력: {{ sensorData.pressure }} Pa</p>
-            <p>산소: {{ sensorData.O2 }} Pa</p>
-            <p>이산화탄소: {{ sensorData.CO2 }} Pa</p>
+            <p>산소: {{ sensorData.O2 }} %</p>
+            <p>이산화탄소: {{ sensorData.CO2 }} %</p>
           </div>
         </card>
       </div>
@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import LineChart from '@/components/Charts/LineChart';
 
 export default {
@@ -87,6 +88,8 @@ export default {
         temperature: 25,
         humidity: 60,
         pressure: 101325,
+        O2: 21,
+        CO2: 0.04,
       },
       runTime: 0, // 초 단위로 동작 시간 저장
       timer: null,
@@ -112,6 +115,22 @@ export default {
     },
   },
   methods: {
+    async fetchRunTime() {
+      try {
+        const response = await axios.get('/api/device/runtime');
+        this.runTime = response.data.runTime; // 서버에서 초 단위로 시간을 받아옴
+      } catch (error) {
+        console.error("동작 시간 가져오기 실패:", error);
+      }
+    },
+    async syncWithDevice(action) {
+      try {
+        const response = await axios.post('/api/device/control', { action });
+        this.runTime = response.data.runTime; // 동작 후 서버에서 최신 동작 시간 받아옴
+      } catch (error) {
+        console.error(`${action} 명령을 수행하는 데 실패했습니다:`, error);
+      }
+    },
     startChamber() {
       this.syncWithDevice('run');
       this.startTimer();
@@ -127,12 +146,8 @@ export default {
       this.stopTimer();
       alert("챔버가 일시정지되었습니다.");
     },
-    syncWithDevice(action) {
-      // 이 함수에서 장비와의 통신을 통해 동작 명령을 전달하고, 장비의 현재 상태를 동기화
-      // 예를 들어, REST API 호출이나 WebSocket 메시지를 통해 수행할 수 있음.
-      // axios.post('/api/device/control', { action })
-    },
     startTimer() {
+      this.fetchRunTime(); // 타이머 시작 전에 서버로부터 최신 동작 시간 가져오기
       if (this.timer) {
         clearInterval(this.timer);
       }
@@ -145,6 +160,9 @@ export default {
         clearInterval(this.timer);
       }
     },
+  },
+  mounted() {
+    this.fetchRunTime(); // 컴포넌트가 마운트될 때 서버에서 동작 시간 가져오기
   },
   beforeDestroy() {
     if (this.timer) {
