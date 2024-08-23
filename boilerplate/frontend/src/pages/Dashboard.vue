@@ -73,13 +73,7 @@ export default {
           {
             label: '압력 프로필',
             borderColor: 'blue',
-            data: [
-              { x: 0, y: 2 },
-              { x: 1, y: 1.8 },
-              { x: 2, y: 1.5 },
-              { x: 3, y: 1.2 },
-              { x: 4, y: 1.0 },
-            ],
+            data: [],
           },
         ],
       },
@@ -90,8 +84,16 @@ export default {
         O2: 21,
         Co2: 0.04,
       },
+      predefinedData: [
+        { x: 0, y: 2 },
+        { x: 1, y: 1.8 },
+        { x: 2, y: 1.5 },
+        { x: 3, y: 1.2 },
+        { x: 4, y: 1.0 },
+      ], // 미리 정의된 데이터 배열
       runTime: 0, // 초 단위로 동작 시간 저장
       timer: null,
+      dataIndex: 0, // 데이터를 하나씩 추가할 때 사용할 인덱스
       chartOptions: {
         scales: {
           x: {
@@ -133,18 +135,20 @@ export default {
   methods: {
     startChamber() {
       // 챔버 시작 로직
+      this.dataIndex = 0; // 데이터 인덱스를 초기화
       this.startTimer();
-      alert("챔버가 시작되었습니다.");
+      this.addDataStepByStep();
+      alert('챔버가 시작되었습니다.');
     },
     stopChamber() {
       // 챔버 정지 로직
       this.stopTimer();
-      alert("챔버가 정지되었습니다.");
+      alert('챔버가 정지되었습니다.');
     },
     pauseChamber() {
       // 챔버 일시정지 로직
       this.stopTimer();
-      alert("챔버가 일시정지되었습니다.");
+      alert('챔버가 일시정지되었습니다.');
     },
     startTimer() {
       if (this.timer) {
@@ -158,6 +162,18 @@ export default {
       if (this.timer) {
         clearInterval(this.timer);
       }
+    },
+    addDataStepByStep() {
+      this.timer = setInterval(() => {
+        if (this.dataIndex < this.predefinedData.length) {
+          const newDataPoint = this.predefinedData[this.dataIndex];
+          this.pressureChartData.datasets[0].data.push(newDataPoint);
+          this.$refs.lineChart.update(); // 차트를 업데이트
+          this.dataIndex++;
+        } else {
+          clearInterval(this.timer); // 모든 데이터를 추가했으면 타이머를 멈춤
+        }
+      }, 1000); // 1초마다 데이터 포인트를 하나씩 추가
     },
   },
   beforeDestroy() {
@@ -211,3 +227,4 @@ export default {
   background-color: #45a049;
 }
 </style>
+
