@@ -71,7 +71,7 @@ export default {
       pressureChartData: {
         datasets: [
           {
-            label: '압력 프로필',
+            label: '압력 PROFILE',
             borderColor: 'blue',
             data: [],
           },
