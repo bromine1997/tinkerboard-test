@@ -10,6 +10,8 @@
         <card type="chart" class="chart-card large-chart-card">
           <div class="chart-header">
             <h4>Pressure Profile</h4>
+            <!-- Button to fetch profile from database -->
+            <button class="fetch-button" @click="fetchProfile">Fetch Profile from DB</button>
           </div>
           <div class="chart-area">
             <line-chart
@@ -21,9 +23,9 @@
         </card>
       </div>
 
-      <!-- Sensor Data Monitoring -->
-      <div class="col-12 mb-4">
-        <card type="chart" class="chart-card">
+      <!-- Sensor Data Monitoring (smaller size) -->
+      <div class="col-6 mb-4">
+        <card type="chart" class="chart-card small-chart-card">
           <div class="chart-header">
             <h4>센서 데이터 모니터링</h4>
           </div>
@@ -37,9 +39,9 @@
         </card>
       </div>
 
-      <!-- Run Time Display -->
-      <div class="col-12 mb-4">
-        <card type="chart" class="chart-card">
+      <!-- Run Time Display (smaller size) -->
+      <div class="col-6 mb-4">
+        <card type="chart" class="chart-card small-chart-card">
           <div class="chart-header">
             <h4>동작 시간</h4>
           </div>
@@ -103,34 +105,34 @@ export default {
         { x: 2, y: 1.5 },
         { x: 3, y: 1.2 },
         { x: 4, y: 1.0 },
-      ], // 미리 정의된 데이터 배열
-      runTime: 0, // 초 단위로 동작 시간 저장
+      ],
+      runTime: 0,
       timer: null,
-      dataIndex: 0, // 데이터를 하나씩 추가할 때 사용할 인덱스
+      dataIndex: 0,
       chartOptions: {
-        responsive: false, // 반응형 비활성화
-        maintainAspectRatio: false, // 종횡비 유지 비활성화
+        responsive: false,
+        maintainAspectRatio: false,
         scales: {
           x: {
-            type: 'linear', // X축을 선형 축으로 설정
+            type: 'linear',
             title: {
               display: true,
-              text: 'Time (seconds)', // X축 레이블
+              text: 'Time (seconds)',
               color: 'white',
             },
-            min: 0, // X축의 최소값 설정
-            max: 40, // X축의 최대값 설정 (기준 프로필의 총 시간에 맞춤)
+            min: 0,
+            max: 40,
           },
           y: {
             beginAtZero: true,
-            min: 1.0, // Y축의 최소값을 기준 프로필의 최소값에 맞춤
-            max: 2.5, // Y축의 최대값을 기준 프로필의 최대값에 맞춤
+            min: 1.0,
+            max: 2.5,
             ticks: {
-              stepSize: 0.5, // Y축 스케일을 0.5 단위로 설정
+              stepSize: 0.5,
             },
             title: {
               display: true,
-              text: 'Pressure (Pa)', // Y축 레이블
+              text: 'Pressure (Pa)',
               color: 'white',
             },
           },
@@ -147,20 +149,24 @@ export default {
     },
   },
   methods: {
+    fetchProfile() {
+      // Fetch the profile data from the database
+      // This is a placeholder for the actual DB call
+      // You can replace this with an API call or database query
+      alert('Fetching profile from the database...');
+      // Example: this.loadProfileFromDatabase();
+    },
     startChamber() {
-      // 챔버 시작 로직
-      this.dataIndex = 0; // 데이터 인덱스를 초기화
+      this.dataIndex = 0;
       this.startTimer();
       this.addDataStepByStep();
       alert('챔버가 시작되었습니다.');
     },
     stopChamber() {
-      // 챔버 정지 로직
       this.stopTimer();
       alert('챔버가 정지되었습니다.');
     },
     pauseChamber() {
-      // 챔버 일시정지 로직
       this.stopTimer();
       alert('챔버가 일시정지되었습니다.');
     },
@@ -170,7 +176,7 @@ export default {
       }
       this.timer = setInterval(() => {
         this.runTime++;
-      }, 1000); // 1초마다 runTime을 1씩 증가시킴
+      }, 1000);
     },
     stopTimer() {
       if (this.timer) {
@@ -181,13 +187,13 @@ export default {
       this.timer = setInterval(() => {
         if (this.dataIndex < this.predefinedData.length) {
           const newDataPoint = this.predefinedData[this.dataIndex];
-          this.pressureChartData.datasets[1].data.push(newDataPoint); // 실시간 데이터셋에 데이터 추가
-          this.$refs.lineChart.update(); // 차트를 업데이트
+          this.pressureChartData.datasets[1].data.push(newDataPoint);
+          this.$refs.lineChart.update();
           this.dataIndex++;
         } else {
-          clearInterval(this.timer); // 모든 데이터를 추가했으면 타이머를 멈춤
+          clearInterval(this.timer);
         }
-      }, 1000); // 1초마다 데이터 포인트를 하나씩 추가
+      }, 1000);
     },
   },
   beforeDestroy() {
@@ -197,6 +203,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .row {
@@ -222,14 +229,32 @@ export default {
   transform: translateY(-10px);
 }
 .large-chart-card {
-  height: 600px;
+  height: 700px; /* Increased size */
   width: 100%;
+}
+.small-chart-card {
+  height: 250px; /* Reduced size */
 }
 .chart-header {
   margin-bottom: 15px;
   font-weight: bold;
   font-size: 1.5rem;
   color: #ff6f61;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fetch-button {
+  background-color: #ff5722;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.fetch-button:hover {
+  background-color: #e64a19;
 }
 .sensor-data {
   font-size: 1.2rem;
@@ -266,5 +291,6 @@ export default {
   transform: translateY(0);
 }
 </style>
+
 
 
