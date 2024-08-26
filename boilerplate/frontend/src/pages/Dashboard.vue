@@ -10,7 +10,7 @@
         <card type="chart" class="chart-card large-chart-card">
           <div class="chart-header">
             <h4>Pressure Profile</h4>
-            <button class="fetch-button" @click="fetchProfileFromDatabase">Fetch Profile from DB</button>
+            <button class="fetch-button" @click="fetchProfile">Fetch Profile from DB</button>
           </div>
           <div class="chart-area">
             <line-chart
@@ -72,7 +72,7 @@ export default {
       pressureChartData: {
         datasets: [
           {
-            label: 'SET PROFILE',
+            label: 'SET PROFILE ',
             borderColor: 'red',
             data: [
               { x: 0, y: 1.5 },
@@ -106,6 +106,7 @@ export default {
       },
       runTime: 0,
       timer: null,
+      dataIndex: 0,
       chartOptions: {
         responsive: true,
         maintainAspectRatio: false,
@@ -118,7 +119,7 @@ export default {
               color: 'white',
             },
             min: 0,
-            max: 5,
+            max: 5, // Start with initial view range
             ticks: {
               color: 'white',
             },
@@ -139,8 +140,6 @@ export default {
           },
         },
       },
-      isLoading: false,
-      hasError: false,
     };
   },
   computed: {
@@ -152,29 +151,20 @@ export default {
     },
   },
   methods: {
-    fetchProfileFromDatabase() {
-      this.isLoading = true;
-      this.hasError = false;
-      // DB에서 데이터를 가져오는 로직 추가
-      setTimeout(() => {
-        this.isLoading = false;
-        // 성공적으로 데이터를 가져온 경우
-        // this.pressureChartData.datasets[0].data = fetchedData;
-        alert('Profile fetched from the database!');
-      }, 1000);
+    fetchProfile() {
+      alert('Fetching profile from the database...');
     },
     startChamber() {
-      this.$refs.lineChart.startDrawing(); // 실시간 데이터 추가 시작
+      this.$refs.lineChart.startDrawing(); // Start adding data points to chart
       this.startTimer();
       alert('챔버가 시작되었습니다.');
     },
     stopChamber() {
-      this.$refs.lineChart.stopDrawing(); // 실시간 데이터 추가 중지
+      this.$refs.lineChart.stopDrawing();
       this.stopTimer();
       alert('챔버가 정지되었습니다.');
     },
     pauseChamber() {
-      this.$refs.lineChart.stopDrawing(); // 실시간 데이터 추가 중지
       this.stopTimer();
       alert('챔버가 일시정지되었습니다.');
     },
@@ -189,22 +179,104 @@ export default {
     stopTimer() {
       if (this.timer) {
         clearInterval(this.timer);
-        this.timer = null;
       }
     },
   },
   beforeDestroy() {
-    this.stopChamber(); // 컴포넌트가 파괴될 때 챔버를 중지
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
   },
 };
 </script>
 
 <style scoped>
-/* 기존 스타일 유지하며, 버튼 애니메이션 효과 추가 */
+.row {
+  margin-top: 20px;
+}
+.main-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.5rem;
+  color: #f7f7f7;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+.chart-card {
+  background-color: #2a2a3b;
+  color: #ffffff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+.chart-card:hover {
+  transform: translateY(-10px);
+}
+.large-chart-card {
+  height: 700px; /* Increased size */
+  width: 100%;
+}
+.equal-height-card {
+  min-height: 300px; /* 동일한 높이 설정 */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.chart-header {
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #ff6f61;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fetch-button {
+  background-color: #ff5722;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.fetch-button:hover {
+  background-color: #e64a19;
+}
+.sensor-data {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-top: 20px;
+  color: #e0e0e0;
+}
+.timer-display {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 20px;
+  color: #ffeb3b;
+}
+.control-button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  margin: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.large-control-button {
+  padding: 15px 35px;
+  font-size: 1.2rem;
+}
+.control-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-5px);
+}
 .control-button:active {
   background-color: #004494;
   transform: translateY(0);
-  transition: transform 0.1s ease-out; /* 클릭시 짧은 트랜지션 */
 }
 </style>
 
