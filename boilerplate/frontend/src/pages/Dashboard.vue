@@ -23,9 +23,9 @@
         </card>
       </div>
 
-      <!-- Sensor Data Monitoring (smaller size) -->
+      <!-- Sensor Data Monitoring -->
       <div class="col-6 mb-4">
-        <card type="chart" class="chart-card small-chart-card">
+        <card type="chart" class="chart-card equal-height-card">
           <div class="chart-header">
             <h4>센서 데이터 모니터링</h4>
           </div>
@@ -39,9 +39,9 @@
         </card>
       </div>
 
-      <!-- Run Time Display (smaller size) -->
+      <!-- Run Time Display -->
       <div class="col-6 mb-4">
-        <card type="chart" class="chart-card small-chart-card">
+        <card type="chart" class="chart-card equal-height-card">
           <div class="chart-header">
             <h4>동작 시간</h4>
           </div>
@@ -60,6 +60,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import LineChart from '@/components/Charts/LineChart';
@@ -230,10 +231,9 @@ export default {
   height: 700px; /* Increased size */
   width: 100%;
 }
-.small-chart-card {
-  min-height: 200px; /* Adjust to fit content properly */
-  padding: 20px; /* Adjust padding to fit content properly */
-  height: auto; /* Allow height to adjust based on content */
+.equal-height-card {
+  min-height: 300px; /* 동일한 높이 설정 */
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
