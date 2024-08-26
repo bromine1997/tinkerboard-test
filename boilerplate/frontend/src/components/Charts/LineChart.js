@@ -9,30 +9,33 @@ export default {
       chartDataIndex: 0,
       intervalId: null,
       chartOptions: {
-        responsive: true, // 반응형 설정 (필요시 false로 설정)
-        maintainAspectRatio: false, // 반응형일 때 종횡비 유지 여부
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
           x: {
-            type: 'time',
-            time: {
-              unit: 'second', 
-              tooltipFormat: 'HH:mm:ss',
-            },
+            type: 'linear', // X축 타입을 linear로 변경
             title: {
               display: true,
               text: 'Time (seconds)',
+              color: 'white', // X축 레이블 색상 설정
             },
-            // X축의 최소/최대 값을 데이터 범위에 맞게 설정
-            min: null,
-            max: null,
+            min: 0, // X축 최소값 초기 설정
+            max: 40, // X축 최대값 초기 설정
+            ticks: {
+              color: 'white', // X축 눈금 텍스트 색상 설정
+            },
           },
           y: {
-            beginAtZero: true, // y축이 0에서 시작
-            suggestedMin: null, // y축의 최소값을 자동 설정
-            suggestedMax: null, // y축의 최대값을 자동 설정
+            beginAtZero: true,
+            suggestedMin: 1.0, // y축 최소값을 1.0으로 초기 설정
+            suggestedMax: 2.5, // y축 최대값을 2.5로 초기 설정
             title: {
               display: true,
               text: 'Pressure (Pa)',
+              color: 'white', // Y축 레이블 색상 설정
+            },
+            ticks: {
+              color: 'white', // Y축 눈금 텍스트 색상 설정
             },
           },
         },
@@ -62,7 +65,7 @@ export default {
     startDrawing() {
       this.intervalId = setInterval(() => {
         if (this.chartDataIndex < this.chartData.datasets[0].data.length) {
-          const currentTime = new Date(); 
+          const currentTime = this.chartDataIndex; // 기존 코드의 new Date()에서 초 단위 값으로 변경
           this.$data._chart.data.datasets.forEach((dataset) => {
             dataset.data.push({
               x: currentTime,
