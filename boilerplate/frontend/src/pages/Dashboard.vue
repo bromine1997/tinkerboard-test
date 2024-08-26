@@ -10,7 +10,6 @@
         <card type="chart" class="chart-card large-chart-card">
           <div class="chart-header">
             <h4>Pressure Profile</h4>
-            <!-- Button to fetch profile from database -->
             <button class="fetch-button" @click="fetchProfile">Fetch Profile from DB</button>
           </div>
           <div class="chart-area">
@@ -61,7 +60,6 @@
   </div>
 </template>
 
-
 <script>
 import LineChart from '@/components/Charts/LineChart';
 
@@ -88,7 +86,13 @@ export default {
           {
             label: '실시간 PRESSURE',
             borderColor: 'blue',
-            data: [],
+            data: [
+              { x: 0, y: 2 },
+              { x: 1, y: 1.8 },
+              { x: 2, y: 1.5 },
+              { x: 3, y: 1.2 },
+              { x: 4, y: 1.0 },
+            ],
             fill: false,
           },
         ],
@@ -100,18 +104,11 @@ export default {
         O2: 21,
         Co2: 0.04,
       },
-      predefinedData: [
-        { x: 0, y: 2 },
-        { x: 1, y: 1.8 },
-        { x: 2, y: 1.5 },
-        { x: 3, y: 1.2 },
-        { x: 4, y: 1.0 },
-      ],
       runTime: 0,
       timer: null,
       dataIndex: 0,
       chartOptions: {
-        responsive: false,
+        responsive: true,
         maintainAspectRatio: false,
         scales: {
           x: {
@@ -122,7 +119,10 @@ export default {
               color: 'white',
             },
             min: 0,
-            max: 40,
+            max: 5, // Start with initial view range
+            ticks: {
+              color: 'white',
+            },
           },
           y: {
             beginAtZero: true,
@@ -130,6 +130,7 @@ export default {
             max: 2.5,
             ticks: {
               stepSize: 0.5,
+              color: 'white',
             },
             title: {
               display: true,
@@ -151,19 +152,15 @@ export default {
   },
   methods: {
     fetchProfile() {
-      // Fetch the profile data from the database
-      // This is a placeholder for the actual DB call
-      // You can replace this with an API call or database query
       alert('Fetching profile from the database...');
-      // Example: this.loadProfileFromDatabase();
     },
     startChamber() {
-      this.dataIndex = 0;
+      this.$refs.lineChart.startDrawing(); // Start adding data points to chart
       this.startTimer();
-      this.addDataStepByStep();
       alert('챔버가 시작되었습니다.');
     },
     stopChamber() {
+      this.$refs.lineChart.stopDrawing();
       this.stopTimer();
       alert('챔버가 정지되었습니다.');
     },
@@ -183,18 +180,6 @@ export default {
       if (this.timer) {
         clearInterval(this.timer);
       }
-    },
-    addDataStepByStep() {
-      this.timer = setInterval(() => {
-        if (this.dataIndex < this.predefinedData.length) {
-          const newDataPoint = this.predefinedData[this.dataIndex];
-          this.pressureChartData.datasets[1].data.push(newDataPoint);
-          this.$refs.lineChart.update();
-          this.dataIndex++;
-        } else {
-          clearInterval(this.timer);
-        }
-      }, 1000);
     },
   },
   beforeDestroy() {
