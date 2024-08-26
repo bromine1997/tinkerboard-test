@@ -2,10 +2,10 @@
   <div>
     <div class="row">
       <div class="col-12 mb-4">
-        <h2 class="text-center">IoT HBOT CHAMBER MONITORING</h2>
+        <h2 class="text-center main-title">IoT HBOT CHAMBER MONITORING</h2>
       </div>
 
-      <!-- 압력 Profile Line Chart -->
+      <!-- Pressure Profile Line Chart -->
       <div class="col-12 mb-4">
         <card type="chart" class="chart-card large-chart-card">
           <div class="chart-header">
@@ -21,7 +21,7 @@
         </card>
       </div>
 
-      <!-- 센서 데이터 모니터링 -->
+      <!-- Sensor Data Monitoring -->
       <div class="col-12 mb-4">
         <card type="chart" class="chart-card">
           <div class="chart-header">
@@ -37,7 +37,7 @@
         </card>
       </div>
 
-      <!-- 동작 시간 표시 -->
+      <!-- Run Time Display -->
       <div class="col-12 mb-4">
         <card type="chart" class="chart-card">
           <div class="chart-header">
@@ -49,7 +49,7 @@
         </card>
       </div>
 
-      <!-- 챔버 제어 버튼들 -->
+      <!-- Chamber Control Buttons -->
       <div class="col-12 text-center">
         <button class="control-button large-control-button" @click="startChamber">RUN</button>
         <button class="control-button large-control-button" @click="pauseChamber">일시정지</button>
@@ -202,12 +202,24 @@ export default {
 .row {
   margin-top: 20px;
 }
+.main-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.5rem;
+  color: #f7f7f7;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
 .chart-card {
-  background-color: #1e1e2f;
-  color: white;
-  border-radius: 10px;
-  padding: 20px;
-  height: 500px; /* 차트 카드의 고정된 높이 설정 */
+  background-color: #2a2a3b;
+  color: #ffffff;
+  border-radius: 15px;
+  padding: 30px;
+  height: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+.chart-card:hover {
+  transform: translateY(-10px);
 }
 .large-chart-card {
   height: 600px;
@@ -215,31 +227,44 @@ export default {
 }
 .chart-header {
   margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #ff6f61;
 }
 .sensor-data {
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-top: 20px;
+  color: #e0e0e0;
 }
 .timer-display {
-  font-size: 24px;
+  font-size: 2rem;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 20px;
+  color: #ffeb3b;
 }
 .control-button {
-  background-color: #4caf50;
+  background-color: #007bff;
   border: none;
   color: white;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
+  padding: 12px 25px;
+  margin: 10px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 .large-control-button {
-  padding: 15px 30px;
-  font-size: 16px;
+  padding: 15px 35px;
+  font-size: 1.2rem;
 }
 .control-button:hover {
-  background-color: #45a049;
+  background-color: #0056b3;
+  transform: translateY(-5px);
+}
+.control-button:active {
+  background-color: #004494;
+  transform: translateY(0);
 }
 </style>
+
 
