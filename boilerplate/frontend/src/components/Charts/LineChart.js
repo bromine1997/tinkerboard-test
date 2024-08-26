@@ -1,75 +1,95 @@
-import { Line, mixins } from 'vue-chartjs';
+import { Line, mixins } from "vue-chartjs";
 
 export default {
-  name: 'line-chart',
+  name: "line-chart",
   extends: Line,
   mixins: [mixins.reactiveProp],
+  props: {
+    extraOptions: Object,
+    gradientColors: {
+      type: Array,
+      default: () => [
+        "rgba(72,72,176,0.2)",
+        "rgba(72,72,176,0.0)",
+        "rgba(119,52,169,0)",
+      ],
+      validator: (val) => {
+        return val.length > 2;
+      },
+    },
+    gradientStops: {
+      type: Array,
+      default: () => [1, 0.4, 0],
+      validator: (val) => {
+        return val.length > 2;
+      },
+    },
+  },
   data() {
     return {
-      chartDataIndex: 0,
-      intervalId: null,
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            type: 'linear',
-            title: {
-              display: true,
-              text: 'Time (seconds)',
-              color: 'white',
-            },
-            ticks: {
-              color: 'white', // X축 눈금 텍스트 색상 설정
-            },
-          },
-          y: {
-            beginAtZero: true,
-            min: 1.0,
-            max: 2.5,
-            ticks: {
-              stepSize: 0.5,
-              color: 'white',
-            },
-            title: {
-              display: true,
-              text: 'Pressure (Pa)',
-              color: 'white',
-            },
-          },
-        },
-        plugins: {
-          legend: {
-            display: true,
-            position: 'top',
-          },
-        },
-      },
+      ctx: null,
+      updateInterval: null, // 타이머를 저장할 변수
+      localData: [80, 75, 70, 68, 72, 74, 76, 73, 77, 78, 79, 81], // 임의로 저장된 데이터
+      currentIndex: 0, // 현재 데이터 인덱스
     };
   },
   methods: {
-    initializeChart() {
-      this.renderChart(this.chartData, this.chartOptions);
-    },
-    startDrawing() {
-      this.intervalId = setInterval(() => {
-        if (this.chartDataIndex < this.chartData.datasets[1].data.length) {
-          const newDataPoint = this.chartData.datasets[1].data[this.chartDataIndex];
-          this.$data._chart.data.datasets[1].data.push(newDataPoint); // Add new data point to blue line
+    updateGradients(chartData) {
+      if (!chartData) return;
+      const ctx = this.ctx || document.getElementById(this.chartId).getContext("2d");
+      const gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
 
-          // Automatically adjust x-axis max value
-          this.$data._chart.options.scales.x.max = newDataPoint.x + 5;
-          
-          this.$data._chart.update(); // Update the chart
-          this.chartDataIndex += 1;
-        } else {
-          clearInterval(this.intervalId); // Stop if all data points are added
-        }
-      }, 1000);
+      gradientStroke.addColorStop(this.gradientStops[0], this.gradientColors[0]);
+      gradientStroke.addColorStop(this.gradientStops[1], this.gradientColors[1]);
+      gradientStroke.addColorStop(this.gradientStops[2], this.gradientColors[2]);
+      chartData.datasets.forEach((set) => {
+        set.backgroundColor = gradientStroke;
+      });
     },
+    addDataPoint() {
+      // 현재 인덱스에 해당하는 데이터를 가져옴
+      const newDataPoint = this.localData[this.currentIndex];
+      
+      // 데이터가 더 이상 없으면 타이머를 멈춤
+      if (newDataPoint === undefined) {
+        clearInterval(this.updateInterval);
+        return;
+      }
+
+      // 차트 데이터에 새로운 데이터를 추가
+      if (this.chartData && this.chartData.datasets) {
+        this.chartData.datasets.forEach((dataset) => {
+          dataset.data.push(newDataPoint); // 데이터셋에 새 데이터 추가
+        });
+      }
+
+      this.updateGradients(this.chartData); // 그라데이션 업데이트
+      this.$data._chart.update(); // 차트를 수동으로 업데이트
+
+      // 다음 인덱스로 이동
+      this.currentIndex++;
+    }
   },
   mounted() {
-    this.initializeChart();
+    this.$watch(
+      "chartData",
+      (newVal, oldVal) => {
+        this.updateGradients(this.chartData);
+        if (!oldVal) {
+          this.renderChart(this.chartData, this.extraOptions);
+        }
+      },
+      { immediate: true }
+    );
+
+    // 1초마다 addDataPoint 메서드를 호출하여 데이터를 갱신
+    this.updateInterval = setInterval(this.addDataPoint, 1000);
   },
+  beforeDestroy() {
+    // 컴포넌트가 파괴될 때 타이머를 해제
+    if (this.updateInterval) {
+      clearInterval(this.updateInterval);
+    }
+  }
 };
 
