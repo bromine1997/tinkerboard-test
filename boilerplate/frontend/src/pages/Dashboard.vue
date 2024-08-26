@@ -204,7 +204,6 @@ export default {
 };
 </script>
 
-
 <style scoped>
 .row {
   margin-top: 20px;
@@ -221,7 +220,6 @@ export default {
   color: #ffffff;
   border-radius: 15px;
   padding: 30px;
-  height: 500px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
 }
@@ -233,7 +231,12 @@ export default {
   width: 100%;
 }
 .small-chart-card {
-  height: 250px; /* Reduced size */
+  min-height: 200px; /* Adjust to fit content properly */
+  padding: 20px; /* Adjust padding to fit content properly */
+  height: auto; /* Allow height to adjust based on content */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .chart-header {
   margin-bottom: 15px;
