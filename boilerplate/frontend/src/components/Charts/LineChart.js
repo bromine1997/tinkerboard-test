@@ -29,7 +29,7 @@ export default {
     return {
       ctx: null,
       updateInterval: null, // 타이머를 저장할 변수
-      localData: [80, 75, 70, 68, 72, 74, 76, 73, 77, 78, 79, 81], // 임의로 저장된 데이터
+      localData: [1.8, 1.6, 1.4, 1.2, 1.0, 1.3, 1.5, 1.7, 1.9], // 임의의 데이터
       currentIndex: 0, // 현재 데이터 인덱스
     };
   },
@@ -59,7 +59,7 @@ export default {
       // 차트 데이터에 새로운 데이터를 추가
       if (this.chartData && this.chartData.datasets) {
         this.chartData.datasets.forEach((dataset) => {
-          dataset.data.push(newDataPoint); // 데이터셋에 새 데이터 추가
+          dataset.data.push({ x: this.currentIndex, y: newDataPoint }); // 데이터셋에 새 데이터 추가
         });
       }
 
@@ -68,6 +68,18 @@ export default {
 
       // 다음 인덱스로 이동
       this.currentIndex++;
+    },
+    startDrawing() {
+      // 1초마다 addDataPoint 메서드를 호출하여 데이터를 갱신
+      if (!this.updateInterval) {
+        this.updateInterval = setInterval(this.addDataPoint, 1000);
+      }
+    },
+    stopDrawing() {
+      if (this.updateInterval) {
+        clearInterval(this.updateInterval);
+        this.updateInterval = null;
+      }
     }
   },
   mounted() {
@@ -81,15 +93,11 @@ export default {
       },
       { immediate: true }
     );
-
-    // 1초마다 addDataPoint 메서드를 호출하여 데이터를 갱신
-    this.updateInterval = setInterval(this.addDataPoint, 1000);
   },
   beforeDestroy() {
     // 컴포넌트가 파괴될 때 타이머를 해제
-    if (this.updateInterval) {
-      clearInterval(this.updateInterval);
-    }
+    this.stopDrawing();
   }
 };
+
 
