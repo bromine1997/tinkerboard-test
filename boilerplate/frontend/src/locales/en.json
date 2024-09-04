@@ -106,10 +106,9 @@
     "shortTitle": "CT",
     "dashboard": "dashboard",
     "icons": "Icons",
-    "maps": "Maps",
     "notifications": "Notifications",
     "userProfile": "User Profile",
-    "tableList": "Table List",
+    "tableList": "Treatment Record",
     "typography": "Typography",
     "rtlSupport": "RTL Support"
   }
