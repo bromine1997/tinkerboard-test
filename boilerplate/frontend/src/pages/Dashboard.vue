@@ -31,9 +31,9 @@
           <div class="sensor-data">
             <p>온도: {{ sensorData.temperature }} °C</p>
             <p>습도: {{ sensorData.humidity }} %</p>
-            <p>압력: {{ sensorData.pressure }} Pa</p>
+            <p>압력: {{ sensorData.pressure.toLocaleString() }} Pa</p>
             <p>산소: {{ sensorData.O2 }} %</p>
-            <p>이산화탄소: {{ sensorData.Co2 }} Pa</p>
+            <p>이산화탄소: {{ sensorData.Co2 }} %</p>
           </div>
         </card>
       </div>
@@ -52,7 +52,10 @@
 
       <!-- Chamber Control Buttons -->
       <div class="col-12 text-center">
-        <button class="control-button large-control-button" @click="startChamber">RUN</button>
+        <button class="control-button large-control-button" :disabled="isRunning" @click="startChamber">
+          <span v-if="!isRunning">RUN</span>
+          <span v-else>Running...</span>
+        </button>
         <button class="control-button large-control-button" @click="pauseChamber">일시정지</button>
         <button class="control-button large-control-button" @click="stopChamber">STOP</button>
       </div>
@@ -72,14 +75,15 @@ export default {
       pressureChartData: {
         datasets: [
           {
-            label: 'SET PROFILE ',
+            label: 'SET PROFILE',
             borderColor: 'red',
+            tension: 0,
             data: [
-              { x: 0, y: 1.5 },
-              { x: 5, y: 1.5 },
-              { x: 10, y: 1.6 },
-              { x: 15, y: 1.5 },
-              { x: 20, y: 1.5 },
+              { x: 0, y: 2 },
+              { x: 2, y: 40 },
+              { x: 4, y: 40 },
+              { x: 6, y: 1.5 },
+              { x: 8, y: 1.5 },
             ],
             fill: false,
           },
@@ -88,10 +92,10 @@ export default {
             borderColor: 'blue',
             data: [
               { x: 0, y: 2 },
-              { x: 1, y: 1.8 },
-              { x: 2, y: 1.5 },
-              { x: 3, y: 1.2 },
-              { x: 4, y: 1.0 },
+              { x: 1, y: 40 },
+              { x: 2, y: 10 },
+              { x: 6, y: 1.5 },
+              { x: 8, y: 1.5 },
             ],
             fill: false,
           },
@@ -99,50 +103,69 @@ export default {
       },
       sensorData: {
         temperature: 25,
-        humidity: 60,
+        humidity: 6,
         pressure: 101325,
         O2: 21,
         Co2: 0.04,
       },
       runTime: 0,
       timer: null,
-      dataIndex: 0,
-      chartOptions: {
+      isRunning: false, // RUN 버튼의 상태
+    };
+  },
+  computed: {
+    // 최대/최소 값 계산
+    chartOptions() {
+      const allData = this.pressureChartData.datasets.flatMap(dataset => dataset.data);
+      const xValues = allData.map(point => point.x);
+      const yValues = allData.map(point => point.y);
+
+      return {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
           x: {
-            type: 'linear',
+            type: 'time', // X축을 시간으로 설정
+            time: {
+              unit: 'second', // 초 단위 시간 설정
+              tooltipFormat: 'HH:mm:ss',
+            },
             title: {
               display: true,
               text: 'Time (seconds)',
               color: 'white',
             },
-            min: 0,
-            max: 5, // Start with initial view range
             ticks: {
               color: 'white',
+              autoSkip: true,  // 레이블 자동 스킵 설정
+              maxTicksLimit: 10,  // 최대 레이블 수 설정
+            },
+            grid: {
+              display: true,
+              color: '#4d4d4d',
             },
           },
           y: {
             beginAtZero: true,
-            min: 1.0,
-            max: 2.5,
+            min: Math.min(...yValues) * 0.9,
+            max: Math.max(...yValues) * 1.1,
             ticks: {
-              stepSize: 0.5,
               color: 'white',
+              stepSize: (Math.max(...yValues) - Math.min(...yValues)) / 5,
             },
             title: {
               display: true,
               text: 'Pressure (Pa)',
               color: 'white',
             },
+            grid: {
+              display: true,
+              color: '#4d4d4d',
+            },
           },
         },
-      },
-    };
-  },
-  computed: {
+      };
+    },
     formattedRunTime() {
       const hours = Math.floor(this.runTime / 3600);
       const minutes = Math.floor((this.runTime % 3600) / 60);
@@ -155,30 +178,33 @@ export default {
       alert('Fetching profile from the database...');
     },
     startChamber() {
-      this.$refs.lineChart.startDrawing(); // Start adding data points to chart
-      this.startTimer();
+      this.isRunning = true;
+      this.$refs.lineChart.startDrawing();  // lineChart에 데이터 그리기 시작
+      this.startTimer();  // 타이머 시작
       alert('챔버가 시작되었습니다.');
     },
     stopChamber() {
-      this.$refs.lineChart.stopDrawing();
-      this.stopTimer();
+      this.isRunning = false;
+      this.$refs.lineChart.stopDrawing();  // lineChart 그리기 중지
+      this.stopTimer();  // 타이머 중지
       alert('챔버가 정지되었습니다.');
     },
     pauseChamber() {
-      this.stopTimer();
+      this.isRunning = false;
+      this.stopTimer();  // 타이머 일시 정지
       alert('챔버가 일시정지되었습니다.');
     },
     startTimer() {
-      if (this.timer) {
-        clearInterval(this.timer);
+      if (!this.timer) {
+        this.timer = setInterval(() => {
+          this.runTime++;
+        }, 1000);
       }
-      this.timer = setInterval(() => {
-        this.runTime++;
-      }, 1000);
     },
     stopTimer() {
       if (this.timer) {
         clearInterval(this.timer);
+        this.timer = null;  // 타이머 리셋
       }
     },
   },
@@ -217,7 +243,7 @@ export default {
   width: 100%;
 }
 .equal-height-card {
-  min-height: 300px; /* 동일한 높이 설정 */
+  min-height: 410px; /* 동일한 높이 설정 */
   height: auto;
   display: flex;
   flex-direction: column;
@@ -279,4 +305,3 @@ export default {
   transform: translateY(0);
 }
 </style>
-
