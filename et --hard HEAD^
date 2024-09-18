@@ -1,0 +1,166 @@
+[33m6990660[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m "포트 수정"
+[33m748ff2b[m "수정"
+[33m6df34fb[m "swagger 설정 변경"
+[33m059a9b8[m "jwt key 수정"
+[33m6ff62ed[m " api port 수정"
+[33m4ebd176[m  port 수정
+[33m8761300[m frontend 회원가입 화면 수정
+[33me049ad9[m  backend 수정
+[33m226c9e9[m  config 수정
+[33m7c4e25c[m  app.module 수정
+[33m28b7d00[m "로그인 회원가입 구현"
+[33mefd46d7[m "회원 가입 화면추가"
+[33ma922f31[m backend : Ws 추가 , frontend : 대쉬보드 변경
+[33m6767ef6[m Update TableList.vue and change header
+[33m3c2948b[m Update Dashboard.vue
+[33m176c485[m Update Dashboard.vue
+[33m7e62a47[m Update LineChart.js
+[33m89bcc56[m Update LineChart.js
+[33m7efb43a[m Update LineChart.js
+[33m96f8442[m Update Dashboard.vue
+[33m90b2b01[m Update LineChart.js
+[33m1e8f0f6[m Update Dashboard.vue
+[33mc9fe163[m Update Dashboard.vue
+[33m9a8224a[m Update LineChart.js
+[33m9c873c4[m Update Dashboard.vue
+[33me88c8af[m Update Dashboard.vue
+[33mb140130[m Update Dashboard.vue
+[33m480da09[m Update LineChart.js
+[33m0e1fe55[m Update Dashboard.vue
+[33maed658f[m Update Dashboard.vue
+[33mce7b8ea[m Update Dashboard.vue
+[33mef07d2a[m Update Dashboard.vue
+[33mea66f41[m Update Dashboard.vue
+[33mbf9b1af[m Update Dashboard.vue
+[33m5f61dbc[m Update Dashboard.vue
+[33m4c0d130[m Update Dashboard.vue
+[33mbdfb4e6[m Update Dashboard.vue
+[33m8619fbc[m Update Dashboard.vue
+[33m5d5f28a[m Update Dashboard.vue
+[33m751399e[m Update LineChart.js
+[33m157f2ce[m Update Dashboard.vue
+[33mb74bbd7[m Update Dashboard.vue
+[33mc8b765b[m Update Dashboard.vue
+[33m2941459[m Update Dashboard.vue
+[33m58058e4[m Update Dashboard.vue
+[33mca63900[m Update Dashboard.vue
+[33m62e0609[m Update Dashboard.vue
+[33m860aca9[m Update Dashboard.vue
+[33m0a8edc9[m Update Dashboard.vue
+[33m722c125[m Update Dashboard.vue
+[33m8ca0d1a[m Update LineChart.js
+[33m2297282[m Update Dashboard.vue
+[33m01c12fc[m Update Dashboard.vue
+[33ma7896b3[m Update LineChart.js
+[33mced1d89[m Update Dashboard.vue
+[33m59349de[m Update Dashboard.vue
+[33mb8aa6fa[m Update Dashboard.vue
+[33m4669a0c[m Update Dashboard.vue
+[33m57ea833[m Update Dashboard.vue
+[33m5733c6b[m Update Dashboard.vue
+[33m9cf7b52[m Update LineChart.js
+[33m464525a[m Update index.html
+[33m338149b[m Update frontend.sh
+[33m3acd669[m Update frontend.sh
+[33m947720f[m Update backend.sh
+[33m32cd8a4[m Update ecosystem.config.js
+[33mdd7957f[m Update backend.sh
+[33mc07ae12[m Update backend.sh
+[33m7317cab[m Update ecosystem.config.js
+[33m216b8d7[m Update backend.sh
+[33m8f227f7[m Update frontend.sh
+[33m249881b[m Update ecosystem.config.js
+[33mf617c0f[m Update backend.sh
+[33m66b1ef3[m Update frontend.sh
+[33m941b9ab[m chore
+[33md464e3f[m chore: 불필요한 파일 제거
+[33mb36bd06[m chore: mongodb uri 원복
+[33m09356bd[m fix(script): 배포방식 pm2로 원복
+[33m62eb5a3[m chore
+[33mdfff322[m chore
+[33md3b0d94[m chore
+[33m087dfef[m chore:오타수정
+[33mb886b3b[m feature(backend): nginx 설정 추가
+[33m01fab7b[m feature(backend): cors 설정
+[33m7e89d5b[m fix: docker network 명령어 추가
+[33m4d85989[m fix(backend): docker network 설정에 따른 mongodb config 변경
+[33mf6a9027[m chore
+[33m3e248d3[m fix(backend): npm cache 초기화 추가
+[33m4439218[m fix(script): backend 배포 방법 변경(pm2 -> docker)
+[33m3c10d9d[m chore
+[33md5c1996[m chore
+[33m2ef404b[m docs: 방화벽설정 추가
+[33mb226cd2[m fix(frontend): npm cache clean 추가
+[33mbbbd9e1[m chore
+[33m734ce3c[m chore
+[33mf1562f6[m feature(frontend): 프론트엔드 어드민 샘플 추가
+[33m25e32b2[m fix(script): 프론트엔드 배포 스크립트 수정 & nginx 설정 파일 수정
+[33m939e96a[m fix(script): frontend Dockerfile 수정
+[33m0cf7ea6[m fix(script): frontend 배포 스크립트 수정
+[33mea68014[m feature(script): 배포파일 삭제로직 추가
+[33mabefe52[m chore
+[33mbde012d[m fix(script): 원복
+[33m417003a[m fix(script): backend 배포 스크립트 심볼릭링크 적용
+[33mcce2a40[m feature(script): frontend 배포 스크립트 샘플 작성
+[33m2658505[m docs: mongodb dev optoin 수정
+[33mdcf3672[m fix: 배포 테스트용 path 수정
+[33m7d23987[m fix(api): ecosystem.config 수정
+[33m74fb789[m fix(script): tar옵션 수정
+[33mc7a6415[m fix(script): 아카이브명 변경
+[33m72865d4[m feature(script): 백엔드 배포 스크립트 추가
+[33mdd5dfb5[m docs: rancher 설치관련 내용 추가
+[33me122cc0[m feature(backend): pm2 설치 가이드 & ecosystem.config.js 추가
+[33m9765c5a[m docs: pm2 관련 문서 추가
+[33mdce9c87[m fix: label 설정 수정
+[33m3b1a4a8[m fix: helm chart 배포 테스트 적용
+[33mb2f6f3d[m docs: helm install 추가
+[33m94abc09[m feature(frontend): helm chart 구성 추가
+[33ma0f57a5[m feature(frontend): helm chart 구성진행
+[33m097f117[m feature(frontend): FE 스켈레톤 코드 추가
+[33m85e08e8[m docs: rancher 문서 추가
+[33mf0d61a1[m fix(helm): label, path 설정 추가
+[33m7c49616[m fix(helm): 불필요한 설정 제거
+[33mf5e3646[m Update 3.k3s-installation.md
+[33m6980f81[m feature(helm): helm 차트 샘플 추가
+[33m66e7ec3[m feature: nginx 설정 추가
+[33mb93c95c[m fix: 오타수정 & 메서드 네이밍 변경
+[33m94d1f35[m fix: authSource 수정
+[33mf4dc3b5[m fix: dependency 추가
+[33m52361b2[m docs: create collection
+[33m55b00eb[m feature: CRUD 샘플 코드 추가
+[33m3315d5a[m fix: db provider uri 설정
+[33m37b176c[m feature: core 추가
+[33m75e6bf3[m rename: health -> health-check
+[33mf8f4ee1[m fix: @fastify/static 추가 => swagger peer dependency
+[33ma294ebe[m refactor: 헬스체크 모듈 추가
+[33m6fda4ec[m fix: fastify-metrics 설정 변경
+[33m87e1326[m feature: config 값 추가
+[33mc36e702[m feature: 테스트용 db, collection 설정 추가
+[33m8cf97db[m fix: Dockerfile 재작성 & dependency 버전 수정 및 미사용 package 제거
+[33mee838f1[m refactor(backend): dependency 버전 업데이트
+[33m42d4b46[m Update README.md
+[33m2455a06[m docs: todo 표시
+[33m6c13576[m feature: 백엔드 boilerplate 샘플 코드 추가
+[33mef1479a[m docs: delete helm repo update
+[33mcc853db[m Update 3.k3s-installation.md
+[33m057cf9a[m Update 3.k3s-installation.md
+[33m7bae53f[m update k3s installation and test
+[33m8a8d13b[m update: mongodb container
+[33m544fd43[m docs: update mongodb installation
+[33mbe296ef[m docs: add issue
+[33m5a4f124[m docs: docker
+[33m5721dc8[m rename
+[33mbe79990[m docs: update vscode
+[33m8e9d21c[m Update docker.sh
+[33mdbe8e8d[m docs: fix bashrc path
+[33md3a670a[m docs: delete git intallation
+[33mc37c009[m Rename k3s-installation to 2.k3s-installation
+[33m7e28665[m Create k3s-installation
+[33me6eb76e[m docs: nodejs 개발용 툴 설치 추가
+[33m95eb6a9[m docs: nvm 설치 추가
+[33m30ea1ac[m Create utils.sh
+[33md2b8349[m feature: docker 설치 스크립트 추가
+[33ma9176e4[m docs: 공식문서 url 수정
+[33m25b7d29[m docs: 가이드 url 추가
+[33m2090610[m document 추가
+[33mff4c89c[m Initial commit
