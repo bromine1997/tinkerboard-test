@@ -149,15 +149,22 @@ button:hover {
 }
 
 .signup-link {
-  display: block;
-  margin-top: 10px;
-  color: #007bff; /* 링크 색상 파란색 */
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff; /* 회원가입 버튼 배경색을 파란색으로 */
+  color: white; /* 글자 색상을 흰색으로 */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px; /* 여백 추가 */
+  text-align: center;
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.2s ease-in-out;
+  display: block; /* 버튼처럼 보이도록 display block 설정 */
+  transition: background-color 0.2s ease-in-out;
 }
 
 .signup-link:hover {
-  color: #0056b3; /* 링크 호버 시 색상 */
+  background-color: #0056b3; /* 회원가입 버튼 호버 시 색상 */
 }
 </style>
