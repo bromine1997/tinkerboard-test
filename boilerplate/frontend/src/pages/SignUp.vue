@@ -14,10 +14,10 @@
             v-model="user.username"
             id="username"
             type="text"
-            placeholder=""
+            placeholder="아이디"
             @input="isUsernameChecked = false"
           />
-          <button @click="checkUsername" class="check-button">중복 확인</button>
+          <button @click="checkUsername" class="check-button" :disabled="!user.username">중복 확인</button>
         </div>
         <p
           v-if="usernameMessage"
@@ -35,8 +35,9 @@
           v-model="user.password"
           id="password"
           type="password"
-          placeholder=""
+          placeholder="비밀번호"
         />
+        <p v-if="passwordStrengthMessage">{{ passwordStrengthMessage }}</p>
 
         <!-- 비밀번호 확인 -->
         <label for="passwordConfirm">비밀번호 확인</label>
@@ -44,10 +45,8 @@
           v-model="passwordConfirm"
           id="passwordConfirm"
           type="password"
-          placeholder=""
+          placeholder="비밀번호 확인"
         />
-
-        <!-- 비밀번호 일치 여부 메시지 -->
         <p
           v-if="passwordMatchMessage"
           :class="{
@@ -60,7 +59,7 @@
 
         <!-- 이름 -->
         <label for="name">이름</label>
-        <input v-model="user.name" id="name" type="text" placeholder="" />
+        <input v-model="user.name" id="name" type="text" placeholder="이름" />
 
         <!-- 전화번호 -->
         <label for="phone">전화번호</label>
@@ -68,7 +67,7 @@
           v-model="user.phone"
           id="phone"
           type="tel"
-          placeholder=""
+          placeholder="전화번호"
         />
 
         <!-- 이메일주소 -->
@@ -77,7 +76,7 @@
           v-model="user.email"
           id="email"
           type="email"
-          placeholder=""
+          placeholder="이메일"
         />
 
         <!-- 생년월일 -->
@@ -86,7 +85,7 @@
           v-model="user.birthdate"
           id="birthdate"
           type="date"
-          placeholder=""
+          placeholder="생년월일"
         />
 
        <!-- 성별 선택 드롭다운 -->
@@ -118,7 +117,7 @@
 </template>
 
 <script>
-import axios from 'axios'; // axios 사용
+import axios from 'axios';
 
 export default {
   data() {
@@ -130,34 +129,49 @@ export default {
         phone: '',
         email: '',
         birthdate: '',
-        gender: '', // 성별 추가
+        gender: '',
         role: '',
       },
-      passwordConfirm: '', // 비밀번호 확인 필드
-      isUsernameAvailable: false, // 아이디 사용 가능 여부
-      isUsernameChecked: false, // 아이디 중복 확인 여부
-      usernameMessage: '', // 아이디 중복 확인 메시지
-      errorMessage: '', // 기타 에러 메시지
+      passwordConfirm: '',
+      isUsernameAvailable: false,
+      isUsernameChecked: false,
+      usernameMessage: '',
+      errorMessage: '',
     };
   },
   computed: {
     // 비밀번호와 비밀번호 확인의 일치 여부
     isPasswordMatched() {
-      if (this.user.password && this.passwordConfirm) {
-        return this.user.password === this.passwordConfirm;
-      }
-      return null; // 하나라도 비어있으면 null 반환
+      return this.user.password === this.passwordConfirm && this.user.password !== '';
     },
     // 비밀번호 일치 여부에 따른 메시지
     passwordMatchMessage() {
-      if (this.isPasswordMatched === null) {
-        return '';
-      } else if (this.isPasswordMatched) {
-        return '비밀번호가 일치합니다.';
-      } else {
-        return '비밀번호가 일치하지 않습니다.';
+      if (this.user.password && this.passwordConfirm) {
+        return this.isPasswordMatched ? '비밀번호가 일치합니다.' : '비밀번호가 일치하지 않습니다.';
       }
+      return '';
     },
+    // 비밀번호 강도 체크 (6자리 이상만 검증)
+    passwordStrengthMessage() {
+      const strongPassword = /^.{6,}$/;
+      return this.user.password && !strongPassword.test(this.user.password)
+        ? '비밀번호는 최소 6자 이상이어야 합니다.'
+        : '';
+    },
+    // 모든 필드가 입력되었는지 확인
+    isFormValid() {
+      return (
+        this.user.username &&
+        this.user.password &&
+        this.passwordConfirm &&
+        this.user.name &&
+        this.user.phone &&
+        this.user.email &&
+        this.user.birthdate &&
+        this.user.gender &&
+        this.user.role
+      );
+    }
   },
   methods: {
     // 아이디 중복 확인
@@ -171,13 +185,10 @@ export default {
         const response = await axios.post('/api/auth/check-username', {
           username: this.user.username,
         });
-        if (response.data.available) {
-          this.usernameMessage = '사용 가능한 아이디입니다.';
-          this.isUsernameAvailable = true;
-        } else {
-          this.usernameMessage = '이미 사용 중인 아이디입니다.';
-          this.isUsernameAvailable = false;
-        }
+        this.isUsernameAvailable = response.data.available;
+        this.usernameMessage = this.isUsernameAvailable
+          ? '사용 가능한 아이디입니다.'
+          : '이미 사용 중인 아이디입니다.';
         this.isUsernameChecked = true;
       } catch (error) {
         this.usernameMessage = '서버 오류가 발생했습니다.';
@@ -185,65 +196,50 @@ export default {
       }
     },
 
-    // 회원가입
+    // 회원가입 처리
     async signup() {
+      if (!this.isFormValid) {
+        this.errorMessage = '모든 필드를 입력해주세요.';
+        return;
+      }
+
+      if (!this.isUsernameChecked) {
+        this.errorMessage = '아이디 중복 확인을 해주세요.';
+        return;
+      }
+
+      if (!this.isUsernameAvailable) {
+        this.errorMessage = '사용할 수 없는 아이디입니다.';
+        return;
+      }
+
+      if (!this.isPasswordMatched) {
+        this.errorMessage = '비밀번호가 일치하지 않습니다.';
+        return;
+      }
+
+      if (this.passwordStrengthMessage) {
+        this.errorMessage = this.passwordStrengthMessage;
+        return;
+      }
+
       try {
-        if (
-          !this.user.username ||
-          !this.user.password ||
-          !this.passwordConfirm ||
-          !this.user.name ||
-          !this.user.phone ||
-          !this.user.email ||
-          !this.user.birthdate ||
-          !this.user.gender || // 성별 필드 추가
-          !this.user.role
-        ) {
-          this.errorMessage = '모든 필드를 입력해주세요.';
-          return;
-        }
-
-        if (!this.isUsernameChecked) {
-          this.errorMessage = '아이디 중복 확인을 해주세요.';
-          return;
-        }
-
-        if (!this.isUsernameAvailable) {
-          this.errorMessage = '사용할 수 없는 아이디입니다.';
-          return;
-        }
-
-        if (!this.isPasswordMatched) {
-          this.errorMessage = '비밀번호가 일치하지 않습니다.';
-          return;
-        } else {
-          this.errorMessage = '';
-        }
-
         const response = await axios.post('/api/auth/register', this.user);
-
         if (response.data.message === '회원가입 성공') {
           alert('회원가입 성공');
-          this.errorMessage = '';
           this.$router.push('/login');
         } else {
-          this.errorMessage =
-            response.data.message || '회원가입 실패, 다시 시도하세요.';
+          this.errorMessage = response.data.message || '회원가입 실패, 다시 시도하세요.';
         }
       } catch (error) {
-        if (error.response) {
-          this.errorMessage =
-            error.response.data.message || '서버 오류가 발생했습니다.';
-        } else {
-          this.errorMessage = '서버에 연결할 수 없습니다. 다시 시도하세요.';
-        }
+        this.errorMessage = '서버 오류가 발생했습니다. 다시 시도하세요.';
       }
     },
 
     // 로그인 페이지로 이동
     goToLogin() {
       this.$router.push('/login');
-    },
+    }
   },
 };
 </script>

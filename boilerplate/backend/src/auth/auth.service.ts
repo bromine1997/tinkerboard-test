@@ -1,36 +1,36 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { UserService } from '../user/user.service';
-import { JwtPayload } from './jwt-payload.interface';
+import { UserService } from '../user/user.service'; // UserService 가져오기
+import { JwtService } from '@nestjs/jwt'; // JWT 사용
+import { CreateUserDto } from './create-user.dto'; // DTO 가져오기
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly userService: UserService,
-    private readonly jwtService: JwtService,
+    private userService: UserService, // UserService 주입
+    private jwtService: JwtService // JWT 서비스 주입
   ) {}
 
+  // 사용자 자격 증명을 확인하는 메서드
   async validateUser(username: string, password: string): Promise<any> {
-    const user = await this.userService.findByUsername(username);
-    if (user && (await user.comparePassword(password))) {
+    const user = await this.userService.findByUsername(username); // 사용자 조회
+    if (user && user.password === password) { // 비밀번호 비교 (해싱이 필요한 경우 해싱 검증 추가)
       const { password, ...result } = user;
-      return result;
+      return result; // 비밀번호를 제외한 사용자 정보 반환
     }
     return null;
   }
 
+  // 로그인 후 JWT 토큰을 반환하는 메서드
   async login(user: any) {
-    const payload: JwtPayload = { 
-      username: user.username, 
-      sub: user._id,
-      role: user.role // role 필드 추가
-    };
+    const payload = { username: user.username, sub: user._id };
     return {
       access_token: this.jwtService.sign(payload),
     };
   }
 
-  async register(createUserDto: any) {
-    return this.userService.createUser(createUserDto);
+  // 회원가입 로직 (이미 구현한 register 메서드)
+  async register(createUserDto: CreateUserDto) {
+    const user = await this.userService.createUser(createUserDto);
+    return { message: '회원가입 성공', user };
   }
 }

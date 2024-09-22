@@ -6,12 +6,13 @@
     <div id="login-container">
       <div id="login-card">
         <h2>로그인</h2>
-        <label for="email">이메일:</label>
-        <input v-model="user.email" id="email" type="email" placeholder="이메일" />
+        <label for="username">아이디:</label>
+        <input v-model="user.username" id="username" type="text" placeholder="아이디" />
+        
         <label for="password">비밀번호:</label>
         <input v-model="user.password" id="password" type="password" placeholder="비밀번호" />
+        
         <button @click="login">로그인</button>
-        <!-- 회원가입 버튼을 일반 버튼으로 변경 -->
         <button @click="goToSignUp" class="signup-link">회원가입</button>
       </div>
     </div>
@@ -19,45 +20,57 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
       user: {
-        email: '',
+        username: '', // email 대신 username을 사용
         password: '',
       },
     };
   },
   methods: {
-    login() {
-      // 관리자 계정 확인 로직
-      if (this.user.email === 'admin' && this.user.password === '1234') {
-        alert('관리자 로그인 성공');
-        if (this.$route.path !== '/dashboard') {
-          this.$router.push('/dashboard'); // 대시보드로 이동
-        }
-        return;
-      }
-
-      // 로그인 로직 (서버 통신)
-      this.$http
-        .post('/api/login', this.user)
-        .then((response) => {
-          if (response.data.result === 1) {
-            alert('로그인 성공');
-            if (this.$route.path !== '/dashboard') {
-              this.$router.push('/dashboard'); // 대시보드로 이동
-            }
-          } else {
-            alert('로그인 실패, 다시 시도하세요.');
+    // 로그인 요청
+    async login() {
+      try {
+        // 관리자 계정 확인 로직
+        if (this.user.username === 'admin' && this.user.password === '1234') {
+          alert('관리자 로그인 성공');
+          if (this.$route.path !== '/dashboard') {
+            this.$router.push('/dashboard'); // 대시보드로 이동
           }
-        })
-        .catch(() => {
-          alert('오류가 발생했습니다.');
+          return;
+        }
+
+        // 서버에 아이디와 비밀번호를 보내 로그인 요청
+        const response = await axios.post('/api/auth/login', {
+          username: this.user.username,
+          password: this.user.password,
         });
+
+        // 서버로부터 로그인 성공 응답을 받았을 때
+        if (response.data.access_token) {
+          alert('로그인 성공');
+
+          // JWT 토큰을 localStorage에 저장
+          localStorage.setItem('token', response.data.access_token);
+
+          // 대시보드로 이동
+          if (this.$route.path !== '/dashboard') {
+            this.$router.push('/dashboard');
+          }
+        } else {
+          alert('로그인 실패, 다시 시도하세요.');
+        }
+      } catch (error) {
+        alert('오류가 발생했습니다.');
+      }
     },
+
+    // 회원가입 페이지로 이동
     goToSignUp() {
-      // 회원가입 페이지로 이동
       this.$router.push('/signup');
     },
   },
@@ -65,6 +78,7 @@ export default {
 </script>
 
 <style scoped>
+/* 스타일은 기존 스타일 그대로 유지 */
 #login-test {
   display: flex;
   flex-direction: column;
