@@ -33,4 +33,10 @@ export class AuthService {
     const user = await this.userService.createUser(createUserDto);
     return { message: '회원가입 성공', user };
   }
+
+   // 유저네임 중복 확인 로직
+   async isUsernameAvailable(username: string): Promise<boolean> {
+    const user = await this.userService.findByUsername(username);
+    return !user; // 유저가 없으면 true, 있으면 false
+  }
 }

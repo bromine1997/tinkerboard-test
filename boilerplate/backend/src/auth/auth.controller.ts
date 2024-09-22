@@ -18,4 +18,11 @@ export class AuthController {
   async register(@Body() body) {
     return this.authService.register(body);
   }
+
+  // 아이디 중복 확인을 위한 엔드포인트 추가
+  @Post('check-username')
+  async checkUsername(@Body() body) {
+    const isAvailable = await this.authService.isUsernameAvailable(body.username);
+    return { available: isAvailable };
+  }
 }
