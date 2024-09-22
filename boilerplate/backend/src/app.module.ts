@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { WsModule } from './ws/ws.module'; // WebSocket 모듈 경로 추가
@@ -13,13 +13,7 @@ import { UserModule } from './user/user.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        uri: configService.get<string>('MONGODB_URI'), // 환경변수로 MongoDB URI 사용
-      }),
-    }),
+    
     HealthCheckModule,
     SampleTestModule,
     WsModule,
