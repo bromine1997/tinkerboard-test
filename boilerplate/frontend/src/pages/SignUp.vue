@@ -8,13 +8,13 @@
         <h2>회원가입</h2>
 
         <!-- 아이디 입력 및 중복 확인 -->
-        <label for="username">아이디:</label>
+        <label for="username">아이디</label>
         <div class="input-group">
           <input
             v-model="user.username"
             id="username"
             type="text"
-            placeholder="아이디"
+            placeholder=""
             @input="isUsernameChecked = false"
           />
           <button @click="checkUsername" class="check-button">중복 확인</button>
@@ -30,21 +30,21 @@
         </p>
 
         <!-- 비밀번호 입력 -->
-        <label for="password">비밀번호:</label>
+        <label for="password">비밀번호</label>
         <input
           v-model="user.password"
           id="password"
           type="password"
-          placeholder="비밀번호"
+          placeholder=""
         />
 
         <!-- 비밀번호 확인 -->
-        <label for="passwordConfirm">비밀번호 확인:</label>
+        <label for="passwordConfirm">비밀번호 확인</label>
         <input
           v-model="passwordConfirm"
           id="passwordConfirm"
           type="password"
-          placeholder="비밀번호 확인"
+          placeholder=""
         />
 
         <!-- 비밀번호 일치 여부 메시지 -->
@@ -59,38 +59,46 @@
         </p>
 
         <!-- 이름 -->
-        <label for="name">이름:</label>
-        <input v-model="user.name" id="name" type="text" placeholder="이름" />
+        <label for="name">이름</label>
+        <input v-model="user.name" id="name" type="text" placeholder="" />
 
         <!-- 전화번호 -->
-        <label for="phone">전화번호:</label>
+        <label for="phone">전화번호</label>
         <input
           v-model="user.phone"
           id="phone"
           type="tel"
-          placeholder="전화번호"
+          placeholder=""
         />
 
         <!-- 이메일주소 -->
-        <label for="email">이메일주소:</label>
+        <label for="email">이메일주소</label>
         <input
           v-model="user.email"
           id="email"
           type="email"
-          placeholder="이메일주소"
+          placeholder=""
         />
 
         <!-- 생년월일 -->
-        <label for="birthdate">생년월일:</label>
+        <label for="birthdate">생년월일</label>
         <input
           v-model="user.birthdate"
           id="birthdate"
           type="date"
-          placeholder="생년월일"
+          placeholder=""
         />
 
+       <!-- 성별 선택 드롭다운 -->
+        <label for="gender">성별</label>
+        <select v-model="user.gender" id="gender">
+          <option value="">성별을 선택하세요</option>
+          <option value="male">남성</option>
+          <option value="female">여성</option>
+        </select>
+
         <!-- 권한 선택 -->
-        <label for="role">권한:</label>
+        <label for="role">권한</label>
         <select v-model="user.role" id="role">
           <option value="">권한을 선택하세요</option>
           <option value="member">일반 회원</option>
@@ -122,6 +130,7 @@ export default {
         phone: '',
         email: '',
         birthdate: '',
+        gender: '', // 성별 추가
         role: '',
       },
       passwordConfirm: '', // 비밀번호 확인 필드
@@ -134,7 +143,6 @@ export default {
   computed: {
     // 비밀번호와 비밀번호 확인의 일치 여부
     isPasswordMatched() {
-      // 두 필드가 모두 입력되었을 때만 비교
       if (this.user.password && this.passwordConfirm) {
         return this.user.password === this.passwordConfirm;
       }
@@ -180,7 +188,6 @@ export default {
     // 회원가입
     async signup() {
       try {
-        // 모든 필드가 입력되었는지 확인
         if (
           !this.user.username ||
           !this.user.password ||
@@ -189,25 +196,23 @@ export default {
           !this.user.phone ||
           !this.user.email ||
           !this.user.birthdate ||
+          !this.user.gender || // 성별 필드 추가
           !this.user.role
         ) {
           this.errorMessage = '모든 필드를 입력해주세요.';
           return;
         }
 
-        // 아이디 중복 확인 여부 체크
         if (!this.isUsernameChecked) {
           this.errorMessage = '아이디 중복 확인을 해주세요.';
           return;
         }
 
-        // 아이디 사용 가능 여부 체크
         if (!this.isUsernameAvailable) {
           this.errorMessage = '사용할 수 없는 아이디입니다.';
           return;
         }
 
-        // 비밀번호와 비밀번호 확인 일치 여부 체크
         if (!this.isPasswordMatched) {
           this.errorMessage = '비밀번호가 일치하지 않습니다.';
           return;
@@ -215,7 +220,6 @@ export default {
           this.errorMessage = '';
         }
 
-        // 회원가입 요청
         const response = await axios.post('/api/auth/register', this.user);
 
         if (response.data.message === '회원가입 성공') {
@@ -245,32 +249,49 @@ export default {
 </script>
 
 <style scoped>
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #444444;
+  border-radius: 5px;
+  background-color: #333333;
+  color: #ffffff;
+  text-align: left; /* 텍스트 왼쪽 정렬 */
+  box-sizing: border-box; /* 패딩이 박스 너비에 포함되도록 설정 */
+}
+
+/* date 타입 input 필드에 대한 스타일 */
+input[type="date"] {
+  padding-left: 10px; /* date 타입 input의 패딩 설정 */
+}
+
+/* label과 입력 필드 사이의 여백을 동일하게 설정 */
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #bbbbbb;
+  padding-left: 2px; /* 모든 label에 동일한 패딩 설정 */
+}
+
 /* 에러 메시지 스타일 */
 .error-message {
-  color: #ff4d4d; /* 빨간색 */
+  color: #ff4d4d;
   margin-bottom: 15px;
 }
 
 /* 성공 메시지 스타일 */
 .success-message {
-  color: #4caf50; /* 초록색 */
+  color: #4caf50;
   margin-bottom: 15px;
 }
 
-/* 입력 그룹 스타일 */
-.input-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.input-group input {
-  flex: 1;
-}
-
+/* 중복 확인 버튼 스타일 */
 .check-button {
-  padding: 10px;
-  margin-left: 10px;
+  padding: 12px;
   background-color: #007bff;
   color: white;
   border: none;
@@ -282,7 +303,7 @@ export default {
   background-color: #0056b3;
 }
 
-/* 나머지 스타일 */
+/* 페이지 전체 레이아웃 */
 #signup-test {
   display: flex;
   flex-direction: column;
@@ -290,7 +311,6 @@ export default {
   justify-content: center;
   min-height: 100vh;
   background-color: #1a1a1a;
-  position: relative;
 }
 
 .title-container {
@@ -311,7 +331,7 @@ export default {
 }
 
 #signup-card {
-  max-width: 400px; /* 카드 너비 조정 */
+  max-width: 400px;
   width: 100%;
   padding: 20px;
   border-radius: 10px;
@@ -342,13 +362,6 @@ select {
   border-radius: 5px;
   background-color: #333333;
   color: #ffffff;
-  transition: border-color 0.2s ease-in-out;
-}
-
-input:focus,
-select:focus {
-  border-color: #007bff;
-  outline: none;
 }
 
 button {
@@ -360,7 +373,6 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.2s ease-in-out;
 }
 
 button:hover {
@@ -373,9 +385,7 @@ button.login-link {
   background-color: transparent;
   color: #007bff;
   border: 2px solid #007bff;
-  text-decoration: none;
   font-weight: bold;
-  transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   padding: 10px;
   border-radius: 5px;
 }
