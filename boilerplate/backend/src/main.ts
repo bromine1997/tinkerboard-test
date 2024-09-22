@@ -23,6 +23,12 @@ async function bootstrap() {
     SwaggerModule.setup('swagger', app, document);
   }
 
+  app.enableCors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  })
+
   /*
   await app.listen(process.env.PORT || 8080, '0.0.0.0', (err: Error, address: string) => {
     console.log(`server started on ${address}`);
