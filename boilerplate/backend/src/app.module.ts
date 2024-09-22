@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-
+import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { WsModule } from './ws/ws.module'; // WebSocket 모듈 경로 추가
@@ -13,7 +13,7 @@ import { UserModule } from './user/user.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    
+    MongooseModule.forRoot('mongodb://localhost/nest'),
     HealthCheckModule,
     SampleTestModule,
     WsModule,
