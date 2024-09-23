@@ -1,7 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService } from '../user/user.service'; // UserService 가져오기
 import { JwtService } from '@nestjs/jwt'; // JWT 사용
-import { CreateUserDto } from './create-user.dto'; // DTO 가져오기
+import { CreateUserDto } from '../user/user.dto';  // user.dto.ts에서 가져오기
+
 
 @Injectable()
 export class AuthService {

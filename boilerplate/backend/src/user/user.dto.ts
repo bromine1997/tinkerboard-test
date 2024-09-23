@@ -1,7 +1,6 @@
 import { IsString, IsEmail, IsNotEmpty, IsOptional, MinLength } from 'class-validator';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 
-
 export class CreateUserDto {
   @ApiProperty({
     type: 'string',
@@ -49,7 +48,7 @@ export class CreateUserDto {
     description: '생년월일 (YYYY-MM-DD 형식)',
     required: true,
   })
-  birthDate: string;
+  birthDate: string;  // 누락된 필드 추가
 
   @ApiProperty({
     type: 'string',
@@ -67,13 +66,13 @@ export class CreateUserDto {
   })
   role: string;
 }
-  
-  export class UpdateUserDto extends PartialType(CreateUserDto) {
-    @ApiProperty({
-      type: 'string',
-      example: 'new_password123!',
-      description: '새 비밀번호 (선택 사항)',
-      required: false,
-    })
-    password?: string;
-  }
+
+export class UpdateUserDto extends PartialType(CreateUserDto) {
+  @ApiProperty({
+    type: 'string',
+    example: 'new_password123!',
+    description: '새 비밀번호 (선택 사항)',
+    required: false,
+  })
+  password?: string;
+}
