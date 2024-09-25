@@ -21,6 +21,11 @@ export class AuthService {
   // 사용자 자격 증명 확인
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.authRepository.findByUsername(username);
+
+    // 사용자 정보와 비밀번호를 로그로 출력하여 확인
+    console.log('User:', user);
+    console.log('Password:', password);
+
     if (user && await bcrypt.compare(password, user.password)) {
       const { password, ...result } = user;
       return result;
