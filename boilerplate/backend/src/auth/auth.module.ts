@@ -4,23 +4,20 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { JwtStrategy } from './jwt.strategy';
-import { AuthRepository } from './auth.repository'; // AuthRepository import
-import { databaseProviders } from '../database/database.providers'; // MongoDB providers 설정
+import { AuthRepository } from './auth.repository';
 import { UserModule } from '../user/user.module'; // UserModule 임포트
-
 
 @Module({
   imports: [
-    UserModule,
+    UserModule, // UserModule을 통해 사용자 데이터 접근
     JwtModule.register({
-      secret: process.env.JWT_SECRET || 'SECRET_KEY', // JWT 비밀 키 설정
+      secret: process.env.JWT_SECRET || 'SECRET_KEY',
       signOptions: { expiresIn: '1d' }, // JWT 만료 시간 설정
     }),
-    
     PassportModule.register({ defaultStrategy: 'jwt' }), // Passport 모듈 설정
   ],
-  controllers: [AuthController], // AuthController 등록
-  providers: [AuthService, AuthRepository, JwtStrategy,...databaseProviders,], // AuthService, AuthRepository, JwtStrategy 제공
-  exports: [AuthService], // AuthService를 다른 모듈에서 사용할 수 있게 내보냄
+  controllers: [AuthController],
+  providers: [AuthService, AuthRepository, JwtStrategy],
+  exports: [AuthService],
 })
 export class AuthModule {}
