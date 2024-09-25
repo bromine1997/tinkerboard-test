@@ -1,6 +1,6 @@
 import { Collection, Db, MongoClient } from 'mongodb';
 import config from '../config';
-import { MONGO_CONNECTION, TEST_DB, TEST_COLLECTION } from './database.constants';
+import { MONGO_CONNECTION, TEST_DB, TEST_COLLECTION, USER_COLLECTION } from './database.constants';
 
 export const databaseProviders = [
   {
@@ -35,4 +35,12 @@ export const databaseProviders = [
     },
     inject: [TEST_DB],
   }, // 테스트용 DB Collection
+
+  {
+    provide: USER_COLLECTION,
+    useFactory: (db: Db): Collection => {
+      return db.collection('users'); // 실제 사용자 컬렉션 이름을 사용
+    },
+    inject: [TEST_DB], // 기존에 생성된 TEST_DB 대신 필요한 DB로 설정
+  }, // 사용자 컬렉션
 ];

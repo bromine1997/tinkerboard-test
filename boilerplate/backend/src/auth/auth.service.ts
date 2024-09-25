@@ -1,43 +1,65 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { UserService } from '../user/user.service'; // UserService 가져오기
-import { JwtService } from '@nestjs/jwt'; // JWT 사용
-import { CreateUserDto } from '../user/user.dto';  // user.dto.ts에서 가져오기
-
+import { JwtService } from '@nestjs/jwt';
+import { AuthRepository } from './auth.repository';
+import { CreateUserDto } from './Create-User.dto';
+import { LoginDto } from './login.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private userService: UserService, // UserService 주입
-    private jwtService: JwtService // JWT 서비스 주입
+    private readonly authRepository: AuthRepository,
+    private readonly jwtService: JwtService
   ) {}
 
-  // 사용자 자격 증명을 확인하는 메서드
+  // 사용자 자격 증명 확인
   async validateUser(username: string, password: string): Promise<any> {
-    const user = await this.userService.findByUsername(username); // 사용자 조회
-    if (user && user.password === password) { // 비밀번호 비교 (해싱이 필요한 경우 해싱 검증 추가)
+    const user = await this.authRepository.findByUsername(username);
+    if (user && await bcrypt.compare(password, user.password)) {
       const { password, ...result } = user;
-      return result; // 비밀번호를 제외한 사용자 정보 반환
+      return result;
     }
     return null;
   }
 
-  // 로그인 후 JWT 토큰을 반환하는 메서드
-  async login(user: any) {
+  // JWT 토큰 생성
+  async login(loginDto: LoginDto) {
+    const user = await this.validateUser(loginDto.username, loginDto.password);
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
     const payload = { username: user.username, sub: user._id };
     return {
       access_token: this.jwtService.sign(payload),
     };
   }
 
-  // 회원가입 로직 (이미 구현한 register 메서드)
+  // 회원가입
   async register(createUserDto: CreateUserDto) {
-    const user = await this.userService.createUser(createUserDto);
-    return { message: '회원가입 성공', user };
+    const isAvailable = await this.isUsernameAvailable(createUserDto.username);
+    if (!isAvailable) {
+      throw new UnauthorizedException('이미 사용 중인 사용자 이름입니다.');
+    }
+
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(createUserDto.password, salt);
+
+    const newUser = {
+      ...createUserDto,
+      password: hashedPassword,
+    };
+
+    const result = await this.authRepository.insertUser(newUser);
+    if (result.acknowledged) {
+      return { message: '회원가입 성공', user: { id: result.insertedId, username: newUser.username } };
+    } else {
+      throw new UnauthorizedException('회원가입 실패');
+    }
   }
 
-   // 유저네임 중복 확인 로직
-   async isUsernameAvailable(username: string): Promise<boolean> {
-    const user = await this.userService.findByUsername(username);
-    return !user; // 유저가 없으면 true, 있으면 false
+  // 아이디 중복 확인
+  async isUsernameAvailable(username: string): Promise<boolean> {
+    const user = await this.authRepository.findByUsername(username);
+    return !user;
   }
 }
