@@ -1,0 +1,1368 @@
+Script started on 2024-09-23 16:27:11+09:00 [TERM="xterm-256color" TTY="/dev/pts/3" COLUMNS="93" LINES="49"]
+[?2004h]0;bromine@DESKTOP-HM4ERAU: ~/tinkerboard-test[01;32mbromine@DESKTOP-HM4ERAU[00m:[01;34m~/tinkerboard-test[00m$ cd script
+[?2004l[?2004h]0;bromine@DESKTOP-HM4ERAU: ~/tinkerboard-test/script[01;32mbromine@DESKTOP-HM4ERAU[00m:[01;34m~/tinkerboard-test/script[00m$ sh backend.sh
+[?2004lPackage directory already exists.
+Archive directory already exists.
+다운로드 중: https://github.com/bromine1997/tinkerboard-test/archive/master.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 1422k    0 1422k    0     0  1397k      0 --:--:--  0:00:01 --:--:-- 1397k
+다운로드 완료: master.tar.gz
+tinkerboard-test-master/README.md
+tinkerboard-test-master/boilerplate/
+tinkerboard-test-master/boilerplate/backend/
+tinkerboard-test-master/boilerplate/backend/.dockerignore
+tinkerboard-test-master/boilerplate/backend/.eslintrc.js
+tinkerboard-test-master/boilerplate/backend/.gitignore
+tinkerboard-test-master/boilerplate/backend/.prettierrc
+tinkerboard-test-master/boilerplate/backend/Dockerfile
+tinkerboard-test-master/boilerplate/backend/README.md
+tinkerboard-test-master/boilerplate/backend/ecosystem.config.js
+tinkerboard-test-master/boilerplate/backend/helm-chart/
+tinkerboard-test-master/boilerplate/backend/helm-chart/.helmignore
+tinkerboard-test-master/boilerplate/backend/helm-chart/Chart.yaml
+tinkerboard-test-master/boilerplate/backend/helm-chart/configs/
+tinkerboard-test-master/boilerplate/backend/helm-chart/configs/nginx.conf
+tinkerboard-test-master/boilerplate/backend/helm-chart/templates/
+tinkerboard-test-master/boilerplate/backend/helm-chart/templates/configmap.yaml
+tinkerboard-test-master/boilerplate/backend/helm-chart/templates/deployment.yaml
+tinkerboard-test-master/boilerplate/backend/helm-chart/templates/service.yaml
+tinkerboard-test-master/boilerplate/backend/helm-chart/values.yaml
+tinkerboard-test-master/boilerplate/backend/nest-cli.json
+tinkerboard-test-master/boilerplate/backend/package-lock.json
+tinkerboard-test-master/boilerplate/backend/package.json
+tinkerboard-test-master/boilerplate/backend/src/
+tinkerboard-test-master/boilerplate/backend/src/app.module.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/
+tinkerboard-test-master/boilerplate/backend/src/auth/auth.controller.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/auth.module.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/auth.service.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/create-user.dto.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/jwt-payload.interface.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/jwt.strategy.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/login.dto.ts
+tinkerboard-test-master/boilerplate/backend/src/config/
+tinkerboard-test-master/boilerplate/backend/src/config/index.ts
+tinkerboard-test-master/boilerplate/backend/src/config/model.ts
+tinkerboard-test-master/boilerplate/backend/src/config/values/
+tinkerboard-test-master/boilerplate/backend/src/config/values/develop.ts
+tinkerboard-test-master/boilerplate/backend/src/config/values/local.ts
+tinkerboard-test-master/boilerplate/backend/src/config/values/real.ts
+tinkerboard-test-master/boilerplate/backend/src/core/
+tinkerboard-test-master/boilerplate/backend/src/core/axios/
+tinkerboard-test-master/boilerplate/backend/src/core/axios/api-response-error.ts
+tinkerboard-test-master/boilerplate/backend/src/core/axios/axios-client.ts
+tinkerboard-test-master/boilerplate/backend/src/core/core.module.ts
+tinkerboard-test-master/boilerplate/backend/src/core/filter/
+tinkerboard-test-master/boilerplate/backend/src/core/filter/api-exception.filter.ts
+tinkerboard-test-master/boilerplate/backend/src/core/logger/
+tinkerboard-test-master/boilerplate/backend/src/core/logger/context-logger.service.ts
+tinkerboard-test-master/boilerplate/backend/src/core/middleware/
+tinkerboard-test-master/boilerplate/backend/src/core/middleware/request-context.middleware.ts
+tinkerboard-test-master/boilerplate/backend/src/core/utils/
+tinkerboard-test-master/boilerplate/backend/src/core/utils/string.ts
+tinkerboard-test-master/boilerplate/backend/src/core/utils/timer.ts
+tinkerboard-test-master/boilerplate/backend/src/database/
+tinkerboard-test-master/boilerplate/backend/src/database/database.constants.ts
+tinkerboard-test-master/boilerplate/backend/src/database/database.module.ts
+tinkerboard-test-master/boilerplate/backend/src/database/database.providers.ts
+tinkerboard-test-master/boilerplate/backend/src/health-check/
+tinkerboard-test-master/boilerplate/backend/src/health-check/controller/
+tinkerboard-test-master/boilerplate/backend/src/health-check/controller/health-check.controller.ts
+tinkerboard-test-master/boilerplate/backend/src/health-check/health-check.module.ts
+tinkerboard-test-master/boilerplate/backend/src/main.ts
+tinkerboard-test-master/boilerplate/backend/src/sample-test/
+tinkerboard-test-master/boilerplate/backend/src/sample-test/controller/
+tinkerboard-test-master/boilerplate/backend/src/sample-test/controller/sample-test-v1.controller.ts
+tinkerboard-test-master/boilerplate/backend/src/sample-test/controller/sample-test-v1.dto.ts
+tinkerboard-test-master/boilerplate/backend/src/sample-test/repository/
+tinkerboard-test-master/boilerplate/backend/src/sample-test/repository/test.repository.ts
+tinkerboard-test-master/boilerplate/backend/src/sample-test/sample-test.module.ts
+tinkerboard-test-master/boilerplate/backend/src/sample-test/service/
+tinkerboard-test-master/boilerplate/backend/src/sample-test/service/sample-test.service.ts
+tinkerboard-test-master/boilerplate/backend/src/user/
+tinkerboard-test-master/boilerplate/backend/src/user/user.controller.ts
+tinkerboard-test-master/boilerplate/backend/src/user/user.dto.ts
+tinkerboard-test-master/boilerplate/backend/src/user/user.module.ts
+tinkerboard-test-master/boilerplate/backend/src/user/user.schema.ts
+tinkerboard-test-master/boilerplate/backend/src/user/user.service.ts
+tinkerboard-test-master/boilerplate/backend/src/ws/
+tinkerboard-test-master/boilerplate/backend/src/ws/ws.gateway.ts
+tinkerboard-test-master/boilerplate/backend/src/ws/ws.module.ts
+tinkerboard-test-master/boilerplate/backend/tsconfig.build.json
+tinkerboard-test-master/boilerplate/backend/tsconfig.json
+tinkerboard-test-master/boilerplate/frontend/
+tinkerboard-test-master/boilerplate/frontend/.bebel.config.js
+tinkerboard-test-master/boilerplate/frontend/.browserslistrc
+tinkerboard-test-master/boilerplate/frontend/.dockerignore
+tinkerboard-test-master/boilerplate/frontend/.eslintrc.js
+tinkerboard-test-master/boilerplate/frontend/.gitignore
+tinkerboard-test-master/boilerplate/frontend/.npmrc
+tinkerboard-test-master/boilerplate/frontend/.prettierrc
+tinkerboard-test-master/boilerplate/frontend/Dockerfile
+tinkerboard-test-master/boilerplate/frontend/README.md
+tinkerboard-test-master/boilerplate/frontend/helm-chart/
+tinkerboard-test-master/boilerplate/frontend/helm-chart/.helmignore
+tinkerboard-test-master/boilerplate/frontend/helm-chart/Chart.yaml
+tinkerboard-test-master/boilerplate/frontend/helm-chart/configs/
+tinkerboard-test-master/boilerplate/frontend/helm-chart/configs/nginx.conf
+tinkerboard-test-master/boilerplate/frontend/helm-chart/templates/
+tinkerboard-test-master/boilerplate/frontend/helm-chart/templates/configmap.yaml
+tinkerboard-test-master/boilerplate/frontend/helm-chart/templates/deployment.yaml
+tinkerboard-test-master/boilerplate/frontend/helm-chart/templates/service.yaml
+tinkerboard-test-master/boilerplate/frontend/helm-chart/values.yaml
+tinkerboard-test-master/boilerplate/frontend/nginx/
+tinkerboard-test-master/boilerplate/frontend/nginx/nginx.conf
+tinkerboard-test-master/boilerplate/frontend/package-lock.json
+tinkerboard-test-master/boilerplate/frontend/package.json
+tinkerboard-test-master/boilerplate/frontend/public/
+tinkerboard-test-master/boilerplate/frontend/public/apple-icon.png
+tinkerboard-test-master/boilerplate/frontend/public/favicon.png
+tinkerboard-test-master/boilerplate/frontend/public/img/
+tinkerboard-test-master/boilerplate/frontend/public/img/anime3.png
+tinkerboard-test-master/boilerplate/frontend/public/img/anime6.png
+tinkerboard-test-master/boilerplate/frontend/public/img/apple-icon.png
+tinkerboard-test-master/boilerplate/frontend/public/img/bg5.jpg
+tinkerboard-test-master/boilerplate/frontend/public/img/default-avatar.png
+tinkerboard-test-master/boilerplate/frontend/public/img/emilyz.jpg
+tinkerboard-test-master/boilerplate/frontend/public/img/favicon.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/android-chrome-192x192.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/android-chrome-512x512.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/apple-touch-icon-120x120.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/apple-touch-icon-152x152.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/apple-touch-icon-180x180.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/apple-touch-icon-60x60.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/apple-touch-icon-76x76.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/apple-touch-icon.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/favicon-16x16.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/favicon-32x32.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/msapplication-icon-144x144.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/mstile-150x150.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/safari-pinned-tab.svg
+tinkerboard-test-master/boilerplate/frontend/public/img/img_3115.jpg
+tinkerboard-test-master/boilerplate/frontend/public/img/james.jpg
+tinkerboard-test-master/boilerplate/frontend/public/img/mike.jpg
+tinkerboard-test-master/boilerplate/frontend/public/index.html
+tinkerboard-test-master/boilerplate/frontend/public/manifest.json
+tinkerboard-test-master/boilerplate/frontend/public/robots.txt
+tinkerboard-test-master/boilerplate/frontend/src/
+tinkerboard-test-master/boilerplate/frontend/src/App.vue
+tinkerboard-test-master/boilerplate/frontend/src/assets/
+tinkerboard-test-master/boilerplate/frontend/src/assets/css/
+tinkerboard-test-master/boilerplate/frontend/src/assets/css/nucleo-icons.css
+tinkerboard-test-master/boilerplate/frontend/src/assets/demo/
+tinkerboard-test-master/boilerplate/frontend/src/assets/demo/demo.css
+tinkerboard-test-master/boilerplate/frontend/src/assets/fonts/
+tinkerboard-test-master/boilerplate/frontend/src/assets/fonts/nucleo.eot
+tinkerboard-test-master/boilerplate/frontend/src/assets/fonts/nucleo.ttf
+tinkerboard-test-master/boilerplate/frontend/src/assets/fonts/nucleo.woff
+tinkerboard-test-master/boilerplate/frontend/src/assets/fonts/nucleo.woff2
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_alert.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_badge.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_breadcrumb.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_button-group.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_buttons.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_card.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_carousel.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_close.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_code.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_custom-forms.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_dropdown.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_forms.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_functions.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_grid.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_images.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_input-group.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_jumbotron.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_list-group.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_media.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_mixins.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_modal.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_nav.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_navbar.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_pagination.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_popover.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_print.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_progress.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_reboot.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_root.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_tables.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_tooltip.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_transitions.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_type.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_utilities.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_variables.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_alert.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_background-variant.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_badge.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_border-radius.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_box-shadow.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_breakpoints.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_buttons.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_caret.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_clearfix.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_float.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_forms.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_gradients.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_grid-framework.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_grid.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_hover.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_image.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_list-group.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_lists.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_nav-divider.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_pagination.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_reset-text.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_resize.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_screen-reader.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_size.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_table-row.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_text-emphasis.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_text-hide.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_text-truncate.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_transition.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_visibility.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_align.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_background.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_borders.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_clearfix.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_display.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_embed.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_flex.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_float.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_position.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_screenreaders.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_shadows.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_sizing.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_spacing.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_text.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_visibility.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_alerts.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_buttons.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_card.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_checkboxes-radio.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_dropdown.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_fixed-plugin.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_footer.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_forms.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_functions.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_images.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_input-group.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_misc.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_mixins.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_modal.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_navbar.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_rtl.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_sidebar-and-main-panel.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_tables.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_type.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_utilities.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_variables.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_white-content.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/cards/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/cards/_card-chart.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/cards/_card-map.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/cards/_card-plain.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/cards/_card-task.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/cards/_card-user.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_alert.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_background-variant.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_badges.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_buttons.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_dropdown.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_forms.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_icon.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_inputs.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_modals.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_page-header.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_popovers.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_vendor-prefixes.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_wizard.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/opacity.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_backgrounds.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_floating.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_helper.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_position.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_shadows.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_sizing.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_spacing.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_text.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_transform.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/vendor/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/vendor/_plugin-animate-bootstrap-notify.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/vendor/_plugin-perfect-scrollbar.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/plugins/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/plugins/_plugin-perfect-scrollbar.scss
+tinkerboard-test-master/boilerplate/frontend/src/components/
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseAlert.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseButton.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseCheckbox.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseDropdown.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseNav.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseRadio.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseTable.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/Cards/
+tinkerboard-test-master/boilerplate/frontend/src/components/Cards/Card.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/Cards/StatsCard.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/Charts/
+tinkerboard-test-master/boilerplate/frontend/src/components/Charts/BarChart.js
+tinkerboard-test-master/boilerplate/frontend/src/components/Charts/LineChart.js
+tinkerboard-test-master/boilerplate/frontend/src/components/Charts/config.js
+tinkerboard-test-master/boilerplate/frontend/src/components/Charts/utils.js
+tinkerboard-test-master/boilerplate/frontend/src/components/CloseButton.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/Inputs/
+tinkerboard-test-master/boilerplate/frontend/src/components/Inputs/BaseInput.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/Modal.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/NavbarToggleButton.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/NotificationPlugin/
+tinkerboard-test-master/boilerplate/frontend/src/components/NotificationPlugin/Notification.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/NotificationPlugin/Notifications.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/NotificationPlugin/index.js
+tinkerboard-test-master/boilerplate/frontend/src/components/SidebarPlugin/
+tinkerboard-test-master/boilerplate/frontend/src/components/SidebarPlugin/SideBar.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/SidebarPlugin/SidebarLink.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/SidebarPlugin/index.js
+tinkerboard-test-master/boilerplate/frontend/src/components/index.js
+tinkerboard-test-master/boilerplate/frontend/src/config.js
+tinkerboard-test-master/boilerplate/frontend/src/directives/
+tinkerboard-test-master/boilerplate/frontend/src/directives/click-ouside.js
+tinkerboard-test-master/boilerplate/frontend/src/i18n.js
+tinkerboard-test-master/boilerplate/frontend/src/layout/
+tinkerboard-test-master/boilerplate/frontend/src/layout/dashboard/
+tinkerboard-test-master/boilerplate/frontend/src/layout/dashboard/Content.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/dashboard/ContentFooter.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/dashboard/DashboardLayout.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/dashboard/MobileMenu.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/dashboard/TopNavbar.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/Content.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/MobileMenu.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/SampleFooter.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/SampleLayout.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/SampleNavbar.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/SamplePage.vue
+tinkerboard-test-master/boilerplate/frontend/src/locales/
+tinkerboard-test-master/boilerplate/frontend/src/locales/ar.json
+tinkerboard-test-master/boilerplate/frontend/src/locales/en.json
+tinkerboard-test-master/boilerplate/frontend/src/main.js
+tinkerboard-test-master/boilerplate/frontend/src/pages/
+tinkerboard-test-master/boilerplate/frontend/src/pages/Dashboard.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Dashboard/
+tinkerboard-test-master/boilerplate/frontend/src/pages/Dashboard/TaskList.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Dashboard/UserTable.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Icons.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Login.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Maps.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/NotFoundPage.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Notifications.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Notifications/
+tinkerboard-test-master/boilerplate/frontend/src/pages/Notifications/NotificationTemplate.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Profile.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Profile/
+tinkerboard-test-master/boilerplate/frontend/src/pages/Profile/EditProfileForm.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Profile/UserCard.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/SignUp.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/TableList.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Typography.vue
+tinkerboard-test-master/boilerplate/frontend/src/plugins/
+tinkerboard-test-master/boilerplate/frontend/src/plugins/RTLPlugin.js
+tinkerboard-test-master/boilerplate/frontend/src/plugins/blackDashboard.js
+tinkerboard-test-master/boilerplate/frontend/src/plugins/globalComponents.js
+tinkerboard-test-master/boilerplate/frontend/src/plugins/globalDirectives.js
+tinkerboard-test-master/boilerplate/frontend/src/registerServiceWorker.js
+tinkerboard-test-master/boilerplate/frontend/src/router/
+tinkerboard-test-master/boilerplate/frontend/src/router/index.js
+tinkerboard-test-master/boilerplate/frontend/src/router/routes.js
+tinkerboard-test-master/boilerplate/frontend/src/router/starterRouter.js
+tinkerboard-test-master/boilerplate/frontend/vue-project/
+tinkerboard-test-master/boilerplate/frontend/vue-project/.gitignore
+tinkerboard-test-master/boilerplate/frontend/vue-project/.vscode/
+tinkerboard-test-master/boilerplate/frontend/vue-project/.vscode/extensions.json
+tinkerboard-test-master/boilerplate/frontend/vue-project/README.md
+tinkerboard-test-master/boilerplate/frontend/vue-project/index.html
+tinkerboard-test-master/boilerplate/frontend/vue-project/jsconfig.json
+tinkerboard-test-master/boilerplate/frontend/vue-project/package.json
+tinkerboard-test-master/boilerplate/frontend/vue-project/public/
+tinkerboard-test-master/boilerplate/frontend/vue-project/public/favicon.ico
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/App.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/assets/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/assets/base.css
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/assets/logo.svg
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/assets/main.css
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/HelloWorld.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/TheWelcome.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/WelcomeItem.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/__tests__/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/__tests__/HelloWorld.spec.js
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/icons/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/icons/IconCommunity.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/icons/IconDocumentation.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/icons/IconEcosystem.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/icons/IconSupport.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/icons/IconTooling.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/main.js
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/router/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/router/index.js
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/stores/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/stores/counter.js
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/views/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/views/AboutView.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/views/HomeView.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/vite.config.js
+tinkerboard-test-master/boilerplate/frontend/vue-project/vitest.config.js
+tinkerboard-test-master/boilerplate/frontend/vue.config.js
+tinkerboard-test-master/document/
+tinkerboard-test-master/document/1.installation.md
+tinkerboard-test-master/document/2.docker.md
+tinkerboard-test-master/document/3.k3s-installation.md
+tinkerboard-test-master/document/4.rancher.md
+tinkerboard-test-master/document/5.helm.md
+tinkerboard-test-master/document/5.pm2.md
+tinkerboard-test-master/document/6.firewall.md
+tinkerboard-test-master/et --hard HEAD^
+tinkerboard-test-master/git
+tinkerboard-test-master/node_modules/
+tinkerboard-test-master/node_modules/.package-lock.json
+tinkerboard-test-master/node_modules/asynckit/
+tinkerboard-test-master/node_modules/asynckit/LICENSE
+tinkerboard-test-master/node_modules/asynckit/README.md
+tinkerboard-test-master/node_modules/asynckit/bench.js
+tinkerboard-test-master/node_modules/asynckit/index.js
+tinkerboard-test-master/node_modules/asynckit/lib/
+tinkerboard-test-master/node_modules/asynckit/lib/abort.js
+tinkerboard-test-master/node_modules/asynckit/lib/async.js
+tinkerboard-test-master/node_modules/asynckit/lib/defer.js
+tinkerboard-test-master/node_modules/asynckit/lib/iterate.js
+tinkerboard-test-master/node_modules/asynckit/lib/readable_asynckit.js
+tinkerboard-test-master/node_modules/asynckit/lib/readable_parallel.js
+tinkerboard-test-master/node_modules/asynckit/lib/readable_serial.js
+tinkerboard-test-master/node_modules/asynckit/lib/readable_serial_ordered.js
+tinkerboard-test-master/node_modules/asynckit/lib/state.js
+tinkerboard-test-master/node_modules/asynckit/lib/streamify.js
+tinkerboard-test-master/node_modules/asynckit/lib/terminator.js
+tinkerboard-test-master/node_modules/asynckit/package.json
+tinkerboard-test-master/node_modules/asynckit/parallel.js
+tinkerboard-test-master/node_modules/asynckit/serial.js
+tinkerboard-test-master/node_modules/asynckit/serialOrdered.js
+tinkerboard-test-master/node_modules/asynckit/stream.js
+tinkerboard-test-master/node_modules/axios/
+tinkerboard-test-master/node_modules/axios/CHANGELOG.md
+tinkerboard-test-master/node_modules/axios/LICENSE
+tinkerboard-test-master/node_modules/axios/MIGRATION_GUIDE.md
+tinkerboard-test-master/node_modules/axios/README.md
+tinkerboard-test-master/node_modules/axios/SECURITY.md
+tinkerboard-test-master/node_modules/axios/dist/
+tinkerboard-test-master/node_modules/axios/dist/axios.js
+tinkerboard-test-master/node_modules/axios/dist/axios.js.map
+tinkerboard-test-master/node_modules/axios/dist/axios.min.js
+tinkerboard-test-master/node_modules/axios/dist/axios.min.js.map
+tinkerboard-test-master/node_modules/axios/dist/browser/
+tinkerboard-test-master/node_modules/axios/dist/browser/axios.cjs
+tinkerboard-test-master/node_modules/axios/dist/browser/axios.cjs.map
+tinkerboard-test-master/node_modules/axios/dist/esm/
+tinkerboard-test-master/node_modules/axios/dist/esm/axios.js
+tinkerboard-test-master/node_modules/axios/dist/esm/axios.js.map
+tinkerboard-test-master/node_modules/axios/dist/esm/axios.min.js
+tinkerboard-test-master/node_modules/axios/dist/esm/axios.min.js.map
+tinkerboard-test-master/node_modules/axios/dist/node/
+tinkerboard-test-master/node_modules/axios/dist/node/axios.cjs
+tinkerboard-test-master/node_modules/axios/dist/node/axios.cjs.map
+tinkerboard-test-master/node_modules/axios/index.d.cts
+tinkerboard-test-master/node_modules/axios/index.d.ts
+tinkerboard-test-master/node_modules/axios/index.js
+tinkerboard-test-master/node_modules/axios/lib/
+tinkerboard-test-master/node_modules/axios/lib/adapters/
+tinkerboard-test-master/node_modules/axios/lib/adapters/README.md
+tinkerboard-test-master/node_modules/axios/lib/adapters/adapters.js
+tinkerboard-test-master/node_modules/axios/lib/adapters/fetch.js
+tinkerboard-test-master/node_modules/axios/lib/adapters/http.js
+tinkerboard-test-master/node_modules/axios/lib/adapters/xhr.js
+tinkerboard-test-master/node_modules/axios/lib/axios.js
+tinkerboard-test-master/node_modules/axios/lib/cancel/
+tinkerboard-test-master/node_modules/axios/lib/cancel/CancelToken.js
+tinkerboard-test-master/node_modules/axios/lib/cancel/CanceledError.js
+tinkerboard-test-master/node_modules/axios/lib/cancel/isCancel.js
+tinkerboard-test-master/node_modules/axios/lib/core/
+tinkerboard-test-master/node_modules/axios/lib/core/Axios.js
+tinkerboard-test-master/node_modules/axios/lib/core/AxiosError.js
+tinkerboard-test-master/node_modules/axios/lib/core/AxiosHeaders.js
+tinkerboard-test-master/node_modules/axios/lib/core/InterceptorManager.js
+tinkerboard-test-master/node_modules/axios/lib/core/README.md
+tinkerboard-test-master/node_modules/axios/lib/core/buildFullPath.js
+tinkerboard-test-master/node_modules/axios/lib/core/dispatchRequest.js
+tinkerboard-test-master/node_modules/axios/lib/core/mergeConfig.js
+tinkerboard-test-master/node_modules/axios/lib/core/settle.js
+tinkerboard-test-master/node_modules/axios/lib/core/transformData.js
+tinkerboard-test-master/node_modules/axios/lib/defaults/
+tinkerboard-test-master/node_modules/axios/lib/defaults/index.js
+tinkerboard-test-master/node_modules/axios/lib/defaults/transitional.js
+tinkerboard-test-master/node_modules/axios/lib/env/
+tinkerboard-test-master/node_modules/axios/lib/env/README.md
+tinkerboard-test-master/node_modules/axios/lib/env/classes/
+tinkerboard-test-master/node_modules/axios/lib/env/classes/FormData.js
+tinkerboard-test-master/node_modules/axios/lib/env/data.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/
+tinkerboard-test-master/node_modules/axios/lib/helpers/AxiosTransformStream.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/AxiosURLSearchParams.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/HttpStatusCode.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/README.md
+tinkerboard-test-master/node_modules/axios/lib/helpers/ZlibHeaderTransformStream.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/bind.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/buildURL.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/callbackify.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/combineURLs.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/composeSignals.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/cookies.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/deprecatedMethod.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/formDataToJSON.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/formDataToStream.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/fromDataURI.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/isAbsoluteURL.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/isAxiosError.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/isURLSameOrigin.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/null.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/parseHeaders.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/parseProtocol.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/progressEventReducer.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/readBlob.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/resolveConfig.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/speedometer.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/spread.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/throttle.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/toFormData.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/toURLEncodedForm.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/trackStream.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/validator.js
+tinkerboard-test-master/node_modules/axios/lib/platform/
+tinkerboard-test-master/node_modules/axios/lib/platform/browser/
+tinkerboard-test-master/node_modules/axios/lib/platform/browser/classes/
+tinkerboard-test-master/node_modules/axios/lib/platform/browser/classes/Blob.js
+tinkerboard-test-master/node_modules/axios/lib/platform/browser/classes/FormData.js
+tinkerboard-test-master/node_modules/axios/lib/platform/browser/classes/URLSearchParams.js
+tinkerboard-test-master/node_modules/axios/lib/platform/browser/index.js
+tinkerboard-test-master/node_modules/axios/lib/platform/common/
+tinkerboard-test-master/node_modules/axios/lib/platform/common/utils.js
+tinkerboard-test-master/node_modules/axios/lib/platform/index.js
+tinkerboard-test-master/node_modules/axios/lib/platform/node/
+tinkerboard-test-master/node_modules/axios/lib/platform/node/classes/
+tinkerboard-test-master/node_modules/axios/lib/platform/node/classes/FormData.js
+tinkerboard-test-master/node_modules/axios/lib/platform/node/classes/URLSearchParams.js
+tinkerboard-test-master/node_modules/axios/lib/platform/node/index.js
+tinkerboard-test-master/node_modules/axios/lib/utils.js
+tinkerboard-test-master/node_modules/axios/package.json
+tinkerboard-test-master/node_modules/combined-stream/
+tinkerboard-test-master/node_modules/combined-stream/License
+tinkerboard-test-master/node_modules/combined-stream/Readme.md
+tinkerboard-test-master/node_modules/combined-stream/lib/
+tinkerboard-test-master/node_modules/combined-stream/lib/combined_stream.js
+tinkerboard-test-master/node_modules/combined-stream/package.json
+tinkerboard-test-master/node_modules/combined-stream/yarn.lock
+tinkerboard-test-master/node_modules/delayed-stream/
+tinkerboard-test-master/node_modules/delayed-stream/.npmignore
+tinkerboard-test-master/node_modules/delayed-stream/License
+tinkerboard-test-master/node_modules/delayed-stream/Makefile
+tinkerboard-test-master/node_modules/delayed-stream/Readme.md
+tinkerboard-test-master/node_modules/delayed-stream/lib/
+tinkerboard-test-master/node_modules/delayed-stream/lib/delayed_stream.js
+tinkerboard-test-master/node_modules/delayed-stream/package.json
+tinkerboard-test-master/node_modules/follow-redirects/
+tinkerboard-test-master/node_modules/follow-redirects/LICENSE
+tinkerboard-test-master/node_modules/follow-redirects/README.md
+tinkerboard-test-master/node_modules/follow-redirects/debug.js
+tinkerboard-test-master/node_modules/follow-redirects/http.js
+tinkerboard-test-master/node_modules/follow-redirects/https.js
+tinkerboard-test-master/node_modules/follow-redirects/index.js
+tinkerboard-test-master/node_modules/follow-redirects/package.json
+tinkerboard-test-master/node_modules/form-data/
+tinkerboard-test-master/node_modules/form-data/License
+tinkerboard-test-master/node_modules/form-data/README.md.bak
+tinkerboard-test-master/node_modules/form-data/Readme.md
+tinkerboard-test-master/node_modules/form-data/index.d.ts
+tinkerboard-test-master/node_modules/form-data/lib/
+tinkerboard-test-master/node_modules/form-data/lib/browser.js
+tinkerboard-test-master/node_modules/form-data/lib/form_data.js
+tinkerboard-test-master/node_modules/form-data/lib/populate.js
+tinkerboard-test-master/node_modules/form-data/package.json
+tinkerboard-test-master/node_modules/mime-db/
+tinkerboard-test-master/node_modules/mime-db/HISTORY.md
+tinkerboard-test-master/node_modules/mime-db/LICENSE
+tinkerboard-test-master/node_modules/mime-db/README.md
+tinkerboard-test-master/node_modules/mime-db/db.json
+tinkerboard-test-master/node_modules/mime-db/index.js
+tinkerboard-test-master/node_modules/mime-db/package.json
+tinkerboard-test-master/node_modules/mime-types/
+tinkerboard-test-master/node_modules/mime-types/HISTORY.md
+tinkerboard-test-master/node_modules/mime-types/LICENSE
+tinkerboard-test-master/node_modules/mime-types/README.md
+tinkerboard-test-master/node_modules/mime-types/index.js
+tinkerboard-test-master/node_modules/mime-types/package.json
+tinkerboard-test-master/node_modules/proxy-from-env/
+tinkerboard-test-master/node_modules/proxy-from-env/.eslintrc
+tinkerboard-test-master/node_modules/proxy-from-env/.travis.yml
+tinkerboard-test-master/node_modules/proxy-from-env/LICENSE
+tinkerboard-test-master/node_modules/proxy-from-env/README.md
+tinkerboard-test-master/node_modules/proxy-from-env/index.js
+tinkerboard-test-master/node_modules/proxy-from-env/package.json
+tinkerboard-test-master/node_modules/proxy-from-env/test.js
+tinkerboard-test-master/package-lock.json
+tinkerboard-test-master/package.json
+tinkerboard-test-master/script/
+tinkerboard-test-master/script/backend.sh
+tinkerboard-test-master/script/docker.sh
+tinkerboard-test-master/script/frontend.sh
+tinkerboard-test-master/script/utils.sh
+압축 해제 완료
+[?25l([107;97m#########[0m[100;90m⠂⠂⠂⠂⠂⠂⠂⠂⠂[0m) ⠏ idealTree: [32;40mtiming[0m [35midealTree[0m Completed in 244ms[0m[K([107;97m#########[0m[100;90m⠂⠂⠂⠂⠂⠂⠂⠂⠂[0m) ⠏ idealTree: [32;40mtiming[0m [35midealTree[0m Completed in 244ms[0m[K([107;97m#########[0m[100;90m⠂⠂⠂⠂⠂⠂⠂⠂⠂[0m) ⠼ idealTree: [32;40mtiming[0m [35midealTree[0m Completed in 244ms[0m[K([107;97m##################[0m) ⠹ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠙ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠼ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠼ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠴ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠦ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠙ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K[K[?25h
+up to date, audited 771 packages in 3s
+
+163 packages are looking for funding
+  run `npm fund` for details
+
+[31m[1m10[22m[39m vulnerabilities (3 [33m[1mmoderate[22m[39m, 7 [31m[1mhigh[22m[39m)
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+
+> backend@1.0.0 prebuild
+> rimraf dist
+
+
+> backend@1.0.0 build
+> nest build
+
+[96msrc/auth/auth.service.ts[0m:[93m33[0m:[93m52[0m - [91merror[0m[90m TS2345: [0mArgument of type 'import("/home/bromine/deploy/backend/package/boilerplate/backend/src/auth/create-user.dto").CreateUserDto' is not assignable to parameter of type 'import("/home/bromine/deploy/backend/package/boilerplate/backend/src/user/user.dto").CreateUserDto'.
+  Property 'birthDate' is missing in type 'import("/home/bromine/deploy/backend/package/boilerplate/backend/src/auth/create-user.dto").CreateUserDto' but required in type 'import("/home/bromine/deploy/backend/package/boilerplate/backend/src/user/user.dto").CreateUserDto'.
+
+[7m33[0m     const user = await this.userService.createUser(createUserDto);
+[7m  [0m [91m                                                   ~~~~~~~~~~~~~[0m
+
+  [96msrc/user/user.dto.ts[0m:[93m52[0m:[93m3[0m
+    [7m52[0m   birthDate: string;
+    [7m  [0m [96m  ~~~~~~~~~[0m
+    'birthDate' is declared here.
+
+Found 1 error(s).
+
+Build script missing or failed
+[?2004h]0;bromine@DESKTOP-HM4ERAU: ~/tinkerboard-test/script[01;32mbromine@DESKTOP-HM4ERAU[00m:[01;34m~/tinkerboard-test/script[00m$ 
+[?2004l[?2004h]0;bromine@DESKTOP-HM4ERAU: ~/tinkerboard-test/script[01;32mbromine@DESKTOP-HM4ERAU[00m:[01;34m~/tinkerboard-test/script[00m$ d[Kcd ..
+[?2004l[?2004h]0;bromine@DESKTOP-HM4ERAU: ~/tinkerboard-test[01;32mbromine@DESKTOP-HM4ERAU[00m:[01;34m~/tinkerboard-test[00m$ got[K[Kit pull origin master
+[?2004lremote: Enumerating objects: 17, done.[K
+remote: Counting objects:   5% (1/17)[Kremote: Counting objects:  11% (2/17)[Kremote: Counting objects:  17% (3/17)[Kremote: Counting objects:  23% (4/17)[Kremote: Counting objects:  29% (5/17)[Kremote: Counting objects:  35% (6/17)[Kremote: Counting objects:  41% (7/17)[Kremote: Counting objects:  47% (8/17)[Kremote: Counting objects:  52% (9/17)[Kremote: Counting objects:  58% (10/17)[Kremote: Counting objects:  64% (11/17)[Kremote: Counting objects:  70% (12/17)[Kremote: Counting objects:  76% (13/17)[Kremote: Counting objects:  82% (14/17)[Kremote: Counting objects:  88% (15/17)[Kremote: Counting objects:  94% (16/17)[Kremote: Counting objects: 100% (17/17)[Kremote: Counting objects: 100% (17/17), done.[K
+remote: Compressing objects:  50% (1/2)[Kremote: Compressing objects: 100% (2/2)[Kremote: Compressing objects: 100% (2/2), done.[K
+remote: Total 9 (delta 7), reused 9 (delta 7), pack-reused 0 (from 0)[K
+Unpacking objects:  11% (1/9)Unpacking objects:  22% (2/9)Unpacking objects:  33% (3/9)Unpacking objects:  44% (4/9)Unpacking objects:  55% (5/9)Unpacking objects:  66% (6/9)Unpacking objects:  77% (7/9)Unpacking objects:  88% (8/9)Unpacking objects: 100% (9/9)Unpacking objects: 100% (9/9), 799 bytes | 266.00 KiB/s, done.
+From https://github.com/bromine1997/tinkerboard-test
+ * branch            master     -> FETCH_HEAD
+   270e51f..b1ef429  master     -> origin/master
+Updating 270e51f..b1ef429
+Fast-forward
+ boilerplate/backend/src/auth/auth.service.ts    |  3 [32m++[m[31m-[m
+ boilerplate/backend/src/auth/create-user.dto.ts | 33 [31m---------------------------------[m
+ boilerplate/backend/src/user/user.dto.ts        | 23 [32m+++++++++++[m[31m------------[m
+ 3 files changed, 13 insertions(+), 46 deletions(-)
+ delete mode 100644 boilerplate/backend/src/auth/create-user.dto.ts
+[?2004h]0;bromine@DESKTOP-HM4ERAU: ~/tinkerboard-test[01;32mbromine@DESKTOP-HM4ERAU[00m:[01;34m~/tinkerboard-test[00m$ s[Kcd script
+[?2004l[?2004h]0;bromine@DESKTOP-HM4ERAU: ~/tinkerboard-test/script[01;32mbromine@DESKTOP-HM4ERAU[00m:[01;34m~/tinkerboard-test/script[00m$ sh backend.sh
+[?2004lPackage directory already exists.
+Archive directory already exists.
+다운로드 중: https://github.com/bromine1997/tinkerboard-test/archive/master.tar.gz
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 1421k    0 1421k    0     0  1716k      0 --:--:-- --:--:-- --:--:-- 1716k
+다운로드 완료: master.tar.gz
+tinkerboard-test-master/README.md
+tinkerboard-test-master/boilerplate/
+tinkerboard-test-master/boilerplate/backend/
+tinkerboard-test-master/boilerplate/backend/.dockerignore
+tinkerboard-test-master/boilerplate/backend/.eslintrc.js
+tinkerboard-test-master/boilerplate/backend/.gitignore
+tinkerboard-test-master/boilerplate/backend/.prettierrc
+tinkerboard-test-master/boilerplate/backend/Dockerfile
+tinkerboard-test-master/boilerplate/backend/README.md
+tinkerboard-test-master/boilerplate/backend/ecosystem.config.js
+tinkerboard-test-master/boilerplate/backend/helm-chart/
+tinkerboard-test-master/boilerplate/backend/helm-chart/.helmignore
+tinkerboard-test-master/boilerplate/backend/helm-chart/Chart.yaml
+tinkerboard-test-master/boilerplate/backend/helm-chart/configs/
+tinkerboard-test-master/boilerplate/backend/helm-chart/configs/nginx.conf
+tinkerboard-test-master/boilerplate/backend/helm-chart/templates/
+tinkerboard-test-master/boilerplate/backend/helm-chart/templates/configmap.yaml
+tinkerboard-test-master/boilerplate/backend/helm-chart/templates/deployment.yaml
+tinkerboard-test-master/boilerplate/backend/helm-chart/templates/service.yaml
+tinkerboard-test-master/boilerplate/backend/helm-chart/values.yaml
+tinkerboard-test-master/boilerplate/backend/nest-cli.json
+tinkerboard-test-master/boilerplate/backend/package-lock.json
+tinkerboard-test-master/boilerplate/backend/package.json
+tinkerboard-test-master/boilerplate/backend/src/
+tinkerboard-test-master/boilerplate/backend/src/app.module.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/
+tinkerboard-test-master/boilerplate/backend/src/auth/auth.controller.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/auth.module.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/auth.service.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/jwt-payload.interface.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/jwt.strategy.ts
+tinkerboard-test-master/boilerplate/backend/src/auth/login.dto.ts
+tinkerboard-test-master/boilerplate/backend/src/config/
+tinkerboard-test-master/boilerplate/backend/src/config/index.ts
+tinkerboard-test-master/boilerplate/backend/src/config/model.ts
+tinkerboard-test-master/boilerplate/backend/src/config/values/
+tinkerboard-test-master/boilerplate/backend/src/config/values/develop.ts
+tinkerboard-test-master/boilerplate/backend/src/config/values/local.ts
+tinkerboard-test-master/boilerplate/backend/src/config/values/real.ts
+tinkerboard-test-master/boilerplate/backend/src/core/
+tinkerboard-test-master/boilerplate/backend/src/core/axios/
+tinkerboard-test-master/boilerplate/backend/src/core/axios/api-response-error.ts
+tinkerboard-test-master/boilerplate/backend/src/core/axios/axios-client.ts
+tinkerboard-test-master/boilerplate/backend/src/core/core.module.ts
+tinkerboard-test-master/boilerplate/backend/src/core/filter/
+tinkerboard-test-master/boilerplate/backend/src/core/filter/api-exception.filter.ts
+tinkerboard-test-master/boilerplate/backend/src/core/logger/
+tinkerboard-test-master/boilerplate/backend/src/core/logger/context-logger.service.ts
+tinkerboard-test-master/boilerplate/backend/src/core/middleware/
+tinkerboard-test-master/boilerplate/backend/src/core/middleware/request-context.middleware.ts
+tinkerboard-test-master/boilerplate/backend/src/core/utils/
+tinkerboard-test-master/boilerplate/backend/src/core/utils/string.ts
+tinkerboard-test-master/boilerplate/backend/src/core/utils/timer.ts
+tinkerboard-test-master/boilerplate/backend/src/database/
+tinkerboard-test-master/boilerplate/backend/src/database/database.constants.ts
+tinkerboard-test-master/boilerplate/backend/src/database/database.module.ts
+tinkerboard-test-master/boilerplate/backend/src/database/database.providers.ts
+tinkerboard-test-master/boilerplate/backend/src/health-check/
+tinkerboard-test-master/boilerplate/backend/src/health-check/controller/
+tinkerboard-test-master/boilerplate/backend/src/health-check/controller/health-check.controller.ts
+tinkerboard-test-master/boilerplate/backend/src/health-check/health-check.module.ts
+tinkerboard-test-master/boilerplate/backend/src/main.ts
+tinkerboard-test-master/boilerplate/backend/src/sample-test/
+tinkerboard-test-master/boilerplate/backend/src/sample-test/controller/
+tinkerboard-test-master/boilerplate/backend/src/sample-test/controller/sample-test-v1.controller.ts
+tinkerboard-test-master/boilerplate/backend/src/sample-test/controller/sample-test-v1.dto.ts
+tinkerboard-test-master/boilerplate/backend/src/sample-test/repository/
+tinkerboard-test-master/boilerplate/backend/src/sample-test/repository/test.repository.ts
+tinkerboard-test-master/boilerplate/backend/src/sample-test/sample-test.module.ts
+tinkerboard-test-master/boilerplate/backend/src/sample-test/service/
+tinkerboard-test-master/boilerplate/backend/src/sample-test/service/sample-test.service.ts
+tinkerboard-test-master/boilerplate/backend/src/user/
+tinkerboard-test-master/boilerplate/backend/src/user/user.controller.ts
+tinkerboard-test-master/boilerplate/backend/src/user/user.dto.ts
+tinkerboard-test-master/boilerplate/backend/src/user/user.module.ts
+tinkerboard-test-master/boilerplate/backend/src/user/user.schema.ts
+tinkerboard-test-master/boilerplate/backend/src/user/user.service.ts
+tinkerboard-test-master/boilerplate/backend/src/ws/
+tinkerboard-test-master/boilerplate/backend/src/ws/ws.gateway.ts
+tinkerboard-test-master/boilerplate/backend/src/ws/ws.module.ts
+tinkerboard-test-master/boilerplate/backend/tsconfig.build.json
+tinkerboard-test-master/boilerplate/backend/tsconfig.json
+tinkerboard-test-master/boilerplate/frontend/
+tinkerboard-test-master/boilerplate/frontend/.bebel.config.js
+tinkerboard-test-master/boilerplate/frontend/.browserslistrc
+tinkerboard-test-master/boilerplate/frontend/.dockerignore
+tinkerboard-test-master/boilerplate/frontend/.eslintrc.js
+tinkerboard-test-master/boilerplate/frontend/.gitignore
+tinkerboard-test-master/boilerplate/frontend/.npmrc
+tinkerboard-test-master/boilerplate/frontend/.prettierrc
+tinkerboard-test-master/boilerplate/frontend/Dockerfile
+tinkerboard-test-master/boilerplate/frontend/README.md
+tinkerboard-test-master/boilerplate/frontend/helm-chart/
+tinkerboard-test-master/boilerplate/frontend/helm-chart/.helmignore
+tinkerboard-test-master/boilerplate/frontend/helm-chart/Chart.yaml
+tinkerboard-test-master/boilerplate/frontend/helm-chart/configs/
+tinkerboard-test-master/boilerplate/frontend/helm-chart/configs/nginx.conf
+tinkerboard-test-master/boilerplate/frontend/helm-chart/templates/
+tinkerboard-test-master/boilerplate/frontend/helm-chart/templates/configmap.yaml
+tinkerboard-test-master/boilerplate/frontend/helm-chart/templates/deployment.yaml
+tinkerboard-test-master/boilerplate/frontend/helm-chart/templates/service.yaml
+tinkerboard-test-master/boilerplate/frontend/helm-chart/values.yaml
+tinkerboard-test-master/boilerplate/frontend/nginx/
+tinkerboard-test-master/boilerplate/frontend/nginx/nginx.conf
+tinkerboard-test-master/boilerplate/frontend/package-lock.json
+tinkerboard-test-master/boilerplate/frontend/package.json
+tinkerboard-test-master/boilerplate/frontend/public/
+tinkerboard-test-master/boilerplate/frontend/public/apple-icon.png
+tinkerboard-test-master/boilerplate/frontend/public/favicon.png
+tinkerboard-test-master/boilerplate/frontend/public/img/
+tinkerboard-test-master/boilerplate/frontend/public/img/anime3.png
+tinkerboard-test-master/boilerplate/frontend/public/img/anime6.png
+tinkerboard-test-master/boilerplate/frontend/public/img/apple-icon.png
+tinkerboard-test-master/boilerplate/frontend/public/img/bg5.jpg
+tinkerboard-test-master/boilerplate/frontend/public/img/default-avatar.png
+tinkerboard-test-master/boilerplate/frontend/public/img/emilyz.jpg
+tinkerboard-test-master/boilerplate/frontend/public/img/favicon.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/android-chrome-192x192.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/android-chrome-512x512.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/apple-touch-icon-120x120.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/apple-touch-icon-152x152.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/apple-touch-icon-180x180.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/apple-touch-icon-60x60.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/apple-touch-icon-76x76.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/apple-touch-icon.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/favicon-16x16.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/favicon-32x32.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/msapplication-icon-144x144.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/mstile-150x150.png
+tinkerboard-test-master/boilerplate/frontend/public/img/icons/safari-pinned-tab.svg
+tinkerboard-test-master/boilerplate/frontend/public/img/img_3115.jpg
+tinkerboard-test-master/boilerplate/frontend/public/img/james.jpg
+tinkerboard-test-master/boilerplate/frontend/public/img/mike.jpg
+tinkerboard-test-master/boilerplate/frontend/public/index.html
+tinkerboard-test-master/boilerplate/frontend/public/manifest.json
+tinkerboard-test-master/boilerplate/frontend/public/robots.txt
+tinkerboard-test-master/boilerplate/frontend/src/
+tinkerboard-test-master/boilerplate/frontend/src/App.vue
+tinkerboard-test-master/boilerplate/frontend/src/assets/
+tinkerboard-test-master/boilerplate/frontend/src/assets/css/
+tinkerboard-test-master/boilerplate/frontend/src/assets/css/nucleo-icons.css
+tinkerboard-test-master/boilerplate/frontend/src/assets/demo/
+tinkerboard-test-master/boilerplate/frontend/src/assets/demo/demo.css
+tinkerboard-test-master/boilerplate/frontend/src/assets/fonts/
+tinkerboard-test-master/boilerplate/frontend/src/assets/fonts/nucleo.eot
+tinkerboard-test-master/boilerplate/frontend/src/assets/fonts/nucleo.ttf
+tinkerboard-test-master/boilerplate/frontend/src/assets/fonts/nucleo.woff
+tinkerboard-test-master/boilerplate/frontend/src/assets/fonts/nucleo.woff2
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_alert.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_badge.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_breadcrumb.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_button-group.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_buttons.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_card.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_carousel.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_close.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_code.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_custom-forms.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_dropdown.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_forms.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_functions.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_grid.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_images.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_input-group.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_jumbotron.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_list-group.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_media.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_mixins.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_modal.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_nav.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_navbar.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_pagination.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_popover.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_print.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_progress.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_reboot.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_root.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_tables.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_tooltip.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_transitions.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_type.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_utilities.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/_variables.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_alert.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_background-variant.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_badge.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_border-radius.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_box-shadow.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_breakpoints.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_buttons.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_caret.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_clearfix.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_float.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_forms.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_gradients.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_grid-framework.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_grid.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_hover.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_image.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_list-group.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_lists.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_nav-divider.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_pagination.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_reset-text.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_resize.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_screen-reader.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_size.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_table-row.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_text-emphasis.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_text-hide.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_text-truncate.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_transition.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/mixins/_visibility.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_align.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_background.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_borders.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_clearfix.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_display.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_embed.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_flex.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_float.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_position.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_screenreaders.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_shadows.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_sizing.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_spacing.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_text.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/bootstrap/utilities/_visibility.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_alerts.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_buttons.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_card.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_checkboxes-radio.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_dropdown.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_fixed-plugin.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_footer.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_forms.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_functions.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_images.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_input-group.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_misc.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_mixins.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_modal.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_navbar.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_rtl.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_sidebar-and-main-panel.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_tables.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_type.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_utilities.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_variables.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/_white-content.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/cards/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/cards/_card-chart.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/cards/_card-map.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/cards/_card-plain.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/cards/_card-task.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/cards/_card-user.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_alert.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_background-variant.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_badges.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_buttons.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_dropdown.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_forms.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_icon.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_inputs.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_modals.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_page-header.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_popovers.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_vendor-prefixes.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/_wizard.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/mixins/opacity.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_backgrounds.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_floating.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_helper.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_position.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_shadows.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_sizing.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_spacing.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_text.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/utilities/_transform.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/vendor/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/vendor/_plugin-animate-bootstrap-notify.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/custom/vendor/_plugin-perfect-scrollbar.scss
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/plugins/
+tinkerboard-test-master/boilerplate/frontend/src/assets/sass/black-dashboard/plugins/_plugin-perfect-scrollbar.scss
+tinkerboard-test-master/boilerplate/frontend/src/components/
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseAlert.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseButton.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseCheckbox.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseDropdown.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseNav.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseRadio.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/BaseTable.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/Cards/
+tinkerboard-test-master/boilerplate/frontend/src/components/Cards/Card.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/Cards/StatsCard.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/Charts/
+tinkerboard-test-master/boilerplate/frontend/src/components/Charts/BarChart.js
+tinkerboard-test-master/boilerplate/frontend/src/components/Charts/LineChart.js
+tinkerboard-test-master/boilerplate/frontend/src/components/Charts/config.js
+tinkerboard-test-master/boilerplate/frontend/src/components/Charts/utils.js
+tinkerboard-test-master/boilerplate/frontend/src/components/CloseButton.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/Inputs/
+tinkerboard-test-master/boilerplate/frontend/src/components/Inputs/BaseInput.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/Modal.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/NavbarToggleButton.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/NotificationPlugin/
+tinkerboard-test-master/boilerplate/frontend/src/components/NotificationPlugin/Notification.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/NotificationPlugin/Notifications.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/NotificationPlugin/index.js
+tinkerboard-test-master/boilerplate/frontend/src/components/SidebarPlugin/
+tinkerboard-test-master/boilerplate/frontend/src/components/SidebarPlugin/SideBar.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/SidebarPlugin/SidebarLink.vue
+tinkerboard-test-master/boilerplate/frontend/src/components/SidebarPlugin/index.js
+tinkerboard-test-master/boilerplate/frontend/src/components/index.js
+tinkerboard-test-master/boilerplate/frontend/src/config.js
+tinkerboard-test-master/boilerplate/frontend/src/directives/
+tinkerboard-test-master/boilerplate/frontend/src/directives/click-ouside.js
+tinkerboard-test-master/boilerplate/frontend/src/i18n.js
+tinkerboard-test-master/boilerplate/frontend/src/layout/
+tinkerboard-test-master/boilerplate/frontend/src/layout/dashboard/
+tinkerboard-test-master/boilerplate/frontend/src/layout/dashboard/Content.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/dashboard/ContentFooter.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/dashboard/DashboardLayout.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/dashboard/MobileMenu.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/dashboard/TopNavbar.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/Content.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/MobileMenu.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/SampleFooter.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/SampleLayout.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/SampleNavbar.vue
+tinkerboard-test-master/boilerplate/frontend/src/layout/starter/SamplePage.vue
+tinkerboard-test-master/boilerplate/frontend/src/locales/
+tinkerboard-test-master/boilerplate/frontend/src/locales/ar.json
+tinkerboard-test-master/boilerplate/frontend/src/locales/en.json
+tinkerboard-test-master/boilerplate/frontend/src/main.js
+tinkerboard-test-master/boilerplate/frontend/src/pages/
+tinkerboard-test-master/boilerplate/frontend/src/pages/Dashboard.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Dashboard/
+tinkerboard-test-master/boilerplate/frontend/src/pages/Dashboard/TaskList.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Dashboard/UserTable.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Icons.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Login.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Maps.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/NotFoundPage.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Notifications.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Notifications/
+tinkerboard-test-master/boilerplate/frontend/src/pages/Notifications/NotificationTemplate.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Profile.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Profile/
+tinkerboard-test-master/boilerplate/frontend/src/pages/Profile/EditProfileForm.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Profile/UserCard.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/SignUp.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/TableList.vue
+tinkerboard-test-master/boilerplate/frontend/src/pages/Typography.vue
+tinkerboard-test-master/boilerplate/frontend/src/plugins/
+tinkerboard-test-master/boilerplate/frontend/src/plugins/RTLPlugin.js
+tinkerboard-test-master/boilerplate/frontend/src/plugins/blackDashboard.js
+tinkerboard-test-master/boilerplate/frontend/src/plugins/globalComponents.js
+tinkerboard-test-master/boilerplate/frontend/src/plugins/globalDirectives.js
+tinkerboard-test-master/boilerplate/frontend/src/registerServiceWorker.js
+tinkerboard-test-master/boilerplate/frontend/src/router/
+tinkerboard-test-master/boilerplate/frontend/src/router/index.js
+tinkerboard-test-master/boilerplate/frontend/src/router/routes.js
+tinkerboard-test-master/boilerplate/frontend/src/router/starterRouter.js
+tinkerboard-test-master/boilerplate/frontend/vue-project/
+tinkerboard-test-master/boilerplate/frontend/vue-project/.gitignore
+tinkerboard-test-master/boilerplate/frontend/vue-project/.vscode/
+tinkerboard-test-master/boilerplate/frontend/vue-project/.vscode/extensions.json
+tinkerboard-test-master/boilerplate/frontend/vue-project/README.md
+tinkerboard-test-master/boilerplate/frontend/vue-project/index.html
+tinkerboard-test-master/boilerplate/frontend/vue-project/jsconfig.json
+tinkerboard-test-master/boilerplate/frontend/vue-project/package.json
+tinkerboard-test-master/boilerplate/frontend/vue-project/public/
+tinkerboard-test-master/boilerplate/frontend/vue-project/public/favicon.ico
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/App.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/assets/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/assets/base.css
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/assets/logo.svg
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/assets/main.css
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/HelloWorld.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/TheWelcome.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/WelcomeItem.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/__tests__/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/__tests__/HelloWorld.spec.js
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/icons/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/icons/IconCommunity.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/icons/IconDocumentation.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/icons/IconEcosystem.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/icons/IconSupport.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/components/icons/IconTooling.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/main.js
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/router/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/router/index.js
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/stores/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/stores/counter.js
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/views/
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/views/AboutView.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/src/views/HomeView.vue
+tinkerboard-test-master/boilerplate/frontend/vue-project/vite.config.js
+tinkerboard-test-master/boilerplate/frontend/vue-project/vitest.config.js
+tinkerboard-test-master/boilerplate/frontend/vue.config.js
+tinkerboard-test-master/document/
+tinkerboard-test-master/document/1.installation.md
+tinkerboard-test-master/document/2.docker.md
+tinkerboard-test-master/document/3.k3s-installation.md
+tinkerboard-test-master/document/4.rancher.md
+tinkerboard-test-master/document/5.helm.md
+tinkerboard-test-master/document/5.pm2.md
+tinkerboard-test-master/document/6.firewall.md
+tinkerboard-test-master/et --hard HEAD^
+tinkerboard-test-master/git
+tinkerboard-test-master/node_modules/
+tinkerboard-test-master/node_modules/.package-lock.json
+tinkerboard-test-master/node_modules/asynckit/
+tinkerboard-test-master/node_modules/asynckit/LICENSE
+tinkerboard-test-master/node_modules/asynckit/README.md
+tinkerboard-test-master/node_modules/asynckit/bench.js
+tinkerboard-test-master/node_modules/asynckit/index.js
+tinkerboard-test-master/node_modules/asynckit/lib/
+tinkerboard-test-master/node_modules/asynckit/lib/abort.js
+tinkerboard-test-master/node_modules/asynckit/lib/async.js
+tinkerboard-test-master/node_modules/asynckit/lib/defer.js
+tinkerboard-test-master/node_modules/asynckit/lib/iterate.js
+tinkerboard-test-master/node_modules/asynckit/lib/readable_asynckit.js
+tinkerboard-test-master/node_modules/asynckit/lib/readable_parallel.js
+tinkerboard-test-master/node_modules/asynckit/lib/readable_serial.js
+tinkerboard-test-master/node_modules/asynckit/lib/readable_serial_ordered.js
+tinkerboard-test-master/node_modules/asynckit/lib/state.js
+tinkerboard-test-master/node_modules/asynckit/lib/streamify.js
+tinkerboard-test-master/node_modules/asynckit/lib/terminator.js
+tinkerboard-test-master/node_modules/asynckit/package.json
+tinkerboard-test-master/node_modules/asynckit/parallel.js
+tinkerboard-test-master/node_modules/asynckit/serial.js
+tinkerboard-test-master/node_modules/asynckit/serialOrdered.js
+tinkerboard-test-master/node_modules/asynckit/stream.js
+tinkerboard-test-master/node_modules/axios/
+tinkerboard-test-master/node_modules/axios/CHANGELOG.md
+tinkerboard-test-master/node_modules/axios/LICENSE
+tinkerboard-test-master/node_modules/axios/MIGRATION_GUIDE.md
+tinkerboard-test-master/node_modules/axios/README.md
+tinkerboard-test-master/node_modules/axios/SECURITY.md
+tinkerboard-test-master/node_modules/axios/dist/
+tinkerboard-test-master/node_modules/axios/dist/axios.js
+tinkerboard-test-master/node_modules/axios/dist/axios.js.map
+tinkerboard-test-master/node_modules/axios/dist/axios.min.js
+tinkerboard-test-master/node_modules/axios/dist/axios.min.js.map
+tinkerboard-test-master/node_modules/axios/dist/browser/
+tinkerboard-test-master/node_modules/axios/dist/browser/axios.cjs
+tinkerboard-test-master/node_modules/axios/dist/browser/axios.cjs.map
+tinkerboard-test-master/node_modules/axios/dist/esm/
+tinkerboard-test-master/node_modules/axios/dist/esm/axios.js
+tinkerboard-test-master/node_modules/axios/dist/esm/axios.js.map
+tinkerboard-test-master/node_modules/axios/dist/esm/axios.min.js
+tinkerboard-test-master/node_modules/axios/dist/esm/axios.min.js.map
+tinkerboard-test-master/node_modules/axios/dist/node/
+tinkerboard-test-master/node_modules/axios/dist/node/axios.cjs
+tinkerboard-test-master/node_modules/axios/dist/node/axios.cjs.map
+tinkerboard-test-master/node_modules/axios/index.d.cts
+tinkerboard-test-master/node_modules/axios/index.d.ts
+tinkerboard-test-master/node_modules/axios/index.js
+tinkerboard-test-master/node_modules/axios/lib/
+tinkerboard-test-master/node_modules/axios/lib/adapters/
+tinkerboard-test-master/node_modules/axios/lib/adapters/README.md
+tinkerboard-test-master/node_modules/axios/lib/adapters/adapters.js
+tinkerboard-test-master/node_modules/axios/lib/adapters/fetch.js
+tinkerboard-test-master/node_modules/axios/lib/adapters/http.js
+tinkerboard-test-master/node_modules/axios/lib/adapters/xhr.js
+tinkerboard-test-master/node_modules/axios/lib/axios.js
+tinkerboard-test-master/node_modules/axios/lib/cancel/
+tinkerboard-test-master/node_modules/axios/lib/cancel/CancelToken.js
+tinkerboard-test-master/node_modules/axios/lib/cancel/CanceledError.js
+tinkerboard-test-master/node_modules/axios/lib/cancel/isCancel.js
+tinkerboard-test-master/node_modules/axios/lib/core/
+tinkerboard-test-master/node_modules/axios/lib/core/Axios.js
+tinkerboard-test-master/node_modules/axios/lib/core/AxiosError.js
+tinkerboard-test-master/node_modules/axios/lib/core/AxiosHeaders.js
+tinkerboard-test-master/node_modules/axios/lib/core/InterceptorManager.js
+tinkerboard-test-master/node_modules/axios/lib/core/README.md
+tinkerboard-test-master/node_modules/axios/lib/core/buildFullPath.js
+tinkerboard-test-master/node_modules/axios/lib/core/dispatchRequest.js
+tinkerboard-test-master/node_modules/axios/lib/core/mergeConfig.js
+tinkerboard-test-master/node_modules/axios/lib/core/settle.js
+tinkerboard-test-master/node_modules/axios/lib/core/transformData.js
+tinkerboard-test-master/node_modules/axios/lib/defaults/
+tinkerboard-test-master/node_modules/axios/lib/defaults/index.js
+tinkerboard-test-master/node_modules/axios/lib/defaults/transitional.js
+tinkerboard-test-master/node_modules/axios/lib/env/
+tinkerboard-test-master/node_modules/axios/lib/env/README.md
+tinkerboard-test-master/node_modules/axios/lib/env/classes/
+tinkerboard-test-master/node_modules/axios/lib/env/classes/FormData.js
+tinkerboard-test-master/node_modules/axios/lib/env/data.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/
+tinkerboard-test-master/node_modules/axios/lib/helpers/AxiosTransformStream.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/AxiosURLSearchParams.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/HttpStatusCode.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/README.md
+tinkerboard-test-master/node_modules/axios/lib/helpers/ZlibHeaderTransformStream.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/bind.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/buildURL.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/callbackify.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/combineURLs.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/composeSignals.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/cookies.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/deprecatedMethod.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/formDataToJSON.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/formDataToStream.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/fromDataURI.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/isAbsoluteURL.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/isAxiosError.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/isURLSameOrigin.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/null.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/parseHeaders.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/parseProtocol.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/progressEventReducer.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/readBlob.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/resolveConfig.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/speedometer.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/spread.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/throttle.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/toFormData.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/toURLEncodedForm.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/trackStream.js
+tinkerboard-test-master/node_modules/axios/lib/helpers/validator.js
+tinkerboard-test-master/node_modules/axios/lib/platform/
+tinkerboard-test-master/node_modules/axios/lib/platform/browser/
+tinkerboard-test-master/node_modules/axios/lib/platform/browser/classes/
+tinkerboard-test-master/node_modules/axios/lib/platform/browser/classes/Blob.js
+tinkerboard-test-master/node_modules/axios/lib/platform/browser/classes/FormData.js
+tinkerboard-test-master/node_modules/axios/lib/platform/browser/classes/URLSearchParams.js
+tinkerboard-test-master/node_modules/axios/lib/platform/browser/index.js
+tinkerboard-test-master/node_modules/axios/lib/platform/common/
+tinkerboard-test-master/node_modules/axios/lib/platform/common/utils.js
+tinkerboard-test-master/node_modules/axios/lib/platform/index.js
+tinkerboard-test-master/node_modules/axios/lib/platform/node/
+tinkerboard-test-master/node_modules/axios/lib/platform/node/classes/
+tinkerboard-test-master/node_modules/axios/lib/platform/node/classes/FormData.js
+tinkerboard-test-master/node_modules/axios/lib/platform/node/classes/URLSearchParams.js
+tinkerboard-test-master/node_modules/axios/lib/platform/node/index.js
+tinkerboard-test-master/node_modules/axios/lib/utils.js
+tinkerboard-test-master/node_modules/axios/package.json
+tinkerboard-test-master/node_modules/combined-stream/
+tinkerboard-test-master/node_modules/combined-stream/License
+tinkerboard-test-master/node_modules/combined-stream/Readme.md
+tinkerboard-test-master/node_modules/combined-stream/lib/
+tinkerboard-test-master/node_modules/combined-stream/lib/combined_stream.js
+tinkerboard-test-master/node_modules/combined-stream/package.json
+tinkerboard-test-master/node_modules/combined-stream/yarn.lock
+tinkerboard-test-master/node_modules/delayed-stream/
+tinkerboard-test-master/node_modules/delayed-stream/.npmignore
+tinkerboard-test-master/node_modules/delayed-stream/License
+tinkerboard-test-master/node_modules/delayed-stream/Makefile
+tinkerboard-test-master/node_modules/delayed-stream/Readme.md
+tinkerboard-test-master/node_modules/delayed-stream/lib/
+tinkerboard-test-master/node_modules/delayed-stream/lib/delayed_stream.js
+tinkerboard-test-master/node_modules/delayed-stream/package.json
+tinkerboard-test-master/node_modules/follow-redirects/
+tinkerboard-test-master/node_modules/follow-redirects/LICENSE
+tinkerboard-test-master/node_modules/follow-redirects/README.md
+tinkerboard-test-master/node_modules/follow-redirects/debug.js
+tinkerboard-test-master/node_modules/follow-redirects/http.js
+tinkerboard-test-master/node_modules/follow-redirects/https.js
+tinkerboard-test-master/node_modules/follow-redirects/index.js
+tinkerboard-test-master/node_modules/follow-redirects/package.json
+tinkerboard-test-master/node_modules/form-data/
+tinkerboard-test-master/node_modules/form-data/License
+tinkerboard-test-master/node_modules/form-data/README.md.bak
+tinkerboard-test-master/node_modules/form-data/Readme.md
+tinkerboard-test-master/node_modules/form-data/index.d.ts
+tinkerboard-test-master/node_modules/form-data/lib/
+tinkerboard-test-master/node_modules/form-data/lib/browser.js
+tinkerboard-test-master/node_modules/form-data/lib/form_data.js
+tinkerboard-test-master/node_modules/form-data/lib/populate.js
+tinkerboard-test-master/node_modules/form-data/package.json
+tinkerboard-test-master/node_modules/mime-db/
+tinkerboard-test-master/node_modules/mime-db/HISTORY.md
+tinkerboard-test-master/node_modules/mime-db/LICENSE
+tinkerboard-test-master/node_modules/mime-db/README.md
+tinkerboard-test-master/node_modules/mime-db/db.json
+tinkerboard-test-master/node_modules/mime-db/index.js
+tinkerboard-test-master/node_modules/mime-db/package.json
+tinkerboard-test-master/node_modules/mime-types/
+tinkerboard-test-master/node_modules/mime-types/HISTORY.md
+tinkerboard-test-master/node_modules/mime-types/LICENSE
+tinkerboard-test-master/node_modules/mime-types/README.md
+tinkerboard-test-master/node_modules/mime-types/index.js
+tinkerboard-test-master/node_modules/mime-types/package.json
+tinkerboard-test-master/node_modules/proxy-from-env/
+tinkerboard-test-master/node_modules/proxy-from-env/.eslintrc
+tinkerboard-test-master/node_modules/proxy-from-env/.travis.yml
+tinkerboard-test-master/node_modules/proxy-from-env/LICENSE
+tinkerboard-test-master/node_modules/proxy-from-env/README.md
+tinkerboard-test-master/node_modules/proxy-from-env/index.js
+tinkerboard-test-master/node_modules/proxy-from-env/package.json
+tinkerboard-test-master/node_modules/proxy-from-env/test.js
+tinkerboard-test-master/package-lock.json
+tinkerboard-test-master/package.json
+tinkerboard-test-master/script/
+tinkerboard-test-master/script/backend.sh
+tinkerboard-test-master/script/docker.sh
+tinkerboard-test-master/script/frontend.sh
+tinkerboard-test-master/script/utils.sh
+압축 해제 완료
+[?25l([107;97m#########[0m[100;90m⠂⠂⠂⠂⠂⠂⠂⠂⠂[0m) ⠏ idealTree: [32;40mtiming[0m [35midealTree[0m Completed in 256ms[0m[K([107;97m#########[0m[100;90m⠂⠂⠂⠂⠂⠂⠂⠂⠂[0m) ⠏ idealTree: [32;40mtiming[0m [35midealTree[0m Completed in 256ms[0m[K([107;97m#########[0m[100;90m⠂⠂⠂⠂⠂⠂⠂⠂⠂[0m) ⠼ idealTree: [32;40mtiming[0m [35midealTree[0m Completed in 256ms[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠦ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠋ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠼ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠙ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠙ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠙ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠙ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠙ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠙ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠙ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠙ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠙ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠴ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠴ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠴ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠴ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠴ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠴ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠴ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠴ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠴ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠴ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠇ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠦ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠏ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠸ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K([107;97m##################[0m) ⠧ reify:fsevents: [7msill[0m [35mreify[0m mark deleted [[0m[K[K[?25h
+up to date, audited 771 packages in 3s
+
+163 packages are looking for funding
+  run `npm fund` for details
+
+[31m[1m10[22m[39m vulnerabilities (3 [33m[1mmoderate[22m[39m, 7 [31m[1mhigh[22m[39m)
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+
+> backend@1.0.0 prebuild
+> rimraf dist
+
+
+> backend@1.0.0 build
+> nest build
+
+[32m[PM2] [39m[backend](9) ✓
+[32m[PM2] [39m[backend](10) ✓
+[32m[PM2] [39m[backend](12) ✓
+[32m[PM2] [39m[backend](11) ✓
+[90m┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name               [39m[22m[90m│[39m[1m[36m mode     [39m[22m[90m│[39m[1m[36m ↺    [39m[22m[90m│[39m[1m[36m status    [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m memory   [39m[22m[90m│[39m
+[90m└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘[39m
+[1mModule[22m
+[90m┌────┬────────────────────┬──────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name               [39m[22m[90m│[39m[1m[36m status   [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m mem      [39m[22m[90m│[39m
+[90m├────┼────────────────────┼──────────┼──────────┼──────────┤[39m
+[90m│[39m[1m[36m [1m[36m0[39m[36m[22m[1m  [39m[22m[90m│[39m pm2-logrotate      [90m│[39m [32m[1monline[22m[39m   [90m│[39m 0%       [90m│[39m 68.6mb   [90m│[39m
+[90m└────┴────────────────────┴──────────┴──────────┴──────────┘[39m
+[33m[PM2][WARN] [39mApplications backend not running, starting...
+[33m[PM2][WARN] [39mApp backend has option 'wait_ready' set, waiting for app to be ready...
+[32m[PM2] [39mApp [backend] launched (4 instances)
+[90m┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name               [39m[22m[90m│[39m[1m[36m mode     [39m[22m[90m│[39m[1m[36m ↺    [39m[22m[90m│[39m[1m[36m status    [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m memory   [39m[22m[90m│[39m
+[90m├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤[39m
+[90m│[39m[1m[36m [1m[36m13[39m[36m[22m[1m [39m[22m[90m│[39m backend            [90m│[39m [34m[1mcluster[22m[39m  [90m│[39m 3    [90m│[39m [34m[1mlaunching[22m[39m [90m│[39m 0%       [90m│[39m 0b       [90m│[39m
+[90m│[39m[1m[36m [1m[36m14[39m[36m[22m[1m [39m[22m[90m│[39m backend            [90m│[39m [34m[1mcluster[22m[39m  [90m│[39m 2    [90m│[39m [31m[1… [90m│[39m 0%       [90m│[39m 0b       [90m│[39m
+[90m│[39m[1m[36m [1m[36m15[39m[36m[22m[1m [39m[22m[90m│[39m backend            [90m│[39m [34m[1mcluster[22m[39m  [90m│[39m 1    [90m│[39m [31m[1… [90m│[39m 0%       [90m│[39m 0b       [90m│[39m
+[90m│[39m[1m[36m [1m[36m16[39m[36m[22m[1m [39m[22m[90m│[39m backend            [90m│[39m [34m[1mcluster[22m[39m  [90m│[39m 0    [90m│[39m [32m[1monline[22m[39m    [90m│[39m 0%       [90m│[39m 0b       [90m│[39m
+[90m└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘[39m
+[1mModule[22m
+[90m┌────┬────────────────────┬──────────┬──────────┬──────────┐[39m
+[90m│[39m[1m[36m id [39m[22m[90m│[39m[1m[36m name               [39m[22m[90m│[39m[1m[36m status   [39m[22m[90m│[39m[1m[36m cpu      [39m[22m[90m│[39m[1m[36m mem      [39m[22m[90m│[39m
+[90m├────┼────────────────────┼──────────┼──────────┼──────────┤[39m
+[90m│[39m[1m[36m [1m[36m0[39m[36m[22m[1m  [39m[22m[90m│[39m pm2-logrotate      [90m│[39m [32m[1monline[22m[39m   [90m│[39m 0%       [90m│[39m 67.9mb   [90m│[39m
+[90m└────┴────────────────────┴──────────┴──────────┴──────────┘[39m
+[?2004h]0;bromine@DESKTOP-HM4ERAU: ~/tinkerboard-test/script[01;32mbromine@DESKTOP-HM4ERAU[00m:[01;34m~/tinkerboard-test/script[00m$ git pull origin master
+[?2004lFrom https://github.com/bromine1997/tinkerboard-test
+ * branch            master     -> FETCH_HEAD
+Already up to date.
+[?2004h]0;bromine@DESKTOP-HM4ERAU: ~/tinkerboard-test/script[01;32mbromine@DESKTOP-HM4ERAU[00m:[01;34m~/tinkerboard-test/script[00m$ cd..
+[?2004lbash: cd..: command not found
+[?2004h]0;bromine@DESKTOP-HM4ERAU: ~/tinkerboard-test/script[01;32mbromine@DESKTOP-HM4ERAU[00m:[01;34m~/tinkerboard-test/script[00m$ cd ..
+[?2004l[?2004h]0;bromine@DESKTOP-HM4ERAU: ~/tinkerboard-test[01;32mbromine@DESKTOP-HM4ERAU[00m:[01;34m~/tinkerboard-test[00m$ git pull origin master
+[?2004lFrom https://github.com/bromine1997/tinkerboard-test
+ * branch            master     -> FETCH_HEAD
+Already up to date.
+[?2004h]0;bromine@DESKTOP-HM4ERAU: ~/tinkerboard-test[01;32mbromine@DESKTOP-HM4ERAU[00m:[01;34m~/tinkerboard-test[00m$ git pull origin
+[?2004lremote: Enumerating objects: 38, done.[K
+remote: Counting objects:   2% (1/38)[Kremote: Counting objects:   5% (2/38)[Kremote: Counting objects:   7% (3/38)[Kremote: Counting objects:  10% (4/38)[Kremote: Counting objects:  13% (5/38)[Kremote: Counting objects:  15% (6/38)[Kremote: Counting objects:  18% (7/38)[Kremote: Counting objects:  21% (8/38)[Kremote: Counting objects:  23% (9/38)[Kremote: Counting objects:  26% (10/38)[Kremote: Counting objects:  28% (11/38)[Kremote: Counting objects:  31% (12/38)[Kremote: Counting objects:  34% (13/38)[Kremote: Counting objects:  36% (14/38)[Kremote: Counting objects:  39% (15/38)[Kremote:
