@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
+import { UserRepository } from './user.repository'; // UserRepository import
 import { User, UserSchema } from './user.schema';
 
 @Module({
@@ -10,6 +11,6 @@ import { User, UserSchema } from './user.schema';
   ],
   providers: [UserService],
   controllers: [UserController],
-  exports: [UserService], // 다른 모듈에서 사용할 수 있도록 export
+  exports: [UserService,UserRepository], // 다른 모듈에서 사용할 수 있도록 export
 })
 export class UserModule {}
