@@ -67,7 +67,7 @@ export class AuthController {
       },
     },
   })
-  @Post('check-username')
+  @Post('api/check-username')
   async checkUsername(@Body() body: { username: string }) {
     const isAvailable = await this.authService.isUsernameAvailable(body.username);
     return { available: isAvailable };
