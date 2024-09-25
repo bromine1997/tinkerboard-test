@@ -45,7 +45,7 @@ export default {
         }
 
         // 서버에 아이디와 비밀번호를 보내 로그인 요청
-        const response = await axios.post('/api/auth/login', {
+        const response = await axios.post('http://localhost:8080/auth/login', {
           username: this.user.username,
           password: this.user.password,
         });

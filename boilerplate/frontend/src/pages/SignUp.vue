@@ -182,7 +182,7 @@ export default {
         return;
       }
       try {
-        const response = await axios.post('/api/auth/check-username', {
+        const response = await axios.post('http://localhost:8080/auth/check-username', {
           username: this.user.username,
         });
         this.isUsernameAvailable = response.data.available;
@@ -224,7 +224,7 @@ export default {
       }
 
       try {
-        const response = await axios.post('/api/auth/register', this.user);
+        const response = await axios.post('http://localhost:8080/auth/registor', this.user);
         if (response.data.message === '회원가입 성공') {
           alert('회원가입 성공');
           this.$router.push('/login');
