@@ -7,10 +7,10 @@ import { User, UserSchema } from './user.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]), // Mongoose 설정
   ],
-  providers: [UserService],
+  providers: [UserService, UserRepository], // UserRepository를 providers에 추가
   controllers: [UserController],
-  exports: [UserService,UserRepository], // 다른 모듈에서 사용할 수 있도록 export
+  exports: [UserService, UserRepository], // 다른 모듈에서 사용할 수 있도록 export
 })
 export class UserModule {}
