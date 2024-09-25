@@ -21,25 +21,30 @@ export class AuthService {
   // 사용자 자격 증명 확인
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.authRepository.findByUsername(username);
-  
-    // 비밀번호와 사용자 정보 로그 확인
+    
     console.log('User:', user);
-    console.log('Password:', password); // 첫 번째 로그
+    console.log('Password before comparison:', password);  // 비밀번호 비교 전 확인
   
-    // bcrypt.compare 호출 직전 확인
-    console.log('Comparing passwords:', password, user.password);
-  
-    // 비밀번호가 undefined인지 확인
-    if (!password || !user.password) {
-      throw new UnauthorizedException('Invalid credentials: password missing');
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
     }
   
-    if (user && await bcrypt.compare(password, user.password)) {
-      const { password, ...result } = user;
-      return result;
+    if (!password) {
+      console.error('Password is undefined before comparison');
+      throw new UnauthorizedException('Password is required');
     }
-    return null;
+  
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    console.log('Comparing passwords:', password, user.password);  // 비밀번호 비교 과정 확인
+  
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+  
+    const { password: _password, ...result } = user;
+    return result;
   }
+  
   
 
   // JWT 토큰 생성
