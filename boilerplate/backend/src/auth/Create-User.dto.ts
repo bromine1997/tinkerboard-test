@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString, IsEmail, IsNotEmpty, MinLength, Matches, IsDate, IsEnum } from 'class-validator';
+import { IsString, IsEmail, IsNotEmpty, MinLength, Matches, IsEnum } from 'class-validator';
 
 export class CreateUserDto {
   @ApiProperty({
@@ -46,7 +46,10 @@ export class CreateUserDto {
     example: '1990-01-01',
     description: '사용자 생년월일 (YYYY-MM-DD)',
   })
-  @IsDate()
+  @IsString()
+  @Matches(/^\d{4}-\d{2}-\d{2}$/, {
+    message: '생년월일은 YYYY-MM-DD 형식이어야 합니다.',
+  })
   birthDate: string;
 
   @ApiProperty({
