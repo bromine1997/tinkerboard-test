@@ -21,17 +21,26 @@ export class AuthService {
   // 사용자 자격 증명 확인
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.authRepository.findByUsername(username);
-
-    // 사용자 정보와 비밀번호를 로그로 출력하여 확인
+  
+    // 비밀번호와 사용자 정보 로그 확인
     console.log('User:', user);
-    console.log('Password:', password);
-
+    console.log('Password:', password); // 첫 번째 로그
+  
+    // bcrypt.compare 호출 직전 확인
+    console.log('Comparing passwords:', password, user.password);
+  
+    // 비밀번호가 undefined인지 확인
+    if (!password || !user.password) {
+      throw new UnauthorizedException('Invalid credentials: password missing');
+    }
+  
     if (user && await bcrypt.compare(password, user.password)) {
       const { password, ...result } = user;
       return result;
     }
     return null;
   }
+  
 
   // JWT 토큰 생성
   async login(loginDto: LoginDto) {
