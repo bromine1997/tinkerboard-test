@@ -4,6 +4,7 @@ import { AuthRepository } from './auth.repository';
 import { CreateUserDto } from './Create-User.dto';
 import { LoginDto } from './login.dto';
 import * as bcrypt from 'bcrypt';
+import { IUser } from './auth.repository'; // IUser import
 
 @Injectable()
 export class AuthService {
@@ -11,6 +12,11 @@ export class AuthService {
     private readonly authRepository: AuthRepository,
     private readonly jwtService: JwtService
   ) {}
+
+   // 사용자 이름으로 사용자 조회
+   async findByUsername(username: string): Promise<IUser | null> {
+    return this.authRepository.findByUsername(username);
+  }
 
   // 사용자 자격 증명 확인
   async validateUser(username: string, password: string): Promise<any> {
