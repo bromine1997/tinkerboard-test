@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({ trustProxy: true }));
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.enableShutdownHooks([ShutdownSignal.SIGTERM, ShutdownSignal.SIGINT]);
-  
+  app.setGlobalPrefix('api');
 
   await app.register(require('fastify-metrics'), {
     endpoint: '/metrics',
