@@ -20,17 +20,32 @@ export class AuthService {
 
   // 사용자 자격 증명 확인
   async validateUser(username: string, password: string): Promise<any> {
-    const user = await this.findByUsername(username);
-
+    const user = await this.authRepository.findByUsername(username);
+  
+    // 사용자가 없을 때 예외 처리
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
-
+  
+    // 데이터베이스에 비밀번호가 없을 경우 예외 처리
+    if (!user.password) {
+      console.error('User has no password stored in DB');
+      throw new UnauthorizedException('Invalid credentials');
+    }
+  
+    // 추가된 로그: 사용자가 입력한 비밀번호와 저장된 해시된 비밀번호를 로그로 확인
+    console.log('Password from request:', password);  // 사용자가 입력한 비밀번호
+    console.log('Hashed password from DB:', user.password);  // 저장된 해시된 비밀번호
+  
+    // 입력된 비밀번호와 저장된 해시된 비밀번호 비교
     const isPasswordValid = await bcrypt.compare(password, user.password);
+  
+    // 비밀번호가 맞지 않으면 예외 처리
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid credentials');
     }
-
+  
+    // 비밀번호를 제외한 사용자 정보 반환
     const { password: _password, ...result } = user;
     return result;
   }
