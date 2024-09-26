@@ -20,44 +20,44 @@ export class AuthService {
 
   // 사용자 자격 증명 확인
   async validateUser(username: string, password: string): Promise<any> {
+    console.log('Validating user:', username);  // 사용자 검증 시작 로그
     const user = await this.authRepository.findByUsername(username);
   
-    // 사용자가 없을 때 예외 처리
     if (!user) {
       throw new UnauthorizedException('Invalid credentials');
     }
   
-    // 데이터베이스에 비밀번호가 없을 경우 예외 처리
-    if (!user.password) {
-      console.error('User has no password stored in DB');
-      throw new UnauthorizedException('Invalid credentials');
+    console.log('Password from request:', password);  // 비밀번호 로그
+    console.log('Hashed password from DB:', user.password);  // 해시된 비밀번호 로그
+  
+    if (!password) {
+      console.error('Password is undefined');
+      throw new UnauthorizedException('Password is required');
     }
   
-    // 추가된 로그: 사용자가 입력한 비밀번호와 저장된 해시된 비밀번호를 로그로 확인
-    console.log('Password from request:', password);  // 사용자가 입력한 비밀번호
-    console.log('Hashed password from DB:', user.password);  // 저장된 해시된 비밀번호
-  
-    // 입력된 비밀번호와 저장된 해시된 비밀번호 비교
     const isPasswordValid = await bcrypt.compare(password, user.password);
   
-    // 비밀번호가 맞지 않으면 예외 처리
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid credentials');
     }
   
-    // 비밀번호를 제외한 사용자 정보 반환
+    console.log('Password validated for user:', username);  // 비밀번호 검증 성공 로그
+  
     const { password: _password, ...result } = user;
     return result;
   }
 
   // JWT 토큰 생성
   async login(loginDto: LoginDto) {
+    console.log('Login attempt for user:', loginDto.username);  // 로그인 시도 로그
     const user = await this.validateUser(loginDto.username, loginDto.password);
     const payload = { username: user.username, sub: user._id };
+    console.log('Login successful for user:', user.username);  // 로그인 성공 로그
     return {
       access_token: this.jwtService.sign(payload),
     };
   }
+  
 
   // 회원가입
   async register(createUserDto: CreateUserDto) {
