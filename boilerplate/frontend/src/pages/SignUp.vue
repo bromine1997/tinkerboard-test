@@ -204,6 +204,9 @@ export default {
         return;
       }
 
+      // birthDate 값을 'YYYY-MM-DD' 형식의 문자열로 변환
+      this.user.birthDate = new Date(this.user.birthDate).toISOString().split('T')[0];
+
       console.log('birthDate:', this.user.birthDate); // 생년월일 로그 확인
 
       if (!this.isUsernameChecked) {
