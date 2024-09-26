@@ -88,6 +88,7 @@
           placeholder="생년월일"
         />
 
+
        <!-- 성별 선택 드롭다운 -->
         <label for="gender">성별</label>
         <select v-model="user.gender" id="gender">
@@ -202,6 +203,8 @@ export default {
         this.errorMessage = '모든 필드를 입력해주세요.';
         return;
       }
+
+      console.log('birthDate:', this.user.birthDate); // 생년월일 로그 확인
 
       if (!this.isUsernameChecked) {
         this.errorMessage = '아이디 중복 확인을 해주세요.';
