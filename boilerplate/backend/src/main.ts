@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter({ trustProxy: true }));
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.enableShutdownHooks([ShutdownSignal.SIGTERM, ShutdownSignal.SIGINT]);
-  app.setGlobalPrefix('api');
+  
 
   await app.register(require('fastify-metrics'), {
     endpoint: '/metrics',
@@ -30,7 +30,7 @@ async function bootstrap() {
     credentials: true,
   })
 
-  app.setGlobalPrefix('api');
+ 
   /*
   await app.listen(process.env.PORT || 8080, '0.0.0.0', (err: Error, address: string) => {
     console.log(`server started on ${address}`);
