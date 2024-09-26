@@ -27,7 +27,7 @@ export class AuthRepository {
 
   // 새 사용자 삽입
   async insertUser(user: IUser): Promise<{ acknowledged: boolean; insertedId: string }> {
-    const result = await this.col.insertOne(user);
+    const result = await this .col.insertOne(user);
     return { acknowledged: result.acknowledged, insertedId: result.insertedId };
   }
 }

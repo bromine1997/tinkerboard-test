@@ -30,7 +30,7 @@ async function bootstrap() {
     credentials: true,
   })
 
-  app.setGlobalPrefix('api'); 
+  
   /*
   await app.listen(process.env.PORT || 8080, '0.0.0.0', (err: Error, address: string) => {
     console.log(`server started on ${address}`);

@@ -82,7 +82,7 @@
         <!-- 생년월일 -->
         <label for="birthdate">생년월일</label>
         <input
-          v-model="user.birthdate"
+          v-model="user.birthDate"
           id="birthdate"
           type="date"
           placeholder="생년월일"
@@ -167,7 +167,7 @@ export default {
         this.user.name &&
         this.user.phone &&
         this.user.email &&
-        this.user.birthdate &&
+        this.user.birthDate &&
         this.user.gender &&
         this.user.role
       );
@@ -224,7 +224,7 @@ export default {
       }
 
       try {
-        const response = await axios.post('/auth/registor', this.user);
+        const response = await axios.post('/auth/register', this.user);
         if (response.data.message === '회원가입 성공') {
           alert('회원가입 성공');
           this.$router.push('/login');
