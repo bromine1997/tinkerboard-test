@@ -1,0 +1,573 @@
+[33mcommit c4baa70519cce3c2d1f28a4f508cca61c73712f5[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Fri Sep 27 10:49:36 2024 +0900
+
+    "수정"
+
+[33mcommit 67fa111ece86165f4ec7b525fc7c536301bc3d57[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 23:37:21 2024 +0900
+
+    " LOGIN VUE 원복"
+
+[33mcommit 4adc6499cddeb4707ad528b878edba2d3f9f713a[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 23:34:17 2024 +0900
+
+    "원복"
+
+[33mcommit b9699eacd980d7866859f0e5b521e44e15a6bd52[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 23:29:42 2024 +0900
+
+    "토큰 검증 추가"
+
+[33mcommit 36cd9fdab140265f0d4d094a72eb2f58e4302170[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 23:25:26 2024 +0900
+
+    "auth 서비스 수정"
+
+[33mcommit f6f5a0219aca99ee31664d52c7314516602397a7[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 23:13:07 2024 +0900
+
+    "로그인 vue 수정"
+
+[33mcommit ed549841c11327cb0b9805d804bdbc7b102770a0[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 23:08:47 2024 +0900
+
+    "비밀번호 겅증 디버깅 중"
+
+[33mcommit 91fedf7de237d738b26094b8fa0df4a4e3fe2eaf[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 23:05:40 2024 +0900
+
+    " 비밀번호 검증 수정"
+
+[33mcommit 9d42ff3017146b28359b855ccff25e3597ff197a[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 22:47:20 2024 +0900
+
+    "auth service 수정"
+
+[33mcommit ed8129899d82e5e4bfa9cf256c4659c6ad2b5f6a[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 22:13:33 2024 +0900
+
+    " 경로수정"
+
+[33mcommit 1c905af7e41018094ca28c37b1b4d68d37a54a46[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 22:08:31 2024 +0900
+
+    "app.setGlobalPrefix('api'); 수정"
+
+[33mcommit 3581e7f201a09d07d3d6faa384392764119b7c50[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 22:07:24 2024 +0900
+
+    "app.setGlobalPrefix('api'); 수정"
+
+[33mcommit c09009d6a4a3db7c3bfb7525ca2960b6e55495a6[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 22:04:07 2024 +0900
+
+    "생일 양식 수정"
+
+[33mcommit 1e0d188061d2039d0bf4d872dd19f499fc38955f[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 21:28:38 2024 +0900
+
+    "birthdate 디버깅.."
+
+[33mcommit 947c311377035915c8689a52f31cee1eaa2181c9[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 21:20:36 2024 +0900
+
+    "경로수정"
+
+[33mcommit 45a4a5124f360545a20460dfe37a7586aee69d24[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 22:22:36 2024 +0900
+
+    "비밀번호 누락 디버깅중"
+
+[33mcommit 11470828f66375d9cc49ddc0eb274c371fbf05b0[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 22:15:57 2024 +0900
+
+    "로그인 검증 코드 수정"
+
+[33mcommit 04fc5f50b74e8691a1c3759f970ff5f65ef21a65[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 22:09:00 2024 +0900
+
+    "log 확인"
+
+[33mcommit 777757d69445b17f7339776e56c74924bed01226[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 21:38:13 2024 +0900
+
+    "test"
+
+[33mcommit 24d8f6349c0f63821ae8c8ed2e468f2240408528[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 21:35:38 2024 +0900
+
+    "user controller 수정"
+
+[33mcommit a1e66ee26ed0d8c4a9ad2b630d273e0ef9a04c40[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 21:19:49 2024 +0900
+
+    "user controller 추가"
+
+[33mcommit 437163dcc1d9b799d5b08c1c5dbad1e46d3b115c[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 17:38:57 2024 +0900
+
+    "test"
+
+[33mcommit 84d628362976398e8b11ee59891521448e32072d[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 17:37:05 2024 +0900
+
+    "test"
+
+[33mcommit 0fb1eb5f3610a5725b94a4af964220d6629525ea[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 17:36:18 2024 +0900
+
+    "setperfix 추가"
+
+[33mcommit 8b9b4e69c87a7ece0cf13b4f2f3515311bac194d[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 17:25:53 2024 +0900
+
+    "경로 api 추가"
+
+[33mcommit 275c0daa45a351ee89cfef30e4765298c84e0e31[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Wed Sep 25 17:03:03 2024 +0900
+
+    Rename Create-User.dto.ts to create-user.dto.ts
+    
+    "소문자로 ㅕㅂㄴ경"
+
+[33mcommit be5502769054fb85f04d64610b1ede4427111a50[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 16:55:49 2024 +0900
+
+    "경로 수정"
+
+[33mcommit 334da8ad5e2bad57b4cc5697b97a7cf7503d1fe4[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 16:54:04 2024 +0900
+
+    "원복"
+
+[33mcommit 9fcd997add4eea6c86bd7c22cf3a3a9422e1983b[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 16:53:29 2024 +0900
+
+    "test"
+
+[33mcommit 79826f0b8f11c116548646cd969c5d4e92275239[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 16:48:53 2024 +0900
+
+    "test"
+
+[33mcommit eb7988239d22902016e599d212e5c755c5a375a6[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 16:48:45 2024 +0900
+
+    "test"
+
+[33mcommit 0ca71d248709e8e9666a488164de73cd062abbf8[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 16:46:51 2024 +0900
+
+    "ts"
+
+[33mcommit b99f936cc5dfdee430842128837c95170d9154b1[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 16:42:34 2024 +0900
+
+    "소문자"
+
+[33mcommit dc6f72a2b82ac35516c33996c40ec0bfe5fb9ae6[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 16:09:57 2024 +0900
+
+    "경로 수정"
+
+[33mcommit ac448cc3977e53e94c6575ffecb3fcd41af9b838[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 15:49:45 2024 +0900
+
+    "frontend api 경로 수정"
+
+[33mcommit e21789513763aed14dc189f12f3efaff36729ec4[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 15:42:57 2024 +0900
+
+    "소문자 통일"
+
+[33mcommit 6fdd6d2030f4fd1216b7932af94b9dac548a83a1[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 15:32:18 2024 +0900
+
+    "dto 이름 수정"
+
+[33mcommit 43ea738b72de084b09062a2613ed83589562a24c[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 15:23:58 2024 +0900
+
+    "회원가입 dto 수정"
+
+[33mcommit 7ace520707a11e5b852e3fe53910384f703653af[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 15:20:24 2024 +0900
+
+    "core module 추가"
+
+[33mcommit acc2b4ddde230917c82ecdd8c916b41139b6b1bc[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 15:16:29 2024 +0900
+
+    "수정"
+
+[33mcommit af9cf1ab6f1daecf7e54a4fc07d145667e0187c0[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 14:48:19 2024 +0900
+
+    "수정"
+
+[33mcommit bef9035143064da4fc4665d44979a0f4335dd5f5[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 14:45:06 2024 +0900
+
+    ""
+
+[33mcommit 86bda3b15128d743b0cedb27cec898f11a24356e[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 14:40:32 2024 +0900
+
+    "user module provider 수정 수정.."
+
+[33mcommit 3027ac1240cf5804cd1f75dbf1f43f814abef485[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 14:33:42 2024 +0900
+
+    "user.module provider 수정"
+
+[33mcommit 53c6444c14e3a673eb025132316f0ac616daf3de[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 14:28:14 2024 +0900
+
+    "user module 수정"
+
+[33mcommit e8d12752b15af96ab7ad181d68f3f1403796766f[m
+Merge: 8118ddd 5737a3a
+Author: bromine <bromine1997@gmai.com>
+Date:   Wed Sep 25 14:22:34 2024 +0900
+
+    Merge branch 'master' of https://github.com/bromine1997/tinkerboard-test
+
+[33mcommit 5737a3aed8e1ed018ed54504c376e35a917f875f[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 14:22:03 2024 +0900
+
+    "Mongoosemodule 제거"
+
+[33mcommit 8118ddd3f8d7a0f7e04a58c25f3cdddc4219ec0a[m
+Merge: 69aede1 19f1c57
+Author: bromine <bromine1997@gmai.com>
+Date:   Wed Sep 25 14:12:33 2024 +0900
+
+    Merge branch 'master' of https://github.com/bromine1997/tinkerboard-test
+
+[33mcommit 69aede1a49c72723fea522010df345b79ba2a320[m
+Author: bromine <bromine1997@gmai.com>
+Date:   Wed Sep 25 14:11:58 2024 +0900
+
+     config 수정
+
+[33mcommit 19f1c578953e29ac5b7f3b70608f6f19dc291656[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 14:07:26 2024 +0900
+
+    "bycript 추가 , user , auth 코드 수정"
+
+[33mcommit b1ef429df65606f15f29b70755ba806457ed3239[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Mon Sep 23 17:07:58 2024 +0900
+
+    "dto 수정"
+
+[33mcommit 270e51fea80c8e3f4b79f981f52f831c26ed89e4[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Mon Sep 23 16:26:18 2024 +0900
+
+    "user dtd 수정"
+
+[33mcommit f4087e33d630e1d81344b7451963aa37956976a5[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Sep 22 23:27:59 2024 +0900
+
+    "user dto 추가"
+
+[33mcommit 9f301bdf668f6437a7370716b588b90683ba416d[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Sep 22 23:17:19 2024 +0900
+
+    "main.ts backend 수정"
+
+[33mcommit e964cc6ff1af9d70b738b40a65d89fdf6646a9a3[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Sep 22 23:11:35 2024 +0900
+
+    "화면 수정"
+
+[33mcommit 848d2482ddb2a2464dea03264694f7ac83ce8b41[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Sep 22 21:58:48 2024 +0900
+
+    "API TAGS 추가"
+
+[33mcommit 94ae04e3789aca263fc4328683a379ccdb24f579[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Sep 22 21:56:30 2024 +0900
+
+    "mongodb uri 추가"
+
+[33mcommit c9ecd0cf80a889bc35d3162cc6bcc5a9439f080a[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Sep 22 21:50:11 2024 +0900
+
+    "test"
+
+[33mcommit a09be6830d8cc0995ac0cec6cb96d2d4d4e85b0a[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Sep 22 21:13:56 2024 +0900
+
+    "로그인 auth 모듈 추가, user module 추가"
+
+[33mcommit 159c9176d2db42acf95247119c54ee7d978f0efe[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 19 21:15:43 2024 +0900
+
+    "axios 추가"
+
+[33mcommit d63855e7fa0caeadf89399882c7b4f3e18a4a378[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 19 17:31:32 2024 +0900
+
+    "main.js backend 서버 포트 변경"
+
+[33mcommit 3f482d80605346278bddc90dfde9162bf4dfefa8[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 19 17:28:38 2024 +0900
+
+    "회원가입 글씨 색상 수정"
+
+[33mcommit 6574806914d3cedff8c4a5b570445fb98e590407[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 19 15:47:34 2024 +0900
+
+    "axios dependencies 추가"
+
+[33mcommit 9264d68d39ff65a6efd76e1a17d1b10a1648497d[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 18 22:45:04 2024 +0900
+
+    로그인 회원가입 화면 수정
+
+[33mcommit a922f31c0b4933adb64405e520fdcff6cbd2babf[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 12 22:48:28 2024 +0900
+
+    backend : Ws 추가 , frontend : 대쉬보드 변경
+
+[33mcommit 6767ef6443e47a6d294c36ded6247b59963643a6[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 4 11:56:03 2024 +0900
+
+    Update TableList.vue and change header
+
+[33mcommit 3c2948be4f751bc84dbd16e23479c07d32546a91[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 17:25:37 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit 176c48509ca6c0ec535b10408149cb4f211a3c0c[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 17:22:44 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit 7e62a47fb5633f67418f8e3197c11cc80e8206c7[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 17:21:29 2024 +0900
+
+    Update LineChart.js
+
+[33mcommit 89bcc5639673e3c26a835f8f91d288890d2c1e92[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 17:19:19 2024 +0900
+
+    Update LineChart.js
+
+[33mcommit 7efb43a6a8691e66556b7319b502ef427fd78365[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 16:52:47 2024 +0900
+
+    Update LineChart.js
+
+[33mcommit 96f84420909fce56f1518aa77ff0043d87ef3712[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 16:52:21 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit 90b2b011fa1195b79d41b71dcfba49d9c99bf01d[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 16:51:12 2024 +0900
+
+    Update LineChart.js
+
+[33mcommit 1e8f0f632a96361894ac898251487c132b42f4a2[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 16:46:19 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit c9fe163629a4aab9a7e7b8fcb9f15946deaa64bf[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 15:29:20 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit 9a8224a90550e79259110679a0a27ae80a9fdb0c[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 15:27:01 2024 +0900
+
+    Update LineChart.js
+
+[33mcommit 9c873c4e4f742a232e11cbabe756fcd06a94744e[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 15:23:12 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit e88c8aff7edf2e8f48bf5d1f98a55b5a66f7d70f[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 15:20:29 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit b14013013f0bbd72bedaa424ec91e27510c73cfd[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Mon Aug 26 15:16:55 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit 480da09ec0b629491cdb76267ae71c4b0f3b7142[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 22:53:54 2024 +0900
+
+    Update LineChart.js
+
+[33mcommit 0e1fe553c0c3b03d540213728c63371d0227aaa2[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 22:44:17 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit aed658faef632bca9a6a8872647b990f75b16477[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 22:42:15 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit ce7b8eaf55b1cdff92f3bc8b4ff1f44621d7ceac[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 22:20:12 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit ef07d2a4fab068652a719d167ce3f12f91777fa9[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 22:19:01 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit ea66f41f8cc7e5937b2db2059bc785ec47f362a4[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 22:17:59 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit bf9b1afe4e7522b32d17633fa243f69e4c34975e[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 22:10:22 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit 5f61dbc4a641ddb677c988a400a2dc219638e1e1[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 17:54:04 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit 4c0d130bc50690a10662125f95c06398bb59ca33[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 17:51:00 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit bdfb4e625731fda73e43d4da4910251256ab8ba9[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 17:47:59 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit 8619fbca23e9506c4d61cc5798e4f8a380bd40d9[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 17:41:52 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit 5d5f28a6fdf3bdbf578607a70878ba3c795081f9[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 17:30:30 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit 751399e17fc7ffef15c58c9c28fca7646319f624[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 17:25:26 2024 +0900
+
+    Update LineChart.js
+
+[33mcommit 157f2ce3f6c98f93c5cae20792dd7b5020d7c4d1[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 17:23:52 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit b74bbd7cc637b2a1b8899d5cc2a947475853e4ff[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 17:23:08 2024 +0900
+
+    Update Dashboard.vue
+
+[33mcommit c8b765b6bd1c7af194e29c04e5821d07e3dee547[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Fri Aug 23 17:16:45 2024 +0900
+
+    Update Dashboard.vue

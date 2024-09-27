@@ -20,28 +20,31 @@ export class AuthService {
 
   // 사용자 자격 증명 확인
   async validateUser(username: string, password: string): Promise<any> {
-    console.log('Validating user:', username);  // 사용자 검증 시작 로그
+    console.log(`사용자 인증 시작: ${username}`);  // 사용자 인증 시작 로그
+
     const user = await this.authRepository.findByUsername(username);
   
     if (!user) {
-      throw new UnauthorizedException('Invalid credentials');
+      console.error(`사용자 찾기 실패: ${username} - 유효하지 않은 자격증명`);  // 사용자 찾기 실패 로그
+      throw new UnauthorizedException('아이디 또는 비밀번호가 잘못되었습니다.');
     }
   
-    console.log('Password from request:', password);  // 비밀번호 로그
-    console.log('Hashed password from DB:', user.password);  // 해시된 비밀번호 로그
+    console.log(`요청된 비밀번호: ${password}`);  // 비밀번호 로그
+    console.log(`DB에 저장된 해시된 비밀번호: ${user.password}`);  // 해시된 비밀번호 로그
   
     if (!password) {
-      console.error('Password is undefined');
-      throw new UnauthorizedException('Password is required');
+      console.error(`비밀번호가 전달되지 않음: ${username}`);  // 비밀번호 없음 로그
+      throw new UnauthorizedException('비밀번호가 필요합니다.');
     }
   
     const isPasswordValid = await bcrypt.compare(password, user.password);
   
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Invalid credentials');
+      console.error(`비밀번호 검증 실패: ${username}`);  // 비밀번호 검증 실패 로그
+      throw new UnauthorizedException('아이디 또는 비밀번호가 잘못되었습니다.');
     }
   
-    console.log('Password validated for user:', username);  // 비밀번호 검증 성공 로그
+    console.log(`비밀번호 검증 성공: ${username}`);  // 비밀번호 검증 성공 로그
   
     const { password: _password, ...result } = user;
     return result;
@@ -49,12 +52,19 @@ export class AuthService {
 
   // JWT 토큰 생성
   async login(loginDto: LoginDto) {
-    console.log('Login attempt for user:', loginDto.username);  // 로그인 시도 로그
+    console.log(`로그인 시도: ${loginDto.username}`);
     const user = await this.validateUser(loginDto.username, loginDto.password);
+  
     const payload = { username: user.username, sub: user._id };
-    console.log('Login successful for user:', user.username);  // 로그인 성공 로그
+  
+    console.log(`로그인 성공: ${user.username}`);
+    console.log('JWT 토큰 발급 중...');
+  
+    const accessToken = this.jwtService.sign(payload);
+  
+    console.log('JWT 토큰 발급 완료, 클라이언트로 전송');
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: accessToken,
     };
   }
   
