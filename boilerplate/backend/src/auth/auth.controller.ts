@@ -29,13 +29,10 @@ export class AuthController {
     },
   })
   @Post('login')
-  async login(@Body() body: LoginDto) {
-    const user = await this.authService.validateUser(body.username, body.password);
-    if (!user) {
-      throw new UnauthorizedException('Invalid credentials');
-    }
-    return this.authService.login(user);
-  }
+async login(@Body() body: LoginDto) {
+  // 로그인 메서드를 호출하여 사용자 인증 및 JWT 토큰 발급 처리
+  return this.authService.login(body);  // validateUser 호출 없이 login 메서드에서 처리
+}
 
   @ApiOperation({ summary: '사용자 회원가입' })
   @ApiOkResponse({
