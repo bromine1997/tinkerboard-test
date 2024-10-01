@@ -25,11 +25,10 @@ async function bootstrap() {
   }
 
   app.enableCors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'http://192.168.0.244'],  // 안드로이드 디바이스의 IP 주소 추가
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
-  })
-
+  });
  
   /*
   await app.listen(process.env.PORT || 8080, '0.0.0.0', (err: Error, address: string) => {
