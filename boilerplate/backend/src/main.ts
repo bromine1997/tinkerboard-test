@@ -25,7 +25,7 @@ async function bootstrap() {
   }
 
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://192.168.0.244'],  // 안드로이드 디바이스의 IP 주소 추가
+    origin: '*',  // 모든 출처를 허용
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
