@@ -7,6 +7,7 @@ import { HealthCheckModule } from './health-check/health-check.module';
 import { SampleTestModule } from './sample-test/sample-test.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { PressureProfileModule } from './pressure-profile/pressure-profile.module';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { UserModule } from './user/user.module';
     SampleTestModule,
     WsModule,
     AuthModule, // AuthModule 추가
-    UserModule, // UserModule 추가
+    UserModule, PressureProfileModule, // UserModule 추가
   ],
 })
 export class AppModule {}

@@ -1,6 +1,6 @@
 import { Collection, Db, MongoClient } from 'mongodb';
 import config from '../config';
-import { MONGO_CONNECTION, TEST_DB, TEST_COLLECTION, USER_COLLECTION } from './database.constants';
+import { MONGO_CONNECTION, TEST_DB, TEST_COLLECTION, USER_COLLECTION,PROFILE_COLLECTION } from './database.constants';
 
 export const databaseProviders = [
   {
@@ -43,4 +43,12 @@ export const databaseProviders = [
     },
     inject: [TEST_DB], // TEST_DB를 사용하여 컬렉션 주입
   }, // 사용자 컬렉션
+
+  {
+    provide: PROFILE_COLLECTION,
+    useFactory: (db: Db): Collection => {
+      return db.collection('pressure_profiles'); // 압력 프로파일 컬렉션
+    },
+    inject: [TEST_DB],
+  },
 ];
