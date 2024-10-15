@@ -174,9 +174,48 @@ export default {
     },
   },
   methods: {
-    fetchProfile() {
-      alert('Fetching profile from the database...');
+    async fetchProfile() {
+      try {
+        const response = await axios.get('/profile/latest');
+        const profileData = response.data;
+
+        // 프로파일 데이터를 차트 데이터 형식으로 변환
+        const chartData = this.convertProfileToChartData(profileData);
+
+        // 차트 데이터 업데이트
+        this.pressureChartData.datasets[0].data = chartData;
+
+        // 차트 업데이트
+        this.$refs.lineChart.renderChart();
+
+        alert('프로파일을 성공적으로 가져왔습니다.');
+      } catch (error) {
+        console.error('프로파일 가져오기 실패:', error);
+        alert('프로파일을 가져오는 데 실패했습니다.');
+      }
+  },
+
+    convertProfileToChartData(profileData) {
+      const sections = profileData.profileSections;
+      const chartData = [];
+      let currentTime = 0;
+
+      for (const section of sections) {
+        const { startPressure, endPressure, time } = section;
+
+        // 시작점 추가
+        chartData.push({ x: currentTime, y: startPressure });
+
+        // 종료점 시간 계산
+        currentTime += time * 60; // time이 분 단위라면 초 단위로 변환
+
+        // 종료점 추가
+        chartData.push({ x: currentTime, y: endPressure });
+      }
+
+      return chartData;
     },
+
     startChamber() {
       this.isRunning = true;
       this.$refs.lineChart.startDrawing();  // lineChart에 데이터 그리기 시작

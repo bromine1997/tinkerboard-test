@@ -31,5 +31,8 @@ export class PressureProfileRepository {
     return this.col.findOne({ _id: new ObjectId(id) });
   }
 
+  async findLatestProfile(): Promise<IPressureProfile | null> {
+    return this.col.find().sort({ createdAt: -1 }).limit(1).next();
+  }
   // 필요한 경우 추가 메서드 작성 (예: 프로파일 업데이트, 삭제 등)
 }

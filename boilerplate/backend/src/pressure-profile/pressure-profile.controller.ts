@@ -40,4 +40,21 @@ export class PressureProfileController {
   async getProfile(@Param('id') id: string) {
     return this.profileService.getProfileById(id);
   }
+
+   // 최신 프로파일 가져오기 엔드포인트 추가
+   @ApiOperation({ summary: '최신 압력 프로파일 조회' })
+   @ApiOkResponse({
+     schema: {
+       type: 'object',
+       properties: {
+         _id: { type: 'string', description: '프로파일 ID' },
+         profileSections: { type: 'array', items: { type: 'object' } },
+         createdAt: { type: 'string', description: '생성 날짜' },
+       },
+     },
+   })
+   @Get('latest')
+   async getLatestProfile() {
+     return this.profileService.getLatestProfile();
+   }
 }

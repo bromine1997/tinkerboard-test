@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PressureProfileRepository, IPressureProfile } from './pressure-profile.repository';
 import { CreateProfileDto } from './create-profile.dto';
+import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class PressureProfileService {
@@ -24,5 +25,12 @@ export class PressureProfileService {
     return this.profileRepository.findById(id);
   }
 
+  async getLatestProfile() {
+    const profile = await this.profileRepository.findLatestProfile();
+    if (!profile) {
+      throw new NotFoundException('프로파일을 찾을 수 없습니다.');
+    }
+    return profile;
+  }
   // 필요한 경우 추가 메서드 작성 (예: 프로파일 조회 등)
 }
