@@ -1,5 +1,3 @@
-// src/pressure-profile/pressure-profile.service.ts
-
 import { Injectable } from '@nestjs/common';
 import { PressureProfileRepository, IPressureProfile } from './pressure-profile.repository';
 import { CreateProfileDto } from './create-profile.dto';
@@ -20,6 +18,10 @@ export class PressureProfileService {
     } else {
       throw new Error('프로파일 저장 실패');
     }
+  }
+
+  async getProfileById(id: string) {
+    return this.profileRepository.findById(id);
   }
 
   // 필요한 경우 추가 메서드 작성 (예: 프로파일 조회 등)

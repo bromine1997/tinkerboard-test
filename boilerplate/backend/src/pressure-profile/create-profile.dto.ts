@@ -1,20 +1,11 @@
-// src/pressure-profile/dto/create-profile.dto.ts
-
 import { IsArray, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 
 class ProfileSectionDto {
-  @Type(() => Number)
   sectionNumber: number;
-
-  @Type(() => Number)
   startPressure: number;
-
-  @Type(() => Number)
   endPressure: number;
-
-  @Type(() => Number)
-  time: number;
+  duration: number; // 구간 지속 시간 (분 단위로 변경)
 }
 
 export class CreateProfileDto {

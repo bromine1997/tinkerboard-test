@@ -1,18 +1,16 @@
-// src/pressure-profile/pressure-profile.repository.ts
-
 import { Injectable, Inject } from '@nestjs/common';
-import { Collection } from 'mongodb';
+import { Collection, ObjectId } from 'mongodb';
 import { PROFILE_COLLECTION } from '../database/database.constants';
 
 export interface IProfileSection {
   sectionNumber: number;
   startPressure: number;
   endPressure: number;
-  time: number;
+  duration: number; // 구간 지속 시간 (분 단위로 변경)
 }
 
 export interface IPressureProfile {
-  _id?: string;
+  _id?: ObjectId; // ObjectId를 사용
   profileSections: IProfileSection[];
   createdAt: Date;
 }
@@ -25,9 +23,13 @@ export class PressureProfileRepository {
 
   async insertProfile(profile: IPressureProfile): Promise<{ acknowledged: boolean; insertedId: string }> {
     const result = await this.col.insertOne(profile);
-    return { acknowledged: result.acknowledged, insertedId: result.insertedId.toString() };
-
+    return { acknowledged: result.acknowledged, insertedId: result.insertedId.toHexString() }; // ObjectId를 toHexString으로 변환
   }
 
-  // 필요한 경우 추가 메서드 작성 (예: 프로파일 조회 등)
+  async findById(id: string): Promise<IPressureProfile | null> {
+    // _id가 ObjectId이므로 변환 필요
+    return this.col.findOne({ _id: new ObjectId(id) });
+  }
+
+  // 필요한 경우 추가 메서드 작성 (예: 프로파일 업데이트, 삭제 등)
 }

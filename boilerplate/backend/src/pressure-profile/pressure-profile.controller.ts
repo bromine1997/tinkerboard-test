@@ -1,6 +1,4 @@
-// src/pressure-profile/pressure-profile.controller.ts
-
-import { Controller, Post, Body, UseFilters } from '@nestjs/common';
+import { Controller, Post, Get, Param, Body, UseFilters } from '@nestjs/common';
 import { PressureProfileService } from './pressure-profile.service';
 import { CreateProfileDto } from './create-profile.dto';
 import { ApiOperation, ApiOkResponse, ApiTags } from '@nestjs/swagger';
@@ -27,5 +25,19 @@ export class PressureProfileController {
     return this.profileService.saveProfile(createProfileDto);
   }
 
-  // 필요한 경우 추가 엔드포인트 작성 (예: 프로파일 조회 등)
+  @ApiOperation({ summary: '압력 프로파일 조회' })
+  @ApiOkResponse({
+    schema: {
+      type: 'object',
+      properties: {
+        _id: { type: 'string', description: '프로파일 ID' },
+        profileSections: { type: 'array', items: { type: 'object' } },
+        createdAt: { type: 'string', description: '생성 날짜' },
+      },
+    },
+  })
+  @Get(':id')
+  async getProfile(@Param('id') id: string) {
+    return this.profileService.getProfileById(id);
+  }
 }
