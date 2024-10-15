@@ -10,7 +10,7 @@
         <card type="chart" class="chart-card large-chart-card">
           <div class="chart-header">
             <h4>Pressure Profile</h4>
-            <button class="fetch-button" @click="fetchProfile">Fetch Profile from DB</button>
+            <button class="fetch-button" @click="fetchProfile">프로파일 불러오기</button>
           </div>
           <div class="chart-area">
             <line-chart
