@@ -10,9 +10,11 @@ export interface IProfileSection {
 }
 
 export interface IPressureProfile {
-  _id?: ObjectId; // ObjectId를 사용
+  _id?: ObjectId;
+  name: string;
   profileSections: IProfileSection[];
   createdAt: Date;
+  createdBy: ObjectId; // 프로파일을 생성한 사용자 ID
 }
 
 @Injectable()
@@ -34,5 +36,11 @@ export class PressureProfileRepository {
   async findLatestProfile(): Promise<IPressureProfile | null> {
     return this.col.find().sort({ createdAt: -1 }).limit(1).next();
   }
+
+  // 여기에서 profileModel을 col로 변경
+  async findAllProfiles(): Promise<IPressureProfile[]> {
+    return await this.col.find().toArray(); // 모든 프로파일을 가져오는 메서드
+  }
+
   // 필요한 경우 추가 메서드 작성 (예: 프로파일 업데이트, 삭제 등)
 }

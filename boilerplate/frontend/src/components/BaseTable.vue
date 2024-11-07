@@ -3,16 +3,16 @@
     <thead :class="theadClasses">
       <tr>
         <slot name="columns">
-          <th v-for="column in columns" :key="column">{{ column }}</th>
+          <th v-for="column in columns" :key="column.field">{{ column.label }}</th>
         </slot>
       </tr>
     </thead>
     <tbody :class="tbodyClasses">
       <tr v-for="(item, index) in data" :key="index">
         <slot :row="item">
-          <template v-for="(column, index) in columns">
-            <td :key="index" v-if="hasValue(item, column)">
-              {{ itemValue(item, column) }}
+          <template v-for="(column, colIndex) in columns">
+            <td :key="colIndex" v-if="hasValue(item, column.field)">
+              {{ itemValue(item, column.field) }}
             </td>
           </template>
         </slot>
@@ -20,6 +20,7 @@
     </tbody>
   </table>
 </template>
+
 <script>
 export default {
   name: 'base-table',
@@ -56,13 +57,12 @@ export default {
     },
   },
   methods: {
-    hasValue(item, column) {
-      return item[column.toLowerCase()] !== 'undefined';
+    hasValue(item, field) {
+      return typeof item[field] !== 'undefined';
     },
-    itemValue(item, column) {
-      return item[column.toLowerCase()];
+    itemValue(item, field) {
+      return item[field];
     },
   },
 };
 </script>
-<style></style>

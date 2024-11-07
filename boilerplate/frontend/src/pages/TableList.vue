@@ -3,7 +3,11 @@
     <div class="col-12">
       <card :title="table1.title">
         <div class="table-responsive">
-          <base-table :data="table1.data" :columns="table1.columns" thead-classes="text-primary"></base-table>
+          <base-table
+            :data="table1.data"
+            :columns="table1.columns"
+            thead-classes="text-primary"
+          ></base-table>
         </div>
       </card>
     </div>
@@ -13,53 +17,81 @@
 <script>
 import { BaseTable } from '@/components';
 
-// 테이블 컬럼 정의
-const tableColumns = ['Name', 'Country', 'City', 'Day'];
+const tableColumns = [
+  { label: '환자 ID', field: 'patientId' },
+  { label: '환자 이름', field: 'patientName' },
+  { label: '치료 날짜', field: 'treatmentDate' },
+  { label: '치료 시간', field: 'treatmentTime' },
+  { label: '치료 시간(분)', field: 'duration' },
+  { label: '챔버 번호', field: 'chamberNumber' },
+];
 
-// 원본 데이터 정의
 const tableData = [
   {
-    id: 1,
-    name: 'Seo bo min',
-    day: '2024-09-10',
-    country: 'Korea',
-    city: 'Yong-in',
+    patientId: 'P1001',
+    patientName: '김철수',
+    treatmentDate: '2024-09-10',
+    treatmentTime: '09:00',
+    duration: 60,
+    chamberNumber: 'A1',
   },
   {
-    id: 2,
-    name: 'Bromine',
-    day: '2024-09-10',
-    country: 'USA',
-    city: 'Newyork',
+    patientId: 'P1002',
+    patientName: '이영희',
+    treatmentDate: '2024-09-11',
+    treatmentTime: '10:30',
+    duration: 45,
+    chamberNumber: 'B2',
   },
   {
-    id: 3,
-    name: 'Kim Ji WOO',
-    day: '2024-09-24',
-    country: 'Korea',
-    city: 'Busan',
+    patientId: 'P1002',
+    patientName: '이영희',
+    treatmentDate: '2024-09-11',
+    treatmentTime: '10:30',
+    duration: 45,
+    chamberNumber: 'B2',
   },
   {
-    id: 4,
-    name: 'Jung Ji Hoon',
-    day: '2024-09-09',
-    country: 'Korea',
-    city: 'Suwon',
+    patientId: 'P1002',
+    patientName: '이영희',
+    treatmentDate: '2024-09-11',
+    treatmentTime: '10:30',
+    duration: 45,
+    chamberNumber: 'B2',
   },
   {
-    id: 5,
-    name: 'JEONG WOONG',
-    day: '2024-06-04',
-    country: 'Korea',
-    city: 'Suwon',
+    patientId: 'P1002',
+    patientName: '이영희',
+    treatmentDate: '2024-09-11',
+    treatmentTime: '10:30',
+    duration: 45,
+    chamberNumber: 'B2',
   },
   {
-    id: 6,
-    name: 'KOO MIN JUN',
-    day: '2024-09-12',
-    country: 'Korea',
-    city: 'Suwon',
+    patientId: 'P1002',
+    patientName: '이영희',
+    treatmentDate: '2024-09-11',
+    treatmentTime: '10:30',
+    duration: 45,
+    chamberNumber: 'B2',
   },
+  {
+    patientId: 'P1002',
+    patientName: '이영희',
+    treatmentDate: '2024-09-11',
+    treatmentTime: '10:30',
+    duration: 45,
+    chamberNumber: 'B2',
+  },
+  {
+    patientId: 'P1002',
+    patientName: '이영희',
+    treatmentDate: '2024-09-11',
+    treatmentTime: '10:30',
+    duration: 45,
+    chamberNumber: 'B2',
+  },
+  // ... 추가 데이터
 ];
 
 export default {
@@ -69,14 +101,13 @@ export default {
   data() {
     return {
       table1: {
-        title: 'Treatment Record',
-        columns: [...tableColumns],
-        // 날짜 기준으로 정렬된 데이터를 사용
-        data: [...tableData].sort((a, b) => new Date(b.day) - new Date(a.day)),
+        title: '치료 기록',
+        columns: tableColumns,
+        data: tableData.sort(
+          (a, b) => new Date(b.treatmentDate) - new Date(a.treatmentDate)
+        ),
       },
     };
   },
 };
 </script>
-
-<style></style>
