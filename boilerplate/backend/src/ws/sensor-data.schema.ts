@@ -2,7 +2,8 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export class SensorData {
+@Schema()
+export class SensorData extends Document {
   @Prop({ required: true })
   pressure: number;
 
@@ -22,15 +23,14 @@ export class SensorData {
   flowRate: number;
 }
 
+export const SensorDataSchema = SchemaFactory.createForClass(SensorData);
+
 @Schema()
 export class SensorDataPacket extends Document {
   @Prop({ required: true })
-  deviceId: string;
+  deviceId: string; // deviceId 필드 추가
 
-  @Prop({ required: false })
-  runId?: string; // 실행 식별자 추가
-
-  @Prop({ type: Object, required: true })
+  @Prop({ type: SensorDataSchema, required: true })
   sensorData: SensorData;
 
   @Prop({ required: true })
@@ -39,11 +39,7 @@ export class SensorDataPacket extends Document {
   @Prop({ required: true })
   setPoint: number;
 
-  @Prop({ required: true })
-  timestamp: Date; // timeField로 사용할 필드
-
-  @Prop({ type: Object, required: true })
-  metadata: any; // metaField로 사용할 필드
+  @Prop({ default: Date.now })
+  timestamp: Date;
 }
 
-export const SensorDataPacketSchema = SchemaFactory.createForClass(SensorDataPacket);

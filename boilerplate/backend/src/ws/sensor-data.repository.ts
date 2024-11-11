@@ -15,12 +15,10 @@ export interface ISensorData {
 export interface ISensorDataPacket {
   _id?: ObjectId;
   deviceId: string; // deviceId 속성 추가
-  runId?: string;   // 선택 사항: runId 속성 추가
   sensorData: ISensorData;
   elapsedTime: number;
   setPoint: number;
   timestamp: Date;
-  metadata: any;
 }
 
 @Injectable()
