@@ -1,7 +1,19 @@
 import { Module } from '@nestjs/common';
 import { WsGateway } from './ws.gateway';
+import { DatabaseModule } from '../database/database.module';
+import { SensorDataService } from './sensor-data.service';
+import { SensorDataRepository } from './sensor-data.repository';
+
+
 
 @Module({
-  providers: [WsGateway],  // Gateway 등록
+  imports: [
+    DatabaseModule,
+  ],
+  providers: [
+    WsGateway,
+    SensorDataService,
+    SensorDataRepository,
+  ],
 })
 export class WsModule {}

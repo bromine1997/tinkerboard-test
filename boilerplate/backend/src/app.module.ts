@@ -8,6 +8,7 @@ import { SampleTestModule } from './sample-test/sample-test.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { PressureProfileModule } from './pressure-profile/pressure-profile.module';
+import { SensorModule } from './ws/sensor-data.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { PressureProfileModule } from './pressure-profile/pressure-profile.modul
     HealthCheckModule,
     SampleTestModule,
     WsModule,
+    SensorModule,
     AuthModule, // AuthModule 추가
     UserModule, PressureProfileModule, // UserModule 추가
   ],
