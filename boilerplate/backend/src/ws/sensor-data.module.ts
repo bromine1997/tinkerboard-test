@@ -17,3 +17,4 @@ import { CoreModule } from '../core/core.module'; // CoreModule 임포트 (Conte
   exports: [SensorDataService], // 필요한 경우 서비스 내보내기
 })
 export class SensorModule {}
+
