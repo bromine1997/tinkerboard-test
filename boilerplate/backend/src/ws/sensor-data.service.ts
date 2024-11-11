@@ -7,12 +7,22 @@ import { SensorDataPacketDto } from './sensor-data.dto';
 export class SensorDataService {
   constructor(private readonly sensorDataRepository: SensorDataRepository) {}
 
-  async saveSensorData(sensorDataPacketDto: SensorDataPacketDto): Promise<{ message: string; sensorDataId: string }> {
+  async saveSensorData(
+    sensorDataPacketDto: SensorDataPacketDto,
+  ): Promise<{ message: string; sensorDataId: string }> {
+    const { deviceId, runId, sensorData, elapsedTime, setPoint } = sensorDataPacketDto;
+
     const packetData: ISensorDataPacket = {
-      sensorData: sensorDataPacketDto.sensorData,
-      elapsedTime: sensorDataPacketDto.elapsedTime,
-      setPoint: sensorDataPacketDto.setPoint,
+      deviceId,
+      runId, // 선택 사항: runId가 있을 경우 포함
+      sensorData,
+      elapsedTime,
+      setPoint,
       timestamp: new Date(),
+      metadata: {
+        deviceId,
+        ...(runId && { runId }), // runId가 있을 경우 metadata에 포함
+      },
     };
 
     const result = await this.sensorDataRepository.insertSensorData(packetData);
@@ -22,6 +32,4 @@ export class SensorDataService {
       throw new Error('센서 데이터 저장 실패');
     }
   }
-
-  // 필요한 경우 추가 메서드 작성 (예: 데이터 조회 등)
 }

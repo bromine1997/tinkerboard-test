@@ -54,9 +54,28 @@ export const databaseProviders = [
 
   {
     provide: SENSOR_DATA_COLLECTION,
-    useFactory: (db: Db): Collection => {
-      return db.collection('sensor_data_packets'); // 센서 데이터 컬렉션 추가
+
+    useFactory: async (db: Db): Promise<Collection> => {
+      const collectionName = 'sensor_data_packets';
+      
+      // 컬렉션이 이미 존재하는지 확인
+      const collections = await db.listCollections({ name: collectionName }).toArray();
+      if (collections.length === 0) {
+        // 컬렉션이 없으면 타임시리즈 컬렉션으로 생성
+        await db.createCollection(collectionName, {
+          timeseries: {
+            timeField: 'timestamp', // 타임스탬프 필드 이름
+            metaField: 'metadata',  // 메타데이터 필드 이름
+            granularity: 'seconds', // 데이터 수집 주기
+          },
+        });
+        console.log(`타임시리즈 컬렉션 '${collectionName}' 생성 완료`);
+      } else {
+        console.log(`컬렉션 '${collectionName}' 이미 존재`);
+      }
+
+      return db.collection(collectionName);
     },
-    inject: [TEST_DB],
-  },
+  inject: [TEST_DB],
+},
 ];

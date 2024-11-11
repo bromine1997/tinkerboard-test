@@ -1,6 +1,6 @@
 // sensor-data.dto.ts
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsNotEmpty, ValidateNested, IsString } from 'class-validator';
+import { IsNumber, IsNotEmpty, ValidateNested, IsString, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class SensorDataDto {
@@ -39,7 +39,13 @@ export class SensorDataPacketDto {
   @ApiProperty({ description: '장비 식별자' })
   @IsString()
   @IsNotEmpty()
-  deviceId: string; // deviceId 필드 추가
+  deviceId: string;
+
+  // 실행을 구분하고 싶다면 runId 필드를 추가합니다.
+  @ApiProperty({ description: '실행 식별자', required: false })
+  @IsString()
+  @IsOptional()
+  runId?: string;
 
   @ApiProperty({ description: '센서 데이터' })
   @ValidateNested()
