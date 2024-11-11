@@ -9,3 +9,5 @@ export const USER_COLLECTION = 'users';  // 유저 정보 컬렉션
 
 export const PROFILE_COLLECTION = 'pressure_profiles'; // 압력 프로파일 저장 컬렉션
 
+export const SENSOR_DATA_COLLECTION = 'sensor_data_packets'; //압력 데이터 저장 
+
