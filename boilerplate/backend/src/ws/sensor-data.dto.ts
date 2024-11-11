@@ -39,7 +39,7 @@ export class SensorDataPacketDto {
   @ApiProperty({ description: '장비 식별자' })
   @IsString()
   @IsNotEmpty()
-  deviceId: string; // deviceId 필드 추가
+  deviceId: string;
 
   @ApiProperty({ description: '센서 데이터' })
   @ValidateNested()
@@ -49,10 +49,10 @@ export class SensorDataPacketDto {
   @ApiProperty({ example: 1000, description: '경과 시간 (밀리초)' })
   @IsNumber()
   @IsNotEmpty()
-  elapsedTime: number;
+  elapsedTime: number; // 추가
 
   @ApiProperty({ example: 2.0, description: '설정 값' })
   @IsNumber()
   @IsNotEmpty()
-  setPoint: number;
-} 
+  setPoint: number; // 추가
+}

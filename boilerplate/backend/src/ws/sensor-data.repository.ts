@@ -1,6 +1,6 @@
 // src/modules/sensor/repositories/sensor-data.repository.ts
 import { Injectable, Inject } from '@nestjs/common';
-import { Collection, ObjectId } from 'mongodb';
+import { Collection, ObjectId, UpdateResult } from 'mongodb';
 import { SENSOR_DATA_COLLECTION } from '../database/database.constants';
 
 export interface ISensorData {
@@ -10,15 +10,16 @@ export interface ISensorData {
   oxygen: number;
   co2: number;
   flowRate: number;
+  elapsedTime: number; // 추가
+  setPoint: number;    // 추가
 }
 
 export interface ISensorDataPacket {
   _id?: ObjectId;
-  deviceId: string; // deviceId 속성 추가
-  sensorData: ISensorData;
-  elapsedTime: number;
-  setPoint: number;
-  timestamp: Date;
+  deviceId: string;
+  sensorData: ISensorData[];
+  startTime: Date;
+  endTime: Date;
 }
 
 @Injectable()
@@ -27,9 +28,36 @@ export class SensorDataRepository {
     @Inject(SENSOR_DATA_COLLECTION) private readonly col: Collection<ISensorDataPacket>,
   ) {}
 
-  async insertSensorData(packet: ISensorDataPacket): Promise<{ acknowledged: boolean; insertedId: string }> {
-    const result = await this.col.insertOne(packet);
-    return { acknowledged: result.acknowledged, insertedId: result.insertedId.toHexString() };
+  /**
+   * 2시간 버킷에 센서 데이터를 추가합니다.
+   * 기존 버킷이 존재하면 데이터를 추가하고, 없으면 새로운 버킷을 생성합니다.
+   */
+  async addToBucket(
+    packet: ISensorData,
+    deviceId: string,
+    startTime: Date,
+    endTime: Date
+  ): Promise<{ acknowledged: boolean; insertedId?: string }> {
+    const result: UpdateResult = await this.col.updateOne(
+      { deviceId, startTime, endTime },
+      { $push: { sensorData: packet }, $set: { endTime } },
+      { upsert: true }
+    );
+
+    if (result.upsertedCount > 0 && result.upsertedId) {
+      return { acknowledged: true, insertedId: result.upsertedId.toHexString() };
+    }
+
+    return { acknowledged: true, insertedId: undefined };
+  }
+
+  /**
+   * 일괄 삽입을 위한 bulkWrite 메서드 추가
+   */
+  async bulkWriteSensorData(bulkOps: any[]): Promise<void> {
+    if (bulkOps.length > 0) {
+      await this.col.bulkWrite(bulkOps);
+    }
   }
 
   // 필요한 경우 추가 메서드 작성 (예: 데이터 조회 등)
