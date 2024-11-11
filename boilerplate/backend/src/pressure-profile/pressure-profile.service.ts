@@ -4,6 +4,7 @@ import { CreateProfileDto } from './create-profile.dto';
 import { NotFoundException } from '@nestjs/common';
 import { ObjectId } from 'mongodb';  // ObjectId를 import
 
+
 @Injectable()
 export class PressureProfileService {
   constructor(private readonly profileRepository: PressureProfileRepository) {}
@@ -22,6 +23,7 @@ export class PressureProfileService {
     } else {
       throw new Error('프로파일 저장 실패');
     }
+    
   }
 
   async getProfileById(id: string) {

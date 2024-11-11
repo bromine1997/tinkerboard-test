@@ -14,4 +14,5 @@ export class DatabaseModule implements BeforeApplicationShutdown {
     console.log(`Application shutdown by signal: ${signal}`);
     return this.mongoClient.close();
   }
+  
 }
