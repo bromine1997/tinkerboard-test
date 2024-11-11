@@ -23,7 +23,7 @@ export class PressureProfileService {
     } else {
       throw new Error('프로파일 저장 실패');
     }
-    
+
   }
 
   async getProfileById(id: string) {
