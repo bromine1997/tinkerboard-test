@@ -1,6 +1,6 @@
-// src/modules/sensor/dto/sensor-data.dto.ts
+// sensor-data.dto.ts
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsNotEmpty, ValidateNested } from 'class-validator';
+import { IsNumber, IsNotEmpty, ValidateNested, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class SensorDataDto {
@@ -36,6 +36,11 @@ export class SensorDataDto {
 }
 
 export class SensorDataPacketDto {
+  @ApiProperty({ description: '장비 식별자' })
+  @IsString()
+  @IsNotEmpty()
+  deviceId: string; // deviceId 필드 추가
+
   @ApiProperty({ description: '센서 데이터' })
   @ValidateNested()
   @Type(() => SensorDataDto)

@@ -27,6 +27,9 @@ export const SensorDataSchema = SchemaFactory.createForClass(SensorData);
 
 @Schema()
 export class SensorDataPacket extends Document {
+  @Prop({ required: true })
+  deviceId: string; // deviceId 필드 추가
+
   @Prop({ type: SensorDataSchema, required: true })
   sensorData: SensorData;
 
