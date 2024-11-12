@@ -25,8 +25,11 @@ export class SensorDataService {
     try {
       // 기존 버킷 문서를 업데이트하거나 없으면 새로 생성합니다.
       await this.sensorDataRepository.updateOne(
-        { deviceId: sensorDataPacketDto.deviceId, startTime: bucketStartTime, endTime: bucketEndTime },
-        {
+        { deviceId: sensorDataPacketDto.deviceId, 
+          sessionId: sensorDataPacketDto.sessionId, // 추가됨
+          startTime: bucketStartTime,
+           endTime: bucketEndTime },
+        {   
           $push: { sensorData: sensorData },
           $set: { endTime: bucketEndTime },
         },

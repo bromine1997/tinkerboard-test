@@ -23,10 +23,10 @@ export class SensorData extends Document {
   flowRate: number;
 
   @Prop({ required: true })
-  elapsedTime: number; // elapsedTime 필드 추가
+  elapsedTime: number;
 
   @Prop({ required: true })
-  setPoint: number; // setPoint 필드 추가
+  setPoint: number;
 }
 
 export const SensorDataSchema = SchemaFactory.createForClass(SensorData);
@@ -36,17 +36,20 @@ export class SensorDataPacket extends Document {
   @Prop({ required: true })
   deviceId: string;
 
+  @Prop({ required: true })
+  sessionId: string; // sessionId 필드 추가
+
   @Prop({ type: [SensorDataSchema], required: true })
-  sensorData: SensorData[]; // sensorData를 배열로 변경
+  sensorData: SensorData[];
 
   @Prop({ required: true })
-  startTime: Date; // 버킷의 시작 시간
+  startTime: Date;
 
   @Prop({ required: true })
-  endTime: Date; // 버킷의 종료 시간
+  endTime: Date;
 }
 
 export const SensorDataPacketSchema = SchemaFactory.createForClass(SensorDataPacket);
 
-// 인덱스 설정: deviceId와 startTime, endTime을 기준으로 인덱스 생성
-SensorDataPacketSchema.index({ deviceId: 1, startTime: 1, endTime: 1 });
+// 인덱스 설정: deviceId, sessionId, startTime, endTime을 기준으로 인덱스 생성
+SensorDataPacketSchema.index({ deviceId: 1, sessionId: 1, startTime: 1, endTime: 1 });

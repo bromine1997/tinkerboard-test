@@ -35,13 +35,16 @@ export class SensorDataDto {
   flowRate: number;
 }
 
-
-
 export class SensorDataPacketDto {
   @ApiProperty({ description: '장비 식별자' })
   @IsString()
   @IsNotEmpty()
   deviceId: string;
+
+  @ApiProperty({ description: '세션 식별자' }) // 추가된 부분
+  @IsString()
+  @IsNotEmpty()
+  sessionId: string; // 추가된 필드
 
   @ApiProperty({ description: '센서 데이터' })
   @ValidateNested()
