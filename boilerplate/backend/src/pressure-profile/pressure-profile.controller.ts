@@ -23,10 +23,11 @@ export class PressureProfileController {
     },
   })
   @Post('save')
-  async saveProfile(@Body() createProfileDto: CreateProfileDto, @Req() req) {
-    const userId = req.user.userId; // JWT 전략에서 설정한 사용자 ID
+  async saveProfile(@Body() createProfileDto: CreateProfileDto) {
+    const userId = createProfileDto.userId; // 요청 바디에서 userId 추출
     return this.profileService.saveProfile(createProfileDto, userId);
   }
+
 
   @ApiOperation({ summary: '압력 프로파일 조회' })
   @ApiOkResponse({

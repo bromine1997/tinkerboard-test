@@ -67,7 +67,7 @@ export class WsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayD
       await this.sensorDataService.saveSensorData(sensorDataPacketDto);
       console.log('센서 데이터 저장 성공');
     } catch (error) {
-     // console.error('센서 데이터 저장 실패:', error);
+      console.error('센서 데이터 저장 실패:', error);
     }
   }
 

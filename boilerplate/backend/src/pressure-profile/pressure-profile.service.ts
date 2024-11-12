@@ -10,13 +10,11 @@ export class PressureProfileService {
   constructor(private readonly profileRepository: PressureProfileRepository) {}
 
   async saveProfile(createProfileDto: CreateProfileDto, userId: string): Promise<{ message: string; profileId: string }> {
-    const defaultUserId = '60d5f9b9fc13ae1c4f000000';
-
     const profileData: IPressureProfile = {
       name: createProfileDto.name,
       profileSections: createProfileDto.profileSections,
       createdAt: new Date(),
-      createdBy: new ObjectId(userId || defaultUserId), // 사용자 ID 추가
+      createdBy: new ObjectId(userId), // 사용자 ID 추가
     };
 
     const result = await this.profileRepository.insertProfile(profileData);
@@ -25,9 +23,7 @@ export class PressureProfileService {
     } else {
       throw new Error('프로파일 저장 실패');
     }
-
   }
-
 
 
   async getProfileById(id: string) {

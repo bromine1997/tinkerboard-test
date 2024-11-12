@@ -20,7 +20,6 @@ class ProfileSectionDto {
   @IsNumber()
   duration: number;
 }
-
 export class CreateProfileDto {
   @ApiProperty({ example: 'High Pressure Protocol', description: '프로파일 이름' })
   @IsString()
@@ -32,4 +31,9 @@ export class CreateProfileDto {
   @ValidateNested({ each: true })
   @Type(() => ProfileSectionDto)
   profileSections: ProfileSectionDto[];
+
+  @ApiProperty({ example: '60d5f9b9fc13ae1c4f000000', description: '사용자 ID' })
+  @IsString()
+  @IsNotEmpty()
+  userId: string; // userId 필드 추가
 }
