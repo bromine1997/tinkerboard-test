@@ -18,6 +18,7 @@ export interface ISensorDataPacket {
   _id?: ObjectId;
   deviceId: string;
   sessionId: string; // 추가된 필드
+  userId: string; // userId 필드 추가
   sensorData: ISensorData[];
   startTime: Date;
   endTime: Date;

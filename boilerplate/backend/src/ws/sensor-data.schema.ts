@@ -39,6 +39,10 @@ export class SensorDataPacket extends Document {
   @Prop({ required: true })
   sessionId: string; // sessionId 필드 추가
 
+  @Prop({ required: true })
+  userId: string; // userId 필드 추가
+  
+
   @Prop({ type: [SensorDataSchema], required: true })
   sensorData: SensorData[];
 
@@ -52,4 +56,4 @@ export class SensorDataPacket extends Document {
 export const SensorDataPacketSchema = SchemaFactory.createForClass(SensorDataPacket);
 
 // 인덱스 설정: deviceId, sessionId, startTime, endTime을 기준으로 인덱스 생성
-SensorDataPacketSchema.index({ deviceId: 1, sessionId: 1, startTime: 1, endTime: 1 });
+SensorDataPacketSchema.index({ deviceId: 1, sessionId: 1, userId: 1, startTime: 1 });

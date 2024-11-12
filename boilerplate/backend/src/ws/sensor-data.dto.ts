@@ -46,6 +46,11 @@ export class SensorDataPacketDto {
   @IsNotEmpty()
   sessionId: string; // 추가된 필드
 
+  @ApiProperty({ description: '사용자 ID' }) // 추가된 부분
+  @IsString()
+  @IsNotEmpty()
+  userId: string; // userId 필드 추가
+
   @ApiProperty({ description: '센서 데이터' })
   @ValidateNested()
   @Type(() => SensorDataDto)
