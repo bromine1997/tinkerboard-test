@@ -1,6 +1,6 @@
 // src/modules/sensor/repositories/sensor-data.repository.ts
 import { Injectable, Inject } from '@nestjs/common';
-import { Collection, ObjectId, UpdateResult } from 'mongodb';
+import { Collection, ObjectId, UpdateResult, UpdateOptions, Filter, UpdateFilter } from 'mongodb';
 import { SENSOR_DATA_COLLECTION } from '../database/database.constants';
 
 export interface ISensorData {
@@ -27,6 +27,17 @@ export class SensorDataRepository {
   constructor(
     @Inject(SENSOR_DATA_COLLECTION) private readonly col: Collection<ISensorDataPacket>,
   ) {}
+
+  /**
+   * 센서 데이터를 데이터베이스에 즉시 저장하기 위한 updateOne 메서드 추가
+   */
+  async updateOne(
+    filter: Filter<ISensorDataPacket>,
+    update: UpdateFilter<ISensorDataPacket>,
+    options?: UpdateOptions
+  ): Promise<UpdateResult> {
+    return await this.col.updateOne(filter, update, options);
+  }
 
   /**
    * 2시간 버킷에 센서 데이터를 추가합니다.

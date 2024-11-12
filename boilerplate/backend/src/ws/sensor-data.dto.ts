@@ -35,6 +35,8 @@ export class SensorDataDto {
   flowRate: number;
 }
 
+
+
 export class SensorDataPacketDto {
   @ApiProperty({ description: '장비 식별자' })
   @IsString()
