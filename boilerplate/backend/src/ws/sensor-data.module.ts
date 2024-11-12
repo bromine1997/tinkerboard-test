@@ -10,7 +10,6 @@ import { CoreModule } from '../core/core.module'; // CoreModule 임포트 (Conte
   imports: [DatabaseModule,CoreModule],
   controllers: [SensorDataController], // 컨트롤러 등록
   providers: [
-    WsGateway,           // WebSocket 게이트웨이 등록
     SensorDataService,   // 서비스 등록
     SensorDataRepository // 리포지토리 등록
   ],
