@@ -7,6 +7,7 @@ import {
   OnGatewayConnection,
   OnGatewayDisconnect,
   MessageBody,
+  ConnectedSocket,
 } from '@nestjs/websockets';
 import { Socket, Server } from 'socket.io';
 
@@ -39,7 +40,10 @@ export class WsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayD
   }
 
   @SubscribeMessage('sensor_data')
-  async handleSensorData(@MessageBody() payload: any): Promise<void> {
+  async handleSensorData(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() payload: any
+  ): Promise<void> {
     console.log('센서 데이터 수신:', payload);
 
     // DTO로 변환 및 유효성 검사
@@ -52,6 +56,14 @@ export class WsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayD
     }
 
     try {
+      // 실시간 데이터 브로드캐스트 (발신 클라이언트를 제외한 모든 클라이언트에게 전송)
+      client.broadcast.emit('sensor_data_update', {
+        deviceId: sensorDataPacketDto.deviceId,
+        sensorData: sensorDataPacketDto.sensorData,
+        timestamp: new Date(),
+      });
+
+      // 센서 데이터 저장
       await this.sensorDataService.saveSensorData(sensorDataPacketDto);
       console.log('센서 데이터 저장 성공');
     } catch (error) {
