@@ -72,185 +72,44 @@ export default {
   },
   data() {
     return {
-      pressureChartData: {
-        datasets: [
-          {
-            label: 'SET PROFILE',
-            borderColor: 'red',
-            tension: 0,
-            data: [
-              { x: 0, y: 2 },
-              { x: 2, y: 40 },
-              { x: 4, y: 40 },
-              { x: 6, y: 1.5 },
-              { x: 8, y: 1.5 },
-            ],
-            fill: false,
-          },
-          {
-            label: '실시간 PRESSURE',
-            borderColor: 'blue',
-            data: [
-              { x: 0, y: 2 },
-              { x: 1, y: 40 },
-              { x: 2, y: 10 },
-              { x: 6, y: 1.5 },
-              { x: 8, y: 1.5 },
-            ],
-            fill: false,
-          },
-        ],
-      },
+      pressureChartData: { /* 기존 데이터 설정 */ },
       sensorData: {
-        temperature: 25,
-        humidity: 6,
-        pressure: 101325,
-        O2: 21,
-        Co2: 0.04,
+        temperature: 0,
+        humidity: 0,
+        pressure: 0,
+        O2: 0,
+        Co2: 0,
       },
       runTime: 0,
       timer: null,
-      isRunning: false, // RUN 버튼의 상태
+      isRunning: false,
     };
   },
-  computed: {
-    // 최대/최소 값 계산
-    chartOptions() {
-      const allData = this.pressureChartData.datasets.flatMap(dataset => dataset.data);
-      const xValues = allData.map(point => point.x);
-      const yValues = allData.map(point => point.y);
-
-      return {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          x: {
-            type: 'time', // X축을 시간으로 설정
-            time: {
-              unit: 'second', // 초 단위 시간 설정
-              tooltipFormat: 'HH:mm:ss',
-            },
-            title: {
-              display: true,
-              text: 'Time (seconds)',
-              color: 'white',
-            },
-            ticks: {
-              color: 'white',
-              autoSkip: true,  // 레이블 자동 스킵 설정
-              maxTicksLimit: 10,  // 최대 레이블 수 설정
-            },
-            grid: {
-              display: true,
-              color: '#4d4d4d',
-            },
-          },
-          y: {
-            beginAtZero: true,
-            min: Math.min(...yValues) * 0.9,
-            max: Math.max(...yValues) * 1.1,
-            ticks: {
-              color: 'white',
-              stepSize: (Math.max(...yValues) - Math.min(...yValues)) / 5,
-            },
-            title: {
-              display: true,
-              text: 'Pressure (Pa)',
-              color: 'white',
-            },
-            grid: {
-              display: true,
-              color: '#4d4d4d',
-            },
-          },
-        },
-      };
-    },
-    formattedRunTime() {
-      const hours = Math.floor(this.runTime / 3600);
-      const minutes = Math.floor((this.runTime % 3600) / 60);
-      const seconds = this.runTime % 60;
-      return `${hours}시간 ${minutes}분 ${seconds}초`;
-    },
+  mounted() {
+    this.$root.$on("new-sensor-data", this.updateSensorData); // 이벤트 수신
   },
   methods: {
-    async fetchProfile() {
-      try {
-        const response = await axios.get('/profile/latest');
-        const profileData = response.data;
-
-        // 프로파일 데이터를 차트 데이터 형식으로 변환
-        const chartData = this.convertProfileToChartData(profileData);
-
-        // 차트 데이터 업데이트
-        this.pressureChartData.datasets[0].data = chartData;
-
-        // 차트 업데이트
-        this.$refs.lineChart.renderChart();
-
-        alert('프로파일을 성공적으로 가져왔습니다.');
-      } catch (error) {
-        console.error('프로파일 가져오기 실패:', error);
-        alert('프로파일을 가져오는 데 실패했습니다.');
-      }
-  },
-
-    convertProfileToChartData(profileData) {
-      const sections = profileData.profileSections;
-      const chartData = [];
-      let currentTime = 0;
-
-      for (const section of sections) {
-        const { startPressure, endPressure, time } = section;
-
-        // 시작점 추가
-        chartData.push({ x: currentTime, y: startPressure });
-
-        // 종료점 시간 계산
-        currentTime += time * 60; // time이 분 단위라면 초 단위로 변환
-
-        // 종료점 추가
-        chartData.push({ x: currentTime, y: endPressure });
-      }
-
-      return chartData;
+    updateSensorData(data) {
+      // 수신된 센서 데이터를 반영
+      this.sensorData = {
+        temperature: data.temperature,
+        humidity: data.humidity,
+        pressure: data.pressure,
+        O2: data.oxygen,
+        Co2: data.co2,
+      };
+      this.updateChart(data.pressure); // 차트 업데이트
     },
+    updateChart(pressureValue) {
+      const currentTime = new Date();
+      const pressureData = { x: currentTime, y: pressureValue };
 
-    startChamber() {
-      this.isRunning = true;
-      this.$refs.lineChart.startDrawing();  // lineChart에 데이터 그리기 시작
-      this.startTimer();  // 타이머 시작
-      alert('챔버가 시작되었습니다.');
-    },
-    stopChamber() {
-      this.isRunning = false;
-      this.$refs.lineChart.stopDrawing();  // lineChart 그리기 중지
-      this.stopTimer();  // 타이머 중지
-      alert('챔버가 정지되었습니다.');
-    },
-    pauseChamber() {
-      this.isRunning = false;
-      this.stopTimer();  // 타이머 일시 정지
-      alert('챔버가 일시정지되었습니다.');
-    },
-    startTimer() {
-      if (!this.timer) {
-        this.timer = setInterval(() => {
-          this.runTime++;
-        }, 1000);
-      }
-    },
-    stopTimer() {
-      if (this.timer) {
-        clearInterval(this.timer);
-        this.timer = null;  // 타이머 리셋
-      }
+      this.pressureChartData.datasets[1].data.push(pressureData); // 실시간 데이터 추가
+      this.$refs.lineChart.$data._chart.update(); // 차트 업데이트
     },
   },
   beforeDestroy() {
-    if (this.timer) {
-      clearInterval(this.timer);
-    }
+    this.$root.$off("new-sensor-data", this.updateSensorData); // 이벤트 해제
   },
 };
 </script>
