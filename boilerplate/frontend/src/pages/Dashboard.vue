@@ -64,7 +64,8 @@
 </template>
 
 <script>
-import LineChart from '@/components/Charts/LineChart';
+import LineChart from "@/components/Charts/LineChart";
+import { EventBus } from "@/eventBus"; // EventBus를 import
 
 export default {
   components: {
@@ -72,7 +73,29 @@ export default {
   },
   data() {
     return {
-      pressureChartData: { /* 기존 데이터 설정 */ },
+      pressureChartData: {
+        datasets: [
+          {
+            label: "SET PROFILE",
+            borderColor: "red",
+            tension: 0,
+            data: [
+              { x: 0, y: 2 },
+              { x: 2, y: 40 },
+              { x: 4, y: 40 },
+              { x: 6, y: 1.5 },
+              { x: 8, y: 1.5 },
+            ],
+            fill: false,
+          },
+          {
+            label: "실시간 PRESSURE",
+            borderColor: "blue",
+            data: [],
+            fill: false,
+          },
+        ],
+      },
       sensorData: {
         temperature: 0,
         humidity: 0,
@@ -86,19 +109,20 @@ export default {
     };
   },
   mounted() {
-    this.$root.$on("new-sensor-data", this.updateSensorData); // 이벤트 수신
+    // EventBus를 통해 WebSocket 데이터 수신
+    EventBus.$on("new-sensor-data", this.updateSensorData);
   },
   methods: {
     updateSensorData(data) {
       // 수신된 센서 데이터를 반영
       this.sensorData = {
-        temperature: data.temperature,
-        humidity: data.humidity,
-        pressure: data.pressure,
-        O2: data.oxygen,
-        Co2: data.co2,
+        temperature: data.sensorData.temperature,
+        humidity: data.sensorData.humidity,
+        pressure: data.sensorData.pressure,
+        O2: data.sensorData.oxygen,
+        Co2: data.sensorData.co2,
       };
-      this.updateChart(data.pressure); // 차트 업데이트
+      this.updateChart(data.sensorData.pressure); // 차트 업데이트
     },
     updateChart(pressureValue) {
       const currentTime = new Date();
@@ -109,11 +133,11 @@ export default {
     },
   },
   beforeDestroy() {
-    this.$root.$off("new-sensor-data", this.updateSensorData); // 이벤트 해제
+    // 컴포넌트가 파괴될 때 이벤트 해제
+    EventBus.$off("new-sensor-data", this.updateSensorData);
   },
 };
 </script>
-
 <style scoped>
 .row {
   margin-top: 20px;
