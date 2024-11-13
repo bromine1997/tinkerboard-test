@@ -1,0 +1,299 @@
+[33mcommit dfb306e79cdbb86ce7540fa5051c92182de73daa[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Nov 13 13:53:06 2024 +0900
+
+     "package 수정"
+
+[33mcommit 674657796f25f0aaf80ac6411b201347a9e89c52[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Nov 13 13:40:24 2024 +0900
+
+    "업데이트"
+
+[33mcommit af3b81bd359becad69341d4443879a88dd7f5b98[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Nov 13 13:33:46 2024 +0900
+
+    "업데이트"
+
+[33mcommit f1fadcf7a304a73267bc304f3bc4dd50d6ba4e65[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Nov 13 13:14:15 2024 +0900
+
+    "웹 데이터 수신"
+
+[33mcommit 4f7ac62f9f8ad45b97216afcc424424b6d6c1d37[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 22:24:46 2024 +0900
+
+    " 센서데이터 user id 추가"
+
+[33mcommit 8efe6e34baa7ae8bf54d7df6b66d3d2b764f391e[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 21:55:31 2024 +0900
+
+    "profile 저장 수정"
+
+[33mcommit 6d50691199a8590a6b0ece6f25342e4da95c5f54[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 17:45:05 2024 +0900
+
+    "수정"
+
+[33mcommit 891defce0b0ff23fa23b3e31001ed3d766f5a721[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 17:29:54 2024 +0900
+
+    "tesst"
+
+[33mcommit c3eb0cce93dc94e02efff3af75055b087421ae13[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 17:16:53 2024 +0900
+
+    "데이터 저장방식 수정"
+
+[33mcommit 34807927e0970dd0a7214a72c47a95a189580e02[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 16:45:49 2024 +0900
+
+    "test"
+
+[33mcommit 0a5305c5bb07257ed59b7b88885405e337aa3499[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 16:35:13 2024 +0900
+
+    "센서 데이터 저장"
+
+[33mcommit 45a3d80b8b1435ee7d2de7f249301693d0b5cef1[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 16:32:29 2024 +0900
+
+    센서데이터 저장
+
+[33mcommit 07b2a0d19e529b3cd7201871a33fc988ea69e9d8[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Mon Nov 11 22:37:26 2024 +0900
+
+    test
+
+[33mcommit c05e0e10061913354443e3bbe99407babb849122[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Mon Nov 11 21:46:08 2024 +0900
+
+    "timeseries 제거"
+
+[33mcommit 10d27b80e71b3c7257291073a49ab35ce29cc1b4[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Mon Nov 11 18:05:03 2024 +0900
+
+    "센서데이터 수정"
+
+[33mcommit 139c781ed87d38cf8b3bf2549c37525a4f90aa21[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Mon Nov 11 16:36:56 2024 +0900
+
+    "식별자 추가"
+
+[33mcommit 3aeecd561273abef9170f257be5469bc6ebb524e[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Mon Nov 11 16:06:20 2024 +0900
+
+    "모듈 수정"
+
+[33mcommit 2acf17856c728c91614dc563a1c07baddfb9593b[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Mon Nov 11 16:05:48 2024 +0900
+
+    " 모듈 수정"
+
+[33mcommit 5d02914c29df148c592486dc0346ed62b7371ced[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Mon Nov 11 15:54:52 2024 +0900
+
+     test
+
+[33mcommit 80b1ee5e9cdeb50d6fbd23da2c980b4536a23f67[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Mon Nov 11 15:41:51 2024 +0900
+
+    "module 수정"
+
+[33mcommit cf3bb45574395c304a2e6ba6adc8db5ef7a98613[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Mon Nov 11 15:03:14 2024 +0900
+
+    "websocket 센서데이터 저장"
+
+[33mcommit 5bf5a63fd04d853ece235308fd3395f1fc91a23c[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 7 15:33:29 2024 +0900
+
+    "socketio사용"
+
+[33mcommit 793c34129bab1a101cc7649795b1a357a9f8b24c[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Oct 15 22:55:59 2024 +0900
+
+    "프로파일 불러오기 버튼 이름 변경"
+
+[33mcommit d775441b583f8d050838f3f5cbc9eca66076da26[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Oct 15 22:48:15 2024 +0900
+
+    "profile 불러오기"
+
+[33mcommit 2a7ea74ebe64b59cdccab40067c5241971f9b99c[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Oct 15 22:05:16 2024 +0900
+
+    "core 모듈 추가"
+
+[33mcommit 60c855a7653d56a6cad53034f05edcec7f1e3c79[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Oct 15 21:41:43 2024 +0900
+
+    "profile 저장 추가"
+
+[33mcommit e5da215c32b9369dcb421f7328f711696d0c71a7[m
+Author: bromine1997 <109931164+bromine1997@users.noreply.github.com>
+Date:   Sun Oct 13 21:09:48 2024 +0900
+
+    Update auth.service.ts
+
+[33mcommit 02a30d5a094816960b0dfbb6d9d32bcb3c8aad22[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Oct 1 20:48:05 2024 +0900
+
+    "ip 모두 허용"
+
+[33mcommit ccb1a1acdc5fff93c8a827893c2b3a518704308a[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Oct 1 20:45:37 2024 +0900
+
+    "안드로이드 ip 추가"
+
+[33mcommit 3cb964c63791afdde92cca098a3f25f8a636852a[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Fri Sep 27 11:24:17 2024 +0900
+
+    "로그인 컨트롤러 수정"
+
+[33mcommit 24b40b6d2ae248d34c5e470011877b702f796417[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Fri Sep 27 11:19:57 2024 +0900
+
+    "비밀번호 검증 디버깅"
+
+[33mcommit ed549841c11327cb0b9805d804bdbc7b102770a0[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 23:08:47 2024 +0900
+
+    "비밀번호 겅증 디버깅 중"
+
+[33mcommit 91fedf7de237d738b26094b8fa0df4a4e3fe2eaf[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 23:05:40 2024 +0900
+
+    " 비밀번호 검증 수정"
+
+[33mcommit 9d42ff3017146b28359b855ccff25e3597ff197a[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 22:47:20 2024 +0900
+
+    "auth service 수정"
+
+[33mcommit ed8129899d82e5e4bfa9cf256c4659c6ad2b5f6a[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 22:13:33 2024 +0900
+
+    " 경로수정"
+
+[33mcommit 1c905af7e41018094ca28c37b1b4d68d37a54a46[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 22:08:31 2024 +0900
+
+    "app.setGlobalPrefix('api'); 수정"
+
+[33mcommit 3581e7f201a09d07d3d6faa384392764119b7c50[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 22:07:24 2024 +0900
+
+    "app.setGlobalPrefix('api'); 수정"
+
+[33mcommit c09009d6a4a3db7c3bfb7525ca2960b6e55495a6[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 22:04:07 2024 +0900
+
+    "생일 양식 수정"
+
+[33mcommit 1e0d188061d2039d0bf4d872dd19f499fc38955f[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 21:28:38 2024 +0900
+
+    "birthdate 디버깅.."
+
+[33mcommit 947c311377035915c8689a52f31cee1eaa2181c9[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Sep 26 21:20:36 2024 +0900
+
+    "경로수정"
+
+[33mcommit 45a4a5124f360545a20460dfe37a7586aee69d24[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 22:22:36 2024 +0900
+
+    "비밀번호 누락 디버깅중"
+
+[33mcommit 11470828f66375d9cc49ddc0eb274c371fbf05b0[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 22:15:57 2024 +0900
+
+    "로그인 검증 코드 수정"
+
+[33mcommit 04fc5f50b74e8691a1c3759f970ff5f65ef21a65[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 22:09:00 2024 +0900
+
+    "log 확인"
+
+[33mcommit 777757d69445b17f7339776e56c74924bed01226[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 21:38:13 2024 +0900
+
+    "test"
+
+[33mcommit 24d8f6349c0f63821ae8c8ed2e468f2240408528[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 21:35:38 2024 +0900
+
+    "user controller 수정"
+
+[33mcommit a1e66ee26ed0d8c4a9ad2b630d273e0ef9a04c40[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 21:19:49 2024 +0900
+
+    "user controller 추가"
+
+[33mcommit 437163dcc1d9b799d5b08c1c5dbad1e46d3b115c[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 17:38:57 2024 +0900
+
+    "test"
+
+[33mcommit 84d628362976398e8b11ee59891521448e32072d[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 17:37:05 2024 +0900
+
+    "test"
+
+[33mcommit 0fb1eb5f3610a5725b94a4af964220d6629525ea[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 17:36:18 2024 +0900
+
+    "setperfix 추가"
+
+[33mcommit 8b9b4e69c87a7ece0cf13b4f2f3515311bac194d[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Sep 25 17:25:53 2024 +0900
+
+    "경로 api 추가
