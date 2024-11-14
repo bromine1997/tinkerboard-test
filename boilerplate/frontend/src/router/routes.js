@@ -45,24 +45,25 @@ const routes = [
         component: Profile,
       },
       {
-        path: 'notifications',
-        name: 'notifications',
-        component: Notifications,
-      },
-      {
-        path: 'icons',
-        name: 'icons',
-        component: Icons,
-      },
-      {
-        path: 'typography',
-        name: 'typography',
-        component: Typography,
-      },
-      {
         path: 'table-list',
         name: 'table-list',
         component: TableList,
+        beforeEnter: (to, from, next) => {
+          const token = localStorage.getItem('token');
+          if (token) {
+            const decodedToken = jwt_decode(token);
+            const role = decodedToken.role;
+            if (role === 'admin' || role === 'operator') {
+              next();
+            } else {
+              alert('접근 권한이 없습니다.');
+              next('/login');
+            }
+          } else {
+            alert('로그인이 필요합니다.');
+            next('/login');
+          }
+        },
       },
     ],
   },
