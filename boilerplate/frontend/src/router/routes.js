@@ -1,21 +1,13 @@
 import DashboardLayout from '@/layout/dashboard/DashboardLayout.vue';
-// GeneralViews
 import NotFound from '@/pages/NotFoundPage.vue';
+import {jwtdecode} from 'jwt-decode'; // <-- 여기서 jwt_decode를 import
 
-import {jwtdecode} from "jwt-decode";
-
-// Admin pages
-const Dashboard = () => import(/* webpackChunkName: "dashboard" */ '@/pages/Dashboard.vue');
-const Profile = () => import(/* webpackChunkName: "common" */ '@/pages/Profile.vue');
-
-const TableList = () => import(/* webpackChunkName: "common" */ '@/pages/TableList.vue');
-
-// Auth pages
-const Login = () => import(/* webpackChunkName: "auth" */ '@/pages/Login.vue');
-const SignUp = () => import(/* webpackChunkName: "auth" */ '@/pages/SignUp.vue');
-
-
-
+// 페이지 컴포넌트들
+const Dashboard = () => import('@/pages/Dashboard.vue');
+const Profile = () => import('@/pages/Profile.vue');
+const TableList = () => import('@/pages/TableList.vue');
+const Login = () => import('@/pages/Login.vue');
+const SignUp = () => import('@/pages/SignUp.vue');
 
 const routes = [
   {
