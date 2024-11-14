@@ -2,7 +2,7 @@ import DashboardLayout from '@/layout/dashboard/DashboardLayout.vue';
 // GeneralViews
 import NotFound from '@/pages/NotFoundPage.vue';
 
-import jwt_decode from 'jwt-decode';
+import {jwtdecode} from "jwt-decode";
 
 // Admin pages
 const Dashboard = () => import(/* webpackChunkName: "dashboard" */ '@/pages/Dashboard.vue');
@@ -13,8 +13,6 @@ const TableList = () => import(/* webpackChunkName: "common" */ '@/pages/TableLi
 // Auth pages
 const Login = () => import(/* webpackChunkName: "auth" */ '@/pages/Login.vue');
 const SignUp = () => import(/* webpackChunkName: "auth" */ '@/pages/SignUp.vue');
-
-
 
 
 
