@@ -55,7 +55,11 @@ export class AuthService {
     console.log(`로그인 시도: ${loginDto.username}`);
     const user = await this.validateUser(loginDto.username, loginDto.password);
   
-    const payload = { username: user.username, sub: user._id };
+    const payload = { 
+      username: user.username, 
+      sub: user._id, 
+      role: user.role // role 추가
+    };
   
     console.log(`로그인 성공: ${user.username}`);
     console.log('JWT 토큰 발급 중...');
