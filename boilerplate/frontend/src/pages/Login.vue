@@ -21,7 +21,7 @@
 
 <script>
 import axios from 'axios';
-import jwt_decode from 'jwt-decode'; // jwt-decode import 추가
+
 
 export default {
   data() {
@@ -59,8 +59,7 @@ export default {
           localStorage.setItem('token', response.data.access_token);
 
             // 토큰 디코딩 후 콘솔에 출력
-          const decodedToken = jwt_decode(token);
-          console.log("Decoded JWT Token:", decodedToken); // 디코드된 토큰 로그 출력
+         
 
           // 대시보드로 이동
           if (this.$route.path !== '/dashboard') {
