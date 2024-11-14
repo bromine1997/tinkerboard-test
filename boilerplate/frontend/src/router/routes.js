@@ -1,6 +1,6 @@
 import DashboardLayout from '@/layout/dashboard/DashboardLayout.vue';
 import NotFound from '@/pages/NotFoundPage.vue';
-import jwt_decode from 'jwt-decode'; // 여기서 jwt_decode를 import
+import { decode as jwt_decode } from 'jwt-decode';
 
 // 페이지 컴포넌트들
 const Dashboard = () => import('@/pages/Dashboard.vue');
@@ -45,19 +45,25 @@ const routes = [
         beforeEnter: (to, from, next) => {
           const token = localStorage.getItem('token');
           if (token) {
-            const decodedToken = jwt_decode(token);
-            const role = decodedToken.role;
-            if (role === 'admin' || role === 'operator') {
-              next();
-            } else {
-              alert('접근 권한이 없습니다.');
+            try {
+              const decodedToken = jwt_decode(token);
+              const role = decodedToken.role;
+              if (role === 'admin' || role === 'operator') {
+                next();
+              } else {
+                alert('접근 권한이 없습니다.');
+                next('/login');
+              }
+            } catch (error) {
+              console.error("Token decoding failed:", error);
+              alert('유효하지 않은 토큰입니다.');
               next('/login');
             }
           } else {
             alert('로그인이 필요합니다.');
             next('/login');
           }
-        },
+        }
       },
     ],
   },
