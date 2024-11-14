@@ -1,6 +1,6 @@
 import DashboardLayout from '@/layout/dashboard/DashboardLayout.vue';
 import NotFound from '@/pages/NotFoundPage.vue';
-import { decode as jwt_decode } from 'jwt-decode';
+import {jwt_decode } from 'jwt-decode';
 
 // 페이지 컴포넌트들
 const Dashboard = () => import('@/pages/Dashboard.vue');
