@@ -27,6 +27,13 @@ axios.defaults.baseURL = 'http://localhost:8080' ; // 백엔드 서버 주소
 Vue.prototype.$http = axios;
 Vue.prototype.$socket = socket; // Socket.IO 클라이언트를 전역으로 설정
 
+
+// JWT 토큰을 Axios 기본 헤더에 설정
+const token = localStorage.getItem('token');
+if (token) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+}
+
 new Vue({
   router,
   i18n,

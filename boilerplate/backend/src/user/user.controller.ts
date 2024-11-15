@@ -3,6 +3,7 @@ import { ApiOperation, ApiOkResponse, ApiTags, ApiParam } from '@nestjs/swagger'
 import { UserService } from './user.service';
 import { UserDto } from './user.dto';
 import { UpdateUserDto } from './update-user.dto';
+
 import { ApiExceptionFilter } from '../core/filter/api-exception.filter'; // 예외 필터 추가
 
 @ApiTags('사용자 API')
@@ -21,6 +22,8 @@ export class UserController {
   @Get()
   async getAllUsers() {
     return this.userService.findAll();
+
+    
   }
 
   @ApiOperation({ summary: '특정 사용자 조회' })
@@ -63,4 +66,6 @@ export class UserController {
   async deleteUser(@Param('id') id: string) {
     return this.userService.deleteUser(id);
   }
+
+
 }

@@ -1,46 +1,18 @@
+<!-- UserCard.vue -->
 <template>
-  <card type="user">
-    <p class="card-text"></p>
-    <div class="author">
-      <div class="block block-one"></div>
-      <div class="block block-two"></div>
-      <div class="block block-three"></div>
-      <div class="block block-four"></div>
-      <a href="#">
-        <img class="avatar" src="img/anime6.png" alt="..." />
-        <h5 class="title">{{ user.fullName }}</h5>
-      </a>
-      <p class="description">
-        {{ user.title }}
-      </p>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ user.name }}</h5>
+      <p class="card-text">이메일: {{ user.email }}</p>
+      <p class="card-text" v-if="user.phone">전화번호: {{ user.phone }}</p>
+      <p class="card-text" v-if="user.birthDate">생년월일: {{ user.birthDate }}</p>
+      <p class="card-text" v-if="user.gender">성별: {{ user.gender === 'male' ? '남성' : '여성' }}</p>
     </div>
-    <p></p>
-    <p class="card-description">
-      {{ user.description }}
-    </p>
-    <div slot="footer" class="button-container">
-      <base-button icon round class="btn-facebook">
-        <i class="fab fa-facebook"></i>
-      </base-button>
-      <base-button icon round class="btn-twitter">
-        <i class="fab fa-twitter"></i>
-      </base-button>
-      <base-button icon round class="btn-google">
-        <i class="fab fa-google-plus"></i>
-      </base-button>
-    </div>
-  </card>
+  </div>
 </template>
+
 <script>
 export default {
-  props: {
-    user: {
-      type: Object,
-      default: () => {
-        return {};
-      },
-    },
-  },
+  props: ['user'],
 };
 </script>
-<style></style>
