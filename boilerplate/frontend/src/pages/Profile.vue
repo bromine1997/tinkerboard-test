@@ -1,3 +1,4 @@
+<!-- Profile.vue -->
 <template>
   <div class="row">
     <div class="col-md-8">
@@ -8,9 +9,11 @@
     </div>
   </div>
 </template>
+
 <script>
 import EditProfileForm from './Profile/EditProfileForm';
 import UserCard from './Profile/UserCard';
+
 export default {
   components: {
     EditProfileForm,
@@ -19,23 +22,53 @@ export default {
   data() {
     return {
       model: {
-        company: 'Creative Code Inc.',
-        email: 'mike@email.com',
-        username: 'michael23',
-        firstName: 'Mike',
-        lastName: 'Andrew',
-        address: 'Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09',
-        city: 'Melbourne',
-        country: 'Australia',
-        about: "Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.",
+        email: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+        address: '',
+        city: '',
+        country: '',
+        about: '',
       },
       user: {
-        fullName: 'Mike Andrew',
-        title: 'Ceo/Co-Founder',
-        description: `Do not be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...`,
+        fullName: '',
+        title: '',
+        description: '',
       },
     };
   },
+  created() {
+    this.fetchUserProfile();
+  },
+  methods: {
+    async fetchUserProfile() {
+      try {
+        const response = await this.$http.get('/user/profile');
+        const userData = response.data;
+
+        // 필요한 데이터로 모델 업데이트
+        this.model.email = userData.email;
+        this.model.username = userData.username;
+        this.model.firstName = userData.firstName || '';
+        this.model.lastName = userData.lastName || '';
+        this.model.address = userData.address || '';
+        this.model.city = userData.city || '';
+        this.model.country = userData.country || '';
+        this.model.about = userData.about || '';
+
+        this.user.fullName = `${userData.firstName || ''} ${userData.lastName || ''}`.trim();
+        this.user.title = userData.role || '';
+        this.user.description = userData.about || '';
+      } catch (error) {
+        console.error('사용자 정보를 가져오는데 실패했습니다.', error);
+        // 오류 처리 (예: 로그인 페이지로 리다이렉트)
+      }
+    },
+  },
 };
 </script>
-<style></style>
+
+<style>
+/* 스타일은 기존 그대로 유지 */
+</style>

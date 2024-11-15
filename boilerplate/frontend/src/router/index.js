@@ -39,7 +39,7 @@ router.beforeEach((to, from, next) => {
           return next();
         } else {
           // 사용자에게 필요한 역할이 없음
-          alert('접근 권한이 없습니다.');
+          alert('일반사용자는 접근권한이 없습니다.');
           return next({ name: 'dashboard' });
         }
       } else {
