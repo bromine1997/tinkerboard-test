@@ -1,17 +1,16 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { Collection } from 'mongodb';
+import { Collection, ObjectId } from 'mongodb';
 import { USER_COLLECTION } from '../database/database.constants'; // 상수로 정의된 사용자 컬렉션
 
-
 export interface IUser {
-    _id: string;
-    name: string;
-    email: string;
-    phone?: string;
-    birthDate: string;
-    gender: string;
-    role: string;
-  }
+  _id: ObjectId;
+  name: string;
+  email: string;
+  phone?: string;
+  birthDate: string;
+  gender: string;
+  role: string;
+}
 
 @Injectable()
 export class UserRepository {
@@ -27,18 +26,37 @@ export class UserRepository {
 
   // 특정 사용자 조회
   async findUserById(id: string): Promise<IUser | null> {
-    return await this.col.findOne({ _id: id });
+    let objectId: ObjectId;
+    try {
+      objectId = new ObjectId(id);
+    } catch (error) {
+      // 유효하지 않은 ObjectId인 경우 null 반환
+      return null;
+    }
+    return await this.col.findOne({ _id: objectId });
   }
 
   // 사용자 정보 업데이트
   async updateUser(id: string, updateData: Partial<IUser>): Promise<boolean> {
-    const result = await this.col.updateOne({ _id: id }, { $set: updateData });
+    let objectId: ObjectId;
+    try {
+      objectId = new ObjectId(id);
+    } catch (error) {
+      return false;
+    }
+    const result = await this.col.updateOne({ _id: objectId }, { $set: updateData });
     return result.acknowledged;
   }
 
   // 사용자 삭제
   async deleteUser(id: string): Promise<boolean> {
-    const result = await this.col.deleteOne({ _id: id });
+    let objectId: ObjectId;
+    try {
+      objectId = new ObjectId(id);
+    } catch (error) {
+      return false;
+    }
+    const result = await this.col.deleteOne({ _id: objectId });
     return result.acknowledged;
   }
 }

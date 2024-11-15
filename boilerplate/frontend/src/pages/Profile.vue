@@ -43,7 +43,7 @@ export default {
       if (token) {
         try {
           const decoded = VueJwtDecode.decode(token);
-          this.userId = decoded.id || decoded.userId || decoded.sub;
+          this.userId = decoded.sub;
           if (!this.userId) {
             console.error('토큰에 사용자 ID가 포함되어 있지 않습니다.');
           }
