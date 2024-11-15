@@ -58,6 +58,8 @@ export default {
           // JWT 토큰을 localStorage에 저장
           localStorage.setItem('token', response.data.access_token);
 
+          console.log('Token:', localStorage.getItem('token'));
+
             // 토큰 디코딩 후 콘솔에 출력
          
 
