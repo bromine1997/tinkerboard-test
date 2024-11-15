@@ -1,13 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes';
-import { getUserRole } from '@/utils/auth'; 
+import { getUserRole } from '@/utils/auth'; // 헬퍼 함수 임포트
 
 Vue.use(VueRouter);
 
 // 라우터 설정
 const router = new VueRouter({
-  routes, // short for routes: routes
+  routes,
   linkExactActiveClass: 'active',
   scrollBehavior: (to) => {
     if (to.hash) {

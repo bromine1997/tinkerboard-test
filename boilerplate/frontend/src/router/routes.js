@@ -2,12 +2,16 @@
 import DashboardLayout from '@/layout/dashboard/DashboardLayout.vue';
 import NotFound from '@/pages/NotFoundPage.vue';
 
+
+
 // Page components
 const Dashboard = () => import('@/pages/Dashboard.vue');
 const Profile = () => import('@/pages/Profile.vue');
 const TableList = () => import('@/pages/TableList.vue');
 const Login = () => import('@/pages/Login.vue');
 const SignUp = () => import('@/pages/SignUp.vue');
+
+
 
 const routes = [
   {
