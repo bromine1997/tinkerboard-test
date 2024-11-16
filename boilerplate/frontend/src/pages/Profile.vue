@@ -3,17 +3,12 @@
     <div class="col-md-8">
       <edit-profile-form :model="model" @update-profile="updateUserProfile"></edit-profile-form>
     </div>
-    <div class="col-md-4">
-      <user-card :user="user"></user-card>
-    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import VueJwtDecode from 'vue-jwt-decode';
 import EditProfileForm from './Profile/EditProfileForm';
-import UserCard from './Profile/UserCard';
 
 export default {
   components: {
@@ -28,7 +23,6 @@ export default {
         birthDate: '',
         gender: '',
       },
-      user: {},
       userId: '',
     };
   },
@@ -41,24 +35,15 @@ export default {
      */
     async initializeUserProfile() {
       try {
-        // 토큰에서 userId 추출
-        const token = localStorage.getItem('token');
-        if (!token) {
+        // 로컬 스토리지에서 userId 가져오기
+        const userId = localStorage.getItem('userId');
+        if (!userId) {
           alert('로그인이 필요합니다.');
           this.$router.push('/login');
           return;
         }
 
-        const decoded = VueJwtDecode.decode(token);
-        this.userId = decoded.sub;
-
-        if (!this.userId) {
-          console.error('사용자 ID가 없습니다.');
-          return;
-        }
-
-        console.log('Token:', token);
-        console.log('Decoded userId:', this.userId);
+        this.userId = userId;
 
         // 사용자 프로필 가져오기
         await this.fetchUserProfile();
@@ -85,9 +70,7 @@ export default {
             gender: userData.gender || '',
           };
 
-          // 사용자 카드 데이터 업데이트
-          this.user = { ...this.model };
-          console.log('User data fetched successfully:', this.user);
+          console.log('User data fetched successfully:', this.model);
         } else {
           alert('사용자 정보를 가져오지 못했습니다.');
         }

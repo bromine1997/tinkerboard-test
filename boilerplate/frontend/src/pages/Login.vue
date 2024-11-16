@@ -63,8 +63,8 @@ export default {
           console.log('Token:', localStorage.getItem('token'));
 
           // 토큰 디코딩 후 userId를 로컬 스토리지에 저장
-          const decoded = VueJwtDecode.decode(response.data.access_token);
-          const userId = decoded.sub || decoded.userId || decoded.id || decoded._id;
+          const decoded1 = VueJwtDecode.decode(response.data.access_token);
+          const userId = decoded1.sub || decoded1.userId || decoded1.id || decoded1._id;
 
           if (userId) {
             localStorage.setItem('userId', userId);

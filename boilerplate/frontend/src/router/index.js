@@ -24,6 +24,8 @@ router.beforeEach((to, from, next) => {
   const allowedRoles = to.meta.roles;
   const token = localStorage.getItem('token');
 
+ 
+
   if (requiresAuth) {
     if (!token) {
       // 인증되지 않은 사용자
