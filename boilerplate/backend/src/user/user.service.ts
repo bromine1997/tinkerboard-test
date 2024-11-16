@@ -14,18 +14,14 @@ export class UserService {
   }
 
  
-  // 특정 사용자 조회
-  async findById(id: string): Promise<IUser> {
-    if (!Types.ObjectId.isValid(id)) {
-      throw new NotFoundException('Invalid user ID format');
-    }
-
-    const user = await this.userRepository.findUserById(id);
-    if (!user) {
-      throw new NotFoundException('사용자를 찾을 수 없습니다.');
-    }
-    return user;
+// 특정 사용자 조회
+async findById(id: string): Promise<IUser> {
+  const user = await this.userRepository.findUserById(id);
+  if (!user) {
+    throw new NotFoundException('사용자를 찾을 수 없습니다.');
   }
+  return user;
+}
 
    // 사용자 정보 수정
   async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<IUser> {

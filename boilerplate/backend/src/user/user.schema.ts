@@ -22,7 +22,7 @@ export class User {
   phone: string;
 
   @Prop({ required: true })
-  birthdate: Date;
+  birthDate: Date;
 
   @Prop({ required: true, enum: ['male', 'female'], default: 'male' }) 
   gender: string;
