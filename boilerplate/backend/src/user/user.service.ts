@@ -1,20 +1,16 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { UserRepository } from './user.repository'; // UserRepository는 DB와의 상호작용 담당
-import { UpdateUserDto } from './update-user.dto'; // 업데이트 DTO
-import { IUser } from './user.repository'; // IUser 인터페이스
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { UserRepository } from './user.repository';
+import { UpdateUserDto } from './update-user.dto';
+import { IUser } from './user.repository';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  // 사용자 전체 조회
-  async findAll(): Promise<IUser[]> {
-    return this.userRepository.findAllUsers();
-  }
-
   // 특정 사용자 조회
-  async findById(id: string): Promise<IUser> {
-    const user = await this.userRepository.findUserById(id);
+  async findById(userId: ObjectId): Promise<IUser> {
+    const user = await this.userRepository.findUserById(userId);
     if (!user) {
       throw new NotFoundException('사용자를 찾을 수 없습니다.');
     }
@@ -22,15 +18,15 @@ export class UserService {
   }
 
   // 사용자 정보 수정
-  async updateUser(id: string, updateUserDto: UpdateUserDto): Promise<IUser> {
-    const user = await this.findById(id); // 이미 조회된 사용자를 활용
-    await this.userRepository.updateUser(id, updateUserDto);
+  async updateUser(userId: ObjectId, updateUserDto: UpdateUserDto): Promise<IUser> {
+    const user = await this.findById(userId); // 본인의 정보만 업데이트 가능
+    await this.userRepository.updateUserById(userId, updateUserDto);
     return { ...user, ...updateUserDto }; // 수정된 데이터 반환
   }
 
   // 사용자 삭제
-  async deleteUser(id: string): Promise<void> {
-    const user = await this.findById(id); // 이미 조회된 사용자를 활용
-    await this.userRepository.deleteUser(id);
+  async deleteUser(userId: ObjectId): Promise<void> {
+    await this.findById(userId); // 본인의 정보만 삭제 가능
+    await this.userRepository.deleteUserById(userId);
   }
 }

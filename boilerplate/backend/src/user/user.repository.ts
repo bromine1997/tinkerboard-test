@@ -1,6 +1,7 @@
+// user.repository.ts
 import { Injectable, Inject } from '@nestjs/common';
 import { Collection, ObjectId } from 'mongodb';
-import { USER_COLLECTION } from '../database/database.constants'; // 상수로 정의된 사용자 컬렉션
+import { USER_COLLECTION } from '../database/database.constants';
 
 export interface IUser {
   _id: ObjectId;
@@ -18,45 +19,20 @@ export class UserRepository {
     @Inject(USER_COLLECTION) private readonly col: Collection<IUser>, // MongoDB 컬렉션 주입
   ) {}
 
-  // 모든 사용자 조회
-  async findAllUsers(): Promise<IUser[]> {
-    const users = await this.col.find({}).toArray();
-    return users;
+  // 특정 사용자 조회 by ObjectId
+  async findUserById(id: ObjectId): Promise<IUser | null> {
+    return await this.col.findOne({ _id: id });
   }
 
-  // 특정 사용자 조회
-  async findUserById(id: string): Promise<IUser | null> {
-    let objectId: ObjectId;
-    try {
-      objectId = new ObjectId(id);
-    } catch (error) {
-      // 유효하지 않은 ObjectId인 경우 null 반환
-      return null;
-    }
-    return await this.col.findOne({ _id: objectId });
-  }
-
-  // 사용자 정보 업데이트
-  async updateUser(id: string, updateData: Partial<IUser>): Promise<boolean> {
-    let objectId: ObjectId;
-    try {
-      objectId = new ObjectId(id);
-    } catch (error) {
-      return false;
-    }
-    const result = await this.col.updateOne({ _id: objectId }, { $set: updateData });
+  // 사용자 정보 업데이트 (자신의 정보만 업데이트)
+  async updateUserById(id: ObjectId, updateData: Partial<IUser>): Promise<boolean> {
+    const result = await this.col.updateOne({ _id: id }, { $set: updateData });
     return result.acknowledged;
   }
 
   // 사용자 삭제
-  async deleteUser(id: string): Promise<boolean> {
-    let objectId: ObjectId;
-    try {
-      objectId = new ObjectId(id);
-    } catch (error) {
-      return false;
-    }
-    const result = await this.col.deleteOne({ _id: objectId });
+  async deleteUserById(id: ObjectId): Promise<boolean> {
+    const result = await this.col.deleteOne({ _id: id });
     return result.acknowledged;
   }
 }
