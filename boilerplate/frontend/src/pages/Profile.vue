@@ -18,7 +18,6 @@ import UserCard from './Profile/UserCard';
 export default {
   components: {
     EditProfileForm,
-    UserCard,
   },
   data() {
     return {

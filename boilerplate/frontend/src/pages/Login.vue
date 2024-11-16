@@ -21,6 +21,8 @@
 
 <script>
 import axios from 'axios';
+import VueJwtDecode from 'vue-jwt-decode';
+
 
 
 export default {
@@ -60,8 +62,17 @@ export default {
 
           console.log('Token:', localStorage.getItem('token'));
 
-            // 토큰 디코딩 후 콘솔에 출력
-         
+          // 토큰 디코딩 후 userId를 로컬 스토리지에 저장
+          const decoded = VueJwtDecode.decode(response.data.access_token);
+          const userId = decoded.sub || decoded.userId || decoded.id || decoded._id;
+
+          if (userId) {
+            localStorage.setItem('userId', userId);
+            console.log('User ID:', userId);
+          } else {
+            console.error('토큰에서 사용자 ID를 추출하지 못했습니다.');
+          }
+          
          
 
           // 대시보드로 이동
