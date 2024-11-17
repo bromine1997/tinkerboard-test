@@ -23,7 +23,7 @@
         <option value="">선택하세요</option>
         <option value="male">남성</option>
         <option value="female">여성</option>
-        <option value="other">기타</option> <!-- 기타 옵션 추가 -->
+        <option value="other">기타</option>
       </select>
     </div>
     <button type="submit" class="btn btn-primary">수정하기</button>
@@ -41,17 +41,18 @@ export default {
   },
   data() {
     return {
-      localModel: { ...this.model }, // 부모의 model을 복사하여 로컬 데이터로 사용
+      localModel: {},
     };
   },
   watch: {
     model: {
       handler(newVal) {
-        this.localModel = { ...newVal };
-        console.log('Received new model prop:', newVal);
+        if (newVal) {
+          this.localModel = { ...newVal };
+        }
       },
-      deep: true,
       immediate: true,
+      deep: true,
     },
   },
   methods: {
@@ -62,7 +63,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-/* 필요한 스타일 추가 */
-</style>
