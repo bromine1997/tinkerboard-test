@@ -1,3 +1,4 @@
+<!-- EditProfileForm.vue -->
 <template>
   <form @submit.prevent="onSubmit">
     <div class="form-group">
@@ -22,7 +23,7 @@
         <option value="">선택하세요</option>
         <option value="male">남성</option>
         <option value="female">여성</option>
-        <option value="other">기타</option>
+        <option value="other">기타</option> <!-- 기타 옵션 추가 -->
       </select>
     </div>
     <button type="submit" class="btn btn-primary">수정하기</button>
@@ -62,3 +63,6 @@ export default {
 };
 </script>
 
+<style scoped>
+/* 필요한 스타일 추가 */
+</style>
