@@ -1,7 +1,13 @@
+<!-- Profile.vue -->
 <template>
   <div class="row">
     <div class="col-md-8">
-      <edit-profile-form :model="model" @update-profile="updateUserProfile"></edit-profile-form>
+      <div v-if="loading">
+        <p>Loading...</p>
+      </div>
+      <div v-else>
+        <edit-profile-form :model="model" @update-profile="updateUserProfile"></edit-profile-form>
+      </div>
     </div>
   </div>
 </template>
@@ -11,6 +17,7 @@ import axios from 'axios';
 import EditProfileForm from './Profile/EditProfileForm';
 
 export default {
+  name: 'Profile',
   components: {
     EditProfileForm,
   },
@@ -24,6 +31,7 @@ export default {
         gender: '',
       },
       userId: '',
+      loading: true, // 로딩 상태 추가
     };
   },
   created() {
@@ -50,6 +58,8 @@ export default {
       } catch (error) {
         alert('프로필 초기화 중 오류가 발생했습니다.');
         console.error(error);
+      } finally {
+        this.loading = false; // 로딩 상태 종료
       }
     },
     /**
@@ -57,6 +67,7 @@ export default {
      */
     async fetchUserProfile() {
       try {
+        // 상대 경로로 Axios 요청
         const response = await axios.get(`/users/${this.userId}`);
         const userData = response.data;
 
@@ -84,6 +95,7 @@ export default {
      */
     async updateUserProfile(updatedData) {
       try {
+        // 상대 경로로 Axios 요청
         const response = await axios.put(`/users/${this.userId}`, updatedData);
 
         if (response.status === 200) {
@@ -104,5 +116,3 @@ export default {
 <style scoped>
 /* 필요한 스타일 추가 */
 </style>
-
-
