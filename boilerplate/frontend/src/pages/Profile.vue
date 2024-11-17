@@ -55,6 +55,7 @@ export default {
 
         // 사용자 프로필 가져오기
         await this.fetchUserProfile();
+        this.$forceUpdate();
       } catch (error) {
         alert('프로필 초기화 중 오류가 발생했습니다.');
         console.error(error);
