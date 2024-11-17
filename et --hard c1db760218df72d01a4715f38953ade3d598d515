@@ -1,0 +1,303 @@
+[33mcommit c083f6bff0f55b6f695643821468add8f4536e7a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 18:24:57 2024 +0900
+
+    "수정"
+
+[33mcommit 108e631e78db25950a4306e1ae6f067ae111d3c0[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 18:20:54 2024 +0900
+
+    "app.vue 파일 수정"
+
+[33mcommit 8a8fe68d03936c27fab4ffb6ff19d15722f8c1aa[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 17:31:48 2024 +0900
+
+    "dashboard layout 업데이트"
+
+[33mcommit c1db760218df72d01a4715f38953ade3d598d515[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 17:20:08 2024 +0900
+
+    "업데이트"
+
+[33mcommit 1e78918c1a0a6cdfeab2dd7b7f39c350651c53ad[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 17:14:52 2024 +0900
+
+    "화면 업데이트"
+
+[33mcommit 06b2b0c2a0924ddf8e21e3ea3a073fa805f908f4[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 17:05:24 2024 +0900
+
+    "profile.vue 수정"
+
+[33mcommit 76866579fd4cf6e9d2625a356968fd396e340356[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 16:52:23 2024 +0900
+
+    "데이터 수정"
+
+[33mcommit 16295476dd9da76856d2a9fb78c7ecfc29992246[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 02:34:15 2024 +0900
+
+    " 데이터 저장 수정"
+
+[33mcommit 1b5538bc1bcc274d1f9176535cda784573b9001e[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 02:28:11 2024 +0900
+
+    "editprofileform"
+
+[33mcommit 76a3629aefc8be0fc2fbaa30498f4cefddb19c22[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 02:22:56 2024 +0900
+
+    "서버 수정"
+
+[33mcommit 062b922188fe598ae5fea92a762160a0893a4008[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 01:54:28 2024 +0900
+
+    "헤더에 토큰 미포함"
+
+[33mcommit e16d5c49f554b74fe9c311e2b03ce61db8f87477[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 01:52:31 2024 +0900
+
+    "objecid로 수정"
+
+[33mcommit 139b53fdf34434b51c0a17c630859e098a56686d[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 01:43:43 2024 +0900
+
+    "토큰 저장"
+
+[33mcommit c1f055e5ff175ced65d4bcc6f9115ae36647fd9f[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sun Nov 17 01:26:50 2024 +0900
+
+    "token id 추출"
+
+[33mcommit a4d25bcb675199925d3d797de1c13bf99416e602[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sat Nov 16 20:50:49 2024 +0900
+
+    "profile vue 수정"
+
+[33mcommit 26ea2f1607526a7a621d61101c3f52646221ac7e[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sat Nov 16 15:24:14 2024 +0900
+
+    ""원복"
+
+[33mcommit 42cfe52f21dd8c94f20c6fef892f1312abf24723[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sat Nov 16 15:10:18 2024 +0900
+
+    "auth guard 추가"
+
+[33mcommit 7e01c7f49f24619c7748b798324658203b1582fe[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sat Nov 16 02:23:19 2024 +0900
+
+    "수정"
+
+[33mcommit 6c0afa03dd8cd36fd0fb5271c5584fd490c25d4b[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Sat Nov 16 02:08:13 2024 +0900
+
+    "user profile 업데이트"
+
+[33mcommit 4e8b2b1cbada08ddc0ef7e0013c492a17a162275[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Fri Nov 15 23:35:19 2024 +0900
+
+    "profile vue 수정"
+
+[33mcommit e85473ab514f5def37221946d39244aaba264bc6[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Fri Nov 15 17:40:29 2024 +0900
+
+    "test"
+
+[33mcommit 129374d4abf67ac0a88b2487bc150e965491ca63[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Fri Nov 15 17:39:51 2024 +0900
+
+    "test"
+
+[33mcommit 5780c00ba2759ee1f9222813916ffa21c5e26f73[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Fri Nov 15 17:30:04 2024 +0900
+
+    "vue jwt decode 사용"
+
+[33mcommit 7f8af64ca765b921a307457afb40db5e750819b1[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Fri Nov 15 17:17:12 2024 +0900
+
+    "웹 서버 인증 추가"
+
+[33mcommit b3fd46e07713913f27793a4e6025fed9ac2f2a81[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 23:28:46 2024 +0900
+
+    "수정"
+
+[33mcommit c56328438ff54628abd541f6b9c1790c60f796bb[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 23:25:17 2024 +0900
+
+    " jwt decode 임포트 "
+
+[33mcommit ce19eed47a1a440486602c886b0363130a72fd50[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 23:21:10 2024 +0900
+
+    "import 방식 수정"
+
+[33mcommit 811a484a37eb8ff2dd5ae98feb3b700b63697d8c[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 23:17:33 2024 +0900
+
+    "토큰 검증 로그 추가"
+
+[33mcommit d12e1dd95fe1c5a711373a21b2ce828e1043a1e3[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 23:10:59 2024 +0900
+
+    "jwt 버전 다운그레이드"
+
+[33mcommit 79a0ac6af1bf1a7bf15716ad6f3c4d02899fa7be[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 23:06:29 2024 +0900
+
+    "원복"
+
+[33mcommit 919bffbe5b7024c4055aa3ebb99662c447ec6752[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 23:01:18 2024 +0900
+
+    "토큰 확인 log 추가"
+
+[33mcommit 74faf880cec744dcc9624964dd69581dbdcfba8a[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 17:18:19 2024 +0900
+
+    "import"
+
+[33mcommit 44d9e08f06a7b497e5755142142677808b11c962[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 17:15:11 2024 +0900
+
+    "import"
+
+[33mcommit ab77ba439fa49169713a57842ebda5bd0406ca90[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 17:10:08 2024 +0900
+
+    "jwt 디코드 import"
+
+[33mcommit 8485714402a810db18d37c656e5fce3815393f1a[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 17:01:59 2024 +0900
+
+    "auth role 추가"
+
+[33mcommit 42c2598ed9bb540ff79ef8025204842569648f56[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 16:59:57 2024 +0900
+
+    "decode 추가"
+
+[33mcommit 5da430a0ba1fda67d54420a024958872d2df5251[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 16:32:05 2024 +0900
+
+    "라우트 관리자 권한 추가"
+
+[33mcommit b495501f025ef721f7014bbb4d19c1c75dd4bfbf[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Thu Nov 14 16:25:08 2024 +0900
+
+    "관리자 페이지 구성"
+
+[33mcommit 81cc74fe3cb83b42672fe53439a277d150cb8b83[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Nov 13 16:14:13 2024 +0900
+
+    "eventbus"
+
+[33mcommit e3e883e9facb39861af7b210016480ba409ff3f2[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Nov 13 15:59:54 2024 +0900
+
+    "test"
+
+[33mcommit 9bdfd3868c43eaace4f43e193ab4cf565db26669[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Nov 13 15:04:07 2024 +0900
+
+    ""dash board 및 websocket 연결 추가"
+
+[33mcommit a125cbb6cf023170fd10ab4028811a4ea55594e5[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Wed Nov 13 14:37:21 2024 +0900
+
+    "socket 클라이언트 dependencies 추가"
+
+[33mcommit 4f7ac62f9f8ad45b97216afcc424424b6d6c1d37[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 22:24:46 2024 +0900
+
+    " ���������� user id �߰�"
+
+[33mcommit 8efe6e34baa7ae8bf54d7df6b66d3d2b764f391e[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 21:55:31 2024 +0900
+
+    "profile ���� ����"
+
+[33mcommit 6d50691199a8590a6b0ece6f25342e4da95c5f54[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 17:45:05 2024 +0900
+
+    "����"
+
+[33mcommit 891defce0b0ff23fa23b3e31001ed3d766f5a721[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 17:29:54 2024 +0900
+
+    "tesst"
+
+[33mcommit c3eb0cce93dc94e02efff3af75055b087421ae13[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 17:16:53 2024 +0900
+
+    "������ ������ ����"
+
+[33mcommit 34807927e0970dd0a7214a72c47a95a189580e02[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 16:45:49 2024 +0900
+
+    "test"
+
+[33mcommit 0a5305c5bb07257ed59b7b88885405e337aa3499[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 16:35:13 2024 +0900
+
+    "���� ������ ����"
+
+[33mcommit 45a3d80b8b1435ee7d2de7f249301693d0b5cef1[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Tue Nov 12 16:32:29 2024 +0900
+
+    ���������� ����
+
+[33mcommit 07b2a0d19e529b3cd7201871a33fc988ea69e9d8[m
+Author: bomin seo <sbm8011@gmail.com>
+Date:   Mon Nov 11 22:37:26 2024 +0
