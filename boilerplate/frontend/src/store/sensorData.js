@@ -15,22 +15,22 @@ export const useSensorDataStore = defineStore('sensorData', {
   }),
   actions: {
     updateSensorData(newData) {
-      // 압력 데이터 업데이트
+      console.log('Updating sensor data in store:', newData); // 데이터 출력
+
+      // 데이터 매핑 시 키 이름이 일치하는지 확인
       this.pressureData.push({
-        time: newData.time,
-        value: newData.metrics.pressure,
+        time: new Date().toLocaleTimeString(),
+        value: newData.pressure,
       });
 
-      // 다른 지표 업데이트
       this.metrics = {
-        oxygen: newData.metrics.oxygen,
-        carbonDioxide: newData.metrics.carbonDioxide,
-        temperature: newData.metrics.temperature,
-        humidity: newData.metrics.humidity,
-        pressure: newData.metrics.pressure,
-        flow: newData.metrics.flow,
+        oxygen: newData.oxygen,
+        carbonDioxide: newData.co2, // co2 키 사용
+        temperature: newData.temperature,
+        humidity: newData.humidity,
+        pressure: newData.pressure,
+        flow: newData.flowRate,
       };
     },
-    // 필요에 따라 다른 액션 추가
   },
 });
