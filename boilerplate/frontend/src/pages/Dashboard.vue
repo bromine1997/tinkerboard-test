@@ -97,7 +97,7 @@ export default {
             },
           ],
         },
-        extraOptions: chartConfigs.lineChartOptions,
+        extraOptions: chartConfigs.blueChartOptions,      //blue chart 옵션 이용
         gradientColors: config.colors.primaryGradient,
         gradientStops: [1, 0.4, 0],
       },
@@ -164,7 +164,7 @@ export default {
       // 차트 데이터 업데이트
       const chart = this.mainChart.chartData;
      
-     
+
       chart.labels.push(newDataPoint.time);
       chart.datasets[0].data.push(newDataPoint.value);
       this.mainChart.chartData = { ...chart };
