@@ -41,7 +41,6 @@
         <card type="chart">
           <div class="chart-area">
             <line-chart
-              style="height: 900px"
               ref="mainChart"
               chart-id="main-line-chart"
               :chart-data="mainChart.chartData"
