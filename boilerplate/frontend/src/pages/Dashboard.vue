@@ -22,7 +22,7 @@
             @click="togglePauseResume"
             :disabled="!isMonitoring"
           >
-            {{ isPaused ? $t("dashboard.resume") : $t("dashboard.pause") }}
+            {{ isPaused ? 'Resume' : 'Pause' }}
           </button>
           <button
             class="btn btn-sm btn-danger"
