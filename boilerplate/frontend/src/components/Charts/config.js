@@ -17,6 +17,13 @@ export let blueChartOptions = {
     intersect: 0,
     position: 'nearest',
   },
+  plugins: {
+    decimation: {
+      enabled: true, // 데시메이션 활성화
+      algorithm: 'lttb', // LTTB 알고리즘 사용
+      samples: 1000, // 표시할 데이터 포인트 수 제한
+    },
+  },
   scales: {
     yAxes: [
       {
