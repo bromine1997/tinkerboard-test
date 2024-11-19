@@ -1,7 +1,7 @@
 <!-- Dashboard.vue -->
 <template>
   <div>
-    <!-- 헤더 섹션: 대시보드 제목과 제어 버튼 -->
+    <!-- 헤더 섹션 -->
     <div class="row mb-4">
       <div class="col-12 d-flex justify-content-between align-items-center">
         <div>
@@ -10,8 +10,7 @@
           </h5>
           <h2 class="card-title">{{ $t("dashboard.performance") }}</h2>
         </div>
-        <!-- 모니터링 제어 버튼 -->
-        <!-- 생략 -->
+        <!-- 제어 버튼 (생략) -->
       </div>
     </div>
 
@@ -62,32 +61,28 @@ export default {
   components: {
     LineChart,
   },
-  setup() {
-    const sensorDataStore = useSensorDataStore();
-
-    return {
-      sensorDataStore,
-    };
-  },
-  data() {
-    return {
-      // 차트 설정
-      mainChart: {
-        extraOptions: chartConfigs.blueChartOptions, // blue chart 옵션 이용
+  computed: {
+    sensorDataStore() {
+      return useSensorDataStore();
+    },
+    mainChart() {
+      return {
+        extraOptions: chartConfigs.blueChartOptions,
         gradientColors: config.colors.primaryGradient,
         gradientStops: [1, 0.4, 0],
-      },
-      // 모니터링 지표 설정
-      monitoringMetrics: [
-        { name: "산소 (Oxygen)", value: 0, unit: "%", icon: "tim-icons icon-oxygen" },
-        { name: "이산화탄소 (Carbon Dioxide)", value: 0, unit: "ppm", icon: "tim-icons icon-carbon-dioxide" },
-        { name: "온도 (Temperature)", value: 0, unit: "°C", icon: "tim-icons icon-temperature" },
-        { name: "습도 (Humidity)", value: 0, unit: "%", icon: "tim-icons icon-humidity" },
-        { name: "유량 (Flow)", value: 0, unit: "L/min", icon: "tim-icons icon-flow" },
-      ],
-    };
-  },
-  computed: {
+      };
+    },
+    monitoringMetrics() {
+      const newMetrics = this.sensorDataStore.metrics;
+      return [
+        { name: "산소 (Oxygen)", value: newMetrics.oxygen, unit: "%", icon: "tim-icons icon-oxygen" },
+        { name: "이산화탄소 (Carbon Dioxide)", value: newMetrics.carbonDioxide, unit: "ppm", icon: "tim-icons icon-carbon-dioxide" },
+        { name: "온도 (Temperature)", value: newMetrics.temperature, unit: "°C", icon: "tim-icons icon-temperature" },
+        { name: "습도 (Humidity)", value: newMetrics.humidity, unit: "%", icon: "tim-icons icon-humidity" },
+        { name: "유량 (Flow)", value: newMetrics.flow, unit: "L/min", icon: "tim-icons icon-flow" },
+        { name: "압력 (Pressure)", value: newMetrics.pressure, unit: "ATA", icon: "tim-icons icon-flow" },
+      ];
+    },
     pressureChartData() {
       const labels = this.sensorDataStore.pressureData.map((data) => data.time);
       const dataPoints = this.sensorDataStore.pressureData.map((data) => data.value);
@@ -107,27 +102,11 @@ export default {
       };
     },
   },
-  watch: {
-    // 센서 데이터 변경 시 모니터링 지표 업데이트
-    'sensorDataStore.metrics': {
-      handler(newMetrics) {
-        this.monitoringMetrics = [
-          { name: "산소 (Oxygen)", value: newMetrics.oxygen, unit: "%", icon: "tim-icons icon-oxygen" },
-          { name: "이산화탄소 (Carbon Dioxide)", value: newMetrics.carbonDioxide, unit: "ppm", icon: "tim-icons icon-carbon-dioxide" },
-          { name: "온도 (Temperature)", value: newMetrics.temperature, unit: "°C", icon: "tim-icons icon-temperature" },
-          { name: "습도 (Humidity)", value: newMetrics.humidity, unit: "%", icon: "tim-icons icon-humidity" },
-          { name: "유량 (Flow)", value: newMetrics.flow, unit: "L/min", icon: "tim-icons icon-flow" },
-        ];
-      },
-      deep: true,
-    },
-  },
   mounted() {
-    // 초기화 작업이 필요하면 여기서 수행
+    // 필요한 초기화 작업을 여기서 수행
   },
 };
 </script>
-
 
 <style scoped>
 .card-category {
