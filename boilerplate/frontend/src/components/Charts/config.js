@@ -29,7 +29,7 @@ export let blueChartOptions = {
         ticks: {
           min: -5,
 					max: 5,
-          padding: 20,
+          padding: 10,
           fontColor: '#2380f7',
         },
       },
@@ -44,7 +44,7 @@ export let blueChartOptions = {
           zeroLineColor: 'transparent',
         },
         ticks: {
-          padding: 20,
+          padding: 10,
           fontColor: '#2380f7',
         },
       },

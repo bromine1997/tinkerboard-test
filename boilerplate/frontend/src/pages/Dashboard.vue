@@ -191,8 +191,10 @@ export default {
   },
   mounted() {
     // 차트 초기화
-    this.mainChart.chartData.datasets[0].data = Array(60).fill(0); // 60초 간격
-    this.mainChart.chartData.labels = this.generateLabels();
+    
+
+    this.mainChart.chartData.labels =[];
+    this.mainChart.chartData.datasets[0].data = [];
 
     // RTL 설정
     this.i18n = this.$i18n;
