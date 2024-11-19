@@ -12,6 +12,11 @@ import './registerServiceWorker';
 import axios from 'axios';
 import socket from './socket'; // Socket.IO 클라이언트 임포트
 
+import { createPinia, PiniaVuePlugin } from 'pinia';
+
+Vue.use(PiniaVuePlugin); // Vue 2에서는 이 플러그인을 사용해야 합니다.
+const pinia = createPinia();
+
 
 Vue.use(BlackDashboard);
 Vue.use(VueRouter);
@@ -31,6 +36,7 @@ Vue.prototype.$socket = socket; // Socket.IO 클라이언트를 전역으로 설
 
 new Vue({
   router,
+  pinia,
   i18n,
   render: (h) => h(App),
 }).$mount('#app');
