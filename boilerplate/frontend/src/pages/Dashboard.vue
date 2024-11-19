@@ -163,10 +163,8 @@ export default {
       const newDataPoint = this.fetchSensorData();
       // 차트 데이터 업데이트
       const chart = this.mainChart.chartData;
-      if (chart.labels.length >= 60) { // 60초 간격
-        chart.labels.shift();
-        chart.datasets[0].data.shift();
-      }
+     
+     
       chart.labels.push(newDataPoint.time);
       chart.datasets[0].data.push(newDataPoint.value);
       this.mainChart.chartData = { ...chart };
