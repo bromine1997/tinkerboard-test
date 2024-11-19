@@ -41,7 +41,7 @@
         <card type="chart">
           <div class="chart-area">
             <line-chart
-              style="height: 400px"
+              style="height: 600px"
               ref="mainChart"
               chart-id="main-line-chart"
               :chart-data="mainChart.chartData"
@@ -72,7 +72,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import LineChart from "@/components/Charts/LineChart";
 import * as chartConfigs from "@/components/Charts/config";
@@ -128,9 +127,9 @@ export default {
     generateLabels() {
       const labels = [];
       const now = new Date();
-      for (let i = 19; i >= 0; i--) {
-        const time = new Date(now.getTime() - i * 60000); // 매 분마다
-        labels.push(time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+      for (let i = 59; i >= 0; i--) { // 60초 간격으로 1분 분량
+        const time = new Date(now.getTime() - i * 1000); // 매 초마다
+        labels.push(time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
       }
       return labels;
     },
@@ -139,7 +138,7 @@ export default {
       if (this.isMonitoring) return;
       this.isMonitoring = true;
       this.isPaused = false;
-      this.monitoringInterval = setInterval(this.updateMetrics, 60000); // 매 분마다 업데이트
+      this.monitoringInterval = setInterval(this.updateMetrics, 1000); // 1초마다 업데이트
       this.updateMetrics(); // 초기 업데이트
     },
     // 일시정지/재개 토글
@@ -149,7 +148,7 @@ export default {
       if (this.isPaused) {
         clearInterval(this.monitoringInterval);
       } else {
-        this.monitoringInterval = setInterval(this.updateMetrics, 60000);
+        this.monitoringInterval = setInterval(this.updateMetrics, 1000);
       }
     },
     // 모니터링 정지
@@ -165,7 +164,7 @@ export default {
       const newDataPoint = this.fetchSensorData();
       // 차트 데이터 업데이트
       const chart = this.mainChart.chartData;
-      if (chart.labels.length >= 20) {
+      if (chart.labels.length >= 60) { // 60초 간격
         chart.labels.shift();
         chart.datasets[0].data.shift();
       }
@@ -180,7 +179,7 @@ export default {
     // 센서 데이터 가져오기 (시뮬레이션)
     fetchSensorData() {
       const now = new Date();
-      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
       const value = Math.floor(Math.random() * 100); // 예시 값
       const metrics = [
         (Math.random() * 100).toFixed(2),   // 산소 %
@@ -195,7 +194,7 @@ export default {
   },
   mounted() {
     // 차트 초기화
-    this.mainChart.chartData.datasets[0].data = Array(20).fill(0);
+    this.mainChart.chartData.datasets[0].data = Array(60).fill(0); // 60초 간격
     this.mainChart.chartData.labels = this.generateLabels();
 
     // RTL 설정
