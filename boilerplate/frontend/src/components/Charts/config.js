@@ -27,7 +27,8 @@ export let blueChartOptions = {
           zeroLineColor: 'transparent',
         },
         ticks: {
-          beginAtZero: false, // 필요에 따라 true로 설정
+          min: -5,
+					max: 5,
           padding: 20,
           fontColor: '#2380f7',
         },

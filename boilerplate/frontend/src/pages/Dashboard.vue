@@ -177,7 +177,7 @@ export default {
     fetchSensorData() {
       const now = new Date();
       const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      const value = Math.floor(Math.random() * 100); // 예시 값
+      const value = Math.floor(Math.random() * 5); // 0부터 5까지의 정수 값
       const metrics = [
         (Math.random() * 100).toFixed(2),   // 산소 %
         (Math.random() * 1000).toFixed(2),  // 이산화탄소 ppm
