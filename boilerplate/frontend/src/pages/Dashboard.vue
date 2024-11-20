@@ -56,24 +56,23 @@ import LineChart from "@/components/Charts/LineChart";
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/config";
 import { useSensorDataStore } from "@/store/sensorData";
+import { computed } from '@vue/composition-api'; // Vue 2에서 Composition API 사용
 
 export default {
   components: {
     LineChart,
   },
-  computed: {
-    sensorDataStore() {
-      return useSensorDataStore();
-    },
-    mainChart() {
-      return {
-        extraOptions: chartConfigs.blueChartOptions,
-        gradientColors: config.colors.primaryGradient,
-        gradientStops: [1, 0.4, 0],
-      };
-    },
-    monitoringMetrics() {
-      const newMetrics = this.sensorDataStore.metrics;
+  setup() {
+    const sensorDataStore = useSensorDataStore();
+
+    const mainChart = {
+      extraOptions: chartConfigs.blueChartOptions,
+      gradientColors: config.colors.primaryGradient,
+      gradientStops: [1, 0.4, 0],
+    };
+
+    const monitoringMetrics = computed(() => {
+      const newMetrics = sensorDataStore.metrics;
       return [
         { name: "산소 (Oxygen)", value: newMetrics.oxygen, unit: "%", icon: "tim-icons icon-oxygen" },
         { name: "이산화탄소 (Carbon Dioxide)", value: newMetrics.carbonDioxide, unit: "ppm", icon: "tim-icons icon-carbon-dioxide" },
@@ -82,11 +81,11 @@ export default {
         { name: "유량 (Flow)", value: newMetrics.flow, unit: "L/min", icon: "tim-icons icon-flow" },
         { name: "압력 (Pressure)", value: newMetrics.pressure, unit: "ATA", icon: "tim-icons icon-flow" },
       ];
-    },
-    pressureChartData() {
-      const labels = this.sensorDataStore.pressureData.map((data) => data.time);
-      const dataPoints = this.sensorDataStore.pressureData.map((data) => data.value);
+    });
 
+    const pressureChartData = computed(() => {
+      const labels = sensorDataStore.pressureData.map((data) => data.time);
+      const dataPoints = sensorDataStore.pressureData.map((data) => data.value);
       return {
         labels,
         datasets: [
@@ -100,10 +99,14 @@ export default {
           },
         ],
       };
-    },
-  },
-  mounted() {
-    // 필요한 초기화 작업을 여기서 수행
+    });
+
+    return {
+      sensorDataStore,
+      mainChart,
+      monitoringMetrics,
+      pressureChartData,
+    };
   },
 };
 </script>
