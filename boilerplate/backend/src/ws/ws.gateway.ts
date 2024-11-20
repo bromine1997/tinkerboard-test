@@ -60,6 +60,8 @@ export class WsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayD
       client.broadcast.emit('sensor_data_update', {
         deviceId: sensorDataPacketDto.deviceId,
         sensorData: sensorDataPacketDto.sensorData,
+        elapsedTime: sensorDataPacketDto.elapsedTime,
+        setPoint: sensorDataPacketDto.setPoint,
         timestamp: new Date(),
       });
 
