@@ -34,7 +34,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import { inject } from 'vue';
 import ContentFooter from './ContentFooter.vue';
@@ -46,10 +45,10 @@ export default {
     DashboardContent,
   },
   setup() {
-    const sidebarStore = inject('sidebarStore');
+    const sidebarStore = inject('sidebarStore'); // inject로 주입받음
 
     const toggleSidebar = () => {
-      if (sidebarStore.showSidebar) {
+      if (sidebarStore?.showSidebar) {
         sidebarStore.displaySidebar(false);
       }
     };
