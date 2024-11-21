@@ -10,16 +10,13 @@ const SidebarStore = {
 };
 
 const SidebarPlugin = {
-  install(Vue) {
-    let app = new Vue({
-      data: {
-        sidebarStore: SidebarStore,
-      },
-    });
+  install(app) {
+    // Vue 3에서는 app.config.globalProperties를 사용하여 글로벌 속성 추가
+    app.config.globalProperties.$sidebar = SidebarStore;
 
-    Vue.prototype.$sidebar = app.sidebarStore;
-    Vue.component('side-bar', Sidebar);
-    Vue.component('sidebar-link', SidebarLink);
+    // 글로벌 컴포넌트 등록
+    app.component('side-bar', Sidebar);
+    app.component('sidebar-link', SidebarLink);
   },
 };
 

@@ -1,17 +1,12 @@
-// src/router/routes.js
 import DashboardLayout from '@/layout/dashboard/DashboardLayout.vue';
 import NotFound from '@/pages/NotFoundPage.vue';
 
-
-
-// Page components
+// Page components (Lazy-loading with dynamic import)
 const Dashboard = () => import('@/pages/Dashboard.vue');
 const Profile = () => import('@/pages/Profile.vue');
 const TableList = () => import('@/pages/TableList.vue');
 const Login = () => import('@/pages/Login.vue');
 const SignUp = () => import('@/pages/SignUp.vue');
-
-
 
 const routes = [
   {
@@ -55,11 +50,11 @@ const routes = [
       },
     ],
   },
-  { path: '*', component: NotFound },
+  { 
+    path: '/:pathMatch(.*)*', 
+    name: 'NotFound',
+    component: NotFound,
+  },
 ];
 
 export default routes;
-
-
-// 보안 강화: 클라이언트 측에서의 인증 및 권한 검사는 쉽게 우회될 수 있으므로, 서버 측에서도 반드시 권한 체크를 수행해야하는데 일시적으로 웹에서만 하도록 설정
-// 토큰 유효성 검사: 토큰의 만료 여부를 확인하여 만료된 토큰에 대한 처리를 추가로 구현..해야함

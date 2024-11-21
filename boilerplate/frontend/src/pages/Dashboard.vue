@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import LineChart from "@/components/Charts/LineChart";
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/config";
@@ -85,7 +85,11 @@ export default {
     LineChart,
   },
   setup() {
+    // 상태 관리
     const sensorDataStore = useSensorDataStore();
+
+    const isMonitoring = ref(false); // 모니터링 상태
+    const isPaused = ref(false); // 일시 정지 상태
 
     // Computed properties
     const setPoint = computed(() => sensorDataStore.metrics.setPoint);
@@ -157,16 +161,38 @@ export default {
       };
     });
 
+    // Methods
+    const startMonitoring = () => {
+      isMonitoring.value = true;
+      isPaused.value = false;
+      console.log('Monitoring started');
+    };
+
+    const togglePauseResume = () => {
+      isPaused.value = !isPaused.value;
+      console.log(isPaused.value ? 'Monitoring paused' : 'Monitoring resumed');
+    };
+
+    const stopMonitoring = () => {
+      isMonitoring.value = false;
+      isPaused.value = false;
+      console.log('Monitoring stopped');
+    };
+
     return {
       setPoint,
       mainChart,
       monitoringMetrics,
       pressureChartData,
+      isMonitoring,
+      isPaused,
+      startMonitoring,
+      togglePauseResume,
+      stopMonitoring,
     };
   },
 };
 </script>
-
 
 <style scoped>
 .card-category {

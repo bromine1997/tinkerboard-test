@@ -20,51 +20,45 @@
 </template>
 
 <script>
-import axios from 'axios';
-import VueJwtDecode from 'vue-jwt-decode';
-
-
+import { ref } from 'vue'; // Vue 3의 ref 사용
+import axios from 'axios'; // Axios 사용
+import jwtDecode from 'jwt-decode'; // VueJwtDecode 대신 jwt-decode 사용
 
 export default {
-  data() {
-    return {
-      user: {
-        username: '', // email 대신 username을 사용
-        password: '',
-      },
-    };
-  },
-  methods: {
-    // 로그인 요청
-    async login() {
+  setup() {
+    // 상태 관리
+    const user = ref({
+      username: '',
+      password: '',
+    });
+
+    // 로그인 메서드
+    const login = async () => {
       try {
         // 관리자 계정 확인 로직
-        if (this.user.username === 'admin' && this.user.password === '1234') {
+        if (user.value.username === 'admin' && user.value.password === '1234') {
           alert('관리자 로그인 성공');
-          if (this.$route.path !== '/dashboard') {
-            this.$router.push('/dashboard'); // 대시보드로 이동
-          }
+          window.location.href = '/dashboard'; // 대시보드로 이동
           return;
         }
 
-        // 서버에 아이디와 비밀번호를 보내 로그인 요청
+        // 서버에 로그인 요청
         const response = await axios.post('/auth/login', {
-          username: this.user.username,
-          password: this.user.password,
+          username: user.value.username,
+          password: user.value.password,
         });
 
-        // 서버로부터 로그인 성공 응답을 받았을 때
+        // 로그인 성공 처리
         if (response.data.access_token) {
           alert('로그인 성공');
 
-          // JWT 토큰을 localStorage에 저장
-          localStorage.setItem('token', response.data.access_token);
+          // JWT 토큰 저장
+          const token = response.data.access_token;
+          localStorage.setItem('token', token);
 
-          console.log('Token:', localStorage.getItem('token'));
-
-          // 토큰 디코딩 후 userId를 로컬 스토리지에 저장
-          const decoded1 = VueJwtDecode.decode(response.data.access_token);
-          const userId = decoded1.sub || decoded1.userId || decoded1.id || decoded1._id;
+          // 토큰 디코딩
+          const decodedToken = jwtDecode(token);
+          const userId = decodedToken.sub || decodedToken.userId || decodedToken.id || decodedToken._id;
 
           if (userId) {
             localStorage.setItem('userId', userId);
@@ -72,31 +66,34 @@ export default {
           } else {
             console.error('토큰에서 사용자 ID를 추출하지 못했습니다.');
           }
-          
-         
 
           // 대시보드로 이동
-          if (this.$route.path !== '/dashboard') {
-            this.$router.push('/dashboard');
-          }
+          window.location.href = '/dashboard';
         } else {
           alert('로그인 실패, 다시 시도하세요.');
         }
       } catch (error) {
         alert('오류가 발생했습니다.');
+        console.error(error);
       }
-    },
+    };
 
     // 회원가입 페이지로 이동
-    goToSignUp() {
-      this.$router.push('/signup');
-    },
+    const goToSignUp = () => {
+      window.location.href = '/signup';
+    };
+
+    return {
+      user,
+      login,
+      goToSignUp,
+    };
   },
 };
 </script>
 
 <style scoped>
-/* 스타일은 기존 스타일 그대로 유지 */
+/* 기존 스타일 그대로 유지 */
 #login-test {
   display: flex;
   flex-direction: column;
@@ -118,7 +115,6 @@ export default {
 }
 
 #login-container {
-  
   justify-content: center;
   align-items: center;
   min-height: 100vh;

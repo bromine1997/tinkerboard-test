@@ -1,14 +1,11 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import routes from './routes';
 import { getUserRole } from '@/utils/auth'; // 헬퍼 함수 임포트
 
-Vue.use(VueRouter);
-
-// 라우터 설정
-const router = new VueRouter({
+// 라우터 생성
+const router = createRouter({
+  history: createWebHistory(), // HTML5 History 모드 사용
   routes,
-  linkExactActiveClass: 'active',
   scrollBehavior: (to) => {
     if (to.hash) {
       return { selector: to.hash };
@@ -18,13 +15,11 @@ const router = new VueRouter({
   },
 });
 
-// 글로벌 네비게이션 가드 추가
+// 글로벌 네비게이션 가드
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   const allowedRoles = to.meta.roles;
   const token = localStorage.getItem('token');
-
- 
 
   if (requiresAuth) {
     if (!token) {

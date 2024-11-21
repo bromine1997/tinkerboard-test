@@ -1,8 +1,10 @@
 <template>
   <div>
     <notifications></notifications>
+    <!-- route 객체가 null인지 확인 후 렌더링 -->
     <router-view
-      :key="$route.fullPath"
+      v-if="route && route.fullPath"
+      :key="route.fullPath"
       @new-sensor-data="handleNewSensorData"
     ></router-view>
   </div>
@@ -10,21 +12,26 @@
 
 <script>
 import { useSensorDataStore } from '@/store/sensorData';
-import { onMounted, onBeforeUnmount, getCurrentInstance, watch } from 'vue';
+import { onMounted, onBeforeUnmount, watch } from 'vue';
+import { useRoute } from 'vue-router';
+import { inject } from 'vue';
 
 export default {
   setup() {
+    const route = useRoute(); // Vue Router의 useRoute로 경로 정보 가져오기
     const sensorDataStore = useSensorDataStore();
-    const vueInstance = getCurrentInstance().proxy;
+    const sidebarStore = inject('sidebarStore'); // Sidebar 상태 관리
+    const rtlStore = inject('rtlStore'); // RTL 상태 관리
+    const socket = inject('socket'); // WebSocket 객체
 
     const disableRTL = () => {
-      if (vueInstance.$rtl && !vueInstance.$rtl.isRTL) {
-        vueInstance.$rtl.disableRTL();
+      if (rtlStore && !rtlStore.isRTL) {
+        rtlStore.disableRTL();
       }
     };
 
     const toggleNavOpen = () => {
-      let root = document.getElementsByTagName('html')[0];
+      const root = document.documentElement; // HTML 엘리먼트 가져오기
       root.classList.toggle('nav-open');
     };
 
@@ -45,17 +52,18 @@ export default {
       sensorDataStore.updateSensorData(data);
     };
 
-    // 워처 설정
+    // 경로 변경 감지
     watch(
-      () => vueInstance.$route.fullPath,
+      () => route?.fullPath,
       () => {
         disableRTL();
       },
       { immediate: true }
     );
 
+    // Sidebar 상태 변경 감지
     watch(
-      () => vueInstance.$sidebar.showSidebar,
+      () => sidebarStore?.showSidebar,
       () => {
         toggleNavOpen();
       }
@@ -63,20 +71,21 @@ export default {
 
     onMounted(() => {
       // WebSocket 이벤트 리스너 등록
-      if (vueInstance.$socket) {
-        vueInstance.$socket.on('connect', handleConnect);
-        vueInstance.$socket.on('disconnect', handleDisconnect);
-        vueInstance.$socket.on('sensor_data_update', handleSensorDataUpdate);
+      if (socket) {
+        socket.on('connect', handleConnect);
+        socket.on('disconnect', handleDisconnect);
+        socket.on('sensor_data_update', handleSensorDataUpdate);
       }
     });
 
     onBeforeUnmount(() => {
-      if (vueInstance.$socket) {
-        vueInstance.$socket.off('sensor_data_update', handleSensorDataUpdate);
+      if (socket) {
+        socket.off('sensor_data_update', handleSensorDataUpdate);
       }
     });
 
     return {
+      route, // route를 반환
       handleNewSensorData,
     };
   },

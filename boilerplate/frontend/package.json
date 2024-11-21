@@ -12,8 +12,9 @@
     "prettify": "prettier --write ."
   },
   "dependencies": {
+    "@vue/compiler-sfc": "^3.5.13",
     "axios": "^0.21.4",
-    "chart.js": "2.9.4",
+    "chart.js": "^3.9.1",
     "chartjs-adapter-moment": "^1.0.1",
     "eslint-plugin-vue": "9.11.0",
     "jwt-decode": "^3.1.2",
@@ -21,20 +22,21 @@
     "register-service-worker": "^1.7.2",
     "save": "^2.9.0",
     "socket.io-client": "^4.8.1",
-    "vue": "2.7.14",
-    "vue-chartjs": "3.5.1",
-    "vue-i18n": "8.28.2",
+    "vue": "^3.5.13",
+    "vue-chartjs": "^4.1.2",
+    "vue-demi": "^0.14.10",
+    "vue-i18n": "^9.14.1",
     "vue-jwt-decode": "^0.1.0",
-    "vue-router": "3.6.5",
+    "vue-router": "^4.4.5",
     "vue-router-prefetch": "1.6.3",
     "vue2-transitions": "0.3.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.21.8",
-    "@vue/cli-plugin-babel": "5.0.8",
-    "@vue/cli-plugin-eslint": "5.0.8",
-    "@vue/cli-plugin-pwa": "5.0.8",
-    "@vue/cli-service": "5.0.8",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-plugin-pwa": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
     "@vue/eslint-config-prettier": "7.1.0",
     "eslint": "8.41.0",
     "eslint-plugin-prettier": "4.2.1",
@@ -42,7 +44,6 @@
     "prettier": "2.8.8",
     "sass": "1.62.1",
     "sass-loader": "10.2.0",
-    "vue-cli-plugin-i18n": "2.3.2",
-    "vue-template-compiler": "2.7.14"
+    "vue-cli-plugin-i18n": "2.3.2"
   }
 }

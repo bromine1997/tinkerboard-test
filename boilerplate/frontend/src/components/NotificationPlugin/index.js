@@ -1,7 +1,7 @@
 import Notifications from './Notifications.vue';
 
 const NotificationStore = {
-  state: [], // here the notifications will be added
+  state: [], // 여기서 알림이 관리됩니다
   settings: {
     overlap: false,
     verticalAlign: 'top',
@@ -41,20 +41,18 @@ const NotificationStore = {
 };
 
 const NotificationsPlugin = {
-  install(Vue, options) {
-    let app = new Vue({
-      data: {
-        notificationStore: NotificationStore,
-      },
-      methods: {
-        notify(notification) {
-          this.notificationStore.notify(notification);
-        },
-      },
-    });
-    Vue.prototype.$notify = app.notify;
-    Vue.prototype.$notifications = app.notificationStore;
-    Vue.component('Notifications', Notifications);
+  install(app, options) {
+    // Vue 3의 글로벌 속성 설정
+    app.config.globalProperties.$notify = (notification) => {
+      NotificationStore.notify(notification);
+    };
+
+    app.config.globalProperties.$notifications = NotificationStore;
+
+    // Notifications 컴포넌트를 전역 컴포넌트로 등록
+    app.component('Notifications', Notifications);
+
+    // 플러그인 옵션 병합
     if (options) {
       NotificationStore.setOptions(options);
     }
