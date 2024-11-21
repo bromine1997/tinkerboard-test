@@ -60,25 +60,27 @@ export default defineComponent({
     const renderChart = () => {
       const ctx = canvas.value.getContext("2d");
 
-      // Update dataset background gradient
-      props.chartData.datasets.forEach((dataset) => {
-        dataset.backgroundColor = createGradient(ctx);
-      });
+      // Chart.js 데이터셋에서 동적으로 배경색 업데이트
+      const updatedDatasets = props.chartData.datasets.map((dataset) => ({
+        ...dataset,
+        backgroundColor: createGradient(ctx),
+      }));
 
-      // Destroy previous chart instance if it exists
+      // Chart.js 인스턴스 제거 후 새로 생성
       if (chartInstance.value) {
         chartInstance.value.destroy();
       }
-
-      // Create new chart instance
       chartInstance.value = new ChartJS(ctx, {
         type: "line",
-        data: props.chartData,
+        data: {
+          ...props.chartData,
+          datasets: updatedDatasets,
+        },
         options: props.extraOptions,
       });
     };
 
-    // Watch for changes in chartData and re-render
+    // Chart 데이터 감시 후 업데이트
     watch(
       () => props.chartData,
       () => {
