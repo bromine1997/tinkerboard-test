@@ -117,37 +117,37 @@ export default {
           name: "산소 (Oxygen)",
           value: newMetrics.oxygen,
           unit: "%",
-          icon: "tim-icons icon-oxygen",
+          
         },
         {
           name: "이산화탄소 (Carbon Dioxide)",
           value: newMetrics.carbonDioxide,
           unit: "ppm",
-          icon: "tim-icons icon-carbon-dioxide",
+          
         },
         {
           name: "온도 (Temperature)",
           value: newMetrics.temperature,
           unit: "°C",
-          icon: "tim-icons icon-temperature",
+          
         },
         {
           name: "습도 (Humidity)",
           value: newMetrics.humidity,
           unit: "%",
-          icon: "tim-icons icon-humidity",
+          
         },
         {
           name: "유량 (Flow)",
           value: newMetrics.flow,
           unit: "L/min",
-          icon: "tim-icons icon-flow",
+          
         },
         {
           name: "압력 (Pressure)",
           value: newMetrics.pressure,
           unit: "ATA",
-          icon: "tim-icons icon-pressure",
+          
         },
       ];
     },
