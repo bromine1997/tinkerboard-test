@@ -1,7 +1,6 @@
 // main.js
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import VueCompositionApi from '@vue/composition-api';
 import RouterPrefetch from 'vue-router-prefetch';
 import App from './App';
 import router from './router/index';
@@ -16,7 +15,7 @@ import socket from './socket'; // Socket.IO 클라이언트 임포트
 import { createPinia, PiniaVuePlugin } from 'pinia';
 
 
-Vue.use(VueCompositionApi);
+
 
 
 Vue.use(PiniaVuePlugin); // Vue 2에서는 이 플러그인을 사용해야 합니다.

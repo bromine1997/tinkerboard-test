@@ -10,21 +10,12 @@
 
 <script>
 import { useSensorDataStore } from '@/store/sensorData';
-import {
-  onMounted,
-  onUnmounted,
-  getCurrentInstance,
-  watch,
-} from '@vue/composition-api';
+import { onMounted, onBeforeUnmount, getCurrentInstance, watch } from 'vue';
 
 export default {
   setup() {
     const sensorDataStore = useSensorDataStore();
-    const vueInstance = getCurrentInstance();
-
-    if (!vueInstance) {
-      throw new Error('getCurrentInstance()가 null을 반환했습니다. @vue/composition-api가 올바르게 설치되고 등록되었는지 확인하세요.');
-    }
+    const vueInstance = getCurrentInstance().proxy;
 
     const disableRTL = () => {
       if (vueInstance.$rtl && !vueInstance.$rtl.isRTL) {
@@ -56,7 +47,7 @@ export default {
 
     // 워처 설정
     watch(
-      () => vueInstance.$route && vueInstance.$route.fullPath,
+      () => vueInstance.$route.fullPath,
       () => {
         disableRTL();
       },
@@ -64,7 +55,7 @@ export default {
     );
 
     watch(
-      () => vueInstance.$sidebar && vueInstance.$sidebar.showSidebar,
+      () => vueInstance.$sidebar.showSidebar,
       () => {
         toggleNavOpen();
       }
@@ -79,7 +70,7 @@ export default {
       }
     });
 
-    onUnmounted(() => {
+    onBeforeUnmount(() => {
       if (vueInstance.$socket) {
         vueInstance.$socket.off('sensor_data_update', handleSensorDataUpdate);
       }
