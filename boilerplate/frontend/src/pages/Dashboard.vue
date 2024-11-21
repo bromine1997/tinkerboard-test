@@ -97,41 +97,41 @@ export default {
     }));
 
     const monitoringMetrics = computed(() => {
-      const newMetrics = sensorDataStore.metrics;
-      console.log('Monitoring Metrics:', newMetrics); // 디버깅을 위해 로그 추가
-
-      return [
+      const metrics = [
         {
           name: "산소 (Oxygen)",
-          value: newMetrics.oxygen,
+          value: sensorDataStore.metrics.oxygen,
           unit: "%",
         },
         {
           name: "이산화탄소 (Carbon Dioxide)",
-          value: newMetrics.carbonDioxide,
+          value: sensorDataStore.metrics.carbonDioxide,
           unit: "ppm",
         },
         {
           name: "온도 (Temperature)",
-          value: newMetrics.temperature,
+          value: sensorDataStore.metrics.temperature,
           unit: "°C",
         },
         {
           name: "습도 (Humidity)",
-          value: newMetrics.humidity,
+          value: sensorDataStore.metrics.humidity,
           unit: "%",
         },
         {
           name: "유량 (Flow)",
-          value: newMetrics.flow,
+          value: sensorDataStore.metrics.flowRate,
           unit: "L/min",
         },
         {
           name: "압력 (Pressure)",
-          value: newMetrics.pressure,
+          value: sensorDataStore.metrics.pressure,
           unit: "ATA",
         },
       ];
+
+      console.log('Updated monitoringMetrics:', metrics); // 디버깅용 로그
+      return metrics;
     });
 
     const pressureChartData = computed(() => {
