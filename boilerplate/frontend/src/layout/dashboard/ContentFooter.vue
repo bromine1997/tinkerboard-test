@@ -3,13 +3,13 @@
     <div class="container-fluid">
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" href="http://www.creative-tim.com"> Creative Tim </a>
+          <a class="nav-link" href="http://www.creative-tim.com">Creative Tim</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://blog.creative-tim.com"> Blog </a>
+          <a class="nav-link" href="http://blog.creative-tim.com">Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="http://www.creative-tim.com/license"> Licenses </a>
+          <a class="nav-link" href="http://www.creative-tim.com/license">Licenses</a>
         </li>
       </ul>
       <div class="copyright">
@@ -21,13 +21,17 @@
     </div>
   </footer>
 </template>
+
 <script>
+import { reactive } from 'vue';
+
 export default {
-  data() {
-    return {
+  setup() {
+    const state = reactive({
       year: new Date().getFullYear(),
-    };
+    });
+
+    return state;
   },
 };
 </script>
-<style></style>
