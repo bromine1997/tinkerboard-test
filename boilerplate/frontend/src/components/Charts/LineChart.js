@@ -1,14 +1,14 @@
+
 import {
   Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
   LineElement,
   CategoryScale,
   LinearScale,
   PointElement,
+  Tooltip,
+  Legend,
 } from "chart.js";
-import { defineComponent, onMounted, ref, watch } from "vue";
+import { defineComponent, ref, watch, onMounted } from "vue";
 
 export default defineComponent({
   name: "LineChart",
@@ -28,26 +28,21 @@ export default defineComponent({
         "rgba(72,72,176,0.0)",
         "rgba(119,52,169,0)",
       ],
+      validator: (val) => val.length > 2,
     },
     gradientStops: {
       type: Array,
       default: () => [1, 0.4, 0],
+      validator: (val) => val.length > 2,
+    },
+    chartId: {
+      type: String,
+      default: "line-chart",
     },
   },
   setup(props) {
-    const canvas = ref(null);
-    const chartInstance = ref(null);
-
-    // Chart.js 플러그인 등록
-    ChartJS.register(
-      Title,
-      Tooltip,
-      Legend,
-      LineElement,
-      CategoryScale,
-      LinearScale,
-      PointElement
-    );
+    const chartCanvas = ref(null); // Canvas reference
+    let chartInstance = null; // Chart.js instance
 
     const createGradient = (ctx) => {
       const gradient = ctx.createLinearGradient(0, 230, 0, 50);
@@ -57,44 +52,49 @@ export default defineComponent({
       return gradient;
     };
 
+    const updateGradients = (chartData) => {
+      if (!chartData) return;
+      const ctx = chartCanvas.value.getContext("2d");
+      const gradient = createGradient(ctx);
+      chartData.datasets.forEach((set) => {
+        set.backgroundColor = gradient;
+      });
+    };
+
     const renderChart = () => {
-      const ctx = canvas.value.getContext("2d");
-
-      // Chart.js 데이터셋에서 동적으로 배경색 업데이트
-      const updatedDatasets = props.chartData.datasets.map((dataset) => ({
-        ...dataset,
-        backgroundColor: createGradient(ctx),
-      }));
-
-      // Chart.js 인스턴스 제거 후 새로 생성
-      if (chartInstance.value) {
-        chartInstance.value.destroy();
+      if (chartInstance) {
+        chartInstance.destroy(); // 기존 차트 삭제
       }
-      chartInstance.value = new ChartJS(ctx, {
+
+      const ctx = chartCanvas.value.getContext("2d");
+      updateGradients(props.chartData);
+
+      chartInstance = new ChartJS(ctx, {
         type: "line",
-        data: {
-          ...props.chartData,
-          datasets: updatedDatasets,
-        },
+        data: props.chartData,
         options: props.extraOptions,
       });
     };
 
-    // Chart 데이터 감시 후 업데이트
+    // Watch for chartData changes
     watch(
       () => props.chartData,
-      () => {
+      (newData) => {
+        updateGradients(newData);
         renderChart();
       },
       { deep: true }
     );
 
+    // Initial rendering
     onMounted(() => {
       renderChart();
     });
 
     return {
-      canvas,
+      chartCanvas,
     };
   },
 });
+
+
