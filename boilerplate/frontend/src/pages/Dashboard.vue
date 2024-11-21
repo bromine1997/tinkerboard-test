@@ -79,6 +79,9 @@
 </template>
 
 <script>
+// Vue 2.7에서는 Composition API를 사용하기 위해 '@vue/composition-api'를 설치해야 합니다.
+// 하지만 현재 Options API를 사용하고 있으므로, 스토어를 컴포넌트의 `data`나 `created` 훅에서 초기화합니다.
+
 import LineChart from "@/components/Charts/LineChart";
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/config";
@@ -93,16 +96,13 @@ export default {
       isMonitoring: false,
       isPaused: false,
       pressureInterval: null,
+      sensorDataStore: null, // 스토어를 여기서 정의
     };
   },
   computed: {
-    sensorDataStore() {
-      return useSensorDataStore();
-    },
     setPoint() {
       return this.sensorDataStore.metrics.setPoint;
     },
-
     mainChart() {
       return {
         extraOptions: chartConfigs.blueChartOptions,
@@ -110,13 +110,12 @@ export default {
         gradientStops: [1, 0.4, 0],
       };
     },
-
     monitoringMetrics() {
       const newMetrics = this.sensorDataStore.metrics;
       return [
         {
           name: "산소 (Oxygen)",
-          value: this.sensorDataStore.metrics.oxegen,
+          value: newMetrics.oxygen,
           unit: "%",
           icon: "tim-icons icon-oxygen",
         },
@@ -128,7 +127,7 @@ export default {
         },
         {
           name: "온도 (Temperature)",
-          value: this.sensorDataStore.metrics.temperature,
+          value: newMetrics.temperature,
           unit: "°C",
           icon: "tim-icons icon-temperature",
         },
@@ -177,17 +176,26 @@ export default {
   },
   methods: {
     startMonitoring() {
-      // ... 기존 코드 유지 ...
+      // 모니터링 시작 로직
+      this.isMonitoring = true;
+      this.isPaused = false;
+      // 예시로, 서버에서 데이터를 주기적으로 받아오는 로직을 추가해야 합니다.
     },
     stopMonitoring() {
-      // ... 기존 코드 유지 ...
+      // 모니터링 정지 로직
+      this.isMonitoring = false;
+      this.isPaused = false;
+      // 데이터 수신을 중단하는 로직을 추가해야 합니다.
     },
     togglePauseResume() {
-      // ... 기존 코드 유지 ...
+      // 모니터링 일시정지/재개 로직
+      this.isPaused = !this.isPaused;
+      // 일시정지 또는 재개에 따른 로직을 추가해야 합니다.
     },
   },
-  mounted() {
-    // 필요한 초기화 작업이 있으면 여기에 작성
+  created() {
+    // 스토어를 초기화합니다.
+    this.sensorDataStore = useSensorDataStore();
   },
 };
 </script>
