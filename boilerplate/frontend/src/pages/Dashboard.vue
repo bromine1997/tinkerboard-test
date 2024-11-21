@@ -61,24 +61,19 @@
 
     <!-- 모니터링 지표 섹션 -->
     <div class="row">
-      <div
-        class="col-lg-4 col-md-6 mb-4"
-        v-for="(metric, index) in monitoringMetrics"
-        :key="index"
-      >
-        <card type="info">
-          <div class="text-center">
+      <div class="col-lg-4 col-md-6 mb-4" v-for="(metric, index) in monitoringMetrics" :key="index">
+        <div class="info-card">
+          <div class="card-body text-center">
             <h5 class="card-category">{{ metric.name }}</h5>
-            <h3 class="card-title">{{ metric.value }} </h3>
+            <h3 class="card-title">{{ metric.value }} {{ metric.unit }}</h3>
           </div>
-        </card>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
 
 import LineChart from "@/components/Charts/LineChart";
 import * as chartConfigs from "@/components/Charts/config";
@@ -88,7 +83,6 @@ import { useSensorDataStore } from "@/store/sensorData";
 export default {
   components: {
     LineChart,
-    Card,
   },
   data() {
     return {
@@ -111,32 +105,44 @@ export default {
     },
     monitoringMetrics() {
       const newMetrics = this.sensorDataStore.metrics;
+
+      console.log('Monitoring Metrics:', newMetrics); // 디버깅을 위해 로그 추가
       return [
         {
           name: "산소 (Oxygen)",
           value: newMetrics.oxygen,
+          unit: "%",
+          
         },
         {
           name: "이산화탄소 (Carbon Dioxide)",
-          value: newMetrics.carbonDioxide,    
+          value: newMetrics.carbonDioxide,
+          unit: "ppm",
+          
         },
         {
           name: "온도 (Temperature)",
           value: newMetrics.temperature,
-    
+          unit: "°C",
+          
         },
         {
           name: "습도 (Humidity)",
           value: newMetrics.humidity,
+          unit: "%",
           
         },
         {
           name: "유량 (Flow)",
           value: newMetrics.flow,
+          unit: "L/min",
+          
         },
         {
           name: "압력 (Pressure)",
           value: newMetrics.pressure,
+          unit: "ATA",
+          
         },
       ];
     },
