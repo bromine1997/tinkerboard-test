@@ -68,7 +68,7 @@
         <card type="info">
           <div class="card-body text-center">
             <h5 class="card-category">{{ metric.name }}</h5>
-            <h3 class="card-title">{{ metric.value }} </h3>
+            <h3 class="card-title">{{ metric.value }} {{ metric.unit }}</h3>
           </div>
         </card>
       </div>
@@ -78,7 +78,7 @@
 
 <script>
 import { computed, ref } from 'vue';
-import LineChart from "@/components/Charts/LineChart";
+import LineChart from '@/components/Charts/LineChart';
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/config";
 import { useSensorDataStore } from "@/store/sensorData";
