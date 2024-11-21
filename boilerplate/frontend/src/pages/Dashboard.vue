@@ -60,13 +60,17 @@
 
     <!-- 모니터링 지표 섹션 -->
     <div class="row">
-      <div class="col-lg-4 col-md-6 mb-4" v-for="(metric, index) in monitoringMetrics" :key="index">
-        <div class="info-card">
+      <div
+        class="col-lg-4 col-md-6 mb-4"
+        v-for="(metric, index) in monitoringMetrics"
+        :key="index"
+      >
+        <card type="info">
           <div class="card-body text-center">
             <h5 class="card-category">{{ metric.name }}</h5>
-            <h3 class="card-title">{{ metric.value }} {{ metric.unit }}</h3>
+            <h3 class="card-title">{{ metric.value }} </h3>
           </div>
-        </div>
+        </card>
       </div>
     </div>
   </div>
