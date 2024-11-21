@@ -1,9 +1,5 @@
 import { Line } from "vue-chartjs";
-import { Chart, registerables } from "chart.js";
-import {Chart} from "chart.js/auto";
-
-
-
+import "chart.js/auto";
 
 export default {
   name: "line-chart",
