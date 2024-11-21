@@ -45,9 +45,18 @@ export default {
 
       const gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
 
-      gradientStroke.addColorStop(this.gradientStops[0], this.gradientColors[0]);
-      gradientStroke.addColorStop(this.gradientStops[1], this.gradientColors[1]);
-      gradientStroke.addColorStop(this.gradientStops[2], this.gradientColors[2]);
+      gradientStroke.addColorStop(
+        this.gradientStops[0],
+        this.gradientColors[0]
+      );
+      gradientStroke.addColorStop(
+        this.gradientStops[1],
+        this.gradientColors[1]
+      );
+      gradientStroke.addColorStop(
+        this.gradientStops[2],
+        this.gradientColors[2]
+      );
 
       this.chartData.datasets.forEach((set) => {
         set.backgroundColor = gradientStroke;
@@ -64,15 +73,5 @@ export default {
       },
       deep: true,
     },
-  },
-  render(createElement) {
-    return createElement(Line, {
-      ref: "chartRef",
-      props: {
-        chartId: this.chartId,
-        chartData: this.chartData,
-        options: this.extraOptions,
-      },
-    });
   },
 };
