@@ -31,7 +31,7 @@ export const useSensorDataStore = defineStore('sensorData', {
       this.metrics.oxygen = newData.sensorData.oxygen;
       console.log('oxygen updated to', this.metrics.oxygen);
       
-      this.metrics.carbonDioxide = newData.sensorData.carbonDioxide;
+      this.metrics.carbonDioxide = newData.sensorData.co2;
       console.log('carbonDioxide updated to', this.metrics.carbonDioxide);
       
       this.metrics.temperature = newData.sensorData.temperature;
