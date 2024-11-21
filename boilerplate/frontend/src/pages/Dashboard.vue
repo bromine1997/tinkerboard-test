@@ -102,6 +102,7 @@ export default {
     setPoint() {
       return this.sensorDataStore.metrics.setPoint;
     },
+
     mainChart() {
       return {
         extraOptions: chartConfigs.blueChartOptions,
@@ -109,12 +110,13 @@ export default {
         gradientStops: [1, 0.4, 0],
       };
     },
+
     monitoringMetrics() {
       const newMetrics = this.sensorDataStore.metrics;
       return [
         {
           name: "산소 (Oxygen)",
-          value: newMetrics.oxygen,
+          value: this.sensorDataStore.metrics.oxegen,
           unit: "%",
           icon: "tim-icons icon-oxygen",
         },
@@ -126,7 +128,7 @@ export default {
         },
         {
           name: "온도 (Temperature)",
-          value: newMetrics.temperature,
+          value: this.sensorDataStore.metrics.temperature,
           unit: "°C",
           icon: "tim-icons icon-temperature",
         },
@@ -209,6 +211,6 @@ export default {
 }
 .setpoint-display {
   font-size: 16px;
-  color: #333;
+  color: #FFF;
 }
 </style>
