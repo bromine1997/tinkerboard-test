@@ -67,7 +67,7 @@
         :key="index"
       >
         <card type="info">
-          <div class="card-body text-center">
+          <div class="text-center">
             <h5 class="card-category">{{ metric.name }}</h5>
             <h3 class="card-title">{{ metric.value }} </h3>
           </div>
@@ -78,8 +78,7 @@
 </template>
 
 <script>
-// Vue 2.7에서는 Composition API를 사용하기 위해 '@vue/composition-api'를 설치해야 합니다.
-// 하지만 현재 Options API를 사용하고 있으므로, 스토어를 컴포넌트의 `data`나 `created` 훅에서 초기화합니다.
+
 
 import LineChart from "@/components/Charts/LineChart";
 import * as chartConfigs from "@/components/Charts/config";
@@ -89,6 +88,7 @@ import { useSensorDataStore } from "@/store/sensorData";
 export default {
   components: {
     LineChart,
+    Card,
   },
   data() {
     return {
