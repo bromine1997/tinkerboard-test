@@ -19,20 +19,24 @@ export const useSensorDataStore = defineStore('sensorData', {
     updateSensorData(newData) {
       console.log('스토어에서 센서 데이터 업데이트중:', newData);
     
-      // Update pressureData array
-      this.pressureData.push({
-        time: newData.elapsedTime, 
-        value: newData.pressure,
-      });
+      this.pressureData = [
+        ...this.pressureData,
+        {
+          time: newData.elapsedTime,
+          value: newData.pressure,
+        },
+      ];
     
       // Update metrics properties individually
-      this.metrics.oxygen = newData.oxygen;
-      this.metrics.carbonDioxide = newData.co2;
-      this.metrics.temperature = newData.temperature;
-      this.metrics.humidity = newData.humidity;
-      this.metrics.pressure = newData.pressure;
-      this.metrics.flow = newData.flowRate;
-      this.metrics.setPoint = newData.setPoint; // setPoint 업데이트
+      this.metrics = {
+        oxygen: newData.oxygen,
+        carbonDioxide: newData.co2,
+        temperature: newData.temperature,
+        humidity: newData.humidity,
+        pressure: newData.pressure,
+        flow: newData.flowRate,
+        setPoint: newData.setPoint,
+      };
     },
   },
 });
