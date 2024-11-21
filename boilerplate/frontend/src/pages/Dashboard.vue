@@ -68,9 +68,8 @@
       >
         <card type="info">
           <div class="card-body text-center">
-            <i :class="metric.icon" class="tim-icons"></i>
             <h5 class="card-category">{{ metric.name }}</h5>
-            <h3 class="card-title">{{ metric.value }} {{ metric.unit }}</h3>
+            <h3 class="card-title">{{ metric.value }} </h3>
           </div>
         </card>
       </div>
@@ -116,38 +115,28 @@ export default {
         {
           name: "산소 (Oxygen)",
           value: newMetrics.oxygen,
-          unit: "%",
-          
         },
         {
           name: "이산화탄소 (Carbon Dioxide)",
-          value: newMetrics.carbonDioxide,
-          unit: "ppm",
-          
+          value: newMetrics.carbonDioxide,    
         },
         {
           name: "온도 (Temperature)",
           value: newMetrics.temperature,
-          unit: "°C",
-          
+    
         },
         {
           name: "습도 (Humidity)",
           value: newMetrics.humidity,
-          unit: "%",
           
         },
         {
           name: "유량 (Flow)",
           value: newMetrics.flow,
-          unit: "L/min",
-          
         },
         {
           name: "압력 (Pressure)",
           value: newMetrics.pressure,
-          unit: "ATA",
-          
         },
       ];
     },
