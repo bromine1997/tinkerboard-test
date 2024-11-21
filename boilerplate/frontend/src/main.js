@@ -27,6 +27,9 @@ app.use(i18n);
 // BlackDashboard 플러그인 사용
 app.use(BlackDashboard);
 
+// RTL 초기화
+app.config.globalProperties.$rtl.disableRTL(); // RTL 비활성화
+
 // 글로벌 속성 설정
 app.config.globalProperties.$http = axios; // Axios를 글로벌로 설정
 app.config.globalProperties.$socket = socket; // Socket.IO 클라이언트를 글로벌로 설정
