@@ -11,6 +11,7 @@ export const useSensorDataStore = defineStore('sensorData', {
       humidity: 0,
       pressure: 0,
       flow: 0,
+      setPoint: 0, // setPoint 추가
     },
   }),
   actions: {
@@ -20,7 +21,7 @@ export const useSensorDataStore = defineStore('sensorData', {
     
       // Update pressureData array
       this.pressureData.push({
-        time: newData.elapseTime,
+        time: newData.elapsedTime, 
         value: newData.pressure,
       });
     
@@ -31,6 +32,7 @@ export const useSensorDataStore = defineStore('sensorData', {
       this.metrics.humidity = newData.humidity;
       this.metrics.pressure = newData.pressure;
       this.metrics.flow = newData.flowRate;
+      this.metrics.setPoint = newData.setPoint; // setPoint 업데이트
     },
   },
 });

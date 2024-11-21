@@ -31,7 +31,7 @@ export class SensorDataService {
           sessionId: sensorDataPacketDto.sessionId, 
           userId: sensorDataPacketDto.userId, // userId 필드
           startTime: bucketStartTime,
-           endTime: bucketEndTime },
+          endTime: bucketEndTime },
         {   
           $push: { sensorData: sensorData },
           $set: { endTime: bucketEndTime },

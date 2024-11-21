@@ -64,7 +64,7 @@ export class WsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayD
 
         deviceId: sensorDataPacketDto.deviceId,
         sensorData: sensorDataPacketDto.sensorData,
-         elapsedTime: elapsedTimeInSeconds,             // 밀리초를 초 단위로 변환해서 클라이언트에 전송
+        elapsedTime: elapsedTimeInSeconds,             // 밀리초를 초 단위로 변환해서 클라이언트에 전송
         setPoint: sensorDataPacketDto.setPoint,
         timestamp: new Date(),
       });

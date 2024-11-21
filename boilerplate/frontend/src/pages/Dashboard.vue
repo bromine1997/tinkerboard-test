@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- Header Section -->
+    <!-- 헤더 섹션 -->
     <div class="row mb-4">
       <div class="col-12 d-flex justify-content-between align-items-center">
         <div>
@@ -9,33 +9,39 @@
           </h5>
           <h2 class="card-title">{{ $t("dashboard.performance") }}</h2>
         </div>
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <button
-            class="btn btn-sm btn-primary"
-            @click="startMonitoring"
-            :disabled="isMonitoring"
-          >
-            시작
-          </button>
-          <button
-            class="btn btn-sm btn-secondary"
-            @click="togglePauseResume"
-            :disabled="!isMonitoring"
-          >
-            {{ isPaused ? 'Resume' : 'Pause' }}
-          </button>
-          <button
-            class="btn btn-sm btn-danger"
-            @click="stopMonitoring"
-            :disabled="!isMonitoring"
-          >
-            정지
-          </button>
+        <div class="d-flex align-items-center">
+          <!-- Set Point 표시 -->
+          <div class="setpoint-display mr-3">
+            <strong>Set Point:</strong> {{ setPoint }}
+          </div>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <button
+              class="btn btn-sm btn-primary"
+              @click="startMonitoring"
+              :disabled="isMonitoring"
+            >
+              시작
+            </button>
+            <button
+              class="btn btn-sm btn-secondary"
+              @click="togglePauseResume"
+              :disabled="!isMonitoring"
+            >
+              {{ isPaused ? 'Resume' : 'Pause' }}
+            </button>
+            <button
+              class="btn btn-sm btn-danger"
+              @click="stopMonitoring"
+              :disabled="!isMonitoring"
+            >
+              정지
+            </button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Line Chart Section -->
+    <!-- 라인 차트 섹션 -->
     <div class="row mb-4">
       <div class="col-12">
         <card type="chart">
@@ -53,7 +59,7 @@
       </div>
     </div>
 
-    <!-- Monitoring Metrics Section -->
+    <!-- 모니터링 지표 섹션 -->
     <div class="row">
       <div
         class="col-lg-4 col-md-6 mb-4"
@@ -92,6 +98,9 @@ export default {
   computed: {
     sensorDataStore() {
       return useSensorDataStore();
+    },
+    setPoint() {
+      return this.sensorDataStore.metrics.setPoint;
     },
     mainChart() {
       return {
@@ -166,17 +175,17 @@ export default {
   },
   methods: {
     startMonitoring() {
-      // ... as shown above ...
+      // ... 기존 코드 유지 ...
     },
     stopMonitoring() {
-      // ... as shown above ...
+      // ... 기존 코드 유지 ...
     },
     togglePauseResume() {
-      // ... as shown above ...
+      // ... 기존 코드 유지 ...
     },
   },
   mounted() {
-    // Initialization if needed
+    // 필요한 초기화 작업이 있으면 여기에 작성
   },
 };
 </script>
@@ -197,5 +206,9 @@ export default {
 }
 .btn-group .btn {
   margin-left: 5px;
+}
+.setpoint-display {
+  font-size: 16px;
+  color: #333;
 }
 </style>
