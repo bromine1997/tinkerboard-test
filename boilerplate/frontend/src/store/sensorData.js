@@ -21,17 +21,30 @@ export const useSensorDataStore = defineStore('sensorData', {
       // Update pressureData array
       this.pressureData.push({
         time: newData.elapsedTime, 
-        value: newData.pressure,
+        value: this.metrics.pressure,
       });
     
-      // Update metrics properties individually
+      // metrics 객체의 각 속성을 개별적으로 업데이트 및 로그 추가
       this.metrics.oxygen = newData.oxygen;
-      this.metrics.carbonDioxide = newData.co2;
+      console.log('oxygen updated to', this.metrics.oxygen);
+      
+      this.metrics.carbonDioxide = newData.carbonDioxide; // 올바른 키 사용
+      console.log('carbonDioxide updated to', this.metrics.carbonDioxide);
+      
       this.metrics.temperature = newData.temperature;
+      console.log('temperature updated to', this.metrics.temperature);
+      
       this.metrics.humidity = newData.humidity;
+      console.log('humidity updated to', this.metrics.humidity);
+      
       this.metrics.pressure = newData.pressure;
+      console.log('pressure updated to', this.metrics.pressure);
+      
       this.metrics.flow = newData.flowRate;
-      this.metrics.setPoint = newData.setPoint; // setPoint 업데이트
+      console.log('flow updated to', this.metrics.flow);
+      
+      this.metrics.setPoint = newData.setPoint;
+      console.log('setPoint updated to', this.metrics.setPoint);
     },
   },
 });

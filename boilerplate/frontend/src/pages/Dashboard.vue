@@ -77,8 +77,8 @@
 </template>
 
 <script>
-import { computed } from 'vue';
-import LineChart from "@/components/Charts/LineChart";
+import { computed, ref } from 'vue';
+import LineChart from '@/components/Charts/LineChart';
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/config";
 import { useSensorDataStore } from "@/store/sensorData";
@@ -91,6 +91,9 @@ export default {
     // 상태 관리
     const sensorDataStore = useSensorDataStore();
 
+    const isMonitoring = ref(false); // 모니터링 상태
+    const isPaused = ref(false); // 일시 정지 상태
+
     // Computed properties
     const setPoint = computed(() => sensorDataStore.metrics.setPoint);
 
@@ -101,10 +104,7 @@ export default {
     }));
 
     const monitoringMetrics = computed(() => {
-      const newMetrics = sensorDataStore.metrics;
-      console.log('Monitoring Metrics:', newMetrics); // 디버깅을 위해 로그 추가
-
-      return [
+      const metrics = [
         {
           name: "산소 (Oxygen)",
           value: sensorDataStore.metrics.oxygen,
@@ -127,7 +127,7 @@ export default {
         },
         {
           name: "유량 (Flow)",
-          value: newMetrics.flow,
+          value: sensorDataStore.metrics.flow,
           unit: "L/min",
         },
         {
@@ -141,14 +141,13 @@ export default {
       return metrics;
     });
 
-
     const pressureChartData = computed(() => {
-      // 샘플링된 데이터 가져오기
-      const sampledData = getSampledData(sensorDataStore.pressureData);
-
-      // 샘플링된 데이터를 기반으로 차트 데이터 생성
-      const labels = sampledData.map((data) => data.time);
-      const dataPoints = sampledData.map((data) => data.value);
+      const labels = sensorDataStore.pressureData.map(
+        (data) => data.time
+      );
+      const dataPoints = sensorDataStore.pressureData.map(
+        (data) => data.value
+      );
 
       return {
         labels,
@@ -196,7 +195,6 @@ export default {
     };
   },
 };
-
 </script>
 
 <style scoped>
