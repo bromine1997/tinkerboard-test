@@ -2,30 +2,52 @@ import { defineStore } from 'pinia';
 
 export const useSensorDataStore = defineStore('sensorData', {
   state: () => ({
-    pressureData: [],
+    pressureData: [
+      { time: 0, value: 1 }, // 초기 데이터 포인트
+    ],
     metrics: {
-      oxygen: 1,
-      carbonDioxide: 0,
-      temperature: 0,
-      humidity: 0,
-      pressure: 0,
-      flow: 0,
-      setPoint: 0,
+      oxygen: 9999,
+      carbonDioxide: 9999,
+      temperature: 9999,
+      humidity: 9999,
+      pressure: 9999,
+      flow: 9999,
+      setPoint: 9999,
     },
+    pressureBuffer: [], // 압력 데이터 버퍼
+    maxPressureDataPoints: 180, // 최대 데이터 포인트 수 (예: 3시간)
   }),
   actions: {
     updateSensorData(newData) {
-      console.log('스토어에서 센서 데이터 업데이트중:', newData);
-      console.log('sensorData:', newData.sensorData);
+    
       
-      // 압력 데이터 업데이트
-      this.pressureData = [
-        ...this.pressureData,
-        {
-          time: newData.elapsedTime,
-          value: newData.sensorData.pressure,
-        },
-      ];
+      // 압력 데이터 버퍼에 추가
+      this.pressureBuffer.push({
+        time: newData.elapsedTime,
+        value: newData.sensorData.pressure,
+      });
+      console.log('pressureBuffer 업데이트:', this.pressureBuffer);
+
+      // 60번째 데이터 포인트가 들어왔을 때 압력 데이터 추가
+      if (this.pressureBuffer.length >= 60) {
+        const sixtiethDataPoint = this.pressureBuffer[59]; // 0부터 시작하므로 인덱스 59
+        const newTime = this.pressureData.length; // 새로운 시간 인덱스 (1, 2, 3, ...)
+        
+        this.pressureData.push({
+          time: newTime,
+          value: sixtiethDataPoint.value,
+        });
+        console.log(`압력 데이터 집계 추가: 시간=${newTime}, 값=${sixtiethDataPoint.value}`);
+        
+        // 최대 데이터 포인트 수 초과 시 가장 오래된 데이터 제거
+        if (this.pressureData.length > this.maxPressureDataPoints) {
+          this.pressureData.shift();
+          console.log('최대 압력 데이터 포인트 수 초과: 가장 오래된 데이터 제거');
+        }
+        
+        // 압력 버퍼 초기화
+        this.pressureBuffer = [];
+      }
 
       // metrics 객체의 각 속성을 개별적으로 업데이트 및 로그 추가
       this.metrics.oxygen = newData.sensorData.oxygen;
