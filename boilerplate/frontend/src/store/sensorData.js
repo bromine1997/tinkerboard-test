@@ -10,37 +10,40 @@ export const useSensorDataStore = defineStore('sensorData', {
       humidity: 0,
       pressure: 0,
       flow: 0,
-      setPoint: 0, // setPoint 추가
+      setPoint: 0,
     },
   }),
   actions: {
-
     updateSensorData(newData) {
       console.log('스토어에서 센서 데이터 업데이트중:', newData);
-    
-      // Update pressureData array
-      this.pressureData.push({
-        time: newData.elapsedTime, 
-        value: this.metrics.pressure,
-      });
-    
+      console.log('sensorData:', newData.sensorData);
+      
+      // 압력 데이터 업데이트
+      this.pressureData = [
+        ...this.pressureData,
+        {
+          time: newData.elapsedTime,
+          value: newData.sensorData.pressure,
+        },
+      ];
+
       // metrics 객체의 각 속성을 개별적으로 업데이트 및 로그 추가
-      this.metrics.oxygen = newData.oxygen;
+      this.metrics.oxygen = newData.sensorData.oxygen;
       console.log('oxygen updated to', this.metrics.oxygen);
       
-      this.metrics.carbonDioxide = newData.carbonDioxide; // 올바른 키 사용
+      this.metrics.carbonDioxide = newData.sensorData.carbonDioxide;
       console.log('carbonDioxide updated to', this.metrics.carbonDioxide);
       
-      this.metrics.temperature = newData.temperature;
+      this.metrics.temperature = newData.sensorData.temperature;
       console.log('temperature updated to', this.metrics.temperature);
       
-      this.metrics.humidity = newData.humidity;
+      this.metrics.humidity = newData.sensorData.humidity;
       console.log('humidity updated to', this.metrics.humidity);
       
-      this.metrics.pressure = newData.pressure;
+      this.metrics.pressure = newData.sensorData.pressure;
       console.log('pressure updated to', this.metrics.pressure);
       
-      this.metrics.flow = newData.flowRate;
+      this.metrics.flow = newData.sensorData.flowRate;
       console.log('flow updated to', this.metrics.flow);
       
       this.metrics.setPoint = newData.setPoint;
