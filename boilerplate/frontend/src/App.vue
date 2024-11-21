@@ -49,7 +49,7 @@ export default {
     };
 
     const handleSensorDataUpdate = (data) => {
-      console.log('진짜 테스트 데이터:', data);
+      //console.log('진짜 테스트 데이터:', data);
       sensorDataStore.updateSensorData(data);
     };
 
