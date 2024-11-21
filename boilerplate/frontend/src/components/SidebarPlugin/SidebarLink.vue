@@ -8,21 +8,12 @@
     </component>
   </li>
 </template>
+
 <script>
 export default {
   name: 'sidebar-link',
   inheritAttrs: false,
-  inject: {
-    autoClose: {
-      default: true,
-    },
-    addLink: {
-      default: () => {},
-    },
-    removeLink: {
-      default: () => {},
-    },
-  },
+  inject: ['autoClose', 'addLink', 'removeLink'],
   props: {
     name: String,
     icon: String,
@@ -34,11 +25,11 @@ export default {
   methods: {
     hideSidebar() {
       if (this.autoClose) {
-        this.$sidebar.displaySidebar(false);
+        this.$emit('hideSidebar');
       }
     },
     isActive() {
-      return this.$el.classList.contains('active');
+      return this.$el?.classList.contains('active');
     },
   },
   mounted() {
@@ -46,10 +37,7 @@ export default {
       this.addLink(this);
     }
   },
-  beforeDestroy() {
-    if (this.$el && this.$el.parentNode) {
-      this.$el.parentNode.removeChild(this.$el);
-    }
+  unmounted() {
     if (this.removeLink) {
       this.removeLink(this);
     }
