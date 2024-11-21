@@ -12,23 +12,19 @@
 import { useSensorDataStore } from '@/store/sensorData';
 import {
   onMounted,
-  onBeforeUnmount,
-  watch,
+  onUnmounted,
   getCurrentInstance,
+  watch,
 } from '@vue/composition-api';
-import { useRoute } from 'vue-router';
 
 export default {
-  setup(props, context) {
+  setup() {
     const sensorDataStore = useSensorDataStore();
-    const route = useRoute();
+    const vueInstance = getCurrentInstance();
 
-    // 전역 속성 접근
-    const instance = getCurrentInstance();
-    if (!instance) {
-      throw new Error('Failed to get current instance');
+    if (!vueInstance) {
+      throw new Error('getCurrentInstance()가 null을 반환했습니다. @vue/composition-api가 올바르게 설치되고 등록되었는지 확인하세요.');
     }
-    const vueInstance = instance.proxy;
 
     const disableRTL = () => {
       if (vueInstance.$rtl && !vueInstance.$rtl.isRTL) {
@@ -58,9 +54,9 @@ export default {
       sensorDataStore.updateSensorData(data);
     };
 
-    // 워처는 setup 함수 내에서 바로 선언
+    // 워처 설정
     watch(
-      () => route.fullPath,
+      () => vueInstance.$route && vueInstance.$route.fullPath,
       () => {
         disableRTL();
       },
@@ -83,7 +79,7 @@ export default {
       }
     });
 
-    onBeforeUnmount(() => {
+    onUnmounted(() => {
       if (vueInstance.$socket) {
         vueInstance.$socket.off('sensor_data_update', handleSensorDataUpdate);
       }
