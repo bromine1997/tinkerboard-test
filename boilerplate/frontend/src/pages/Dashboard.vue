@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { computed, watch } from 'vue'; // Vue 2.7+에서는 'vue'에서 Composition API 사용 가능
+import { computed, watch } from 'vue'; // Vue Composition API 사용
 import LineChart from "@/components/Charts/LineChart";
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/config";
@@ -87,6 +87,14 @@ export default {
   setup() {
     const sensorDataStore = useSensorDataStore();
 
+    // 샘플링 간격 설정 (60번째 데이터 간격으로 표시)
+    const SAMPLE_INTERVAL = 60;
+
+    // 데이터 샘플링 함수
+    const getSampledData = (data) => {
+      return data.filter((_, index) => index % SAMPLE_INTERVAL === 0);
+    };
+
     // Computed properties
     const setPoint = computed(() => sensorDataStore.metrics.setPoint);
 
@@ -97,7 +105,7 @@ export default {
     }));
 
     const monitoringMetrics = computed(() => {
-      const metrics = [
+      return [
         {
           name: "산소 (Oxygen)",
           value: sensorDataStore.metrics.oxygen,
@@ -120,7 +128,7 @@ export default {
         },
         {
           name: "유량 (Flow)",
-          value: sensorDataStore.metrics.flowRate, // 'flowRate'로 통일
+          value: sensorDataStore.metrics.flowRate,
           unit: "L/min",
         },
         {
@@ -129,18 +137,15 @@ export default {
           unit: "ATA",
         },
       ];
-
-      console.log('Updated monitoringMetrics:', metrics); // 디버깅용 로그
-      return metrics;
     });
 
     const pressureChartData = computed(() => {
-      const labels = sensorDataStore.pressureData.map(
-        (data) => data.time
-      );
-      const dataPoints = sensorDataStore.pressureData.map(
-        (data) => data.value
-      );
+      // 샘플링된 데이터 가져오기
+      const sampledData = getSampledData(sensorDataStore.pressureData);
+
+      // 샘플링된 데이터를 기반으로 차트 데이터 생성
+      const labels = sampledData.map((data) => data.time);
+      const dataPoints = sampledData.map((data) => data.value);
 
       return {
         labels,
@@ -157,11 +162,6 @@ export default {
       };
     });
 
-    // Watcher 추가: monitoringMetrics가 업데이트되는지 확인
-    watch(monitoringMetrics, (newVal) => {
-      console.log('monitoringMetrics가 변경되었습니다:', newVal);
-    });
-
     return {
       setPoint,
       mainChart,
@@ -170,6 +170,7 @@ export default {
     };
   },
 };
+
 </script>
 
 <style scoped>
