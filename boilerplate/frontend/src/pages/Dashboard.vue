@@ -1,7 +1,6 @@
-<!-- Dashboard.vue -->
 <template>
   <div>
-    <!-- 헤더 섹션 -->
+    <!-- 헤더 섹션: 대시보드 제목과 제어 버튼 -->
     <div class="row mb-4">
       <div class="col-12 d-flex justify-content-between align-items-center">
         <div>
@@ -10,19 +9,41 @@
           </h5>
           <h2 class="card-title">{{ $t("dashboard.performance") }}</h2>
         </div>
-        <!-- 제어 버튼 (생략) -->
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <button
+            class="btn btn-sm btn-primary"
+            @click="startMonitoring"
+            :disabled="isMonitoring"
+          >
+            시작
+          </button>
+          <button
+            class="btn btn-sm btn-secondary"
+            @click="togglePauseResume"
+            :disabled="!isMonitoring"
+          >
+            {{ isPaused ? 'Resume' : 'Pause' }}
+          </button>
+          <button
+            class="btn btn-sm btn-danger"
+            @click="stopMonitoring"
+            :disabled="!isMonitoring"
+          >
+            정지
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- 압력 데이터 라인 차트 -->
+    <!-- 라인 차트 섹션 -->
     <div class="row mb-4">
       <div class="col-12">
         <card type="chart">
           <div class="chart-area">
             <line-chart
-              ref="pressureChart"
-              chart-id="pressure-line-chart"
-              :chart-data="pressureChartData"
+              ref="mainChart"
+              chart-id="main-line-chart"
+              :chart-data="mainChart.chartData"
               :gradient-colors="mainChart.gradientColors"
               :gradient-stops="mainChart.gradientStops"
               :extra-options="mainChart.extraOptions"
@@ -50,6 +71,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import LineChart from "@/components/Charts/LineChart";
