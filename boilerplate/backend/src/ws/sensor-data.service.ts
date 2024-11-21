@@ -17,11 +17,12 @@ export class SensorDataService {
     const bucketEndTime = new Date(bucketStartTime.getTime() + bucketDuration);
 
     const elapsedTimeInSeconds = Math.floor(sensorDataPacketDto.elapsedTime / 1000);
+    const FormatsetPoint = parseFloat((sensorDataPacketDto.setPoint / 1000).toFixed(3));
 
     const sensorData: ISensorData = {
       ...sensorDataPacketDto.sensorData,
       elapsedTime: elapsedTimeInSeconds, // 초 단위로 저장
-      setPoint: sensorDataPacketDto.setPoint,
+      setPoint: FormatsetPoint,           // 소수점 3자리로 자르기
     };
 
     try {

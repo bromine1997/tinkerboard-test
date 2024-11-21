@@ -59,13 +59,14 @@ export class WsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayD
       // 실시간 데이터 브로드캐스트 (발신 클라이언트를 제외한 모든 클라이언트에게 전송)
 
       const elapsedTimeInSeconds = Math.floor(sensorDataPacketDto.elapsedTime / 1000);
+      const FormatsetPoint = parseFloat((sensorDataPacketDto.setPoint / 1000).toFixed(3));
 
       client.broadcast.emit('sensor_data_update', {
 
         deviceId: sensorDataPacketDto.deviceId,
         sensorData: sensorDataPacketDto.sensorData,
         elapsedTime: elapsedTimeInSeconds,             // 밀리초를 초 단위로 변환해서 클라이언트에 전송
-        setPoint: sensorDataPacketDto.setPoint,
+        setPoint: FormatsetPoint,
         timestamp: new Date(),
       });
 
