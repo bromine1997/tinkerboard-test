@@ -10,16 +10,28 @@
 
 <script>
 import { useSensorDataStore } from '@/store/sensorData';
-import { onMounted, onBeforeUnmount, getCurrentInstance, watch } from '@vue/composition-api';
-
+import {
+  onMounted,
+  onBeforeUnmount,
+  watch,
+  getCurrentInstance,
+} from '@vue/composition-api';
+import { useRoute } from 'vue-router';
 
 export default {
-  setup() {
+  setup(props, context) {
     const sensorDataStore = useSensorDataStore();
-    const vueInstance = getCurrentInstance().proxy;
+    const route = useRoute();
+
+    // 전역 속성 접근
+    const instance = getCurrentInstance();
+    if (!instance) {
+      throw new Error('Failed to get current instance');
+    }
+    const vueInstance = instance.proxy;
 
     const disableRTL = () => {
-      if (!vueInstance.$rtl.isRTL) {
+      if (vueInstance.$rtl && !vueInstance.$rtl.isRTL) {
         vueInstance.$rtl.disableRTL();
       }
     };
@@ -31,7 +43,6 @@ export default {
 
     const handleNewSensorData = (data) => {
       console.log('새 센서 데이터 수신:', data);
-      
     };
 
     const handleConnect = () => {
@@ -47,31 +58,35 @@ export default {
       sensorDataStore.updateSensorData(data);
     };
 
+    // 워처는 setup 함수 내에서 바로 선언
+    watch(
+      () => route.fullPath,
+      () => {
+        disableRTL();
+      },
+      { immediate: true }
+    );
+
+    watch(
+      () => vueInstance.$sidebar && vueInstance.$sidebar.showSidebar,
+      () => {
+        toggleNavOpen();
+      }
+    );
+
     onMounted(() => {
       // WebSocket 이벤트 리스너 등록
-      vueInstance.$socket.on('connect', handleConnect);
-      vueInstance.$socket.on('disconnect', handleDisconnect);
-      vueInstance.$socket.on('sensor_data_update', handleSensorDataUpdate);
-
-      // 워처 설정
-      watch(
-        () => vueInstance.$route,
-        () => {
-          disableRTL();
-        },
-        { immediate: true }
-      );
-
-      watch(
-        () => vueInstance.$sidebar.showSidebar,
-        () => {
-          toggleNavOpen();
-        }
-      );
+      if (vueInstance.$socket) {
+        vueInstance.$socket.on('connect', handleConnect);
+        vueInstance.$socket.on('disconnect', handleDisconnect);
+        vueInstance.$socket.on('sensor_data_update', handleSensorDataUpdate);
+      }
     });
 
     onBeforeUnmount(() => {
-      vueInstance.$socket.off('sensor_data_update', handleSensorDataUpdate);
+      if (vueInstance.$socket) {
+        vueInstance.$socket.off('sensor_data_update', handleSensorDataUpdate);
+      }
     });
 
     return {
