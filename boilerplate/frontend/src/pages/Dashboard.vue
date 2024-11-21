@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue';
+import { computed, ref,watch  } from 'vue';
 import LineChart from '@/components/Charts/LineChart';
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/config";
@@ -139,6 +139,11 @@ export default {
       
       console.log('Updated monitoringMetrics:', metrics); // 디버깅용 로그
       return metrics;
+    });
+
+     // Watcher 추가
+    watch(monitoringMetrics, (newVal) => {
+      console.log('monitoringMetrics changed:', newVal);
     });
 
     const pressureChartData = computed(() => {
