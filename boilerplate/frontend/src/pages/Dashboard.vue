@@ -4,10 +4,9 @@
     <div class="row mb-4">
       <div class="col-12 d-flex justify-content-between align-items-center">
         <div>
-          <h5 class="card-category">
-            {{ $t("dashboard.totalShipments") }}
+          <h5 class="card-category"> "HBOT CHAMBER MONITORING" 
           </h5>
-          <h2 class="card-title">{{ $t("dashboard.performance") }}</h2>
+          <h2 class="card-title">Performance Monitoring</h2>
         </div>
         <div class="d-flex align-items-center">
           <!-- Set Point 표시 -->
