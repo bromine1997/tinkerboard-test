@@ -17,7 +17,7 @@ export class SensorDataService {
     const bucketEndTime = new Date(bucketStartTime.getTime() + bucketDuration);
 
     const elapsedTimeInSeconds = Math.floor(sensorDataPacketDto.elapsedTime / 1000);
-    const FormatsetPoint = parseFloat((sensorDataPacketDto.setPoint / 1000).toFixed(3));
+    const FormatsetPoint = parseFloat((sensorDataPacketDto.setPoint).toFixed(3));
 
     const sensorData: ISensorData = {
       ...sensorDataPacketDto.sensorData,
