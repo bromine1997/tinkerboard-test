@@ -74,7 +74,7 @@
 </template>
 
 <script>
-
+import { computed } from 'vue';
 import LineChart from "@/components/Charts/LineChart";
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/config";
@@ -84,73 +84,61 @@ export default {
   components: {
     LineChart,
   },
-  data() {
-    return {
-      isMonitoring: false,
-      isPaused: false,
-      pressureInterval: null,
-      sensorDataStore: null, // 스토어를 여기서 정의
-    };
-  },
-  computed: {
-    setPoint() {
-      return this.sensorDataStore.metrics.setPoint;
-    },
-    mainChart() {
-      return {
-        extraOptions: chartConfigs.blueChartOptions,
-        gradientColors: config.colors.primaryGradient,
-        gradientStops: [1, 0.4, 0],
-      };
-    },
-    monitoringMetrics() {
-      const newMetrics = this.sensorDataStore.metrics;
+  setup() {
+    const sensorDataStore = useSensorDataStore();
 
+    // Computed properties
+    const setPoint = computed(() => sensorDataStore.metrics.setPoint);
+
+    const mainChart = computed(() => ({
+      extraOptions: chartConfigs.blueChartOptions,
+      gradientColors: config.colors.primaryGradient,
+      gradientStops: [1, 0.4, 0],
+    }));
+
+    const monitoringMetrics = computed(() => {
+      const newMetrics = sensorDataStore.metrics;
       console.log('Monitoring Metrics:', newMetrics); // 디버깅을 위해 로그 추가
+
       return [
         {
           name: "산소 (Oxygen)",
           value: newMetrics.oxygen,
           unit: "%",
-          
         },
         {
           name: "이산화탄소 (Carbon Dioxide)",
           value: newMetrics.carbonDioxide,
           unit: "ppm",
-          
         },
         {
           name: "온도 (Temperature)",
           value: newMetrics.temperature,
           unit: "°C",
-          
         },
         {
           name: "습도 (Humidity)",
           value: newMetrics.humidity,
           unit: "%",
-          
         },
         {
           name: "유량 (Flow)",
           value: newMetrics.flow,
           unit: "L/min",
-          
         },
         {
           name: "압력 (Pressure)",
           value: newMetrics.pressure,
           unit: "ATA",
-          
         },
       ];
-    },
-    pressureChartData() {
-      const labels = this.sensorDataStore.pressureData.map(
+    });
+
+    const pressureChartData = computed(() => {
+      const labels = sensorDataStore.pressureData.map(
         (data) => data.time
       );
-      const dataPoints = this.sensorDataStore.pressureData.map(
+      const dataPoints = sensorDataStore.pressureData.map(
         (data) => data.value
       );
 
@@ -167,33 +155,18 @@ export default {
           },
         ],
       };
-    },
-  },
-  methods: {
-    startMonitoring() {
-      // 모니터링 시작 로직
-      this.isMonitoring = true;
-      this.isPaused = false;
-      // 예시로, 서버에서 데이터를 주기적으로 받아오는 로직을 추가해야 합니다.
-    },
-    stopMonitoring() {
-      // 모니터링 정지 로직
-      this.isMonitoring = false;
-      this.isPaused = false;
-      // 데이터 수신을 중단하는 로직을 추가해야 합니다.
-    },
-    togglePauseResume() {
-      // 모니터링 일시정지/재개 로직
-      this.isPaused = !this.isPaused;
-      // 일시정지 또는 재개에 따른 로직을 추가해야 합니다.
-    },
-  },
-  created() {
-    // 스토어를 초기화합니다.
-    this.sensorDataStore = useSensorDataStore();
+    });
+
+    return {
+      setPoint,
+      mainChart,
+      monitoringMetrics,
+      pressureChartData,
+    };
   },
 };
 </script>
+
 
 <style scoped>
 .card-category {
