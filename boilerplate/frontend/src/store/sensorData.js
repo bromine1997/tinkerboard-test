@@ -5,7 +5,7 @@ export const useSensorDataStore = defineStore('sensorData', {
   state: () => ({
     pressureData: [],
     metrics: {
-      oxygen: 0,
+      oxygen: 1,
       carbonDioxide: 0,
       temperature: 0,
       humidity: 0,
@@ -14,12 +14,13 @@ export const useSensorDataStore = defineStore('sensorData', {
     },
   }),
   actions: {
+
     updateSensorData(newData) {
       console.log('스토어에서 센서 데이터 업데이트중:', newData);
     
       // Update pressureData array
       this.pressureData.push({
-        time: new Date().toLocaleTimeString(),
+        time: newData.elapseTime,
         value: newData.pressure,
       });
     

@@ -56,7 +56,7 @@ export class SensorDataPacketDto {
   @Type(() => SensorDataDto)
   sensorData: SensorDataDto;
 
-  @ApiProperty({ example: 1000, description: '경과 시간 (밀리초)' })
+  @ApiProperty({ example: 1, description: '경과 시간 (초)' })
   @IsNumber()
   @IsNotEmpty()
   elapsedTime: number; // 추가

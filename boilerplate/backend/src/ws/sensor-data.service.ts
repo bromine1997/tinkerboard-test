@@ -16,9 +16,11 @@ export class SensorDataService {
     const bucketStartTime = new Date(Math.floor(currentTime.getTime() / bucketDuration) * bucketDuration);
     const bucketEndTime = new Date(bucketStartTime.getTime() + bucketDuration);
 
+    const elapsedTimeInSeconds = Math.floor(sensorDataPacketDto.elapsedTime / 1000);
+
     const sensorData: ISensorData = {
       ...sensorDataPacketDto.sensorData,
-      elapsedTime: sensorDataPacketDto.elapsedTime,
+      elapsedTime: elapsedTimeInSeconds, // 초 단위로 저장
       setPoint: sensorDataPacketDto.setPoint,
     };
 
@@ -45,4 +47,11 @@ export class SensorDataService {
   }
 
   // 필요한 경우 추가 메서드 작성 (예: 데이터 조회 등)
+
+  private formatElapsedTime(elapsedTime: number): string {
+    const seconds = Math.floor(elapsedTime / 1000) % 60;
+    const minutes = Math.floor(elapsedTime / (1000 * 60)) % 60;
+    const hours = Math.floor(elapsedTime / (1000 * 60 * 60));
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  }
 }
