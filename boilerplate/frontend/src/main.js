@@ -14,6 +14,8 @@ axios.defaults.baseURL = 'http://localhost:8080'; // 백엔드 서버 주소
 // Vue 3 앱 생성
 const app = createApp(App);
 
+app.provide('socket', socket);
+
 // Pinia 사용
 const pinia = createPinia();
 app.use(pinia);

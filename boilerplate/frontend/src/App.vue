@@ -18,6 +18,7 @@ import { inject } from 'vue';
 
 export default {
   setup() {
+    
     const route = useRoute(); // Vue Router의 useRoute로 경로 정보 가져오기
     const sensorDataStore = useSensorDataStore();
     const sidebarStore = inject('sidebarStore'); // Sidebar 상태 관리
