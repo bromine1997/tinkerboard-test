@@ -16,12 +16,11 @@
 </template>
 <style lang="scss"></style>
 <script>
-import TopNavbar from './SampleNavbar.vue';
+
 import ContentFooter from './SampleFooter.vue';
 import DashboardContent from './Content.vue';
 export default {
   components: {
-    TopNavbar,
     ContentFooter,
     DashboardContent,
   },

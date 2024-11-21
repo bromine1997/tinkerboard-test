@@ -37,13 +37,11 @@
 
 <script>
 import { inject } from 'vue';
-import TopNavbar from './TopNavbar.vue';
 import ContentFooter from './ContentFooter.vue';
 import DashboardContent from './Content.vue';
 
 export default {
   components: {
-    TopNavbar,
     ContentFooter,
     DashboardContent,
   },
