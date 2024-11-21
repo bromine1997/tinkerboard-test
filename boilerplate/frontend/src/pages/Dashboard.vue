@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, watch } from 'vue'; // Vue 2.7+에서는 'vue'에서 Composition API 사용 가능
 import LineChart from "@/components/Charts/LineChart";
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/config";
@@ -120,7 +120,7 @@ export default {
         },
         {
           name: "유량 (Flow)",
-          value: sensorDataStore.metrics.flowRate,
+          value: sensorDataStore.metrics.flowRate, // 'flowRate'로 통일
           unit: "L/min",
         },
         {
@@ -157,6 +157,11 @@ export default {
       };
     });
 
+    // Watcher 추가: monitoringMetrics가 업데이트되는지 확인
+    watch(monitoringMetrics, (newVal) => {
+      console.log('monitoringMetrics가 변경되었습니다:', newVal);
+    });
+
     return {
       setPoint,
       mainChart,
@@ -166,7 +171,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 .card-category {
