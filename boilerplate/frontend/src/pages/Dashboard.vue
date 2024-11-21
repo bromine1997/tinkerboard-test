@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- 헤더 섹션: 대시보드 제목과 제어 버튼 -->
+    <!-- Header Section -->
     <div class="row mb-4">
       <div class="col-12 d-flex justify-content-between align-items-center">
         <div>
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <!-- 라인 차트 섹션 -->
+    <!-- Line Chart Section -->
     <div class="row mb-4">
       <div class="col-12">
         <card type="chart">
@@ -43,7 +43,7 @@
             <line-chart
               ref="mainChart"
               chart-id="main-line-chart"
-              :chart-data="mainChart.chartData"
+              :chart-data="pressureChartData"
               :gradient-colors="mainChart.gradientColors"
               :gradient-stops="mainChart.gradientStops"
               :extra-options="mainChart.extraOptions"
@@ -53,7 +53,7 @@
       </div>
     </div>
 
-    <!-- 모니터링 지표 섹션 -->
+    <!-- Monitoring Metrics Section -->
     <div class="row">
       <div
         class="col-lg-4 col-md-6 mb-4"
@@ -72,7 +72,6 @@
   </div>
 </template>
 
-
 <script>
 import LineChart from "@/components/Charts/LineChart";
 import * as chartConfigs from "@/components/Charts/config";
@@ -82,6 +81,13 @@ import { useSensorDataStore } from "@/store/sensorData";
 export default {
   components: {
     LineChart,
+  },
+  data() {
+    return {
+      isMonitoring: false,
+      isPaused: false,
+      pressureInterval: null,
+    };
   },
   computed: {
     sensorDataStore() {
@@ -97,17 +103,51 @@ export default {
     monitoringMetrics() {
       const newMetrics = this.sensorDataStore.metrics;
       return [
-        { name: "산소 (Oxygen)", value: newMetrics.oxygen, unit: "%", icon: "tim-icons icon-oxygen" },
-        { name: "이산화탄소 (Carbon Dioxide)", value: newMetrics.carbonDioxide, unit: "ppm", icon: "tim-icons icon-carbon-dioxide" },
-        { name: "온도 (Temperature)", value: newMetrics.temperature, unit: "°C", icon: "tim-icons icon-temperature" },
-        { name: "습도 (Humidity)", value: newMetrics.humidity, unit: "%", icon: "tim-icons icon-humidity" },
-        { name: "유량 (Flow)", value: newMetrics.flow, unit: "L/min", icon: "tim-icons icon-flow" },
-        { name: "압력 (Pressure)", value: newMetrics.pressure, unit: "ATA", icon: "tim-icons icon-flow" },
+        {
+          name: "산소 (Oxygen)",
+          value: newMetrics.oxygen,
+          unit: "%",
+          icon: "tim-icons icon-oxygen",
+        },
+        {
+          name: "이산화탄소 (Carbon Dioxide)",
+          value: newMetrics.carbonDioxide,
+          unit: "ppm",
+          icon: "tim-icons icon-carbon-dioxide",
+        },
+        {
+          name: "온도 (Temperature)",
+          value: newMetrics.temperature,
+          unit: "°C",
+          icon: "tim-icons icon-temperature",
+        },
+        {
+          name: "습도 (Humidity)",
+          value: newMetrics.humidity,
+          unit: "%",
+          icon: "tim-icons icon-humidity",
+        },
+        {
+          name: "유량 (Flow)",
+          value: newMetrics.flow,
+          unit: "L/min",
+          icon: "tim-icons icon-flow",
+        },
+        {
+          name: "압력 (Pressure)",
+          value: newMetrics.pressure,
+          unit: "ATA",
+          icon: "tim-icons icon-pressure",
+        },
       ];
     },
     pressureChartData() {
-      const labels = this.sensorDataStore.pressureData.map((data) => data.time);
-      const dataPoints = this.sensorDataStore.pressureData.map((data) => data.value);
+      const labels = this.sensorDataStore.pressureData.map(
+        (data) => data.time
+      );
+      const dataPoints = this.sensorDataStore.pressureData.map(
+        (data) => data.value
+      );
 
       return {
         labels,
@@ -124,8 +164,19 @@ export default {
       };
     },
   },
+  methods: {
+    startMonitoring() {
+      // ... as shown above ...
+    },
+    stopMonitoring() {
+      // ... as shown above ...
+    },
+    togglePauseResume() {
+      // ... as shown above ...
+    },
+  },
   mounted() {
-    // 필요한 초기화 작업을 여기서 수행
+    // Initialization if needed
   },
 };
 </script>
