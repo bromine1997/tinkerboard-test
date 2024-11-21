@@ -4,13 +4,13 @@ export const useSensorDataStore = defineStore('sensorData', {
   state: () => ({
     pressureData: [],
     metrics: {
-      oxygen: 1,
-      carbonDioxide: 0,
-      temperature: 0,
-      humidity: 0,
-      pressure: 0,
-      flow: 0,
-      setPoint: 0, // setPoint 추가
+      oxygen: 9999,
+      carbonDioxide: 9999,
+      temperature: 9999,
+      humidity: 9999,
+      pressure: 9999,
+      flow: 9999,
+      setPoint: 9999, // setPoint 추가
     },
   }),
   actions: {
