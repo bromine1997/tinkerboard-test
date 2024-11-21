@@ -1,4 +1,3 @@
-// src/store/sensorData.js
 import { defineStore } from 'pinia';
 
 export const useSensorDataStore = defineStore('sensorData', {
@@ -27,16 +26,14 @@ export const useSensorDataStore = defineStore('sensorData', {
         },
       ];
     
-      // Update metrics properties individually
-      this.metrics = {
-        oxygen: newData.oxygen,
-        carbonDioxide: newData.co2,
-        temperature: newData.temperature,
-        humidity: newData.humidity,
-        pressure: newData.pressure,
-        flow: newData.flowRate,
-        setPoint: newData.setPoint,
-      };
+      // metrics 객체의 각 속성을 개별적으로 업데이트
+      this.metrics.oxygen = newData.oxygen;
+      this.metrics.carbonDioxide = newData.co2;
+      this.metrics.temperature = newData.temperature;
+      this.metrics.humidity = newData.humidity;
+      this.metrics.pressure = newData.pressure;
+      this.metrics.flow = newData.flowRate;
+      this.metrics.setPoint = newData.setPoint;
     },
   },
 });

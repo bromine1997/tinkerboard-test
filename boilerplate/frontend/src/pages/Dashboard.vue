@@ -103,38 +103,43 @@ export default {
       gradientStops: [1, 0.4, 0],
     }));
 
-    const monitoringMetrics = computed(() => [
-      {
-        name: "산소 (Oxygen)",
-        value: sensorDataStore.metrics.oxygen,
-        unit: "%",
-      },
-      {
-        name: "이산화탄소 (Carbon Dioxide)",
-        value: sensorDataStore.metrics.carbonDioxide,
-        unit: "ppm",
-      },
-      {
-        name: "온도 (Temperature)",
-        value: sensorDataStore.metrics.temperature,
-        unit: "°C",
-      },
-      {
-        name: "습도 (Humidity)",
-        value: sensorDataStore.metrics.humidity,
-        unit: "%",
-      },
-      {
-        name: "유량 (Flow)",
-        value: sensorDataStore.metrics.flow,
-        unit: "L/min",
-      },
-      {
-        name: "압력 (Pressure)",
-        value: sensorDataStore.metrics.pressure,
-        unit: "ATA",
-      },
-    ]);
+    const monitoringMetrics = computed(() => {
+      const metrics = [
+        {
+          name: "산소 (Oxygen)",
+          value: sensorDataStore.metrics.oxygen,
+          unit: "%",
+        },
+        {
+          name: "이산화탄소 (Carbon Dioxide)",
+          value: sensorDataStore.metrics.carbonDioxide,
+          unit: "ppm",
+        },
+        {
+          name: "온도 (Temperature)",
+          value: sensorDataStore.metrics.temperature,
+          unit: "°C",
+        },
+        {
+          name: "습도 (Humidity)",
+          value: sensorDataStore.metrics.humidity,
+          unit: "%",
+        },
+        {
+          name: "유량 (Flow)",
+          value: sensorDataStore.metrics.flow,
+          unit: "L/min",
+        },
+        {
+          name: "압력 (Pressure)",
+          value: sensorDataStore.metrics.pressure,
+          unit: "ATA",
+        },
+      ];
+      
+      console.log('Updated monitoringMetrics:', metrics); // 디버깅용 로그
+      return metrics;
+    });
 
     const pressureChartData = computed(() => {
       const labels = sensorDataStore.pressureData.map(
