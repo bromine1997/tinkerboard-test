@@ -6,7 +6,7 @@
 <script>
 import { defineComponent, ref, watch, onMounted } from 'vue';
 import { Line } from 'vue-chartjs';
-import ChartJS from 'chart.js/auto'; // chart.js/auto를 사용하여 자동 등록
+import 'chart.js/auto'; // 모든 Chart.js 컴포넌트를 자동으로 등록
 
 export default defineComponent({
   name: 'LineChart',
@@ -45,9 +45,19 @@ export default defineComponent({
     const chartRef = ref(null);
     const chartOptions = ref({ ...props.extraOptions });
 
-    const updateGradients = (chart) => {
-      if (!chart) return;
+    const updateGradients = (chartComponent) => {
+      if (!chartComponent) return;
+      const chart = chartComponent.$chart; // Chart.js 인스턴스에 접근
+      console.log('chart:', chart);
+      if (!chart) {
+        console.error('Chart instance is undefined');
+        return;
+      }
       const ctx = chart.ctx;
+      if (!ctx) {
+        console.error('Canvas context is undefined');
+        return;
+      }
       const gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
 
       props.gradientStops.forEach((stop, index) => {
