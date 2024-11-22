@@ -1,9 +1,6 @@
 import { defineComponent, ref, watch, onMounted, h } from 'vue'
 import { Line } from 'vue-chartjs'
-import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, CategoryScale, Filler } from 'chart.js'
-
-// Chart.js 컴포넌트 등록
-ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale, Filler)
+import Chart from 'chart.js/auto' // 'chart.js/auto'를 사용하여 모든 컴포넌트를 자동 등록
 
 export default defineComponent({
   name: 'LineChart',
