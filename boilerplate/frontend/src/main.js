@@ -7,7 +7,7 @@ import axios from 'axios';
 import socket from './socket'; // Socket.IO 클라이언트 import
 import BlackDashboard from './plugins/blackDashboard'; // 커스텀 플러그인
 import './registerServiceWorker'; // PWA 등록
-import { Chart } from 'chart.js/auto';
+import { Chart as ChartJS } from 'chart.js/auto';
 
 
  
