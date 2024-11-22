@@ -1,28 +1,31 @@
-import { defineComponent, ref, watch, onMounted } from 'vue';
 import { Line } from 'vue-chartjs';
+import { defineComponent, ref, watch } from 'vue';
 import {
   Chart as ChartJS,
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
   Title,
   Tooltip,
   Legend,
-  LineElement,
   CategoryScale,
-  LinearScale,
-  PointElement,
 } from 'chart.js';
 
+// Register Chart.js components
 ChartJS.register(
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
   Title,
   Tooltip,
   Legend,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-  PointElement
+  CategoryScale
 );
 
 export default defineComponent({
-  name: 'LineChart',
+  name: 'line-chart',
   components: { Line },
   props: {
     chartData: {
@@ -58,30 +61,19 @@ export default defineComponent({
       if (!chart) return;
 
       const context = chart.ctx;
+
       const gradientStroke = context.createLinearGradient(0, 230, 0, 50);
 
-      gradientStroke.addColorStop(
-        props.gradientStops[0],
-        props.gradientColors[0]
-      );
-      gradientStroke.addColorStop(
-        props.gradientStops[1],
-        props.gradientColors[1]
-      );
-      gradientStroke.addColorStop(
-        props.gradientStops[2],
-        props.gradientColors[2]
-      );
+      gradientStroke.addColorStop(props.gradientStops[0], props.gradientColors[0]);
+      gradientStroke.addColorStop(props.gradientStops[1], props.gradientColors[1]);
+      gradientStroke.addColorStop(props.gradientStops[2], props.gradientColors[2]);
 
       chart.data.datasets.forEach((set) => {
         set.backgroundColor = gradientStroke;
       });
+
       chart.update();
     };
-
-    onMounted(() => {
-      updateGradients();
-    });
 
     watch(
       () => props.chartData,
@@ -93,6 +85,16 @@ export default defineComponent({
 
     return {
       chartRef,
+      updateGradients,
     };
+  },
+  render() {
+    return (
+      <Line
+        ref="chartRef"
+        data={this.chartData}
+        options={this.extraOptions}
+      />
+    );
   },
 });
