@@ -77,7 +77,7 @@
 
 <script>
 import { computed, ref } from 'vue';
-import LineChart from '@/components/Charts/LineChart';
+import LineChart from '@/components/Charts/LineChart.vue'; // .vue 파일로 임포트
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/config";
 import { useSensorDataStore } from "@/store/sensorData";
