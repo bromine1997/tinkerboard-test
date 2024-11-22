@@ -1,5 +1,16 @@
-import { defineComponent, ref, watch, onMounted } from 'vue'
-import { Line } from 'vue-chartjs'
+<template>
+  <LineChart
+    :chart-data="chartData"
+    :extra-options="chartOptions"
+    :gradient-colors="gradientColors"
+    :gradient-stops="gradientStops"
+  />
+</template>
+
+
+<script>
+import { defineComponent, ref, watch, onMounted, nextTick } from 'vue';
+import { Line } from 'vue-chartjs';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,7 +21,7 @@ import {
   Tooltip,
   Filler,
   Legend
-} from 'chart.js'
+} from 'chart.js';
 
 // Register Chart.js components
 ChartJS.register(
@@ -22,9 +33,9 @@ ChartJS.register(
   Tooltip,
   Filler,
   Legend
-)
+);
 
-export default defineComponent({
+export default {
   name: 'LineChart',
   components: {
     Line
@@ -54,53 +65,51 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const chartId = ref('line-chart-' + Math.random().toString(36).substring(2, 9))
-    const chartData = ref({ ...props.chartData })
+    const chartId = ref('line-chart-' + Math.random().toString(36).substring(2, 9));
+    const chartData = ref({ ...props.chartData });
     
     const updateGradients = () => {
-      if (!chartData.value || !chartData.value.datasets) return
+      if (!chartData.value || !chartData.value.datasets) return;
       
-      const canvas = document.getElementById(chartId.value)
-      if (!canvas) return
+      const canvas = document.getElementById(chartId.value);
+      if (!canvas) return;
       
-      const ctx = canvas.getContext('2d')
-      if (!ctx) return
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
       
-      const gradientStroke = ctx.createLinearGradient(0, 230, 0, 50)
+      const gradientStroke = ctx.createLinearGradient(0, 230, 0, 50);
       
       props.gradientStops.forEach((stop, index) => {
-        gradientStroke.addColorStop(stop, props.gradientColors[index])
-      })
+        gradientStroke.addColorStop(stop, props.gradientColors[index]);
+      });
 
       chartData.value.datasets = chartData.value.datasets.map(dataset => ({
         ...dataset,
         backgroundColor: gradientStroke
-      }))
-    }
+      }));
+    };
 
     watch(
       () => props.chartData,
       (newVal) => {
-        chartData.value = { ...newVal }
+        chartData.value = { ...newVal };
         nextTick(() => {
-          updateGradients()
-        })
+          updateGradients();
+        });
       },
       { deep: true }
-    )
+    );
 
     onMounted(() => {
       nextTick(() => {
-        updateGradients()
-      })
-    })
+        updateGradients();
+      });
+    });
 
-    return () => (
-      <Line
-        id={chartId.value}
-        data={chartData.value}
-        options={props.extraOptions}
-      />
-    )
+    return {
+      chartId,
+      chartData
+    };
   }
-})
+};
+</script>
