@@ -1,4 +1,4 @@
-import { defineComponent, ref, watch, onMounted } from 'vue'
+import { defineComponent, ref, watch, onMounted, h } from 'vue'
 import { Line } from 'vue-chartjs'
 import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, CategoryScale, Filler } from 'chart.js'
 
@@ -71,12 +71,10 @@ export default defineComponent({
     }
   },
   render() {
-    return (
-      <Line
-        id={this.chartId}
-        data={this.chartData}
-        options={this.extraOptions}
-      />
-    )
+    return h(Line, {
+      id: this.chartId,
+      data: this.chartData,
+      options: this.extraOptions
+    })
   }
 })
