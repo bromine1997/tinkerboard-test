@@ -18,10 +18,6 @@ axios.defaults.baseURL = 'http://localhost:8080'; // 백엔드 서버 주소
 // Vue 3 앱 생성
 const app = createApp(App);
 
-  // Chart.js 기본 설정
-ChartJS.defaults.responsive = true;
-ChartJS.defaults.maintainAspectRatio = false;
-  
 
 app.provide('socket', socket);
 
