@@ -1,34 +1,12 @@
 <!-- src/components/Charts/LineChart.vue -->
 <template>
-  <Line ref="chartRef" :data="chartData" :options="chartOptions" />
+  <Line :id="chartId" ref="chartRef" :data="chartData" :options="chartOptions" />
 </template>
 
 <script>
 import { defineComponent, ref, watch, onMounted } from 'vue';
 import { Line } from 'vue-chartjs';
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Filler,
-} from 'chart.js';
-
-// Chart.js 컴포넌트 등록
-ChartJS.register(
-  Title,
-  Tooltip,
-  Legend,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  Filler
-);
+import ChartJS from 'chart.js/auto'; // chart.js/auto를 사용하여 자동 등록
 
 export default defineComponent({
   name: 'LineChart',
@@ -36,6 +14,10 @@ export default defineComponent({
     Line,
   },
   props: {
+    chartId: {
+      type: String,
+      default: 'line-chart',
+    },
     chartData: {
       type: Object,
       required: true,
@@ -102,7 +84,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-/* 스타일이 필요하면 여기에 추가 */
-</style>
