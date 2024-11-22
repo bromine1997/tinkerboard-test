@@ -8,6 +8,36 @@ import socket from './socket'; // Socket.IO 클라이언트 import
 import BlackDashboard from './plugins/blackDashboard'; // 커스텀 플러그인
 import './registerServiceWorker'; // PWA 등록
 
+
+// Chart.js 관련 import
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler
+  } from 'chart.js';
+  
+  // Chart.js 컴포넌트 등록
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler
+  );
+  
+  // Chart.js 기본 설정
+  ChartJS.defaults.responsive = true;
+  ChartJS.defaults.maintainAspectRatio = false;
+
 // Axios 기본 URL 설정
 axios.defaults.baseURL = 'http://localhost:8080'; // 백엔드 서버 주소
 
