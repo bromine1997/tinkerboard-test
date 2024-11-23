@@ -7,6 +7,7 @@
             to="/dashboard"
             name = "Dashborad"
             icon="tim-icons icon-chart-pie-36"
+            class="large-text"
           />
         </div>
         <h5 class="white-text">User Page</h5>
@@ -15,6 +16,7 @@
             to="/dashboard/profile"
             name="사용자 프로필"
             icon="tim-icons icon-single-02"
+            class="large-text"
           />
         </div>
         <h5 class="white-text">관리자 페이지</h5>
@@ -23,6 +25,7 @@
             to="/dashboard/table-list"
             name="치료 기록"
             icon="tim-icons icon-puzzle-10"
+            class="large-text"
           />
         </div>
       </template>
@@ -75,5 +78,10 @@ h5 {
   font-weight: bold; /* 글자 강조를 원한다면 추가 */
   margin-top: 20px; /* 기존 h5와 일치 */
   padding-left: 15px; /* 기존 h5와 일치 */
+}
+
+.large-text {
+  font-size: 20px; /* 원하는 크기로 변경 */
+  font-weight: bold; /* 추가 스타일 (선택 사항) */
 }
 </style>
