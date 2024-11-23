@@ -76,7 +76,6 @@
 <script>
 import { reactive, ref } from "vue";
 import LineChart from "@/components/Charts/LineChart.vue";
-import { useSensorDataStore } from "@/store/sensorData";
 
 export default {
   components: {
@@ -86,8 +85,6 @@ export default {
     const isMonitoring = ref(false);
     const isPaused = ref(false);
     const gradientColors = ["rgba(72,72,176,0.2)", "rgba(72,72,176,0.0)", "rgba(119,52,169,0)"];
-
-    const sensorDataStore = useSensorDataStore();
 
     const chartData = reactive({
       labels: [],
@@ -124,44 +121,6 @@ export default {
       }, 1000); // 1초마다 데이터 생성
     };
 
-    const monitoringMetrics = computed(() => {
-      const metrics = [
-        {
-          name: "산소 (Oxygen)",
-          value: sensorDataStore.metrics.oxygen,
-          unit: "%",
-        },
-        {
-          name: "이산화탄소 (Carbon Dioxide)",
-          value: sensorDataStore.metrics.carbonDioxide,
-          unit: "ppm",
-        },
-        {
-          name: "온도 (Temperature)",
-          value: sensorDataStore.metrics.temperature,
-          unit: "°C",
-        },
-        {
-          name: "습도 (Humidity)",
-          value: sensorDataStore.metrics.humidity,
-          unit: "%",
-        },
-        {
-          name: "유량 (Flow)",
-          value: sensorDataStore.metrics.flow,
-          unit: "L/min",
-        },
-        {
-          name: "압력 (Pressure)",
-          value: sensorDataStore.metrics.pressure,
-          unit: "ATA",
-        },
-      ];
-
-      console.log('Updated monitoringMetrics:', metrics); // 디버깅용 로그
-      return metrics;
-    });
-
     const togglePauseResume = () => {
       isPaused.value = !isPaused.value;
     };
@@ -175,7 +134,6 @@ export default {
 
     return {
       isMonitoring,
-      monitoringMetrics,
       isPaused,
       chartData,
       gradientColors,
