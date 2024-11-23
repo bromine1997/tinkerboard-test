@@ -4,11 +4,10 @@
     <div class="row mb-4">
       <div class="col-12 d-flex justify-content-between align-items-center">
         <div>
-          <h5 class="card-category"> HBOT CHAMBER MONITORING </h5>
+          <h5 class="card-category">HBOT CHAMBER MONITORING</h5>
           <h2 class="card-title">Performance Monitoring</h2>
         </div>
         <div class="d-flex align-items-center">
-          <!-- Set Point 표시 -->
           <div class="setpoint-display mr-3">
             <strong>Set Point:</strong> {{ setPoint }}
           </div>
@@ -44,12 +43,8 @@
       <div class="col-12">
         <card type="chart">
           <div class="chart-area">
-            <line-chart
-              ref="mainChart"
-              chart-id="main-line-chart"
-              :chart-data="chartData"
-              :gradient-colors="mainChart.gradientColors"
-              :gradient-stops="mainChart.gradientStops"
+            <v-chart
+              :option="mainChartOptions"
             />
           </div>
         </card>
@@ -73,63 +68,33 @@
     </div>
   </div>
 </template>
-
 <script>
-import { computed, ref ,reactive } from 'vue';
-import LineChart from '@/components/Charts/LineChart.vue'; // .vue 파일로 임포트
+import { computed, ref, onUnmounted } from 'vue';
 import * as chartConfigs from "@/components/Charts/config";
-
-
-
 import { useSensorDataStore } from "@/store/sensorData";
 
 export default {
-  components: {
-    LineChart,
-  },
   setup() {
-    // 상태 관리
     const sensorDataStore = useSensorDataStore();
 
     const isMonitoring = ref(false); // 모니터링 상태
     const isPaused = ref(false); // 일시 정지 상태
 
-    // Computed properties
+    // Set Point 계산된 속성
     const setPoint = computed(() => sensorDataStore.metrics.setPoint);
 
-    const mainChart = computed(() => ({
-      extraOptions: chartConfigs.blueChartOptions,
-      gradientColors: ["rgba(72,72,176,0.2)", "rgba(72,72,176,0.0)", "rgba(119,52,169,0)"], // 직접 정의
-      gradientStops: [1, 0.4, 0],
-    }));
-
-
-    const chartData = reactive({
-      labels: [],
-      datasets: [
+    // ECharts 옵션 계산된 속성
+    const mainChartOptions = computed(() => ({
+      ...chartConfigs.blueChartOptions,
+      series: [
         {
-          label: "Random Data",
-          data: [],
+          ...chartConfigs.blueChartOptions.series[0],
+          data: sensorDataStore.metrics.pressureData, // 데이터 바인딩
         },
       ],
-    });
+    }));
 
-    let intervalId = null;
-
-    const generateRandomData = () => {
-      const newValue = Math.random() * 5; // 0~5 사이의 랜덤 값
-      const currentTime = new Date().toLocaleTimeString();
-      chartData.labels.push(currentTime);
-      chartData.datasets[0].data.push(newValue);
-
-      // 데이터 개수가 20개를 초과하면 오래된 데이터 제거
-      if (chartData.labels.length > 20) {
-        chartData.labels.shift();
-        chartData.datasets[0].data.shift();
-      }
-    };
-
-
+    // 모니터링 지표 계산된 속성
     const monitoringMetrics = computed(() => {
       const metrics = [
         {
@@ -168,8 +133,17 @@ export default {
       return metrics;
     });
 
+    // 데이터 생성 로직
+    const generateRandomData = () => {
+      const newValue = Math.random() * 5; // 0~5 사이의 랜덤 값
+      const currentTime = new Date().toLocaleTimeString();
+      sensorDataStore.addPressureData(newValue);
+      console.log('Generated new data:', { time: currentTime, value: newValue });
+    };
 
-    // Methods
+    let intervalId = null;
+
+    // 메소드: 모니터링 시작
     const startMonitoring = () => {
       isMonitoring.value = true;
       isPaused.value = false;
@@ -180,10 +154,12 @@ export default {
       }, 1000); // 1초마다 데이터 생성
     };
 
+    // 메소드: 일시 정지/재개 토글
     const togglePauseResume = () => {
       isPaused.value = !isPaused.value;
     };
 
+    // 메소드: 모니터링 정지
     const stopMonitoring = () => {
       isMonitoring.value = false;
       isPaused.value = false;
@@ -191,11 +167,17 @@ export default {
       intervalId = null;
     };
 
+    // 컴포넌트 언마운트 시 인터벌 정리
+    onUnmounted(() => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    });
+
     return {
       setPoint,
-      mainChart,
+      mainChartOptions,
       monitoringMetrics,
-      chartData,
       isMonitoring,
       isPaused,
       startMonitoring,

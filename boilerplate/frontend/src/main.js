@@ -7,10 +7,36 @@ import axios from 'axios';
 import socket from './socket'; // Socket.IO 클라이언트 import
 import BlackDashboard from './plugins/blackDashboard'; // 커스텀 플러그인
 import './registerServiceWorker'; // PWA 등록
-import * as echarts from 'echarts';
 
+// ECharts 및 vue-echarts 관련 임포트
+import VueECharts from 'vue-echarts';
+import { use } from 'echarts/core';
 
- 
+// ECharts의 필요한 모듈 임포트 (트리 쉐이킹 최적화)
+import {
+  CanvasRenderer
+} from 'echarts/renderers';
+import {
+  LineChart,
+  BarChart
+} from 'echarts/charts';
+import {
+  TooltipComponent,
+  GridComponent,
+  DataZoomComponent,
+  LegendComponent
+} from 'echarts/components';
+
+// 필요한 ECharts 컴포넌트 등록
+use([
+  CanvasRenderer,
+  LineChart,
+  BarChart,
+  TooltipComponent,
+  GridComponent,
+  DataZoomComponent,
+  LegendComponent,
+]);
 
 // Axios 기본 URL 설정
 axios.defaults.baseURL = 'http://localhost:8080'; // 백엔드 서버 주소
@@ -18,9 +44,10 @@ axios.defaults.baseURL = 'http://localhost:8080'; // 백엔드 서버 주소
 // Vue 3 앱 생성
 const app = createApp(App);
 
-// ECharts를 전역으로 사용할 수 있도록 추가
-app.config.globalProperties.$echarts = echarts;
+// vue-echarts 컴포넌트를 전역으로 등록
+app.component('v-chart', VueECharts);
 
+// Socket.IO 클라이언트 제공
 app.provide('socket', socket);
 
 // Pinia 사용
@@ -38,7 +65,6 @@ app.use(BlackDashboard);
 
 // RTL 초기화
 app.config.globalProperties.$rtl.disableRTL(); // RTL 비활성화
-
 
 // 글로벌 속성 설정
 app.config.globalProperties.$http = axios; // Axios를 글로벌로 설정
