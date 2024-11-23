@@ -232,6 +232,7 @@ export default {
 
 .chart-area {
   height: 450px; /* 원하는 높이로 설정 */
+  width: 100%;
 }
 
 </style>
