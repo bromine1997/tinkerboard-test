@@ -73,15 +73,21 @@
 import { computed, ref, onUnmounted } from 'vue';
 import * as echarts from 'echarts';
 import * as chartConfigs from "@/components/Charts/config";
+import { useSensorDataStore } from "@/store/sensorData";
 
 export default {
   setup() {
+
+    const sensorDataStore = useSensorDataStore();
+
+
     const isMonitoring = ref(false); // 모니터링 상태
     const isPaused = ref(false); // 일시 정지 상태
 
-    const setPoint = ref(100); // Set Point 초기값
+    const setPoint = computed(() => sensorDataStore.metrics.setPoint);
 
-     const xAxisData = Array.from({ length: 200 }, (_, i) => i + 1);
+    const xAxisData = Array.from({ length: 201 }, (_, i) => i);
+
 
     // 라인 차트 데이터 관리
     const chartData = ref({
@@ -109,39 +115,40 @@ export default {
       const metrics = [
         {
           name: "산소 (Oxygen)",
-          value: 98,
+          value: sensorDataStore.metrics.oxygen,
           unit: "%",
         },
         {
           name: "이산화탄소 (Carbon Dioxide)",
-          value: 400,
+          value: sensorDataStore.metrics.carbonDioxide,
           unit: "ppm",
         },
         {
           name: "온도 (Temperature)",
-          value: 22,
+          value: sensorDataStore.metrics.temperature,
           unit: "°C",
         },
         {
           name: "습도 (Humidity)",
-          value: 45,
+          value: sensorDataStore.metrics.humidity,
           unit: "%",
         },
         {
           name: "유량 (Flow)",
-          value: 5,
+          value: sensorDataStore.metrics.flow,
           unit: "L/min",
         },
         {
           name: "압력 (Pressure)",
-          value: 1.2,
+          value: sensorDataStore.metrics.pressure,
           unit: "ATA",
         },
       ];
       
-      console.log('Updated monitoringMetrics:', metrics);
+      console.log('Updated monitoringMetrics:', metrics); // 디버깅용 로그
       return metrics;
     });
+
 
     // 데이터 생성 로직
     const generateRandomData = () => {
