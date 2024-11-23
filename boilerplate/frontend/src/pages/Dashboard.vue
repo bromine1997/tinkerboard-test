@@ -229,13 +229,15 @@ export default {
 }
 
 
-
+/* Use flex layout for chart card */
 .chart-card {
-  height: 450px; /* 카드의 높이를 명시적으로 설정 */
+  display: flex;
+  flex-direction: column;
+  height: 500px; /* 원하는 높이로 설정 */
 }
+
 .chart-area {
-  height: 100%; /* 부모 요소에 맞추기 */
-  width: 100%;
+  height: 100%; /* 원하는 높이로 설정 */
 }
 
 </style>
