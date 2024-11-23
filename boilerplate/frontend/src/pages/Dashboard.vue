@@ -86,13 +86,18 @@ export default {
     // ECharts 옵션 계산된 속성
     const mainChartOptions = computed(() => ({
       ...chartConfigs.blueChartOptions,
+      xAxis: {
+        ...chartConfigs.blueChartOptions.xAxis,
+        data: chartData.value.time, // 시계열 데이터 시간
+      },
       series: [
         {
           ...chartConfigs.blueChartOptions.series[0],
-          data: sensorDataStore.metrics.pressureData, // 데이터 바인딩
+          data: chartData.value.value, // 랜덤 데이터 값
         },
       ],
     }));
+
 
     // 모니터링 지표 계산된 속성
     const monitoringMetrics = computed(() => {
@@ -134,11 +139,23 @@ export default {
     });
 
     // 데이터 생성 로직
-    const generateRandomData = () => {
-      const newValue = Math.random() * 5; // 0~5 사이의 랜덤 값
-      const currentTime = new Date().toLocaleTimeString();
-      console.log('Generated new data:', { time: currentTime, value: newValue });
-    };
+  const generateRandomData = () => {
+    const newValue = parseFloat((Math.random() * 5).toFixed(2)); // 0~5 사이의 랜덤 소수점 포함 숫자
+    const currentTime = new Date().toLocaleTimeString();
+    console.log('Generated new data:', { time: currentTime, value: newValue });
+
+      // 데이터 추가
+    chartData.value.time.push(currentTime);
+    chartData.value.value.push(newValue);
+
+      // 데이터 포인트 수 제한 (예: 20개)
+    if (chartData.value.time.length > 20) {
+      chartData.value.time.shift(); // 가장 오래된 시간 데이터 제거
+      chartData.value.value.shift(); // 가장 오래된 값 데이터 제거
+    }
+  };
+
+    
 
     let intervalId = null;
 

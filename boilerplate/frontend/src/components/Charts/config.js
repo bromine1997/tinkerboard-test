@@ -27,22 +27,22 @@ export const basicOptions = {
     bottom: '10%',
     containLabel: true,
   },
-  dataZoom: [
-    {
-      type: 'inside',
-      start: 0,
-      end: 100,
-      minSpan: 10,
-      maxSpan: 100,
-    },
-    {
-      type: 'slider',
-      start: 0,
-      end: 100,
-      minSpan: 10,
-      maxSpan: 100,
-    },
-  ],
+  // dataZoom: [ // 데이터 줌 기능 제거 또는 주석 처리
+  //   {
+  //     type: 'inside',
+  //     start: 0,
+  //     end: 100,
+  //     minSpan: 10,
+  //     maxSpan: 100,
+  //   },
+  //   {
+  //     type: 'slider',
+  //     start: 0,
+  //     end: 100,
+  //     minSpan: 10,
+  //     maxSpan: 100,
+  //   },
+  // ],
 };
 
 export const blueChartOptions = {
@@ -107,6 +107,3 @@ export const blueChartOptions = {
     },
   ],
 };
-
-// 다른 차트 옵션(purpleChartOptions, orangeChartOptions 등)도 유사하게 업데이트하세요.
-// 그라디언트나 스타일이 ECharts와 호환되도록 정의해야 합니다.
