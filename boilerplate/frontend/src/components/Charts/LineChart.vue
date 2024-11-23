@@ -1,127 +1,97 @@
-<!-- src/components/Charts/TimeSeriesChart.vue -->
 <template>
-  <div ref="chartRef" :style="{ width: '100%', height: '400px' }"></div>
+  <div :id="chartId" ref="chartRef" style="width: 100%; height: 400px;"></div>
 </template>
 
 <script>
-import { defineComponent, ref, watch, onMounted, onBeforeUnmount } from "vue";
-import * as echarts from "echarts";
+import { defineComponent, ref, onMounted, watch } from 'vue';
+import * as echarts from 'echarts';
 
 export default defineComponent({
-  name: "TimeSeriesChart",
+  name: 'LineChart',
   props: {
-    rawData: {
-      type: Array,
+    chartId: {
+      type: String,
+      default: 'line-chart',
+    },
+    chartData: {
+      type: Object,
       required: true,
     },
-    chartOptions: {
+    gradientColors: {
+      type: Array,
+      default: () => [
+        'rgba(72,72,176,0.2)',
+        'rgba(72,72,176,0.0)',
+        'rgba(119,52,169,0)',
+      ],
+    },
+    gradientStops: {
+      type: Array,
+      default: () => [0, 0.5, 1],
+    },
+    extraOptions: {
       type: Object,
       default: () => ({}),
-    },
-    interval: {
-      type: Number,
-      default: 1, // 1분 단위 데이터
     },
   },
   setup(props) {
     const chartRef = ref(null);
     let chartInstance = null;
 
-    /**
-     * 데이터를 압축하는 함수
-     * interval 단위로 데이터를 샘플링하며, 값이 동일한 유지 구간도 포함
-     */
-    const compressData = (data, interval) => {
-      const compressed = [];
-      let lastValue = null;
-
-      for (let i = 0; i < data.length; i++) {
-        // interval 간격으로 샘플링
-        if (i % interval === 0 || data[i].value !== lastValue) {
-          compressed.push(data[i]);
-          lastValue = data[i].value; // 마지막 값을 업데이트
-        }
+    const initializeChart = () => {
+      if (chartInstance) {
+        chartInstance.dispose(); // 기존 차트 인스턴스를 제거
       }
-
-      return compressed;
-    };
-
-    /**
-     * ECharts 초기화
-     */
-    const initChart = () => {
-      if (!chartRef.value) return;
-
       chartInstance = echarts.init(chartRef.value);
 
-      // 데이터를 압축하여 차트에 사용
-      const compressedData = compressData(props.rawData, props.interval);
+      // ECharts 옵션 설정
+      const gradient = {
+        type: 'linear',
+        x: 0,
+        y: 0,
+        x2: 0,
+        y2: 1,
+        colorStops: props.gradientStops.map((stop, index) => ({
+          offset: stop,
+          color: props.gradientColors[index],
+        })),
+      };
 
-      const option = {
-        tooltip: {
-          trigger: "axis",
-        },
+      const options = {
         xAxis: {
-          type: "category",
-          data: compressedData.map((item) => item.time), // 시간 데이터
-          axisLabel: {
-            formatter: (value) => new Date(value).toLocaleTimeString(),
-          },
+          type: 'category',
+          data: props.chartData.labels,
         },
         yAxis: {
-          type: "value",
+          type: 'value',
         },
         series: [
           {
-            type: "line",
-            data: compressedData.map((item) => item.value), // 값 데이터
-            areaStyle: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: "rgba(72,72,176,0.2)" },
-                { offset: 1, color: "rgba(72,72,176,0.0)" },
-              ]),
-            },
-            smooth: true, // 부드러운 곡선
-            lineStyle: {
-              color: "#2380f7",
-            },
-            symbol: "circle",
-            symbolSize: 6,
+            data: props.chartData.datasets[0].data,
+            type: 'line',
+            smooth: true,
+            areaStyle: { color: gradient },
+            lineStyle: { color: props.gradientColors[0] },
           },
         ],
-        ...props.chartOptions, // 추가 옵션 병합
+        ...props.extraOptions,
       };
 
-      chartInstance.setOption(option);
-    };
-
-    /**
-     * 차트를 리사이즈
-     */
-    const resizeChart = () => {
-      if (chartInstance) {
-        chartInstance.resize();
-      }
+      chartInstance.setOption(options);
     };
 
     watch(
-      () => props.rawData,
+      () => props.chartData,
       () => {
-        initChart(); // 데이터 변경 시 차트를 갱신
+        if (chartInstance) {
+          initializeChart();
+        }
       },
       { deep: true }
     );
 
     onMounted(() => {
-      initChart();
-      window.addEventListener("resize", resizeChart);
-    });
-
-    onBeforeUnmount(() => {
-      if (chartInstance) {
-        chartInstance.dispose(); // 메모리 누수 방지
-      }
-      window.removeEventListener("resize", resizeChart);
+      initializeChart();
     });
 
     return {
@@ -130,7 +100,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style scoped>
-/* 추가적인 스타일을 정의할 수 있습니다 */
-</style>

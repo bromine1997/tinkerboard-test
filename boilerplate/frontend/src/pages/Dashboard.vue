@@ -44,12 +44,13 @@
       <div class="col-12">
         <card type="chart">
           <div class="chart-area">
-            <time-series-chart
+            <line-chart
               ref="mainChart"
               chart-id="main-line-chart"
-              :rawData="sensorDataStore.pressureData"
-              :chartOptions="mainChart.extraOptions"
-              :interval="1" 
+              :chart-data="pressureChartData"
+              :gradient-colors="mainChart.gradientColors"
+              :gradient-stops="mainChart.gradientStops"
+              :extra-options="mainChart.extraOptions"
             />
           </div>
         </card>
@@ -83,7 +84,7 @@ import { useSensorDataStore } from "@/store/sensorData";
 
 export default {
   components: {
-    TimeSeriesChart,
+    LineChart,
   },
   setup() {
     // 상태 관리
@@ -140,6 +141,25 @@ export default {
     });
 
     // 기존 pressureChartData는 이제 필요 없으므로 제거
+
+    const pressureChartData = computed(() => {
+      const labels = sensorDataStore.pressureData.map(
+        (data) => data.time
+      );
+      const dataPoints = sensorDataStore.pressureData.map(
+        (data) => data.value
+      );
+
+      return {
+        labels,
+        datasets: [
+          {
+            label: "Pressure Data",
+            data: dataPoints,
+          },
+        ],
+      };
+    });
 
     // Methods
     const startMonitoring = () => {
