@@ -155,8 +155,6 @@ export default {
       const newValue = parseFloat((Math.random() * 5).toFixed(2)); // 0~5 사이의 랜덤 값
       console.log('Generated new data:', newValue);
 
-      // 데이터 추가 (맨 앞 데이터 제거하고 새 데이터를 추가)
-      chartData.value.shift();
       chartData.value.push(newValue);
     };
 
