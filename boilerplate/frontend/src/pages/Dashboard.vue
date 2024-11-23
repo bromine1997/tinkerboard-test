@@ -9,7 +9,7 @@
         </div>
         <div class="d-flex align-items-center">
           <div class="setpoint-display mr-3">
-            <strong>Set Point:</strong> {{ setPoint }}
+            <strong>Set Point:</strong> {{ sensorData.metrics.setPoint }}
           </div>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <button
@@ -59,13 +59,13 @@
     <div class="row">
       <div
         class="col-lg-4 col-md-6 mb-4"
-        v-for="(metric, index) in monitoringMetrics"
-        :key="index"
+        v-for="(value, key) in sensorData.metrics"
+        :key="key"
       >
         <card type="info">
           <div class="card-body text-center">
-            <h5 class="card-category">{{ metric.name }}</h5>
-            <h3 class="card-title">{{ metric.value }} {{ metric.unit }}</h3>
+            <h5 class="card-category">{{ key }}</h5>
+            <h3 class="card-title">{{ value }}</h3>
           </div>
         </card>
       </div>
@@ -75,6 +75,7 @@
 
 <script>
 import { reactive, ref } from "vue";
+import { useSensorDataStore } from "@/stores/sensorData"; // Pinia 스토어
 import LineChart from "@/components/Charts/LineChart.vue";
 
 export default {
@@ -82,6 +83,7 @@ export default {
     LineChart,
   },
   setup() {
+    const sensorData = useSensorDataStore(); // 스토어 사용
     const isMonitoring = ref(false);
     const isPaused = ref(false);
     const gradientColors = ["rgba(72,72,176,0.2)", "rgba(72,72,176,0.0)", "rgba(119,52,169,0)"];
@@ -133,6 +135,7 @@ export default {
     };
 
     return {
+      sensorData, // Pinia 데이터 노출
       isMonitoring,
       isPaused,
       chartData,
