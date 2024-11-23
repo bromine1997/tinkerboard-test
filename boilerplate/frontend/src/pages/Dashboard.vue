@@ -45,7 +45,7 @@
           <div class="chart-area">
             <v-chart
               :option="mainChartOptions"
-              style="height: 100%; width: 100%;"
+              class="chart"
             />
           </div>
         </card>
@@ -227,8 +227,15 @@ export default {
   font-size: 16px;
   color: #FFF;
 }
+
+
+
+.chart-card {
+  height: 450px; /* 카드의 높이를 명시적으로 설정 */
+}
 .chart-area {
-  height: 450px; /* 최대 높이 설정 (필요 시 변경 가능) */
+  height: 100%; /* 부모 요소에 맞추기 */
+  width: 100%;
 }
 
 </style>
