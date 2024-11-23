@@ -47,8 +47,7 @@
               ref="mainChart"
               chart-id="main-line-chart"
               :chart-data="chartData"
-              :gradient-colors="gradientColors"
-              :gradient-stops="[1, 0.5, 0]"
+              :extra-options="chartOptions"
             />
           </div>
         </card>
@@ -74,8 +73,9 @@
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { reactive, ref, computed } from "vue";
 import LineChart from "@/components/Charts/LineChart.vue";
+import { blueChartOptions } from "@/components/Charts/config"; // blueChartOptions 가져오기
 
 export default {
   components: {
@@ -84,7 +84,6 @@ export default {
   setup() {
     const isMonitoring = ref(false);
     const isPaused = ref(false);
-    const gradientColors = ["rgba(72,72,176,0.2)", "rgba(72,72,176,0.0)", "rgba(119,52,169,0)"];
 
     const chartData = reactive({
       labels: [],
@@ -95,6 +94,8 @@ export default {
         },
       ],
     });
+
+    const chartOptions = blueChartOptions; // blueChartOptions 사용
 
     let intervalId = null;
 
@@ -136,7 +137,7 @@ export default {
       isMonitoring,
       isPaused,
       chartData,
-      gradientColors,
+      chartOptions,
       startMonitoring,
       togglePauseResume,
       stopMonitoring,
