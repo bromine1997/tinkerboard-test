@@ -45,7 +45,6 @@
           <div class="chart-area">
             <v-chart
               :option="mainChartOptions"
-              class="chart"
             />
           </div>
         </card>
@@ -229,15 +228,10 @@ export default {
 }
 
 
-/* Use flex layout for chart card */
-.chart-card {
-  display: flex;
-  flex-direction: column;
-  height: 500px; /* 원하는 높이로 설정 */
-}
+
 
 .chart-area {
-  height: 100%; /* 원하는 높이로 설정 */
+  height: 450px; /* 원하는 높이로 설정 */
 }
 
 </style>
