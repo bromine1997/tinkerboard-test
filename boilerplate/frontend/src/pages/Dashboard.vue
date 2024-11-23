@@ -107,7 +107,7 @@ export default {
       series: [
         {
           ...chartConfigs.blueChartOptions.series[0],
-          data: sensorDataStore.metrics.pressure,
+          data: sensorDataStore.pressureData.map(d => d.value),
         },
       ],
       responsive: true, // 반응형 설정

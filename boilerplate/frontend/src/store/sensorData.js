@@ -6,11 +6,11 @@ export const useSensorDataStore = defineStore('sensorData', {
       { time: 0, value: 1 }, // 초기 데이터 포인트
     ],
     metrics: {
-      oxygen: 9999,
-      carbonDioxide: 9999,
-      temperature: 9999,
-      humidity: 9999,
-      pressure: 9999,
+      oxygen: 0,
+      carbonDioxide: 0,
+      temperature: 26.5,
+      humidity: 25,
+      pressure: 1,
       flow: 9999,
       setPoint: 9999,
     },
