@@ -49,6 +49,7 @@ export const blueChartOptions = {
   ...basicOptions,
   yAxis: {
     type: 'value',
+    name : '압력(ATA)',
     min: -1,
     max: 5,
     axisLine: {
@@ -69,6 +70,7 @@ export const blueChartOptions = {
   },
   xAxis: {
     type: 'category',
+    name : '시간(분)',
     boundaryGap: false,
     axisLine: {
       lineStyle: {
@@ -78,6 +80,7 @@ export const blueChartOptions = {
     axisLabel: {
       color: '#2380f7',
       padding: 10,
+      interval: 4,
     },
     splitLine: {
       show: true,
