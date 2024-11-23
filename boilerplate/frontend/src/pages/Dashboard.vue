@@ -70,13 +70,15 @@
 </template>
 
 <script>
-import { computed, ref, onUnmounted } from 'vue';
+import { computed, ref,onMounted ,onUnmounted } from 'vue';
 import * as echarts from 'echarts';
 import * as chartConfigs from "@/components/Charts/config";
 import { useSensorDataStore } from "@/store/sensorData";
 
 export default {
   setup() {
+
+    const chartInstance = ref(null); // 차트 인스턴스 참조
 
     const sensorDataStore = useSensorDataStore();
 
@@ -94,6 +96,18 @@ export default {
       time: [],
       value: [],
     });
+
+    const initChart = () => {
+      const chartDom = document.querySelector(".chart-area");
+      chartInstance.value = echarts.init(chartDom); // 차트 초기화
+      chartInstance.value.setOption(mainChartOptions.value);
+    };
+
+    const resizeChart = () => {
+      if (chartInstance.value) {
+        chartInstance.value.resize(); // 차트를 부모 컨테이너 크기에 맞게 리사이즈
+      }
+    };
 
     // ECharts 옵션 계산된 속성
     const mainChartOptions = computed(() => ({
@@ -185,8 +199,19 @@ export default {
       }
     };
 
+    onMounted(() => {
+      initChart();
+      window.addEventListener("resize", resizeChart); // 창 크기 변경 이벤트 등록
+    });
+
+  
+
     // 컴포넌트 언마운트 시 인터벌 정리
     onUnmounted(() => {
+      window.removeEventListener("resize", resizeChart); // 이벤트 리스너 제거
+      if (chartInstance.value) {
+        chartInstance.value.dispose(); // 차트 인스턴스 정리
+      }
       if (intervalId) {
         clearInterval(intervalId);
       }
