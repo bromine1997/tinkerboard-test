@@ -47,7 +47,7 @@
             <line-chart
               ref="mainChart"
               chart-id="main-line-chart"
-              :chart-data="pressureChartData"
+              :chart-data="chartData"
               :gradient-colors="mainChart.gradientColors"
               :gradient-stops="mainChart.gradientStops"
             />
@@ -78,7 +78,9 @@
 import { computed, ref } from 'vue';
 import LineChart from '@/components/Charts/LineChart.vue'; // .vue 파일로 임포트
 import * as chartConfigs from "@/components/Charts/config";
+
 import config from "@/config";
+
 import { useSensorDataStore } from "@/store/sensorData";
 
 export default {
@@ -99,7 +101,34 @@ export default {
       extraOptions: chartConfigs.blueChartOptions,
       gradientColors: config.colors.primaryGradient,
       gradientStops: [1, 0.4, 0],
+      
     }));
+
+    const chartData = reactive({
+      labels: [],
+      datasets: [
+        {
+          label: "Random Data",
+          data: [],
+        },
+      ],
+    });
+
+    let intervalId = null;
+
+    const generateRandomData = () => {
+      const newValue = Math.random() * 5; // 0~5 사이의 랜덤 값
+      const currentTime = new Date().toLocaleTimeString();
+      chartData.labels.push(currentTime);
+      chartData.datasets[0].data.push(newValue);
+
+      // 데이터 개수가 20개를 초과하면 오래된 데이터 제거
+      if (chartData.labels.length > 20) {
+        chartData.labels.shift();
+        chartData.datasets[0].data.shift();
+      }
+    };
+
 
     const monitoringMetrics = computed(() => {
       const metrics = [
@@ -139,52 +168,35 @@ export default {
       return metrics;
     });
 
-    const pressureChartData = computed(() => {
-      const labels = sensorDataStore.pressureData.map(
-        (data) => data.time
-      );
-      const dataPoints = sensorDataStore.pressureData.map(
-        (data) => data.value
-      );
-
-      return {
-        labels,
-        datasets: [
-          {
-            label: "Pressure Data",
-            fill: true,
-            borderColor: config.colors.primary,
-            borderWidth: 2,
-            pointBackgroundColor: config.colors.primary,
-            data: dataPoints,
-          },
-        ],
-      };
-    });
 
     // Methods
     const startMonitoring = () => {
       isMonitoring.value = true;
       isPaused.value = false;
-      console.log('Monitoring started');
+      intervalId = setInterval(() => {
+        if (!isPaused.value) {
+          generateRandomData();
+        }
+      }, 1000); // 1초마다 데이터 생성
     };
 
     const togglePauseResume = () => {
       isPaused.value = !isPaused.value;
-      console.log(isPaused.value ? 'Monitoring paused' : 'Monitoring resumed');
     };
 
     const stopMonitoring = () => {
       isMonitoring.value = false;
       isPaused.value = false;
-      console.log('Monitoring stopped');
+      clearInterval(intervalId);
+      intervalId = null;
     };
 
     return {
       setPoint,
       mainChart,
       monitoringMetrics,
-      pressureChartData,
+      gradientColors,
+      chartData,
       isMonitoring,
       isPaused,
       startMonitoring,
