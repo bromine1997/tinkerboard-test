@@ -4,10 +4,11 @@
     <div class="row mb-4">
       <div class="col-12 d-flex justify-content-between align-items-center">
         <div>
-          <h5 class="card-category">HBOT CHAMBER MONITORING</h5>
+          <h5 class="card-category"> HBOT CHAMBER MONITORING </h5>
           <h2 class="card-title">Performance Monitoring</h2>
         </div>
         <div class="d-flex align-items-center">
+          <!-- Set Point 표시 -->
           <div class="setpoint-display mr-3">
             <strong>Set Point:</strong> {{ setPoint }}
           </div>
@@ -46,14 +47,14 @@
             <line-chart
               ref="mainChart"
               chart-id="main-line-chart"
-              :chart-data="chartData"
-              :gradient-colors="gradientColors"
-              :gradient-stops="[1, 0.5, 0]"
+              :chart-data="pressureChartData"
+              :gradient-colors="mainChart.gradientColors"
+              :gradient-stops="mainChart.gradientStops"
+              :extra-options="mainChart.extraOptions"
             />
           </div>
         </card>
       </div>
-    </div>
 
     <!-- 모니터링 지표 섹션 -->
     <div class="row">
@@ -74,69 +75,96 @@
 </template>
 
 <script>
-import { reactive, ref } from "vue";
-import LineChart from "@/components/Charts/LineChart.vue";
+import { computed, ref } from 'vue';
+import TimeSeriesChart from '@/components/Charts/TimeSeriesChart.vue'; // 새로 만든 ECharts용 컴포넌트
+import * as chartConfigs from "@/components/Charts/config";
+import config from "@/config";
+import { useSensorDataStore } from "@/store/sensorData";
 
 export default {
   components: {
-    LineChart,
+    TimeSeriesChart,
   },
   setup() {
-    const isMonitoring = ref(false);
-    const isPaused = ref(false);
-    const gradientColors = ["rgba(72,72,176,0.2)", "rgba(72,72,176,0.0)", "rgba(119,52,169,0)"];
+    // 상태 관리
+    const sensorDataStore = useSensorDataStore();
 
-    const chartData = reactive({
-      labels: [],
-      datasets: [
+    const isMonitoring = ref(false); // 모니터링 상태
+    const isPaused = ref(false); // 일시 정지 상태
+
+    // Computed properties
+    const setPoint = computed(() => sensorDataStore.metrics.setPoint);
+
+    const mainChart = computed(() => ({
+      extraOptions: chartConfigs.blueChartOptions,
+      gradientColors: config.colors.primaryGradient,
+      gradientStops: [1, 0.4, 0],
+    }));
+
+    const monitoringMetrics = computed(() => {
+      const metrics = [
         {
-          label: "Random Data",
-          data: [],
+          name: "산소 (Oxygen)",
+          value: sensorDataStore.metrics.oxygen,
+          unit: "%",
         },
-      ],
+        {
+          name: "이산화탄소 (Carbon Dioxide)",
+          value: sensorDataStore.metrics.carbonDioxide,
+          unit: "ppm",
+        },
+        {
+          name: "온도 (Temperature)",
+          value: sensorDataStore.metrics.temperature,
+          unit: "°C",
+        },
+        {
+          name: "습도 (Humidity)",
+          value: sensorDataStore.metrics.humidity,
+          unit: "%",
+        },
+        {
+          name: "유량 (Flow)",
+          value: sensorDataStore.metrics.flow,
+          unit: "L/min",
+        },
+        {
+          name: "압력 (Pressure)",
+          value: sensorDataStore.metrics.pressure,
+          unit: "ATA",
+        },
+      ];
+
+      console.log('Updated monitoringMetrics:', metrics); // 디버깅용 로그
+      return metrics;
     });
 
-    let intervalId = null;
+    // 기존 pressureChartData는 이제 필요 없으므로 제거
 
-    const generateRandomData = () => {
-      const newValue = Math.random() * 5; // 0~5 사이의 랜덤 값
-      const currentTime = new Date().toLocaleTimeString();
-      chartData.labels.push(currentTime);
-      chartData.datasets[0].data.push(newValue);
-
-      // 데이터 개수가 20개를 초과하면 오래된 데이터 제거
-      if (chartData.labels.length > 20) {
-        chartData.labels.shift();
-        chartData.datasets[0].data.shift();
-      }
-    };
-
+    // Methods
     const startMonitoring = () => {
       isMonitoring.value = true;
       isPaused.value = false;
-      intervalId = setInterval(() => {
-        if (!isPaused.value) {
-          generateRandomData();
-        }
-      }, 1000); // 1초마다 데이터 생성
+      console.log('Monitoring started');
     };
 
     const togglePauseResume = () => {
       isPaused.value = !isPaused.value;
+      console.log(isPaused.value ? 'Monitoring paused' : 'Monitoring resumed');
     };
 
     const stopMonitoring = () => {
       isMonitoring.value = false;
       isPaused.value = false;
-      clearInterval(intervalId);
-      intervalId = null;
+      console.log('Monitoring stopped');
     };
 
     return {
+      setPoint,
+      mainChart,
+      monitoringMetrics,
       isMonitoring,
       isPaused,
-      chartData,
-      gradientColors,
       startMonitoring,
       togglePauseResume,
       stopMonitoring,
@@ -154,11 +182,16 @@ export default {
   font-size: 24px;
   margin-top: 10px;
 }
-.setpoint-display {
-  font-size: 16px;
-  color: #000;
+.card-body i {
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: #007bff;
 }
 .btn-group .btn {
   margin-left: 5px;
+}
+.setpoint-display {
+  font-size: 16px;
+  color: #FFF;
 }
 </style>
