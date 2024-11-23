@@ -137,7 +137,6 @@ export default {
     const generateRandomData = () => {
       const newValue = Math.random() * 5; // 0~5 사이의 랜덤 값
       const currentTime = new Date().toLocaleTimeString();
-      sensorDataStore.addPressureData(newValue);
       console.log('Generated new data:', { time: currentTime, value: newValue });
     };
 

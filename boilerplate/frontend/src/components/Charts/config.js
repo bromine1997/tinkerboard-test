@@ -49,7 +49,7 @@ export const blueChartOptions = {
   ...basicOptions,
   yAxis: {
     type: 'value',
-    min: -5,
+    min: -1,
     max: 5,
     axisLine: {
       lineStyle: {
