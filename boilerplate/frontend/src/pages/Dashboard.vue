@@ -227,12 +227,7 @@ export default {
   font-size: 16px;
   color: #FFF;
 }
-.card {
-  height: 100%; /* 카드 컨테이너 높이 */
-}
 .chart-area {
-  width: 100%; /* 카드 내부에 꽉 차도록 설정 */
-  height: 100%; /* 부모 컨테이너 높이에 맞춤 */
   max-height: 500px; /* 최대 높이 설정 (필요 시 변경 가능) */
 }
 .v-chart {
