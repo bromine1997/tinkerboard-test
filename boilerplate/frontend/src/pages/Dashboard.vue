@@ -228,7 +228,7 @@ export default {
   color: #FFF;
 }
 .chart-area {
-  max-height: 400px; /* 최대 높이 설정 (필요 시 변경 가능) */
+  max-height: 450px; /* 최대 높이 설정 (필요 시 변경 가능) */
 }
 
 </style>
