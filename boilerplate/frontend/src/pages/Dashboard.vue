@@ -108,6 +108,7 @@ export default {
           data: chartData.value.value, // 랜덤 데이터 값
         },
       ],
+      responsive: true, // 반응형 설정
     }));
 
     // 모니터링 지표 계산된 속성 (필요에 따라 수정 가능)
@@ -230,6 +231,7 @@ export default {
 .chart-area {
   height: 450px; /* 원하는 높이로 설정 */
   width: 100%;
+  display: flex; /* 차트를 유연하게 정렬 */
 }
 
 
