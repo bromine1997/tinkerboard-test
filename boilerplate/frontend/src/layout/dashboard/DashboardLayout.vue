@@ -5,23 +5,23 @@
         <div class="section">
           <sidebar-link
             to="/dashboard"
-            :name="$t('sidebar.dashboard')"
+            name = "Dashborad"
             icon="tim-icons icon-chart-pie-36"
           />
         </div>
-        <h5>User Page</h5>
+        <h5 class="white-text">User Page</h5>
         <div class="section">
           <sidebar-link
             to="/dashboard/profile"
-            :name="$t('sidebar.userProfile')"
+            name="사용자 프로필"
             icon="tim-icons icon-single-02"
           />
         </div>
-        <h5>관리자 페이지</h5>
+        <h5 class="white-text">관리자 페이지</h5>
         <div class="section">
           <sidebar-link
             to="/dashboard/table-list"
-            :name="$t('sidebar.tableList')"
+            name="치료 기록"
             icon="tim-icons icon-puzzle-10"
           />
         </div>
@@ -69,5 +69,11 @@ h5 {
   padding-left: 15px;
   font-weight: bold;
   color: #888;
+}
+.white-text {
+  color: white;
+  font-weight: bold; /* 글자 강조를 원한다면 추가 */
+  margin-top: 20px; /* 기존 h5와 일치 */
+  padding-left: 15px; /* 기존 h5와 일치 */
 }
 </style>
