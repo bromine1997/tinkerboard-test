@@ -77,6 +77,7 @@
 
 <script>
 import { computed, ref } from 'vue';
+import LineChart from '@/components/Charts/LineChart.vue'; // 새로 만든 ECharts용 컴포넌트
 import TimeSeriesChart from '@/components/Charts/TimeSeriesChart.vue'; // 새로 만든 ECharts용 컴포넌트
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/config";
