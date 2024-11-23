@@ -45,7 +45,7 @@
           <div class="chart-area">
             <v-chart
               :option="mainChartOptions"
-               style="height: 500px;"
+              
             />
           </div>
         </card>
@@ -226,5 +226,8 @@ export default {
 .setpoint-display {
   font-size: 16px;
   color: #FFF;
+}
+.chart-area {
+  height: 500px; /* 원하는 높이로 설정 */
 }
 </style>
