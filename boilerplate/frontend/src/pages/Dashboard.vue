@@ -150,14 +150,11 @@ export default {
     });
 
 
-    // 데이터 생성 로직
     const generateRandomData = () => {
       const newValue = parseFloat((Math.random() * 5).toFixed(2)); // 0~5 사이의 랜덤 값
+      chartData.value.value.push(newValue); // 객체의 value 배열에 데이터 추가
       console.log('Generated new data:', newValue);
-
-      chartData.value.push(newValue);
     };
-
     let intervalId = null;
 
     // 메소드: 모니터링 시작
