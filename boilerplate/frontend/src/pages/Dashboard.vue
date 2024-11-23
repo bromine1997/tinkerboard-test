@@ -45,6 +45,7 @@
           <div class="chart-area">
             <v-chart
               :option="mainChartOptions"
+               style="height: 500px;"
             />
           </div>
         </card>
