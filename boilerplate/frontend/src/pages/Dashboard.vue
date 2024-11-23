@@ -45,7 +45,6 @@
           <div class="chart-area">
             <v-chart
               :option="mainChartOptions"
-              class="v-chart"
             />
           </div>
         </card>
@@ -228,10 +227,7 @@ export default {
   color: #FFF;
 }
 .chart-area {
-  max-height: 500px; /* 최대 높이 설정 (필요 시 변경 가능) */
+  max-height: 600px; /* 최대 높이 설정 (필요 시 변경 가능) */
 }
-.v-chart {
-  width: 100%;
-  height: 100%; /* 차트가 부모의 크기에 맞도록 설정 */
-}
+
 </style>
