@@ -234,9 +234,4 @@ export default {
   max-height: 400px; /* 최대 높이 설정 (필요 시 변경 가능) */
 }
 
-.card {
-  height: 100%; /* 카드 컨테이너 높이 */
-}
-
-
 </style>
