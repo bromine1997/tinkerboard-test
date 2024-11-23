@@ -44,7 +44,7 @@
         <card type="chart">
           <div class="chart-area">
             <v-chart
-              :option="mainChartOptions""
+              :option="mainChartOptions"
             />
           </div>
         </card>
