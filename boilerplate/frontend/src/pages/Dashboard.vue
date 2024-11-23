@@ -44,13 +44,12 @@
       <div class="col-12">
         <card type="chart">
           <div class="chart-area">
-            <line-chart
+            <time-series-chart
               ref="mainChart"
               chart-id="main-line-chart"
-              :chart-data="pressureChartData"
-              :gradient-colors="mainChart.gradientColors"
-              :gradient-stops="mainChart.gradientStops"
-              :extra-options="mainChart.extraOptions"
+              :rawData="sensorDataStore.pressureData"
+              :chartOptions="mainChart.extraOptions"
+              :interval="1" 
             />
           </div>
         </card>
@@ -77,14 +76,14 @@
 
 <script>
 import { computed, ref } from 'vue';
-import LineChart from '@/components/Charts/LineChart.vue'; // .vue 파일로 임포트
+import TimeSeriesChart from '@/components/Charts/TimeSeriesChart.vue'; // 새로 만든 ECharts용 컴포넌트
 import * as chartConfigs from "@/components/Charts/config";
 import config from "@/config";
 import { useSensorDataStore } from "@/store/sensorData";
 
 export default {
   components: {
-    LineChart,
+    TimeSeriesChart,
   },
   setup() {
     // 상태 관리
@@ -135,33 +134,12 @@ export default {
           unit: "ATA",
         },
       ];
-      
+
       console.log('Updated monitoringMetrics:', metrics); // 디버깅용 로그
       return metrics;
     });
 
-    const pressureChartData = computed(() => {
-      const labels = sensorDataStore.pressureData.map(
-        (data) => data.time
-      );
-      const dataPoints = sensorDataStore.pressureData.map(
-        (data) => data.value
-      );
-
-      return {
-        labels,
-        datasets: [
-          {
-            label: "Pressure Data",
-            fill: true,
-            borderColor: config.colors.primary,
-            borderWidth: 2,
-            pointBackgroundColor: config.colors.primary,
-            data: dataPoints,
-          },
-        ],
-      };
-    });
+    // 기존 pressureChartData는 이제 필요 없으므로 제거
 
     // Methods
     const startMonitoring = () => {
@@ -185,7 +163,6 @@ export default {
       setPoint,
       mainChart,
       monitoringMetrics,
-      pressureChartData,
       isMonitoring,
       isPaused,
       startMonitoring,
