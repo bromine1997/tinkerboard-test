@@ -52,9 +52,7 @@ export const blueChartOptions = {
     min: -1,
     max: 5,
     axisLine: {
-      lineStyle: {
-        color: '#2380f7', // y축 색상
-      },
+      lineStyle: { color: '#2380f7' },
     },
     axisLabel: {
       color: '#2380f7',
@@ -62,18 +60,15 @@ export const blueChartOptions = {
     },
     splitLine: {
       show: true,
-      lineStyle: {
-        color: 'rgba(29,140,248,0.0)', // y축 그리드 라인 색상
-      },
+      lineStyle: { color: 'rgba(29,140,248,0.0)' },
     },
   },
   xAxis: {
     type: 'category',
+    data: Array.from({ length: 200 }, (_, i) => i + 1), // X축을 1부터 200까지 설정
     boundaryGap: false,
     axisLine: {
-      lineStyle: {
-        color: '#2380f7', // x축 색상
-      },
+      lineStyle: { color: '#2380f7' },
     },
     axisLabel: {
       color: '#2380f7',
@@ -81,9 +76,7 @@ export const blueChartOptions = {
     },
     splitLine: {
       show: true,
-      lineStyle: {
-        color: 'rgba(29,140,248,0.1)', // x축 그리드 라인 색상
-      },
+      lineStyle: { color: 'rgba(29,140,248,0.1)' },
     },
   },
   series: [
@@ -91,9 +84,9 @@ export const blueChartOptions = {
       name: 'Pressure Data',
       type: 'line',
       smooth: true,
-      data: [], // 데이터는 컴포넌트에서 설정
+      data: new Array(200).fill(null), // 초기 데이터는 빈 값으로 설정
       lineStyle: {
-        color: '#2380f7', // 선 색상
+        color: '#2380f7',
         width: 2,
       },
       areaStyle: {

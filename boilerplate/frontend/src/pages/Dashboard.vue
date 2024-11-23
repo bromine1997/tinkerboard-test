@@ -44,8 +44,7 @@
         <card type="chart">
           <div class="chart-area">
             <v-chart
-              :option="mainChartOptions"
-              style="height: 400px; width: 100%;"
+              :option="mainChartOptions""
             />
           </div>
         </card>
@@ -82,6 +81,8 @@ export default {
 
     const setPoint = ref(100); // Set Point 초기값
 
+     const xAxisData = Array.from({ length: 200 }, (_, i) => i + 1);
+
     // 라인 차트 데이터 관리
     const chartData = ref({
       time: [],
@@ -93,7 +94,7 @@ export default {
       ...chartConfigs.blueChartOptions,
       xAxis: {
         ...chartConfigs.blueChartOptions.xAxis,
-        data: chartData.value.time, // 시계열 데이터 시간
+        data: xAxisData, // 시계열 데이터 시간
       },
       series: [
         {
@@ -144,19 +145,12 @@ export default {
 
     // 데이터 생성 로직
     const generateRandomData = () => {
-      const newValue = parseFloat((Math.random() * 5).toFixed(2)); // 0~5 사이의 랜덤 소수점 포함 숫자
-      const currentTime = new Date().toLocaleTimeString();
-      console.log('Generated new data:', { time: currentTime, value: newValue });
+      const newValue = parseFloat((Math.random() * 5).toFixed(2)); // 0~5 사이의 랜덤 값
+      console.log('Generated new data:', newValue);
 
-      // 데이터 추가
-      chartData.value.time.push(currentTime);
-      chartData.value.value.push(newValue);
-
-      // 데이터 포인트 수 제한 (예: 20개)
-      if (chartData.value.time.length > 20) {
-        chartData.value.time.shift(); // 가장 오래된 시간 데이터 제거
-        chartData.value.value.shift(); // 가장 오래된 값 데이터 제거
-      }
+      // 데이터 추가 (맨 앞 데이터 제거하고 새 데이터를 추가)
+      chartData.value.shift();
+      chartData.value.push(newValue);
     };
 
     let intervalId = null;
