@@ -107,7 +107,7 @@ export default {
       series: [
         {
           ...chartConfigs.blueChartOptions.series[0],
-          data: chartData.value.value, // 랜덤 데이터 값
+          data: sensorDataStore.metrics.pressure,
         },
       ],
       responsive: true, // 반응형 설정
