@@ -45,6 +45,7 @@
           <div class="chart-area">
             <v-chart
               :option="mainChartOptions"
+              style="height: 400px; width: 100%;"
             />
           </div>
         </card>
@@ -68,20 +69,24 @@
     </div>
   </div>
 </template>
+
 <script>
 import { computed, ref, onUnmounted } from 'vue';
+import * as echarts from 'echarts';
 import * as chartConfigs from "@/components/Charts/config";
-import { useSensorDataStore } from "@/store/sensorData";
 
 export default {
   setup() {
-    const sensorDataStore = useSensorDataStore();
-
     const isMonitoring = ref(false); // 모니터링 상태
     const isPaused = ref(false); // 일시 정지 상태
 
-    // Set Point 계산된 속성
-    const setPoint = computed(() => sensorDataStore.metrics.setPoint);
+    const setPoint = ref(100); // Set Point 초기값
+
+    // 라인 차트 데이터 관리
+    const chartData = ref({
+      time: [],
+      value: [],
+    });
 
     // ECharts 옵션 계산된 속성
     const mainChartOptions = computed(() => ({
@@ -98,69 +103,67 @@ export default {
       ],
     }));
 
-
-    // 모니터링 지표 계산된 속성
+    // 모니터링 지표 계산된 속성 (필요에 따라 수정 가능)
     const monitoringMetrics = computed(() => {
       const metrics = [
         {
           name: "산소 (Oxygen)",
-          value: sensorDataStore.metrics.oxygen,
+          value: 98,
           unit: "%",
         },
         {
           name: "이산화탄소 (Carbon Dioxide)",
-          value: sensorDataStore.metrics.carbonDioxide,
+          value: 400,
           unit: "ppm",
         },
         {
           name: "온도 (Temperature)",
-          value: sensorDataStore.metrics.temperature,
+          value: 22,
           unit: "°C",
         },
         {
           name: "습도 (Humidity)",
-          value: sensorDataStore.metrics.humidity,
+          value: 45,
           unit: "%",
         },
         {
           name: "유량 (Flow)",
-          value: sensorDataStore.metrics.flow,
+          value: 5,
           unit: "L/min",
         },
         {
           name: "압력 (Pressure)",
-          value: sensorDataStore.metrics.pressure,
+          value: 1.2,
           unit: "ATA",
         },
       ];
       
-      console.log('Updated monitoringMetrics:', metrics); // 디버깅용 로그
+      console.log('Updated monitoringMetrics:', metrics);
       return metrics;
     });
 
     // 데이터 생성 로직
-  const generateRandomData = () => {
-    const newValue = parseFloat((Math.random() * 5).toFixed(2)); // 0~5 사이의 랜덤 소수점 포함 숫자
-    const currentTime = new Date().toLocaleTimeString();
-    console.log('Generated new data:', { time: currentTime, value: newValue });
+    const generateRandomData = () => {
+      const newValue = parseFloat((Math.random() * 5).toFixed(2)); // 0~5 사이의 랜덤 소수점 포함 숫자
+      const currentTime = new Date().toLocaleTimeString();
+      console.log('Generated new data:', { time: currentTime, value: newValue });
 
       // 데이터 추가
-    chartData.value.time.push(currentTime);
-    chartData.value.value.push(newValue);
+      chartData.value.time.push(currentTime);
+      chartData.value.value.push(newValue);
 
       // 데이터 포인트 수 제한 (예: 20개)
-    if (chartData.value.time.length > 20) {
-      chartData.value.time.shift(); // 가장 오래된 시간 데이터 제거
-      chartData.value.value.shift(); // 가장 오래된 값 데이터 제거
-    }
-  };
-
-    
+      if (chartData.value.time.length > 20) {
+        chartData.value.time.shift(); // 가장 오래된 시간 데이터 제거
+        chartData.value.value.shift(); // 가장 오래된 값 데이터 제거
+      }
+    };
 
     let intervalId = null;
 
     // 메소드: 모니터링 시작
     const startMonitoring = () => {
+      if (isMonitoring.value) return; // 이미 모니터링 중이면 무시
       isMonitoring.value = true;
       isPaused.value = false;
       intervalId = setInterval(() => {
@@ -179,8 +182,10 @@ export default {
     const stopMonitoring = () => {
       isMonitoring.value = false;
       isPaused.value = false;
-      clearInterval(intervalId);
-      intervalId = null;
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
     };
 
     // 컴포넌트 언마운트 시 인터벌 정리
