@@ -76,7 +76,7 @@
 <script>
 import { reactive, ref } from "vue";
 import LineChart from "@/components/Charts/LineChart.vue";
-import { useSensorDataStore } from "@/stores/sensorData"; // Pinia 스토어
+import { useSensorDataStore } from "@/store/sensorData";
 
 export default {
   components: {
@@ -85,7 +85,6 @@ export default {
   setup() {
     const isMonitoring = ref(false);
     const isPaused = ref(false);
-    
     const gradientColors = ["rgba(72,72,176,0.2)", "rgba(72,72,176,0.0)", "rgba(119,52,169,0)"];
 
     const sensorDataStore = useSensorDataStore();
@@ -115,7 +114,17 @@ export default {
       }
     };
 
-     const monitoringMetrics = computed(() => {
+    const startMonitoring = () => {
+      isMonitoring.value = true;
+      isPaused.value = false;
+      intervalId = setInterval(() => {
+        if (!isPaused.value) {
+          generateRandomData();
+        }
+      }, 1000); // 1초마다 데이터 생성
+    };
+
+    const monitoringMetrics = computed(() => {
       const metrics = [
         {
           name: "산소 (Oxygen)",
@@ -153,16 +162,6 @@ export default {
       return metrics;
     });
 
-    const startMonitoring = () => {
-      isMonitoring.value = true;
-      isPaused.value = false;
-      intervalId = setInterval(() => {
-        if (!isPaused.value) {
-          generateRandomData();
-        }
-      }, 1000); // 1초마다 데이터 생성
-    };
-
     const togglePauseResume = () => {
       isPaused.value = !isPaused.value;
     };
@@ -176,10 +175,10 @@ export default {
 
     return {
       isMonitoring,
+      monitoringMetrics,
       isPaused,
       chartData,
       gradientColors,
-      monitoringMetrics,
       startMonitoring,
       togglePauseResume,
       stopMonitoring,
