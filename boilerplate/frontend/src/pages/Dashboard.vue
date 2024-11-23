@@ -9,7 +9,7 @@
         </div>
         <div class="d-flex align-items-center">
           <div class="setpoint-display mr-3">
-            <strong>Set Point:</strong> {{ sensorData.metrics.setPoint }}
+            <strong>Set Point:</strong> {{ setPoint }}
           </div>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <button
@@ -59,13 +59,13 @@
     <div class="row">
       <div
         class="col-lg-4 col-md-6 mb-4"
-        v-for="(value, key) in sensorData.metrics"
-        :key="key"
+        v-for="(metric, index) in monitoringMetrics"
+        :key="index"
       >
         <card type="info">
           <div class="card-body text-center">
-            <h5 class="card-category">{{ key }}</h5>
-            <h3 class="card-title">{{ value }}</h3>
+            <h5 class="card-category">{{ metric.name }}</h5>
+            <h3 class="card-title">{{ metric.value }} {{ metric.unit }}</h3>
           </div>
         </card>
       </div>
@@ -75,18 +75,20 @@
 
 <script>
 import { reactive, ref } from "vue";
-import { useSensorDataStore } from "@/stores/sensorData"; // Pinia 스토어
 import LineChart from "@/components/Charts/LineChart.vue";
+import { useSensorDataStore } from "@/stores/sensorData"; // Pinia 스토어
 
 export default {
   components: {
     LineChart,
   },
   setup() {
-    const sensorData = useSensorDataStore(); // 스토어 사용
     const isMonitoring = ref(false);
     const isPaused = ref(false);
+    
     const gradientColors = ["rgba(72,72,176,0.2)", "rgba(72,72,176,0.0)", "rgba(119,52,169,0)"];
+
+    const sensorDataStore = useSensorDataStore();
 
     const chartData = reactive({
       labels: [],
@@ -113,6 +115,44 @@ export default {
       }
     };
 
+     const monitoringMetrics = computed(() => {
+      const metrics = [
+        {
+          name: "산소 (Oxygen)",
+          value: sensorDataStore.metrics.oxygen,
+          unit: "%",
+        },
+        {
+          name: "이산화탄소 (Carbon Dioxide)",
+          value: sensorDataStore.metrics.carbonDioxide,
+          unit: "ppm",
+        },
+        {
+          name: "온도 (Temperature)",
+          value: sensorDataStore.metrics.temperature,
+          unit: "°C",
+        },
+        {
+          name: "습도 (Humidity)",
+          value: sensorDataStore.metrics.humidity,
+          unit: "%",
+        },
+        {
+          name: "유량 (Flow)",
+          value: sensorDataStore.metrics.flow,
+          unit: "L/min",
+        },
+        {
+          name: "압력 (Pressure)",
+          value: sensorDataStore.metrics.pressure,
+          unit: "ATA",
+        },
+      ];
+
+      console.log('Updated monitoringMetrics:', metrics); // 디버깅용 로그
+      return metrics;
+    });
+
     const startMonitoring = () => {
       isMonitoring.value = true;
       isPaused.value = false;
@@ -135,11 +175,11 @@ export default {
     };
 
     return {
-      sensorData, // Pinia 데이터 노출
       isMonitoring,
       isPaused,
       chartData,
       gradientColors,
+      monitoringMetrics,
       startMonitoring,
       togglePauseResume,
       stopMonitoring,
