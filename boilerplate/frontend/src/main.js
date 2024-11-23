@@ -18,7 +18,8 @@ axios.defaults.baseURL = 'http://localhost:8080'; // 백엔드 서버 주소
 // Vue 3 앱 생성
 const app = createApp(App);
 
-
+// ECharts를 전역으로 사용할 수 있도록 추가
+app.config.globalProperties.$echarts = echarts;
 
 app.provide('socket', socket);
 
@@ -38,8 +39,6 @@ app.use(BlackDashboard);
 // RTL 초기화
 app.config.globalProperties.$rtl.disableRTL(); // RTL 비활성화
 
-// ECharts를 전역으로 사용할 수 있도록 추가
-app.config.globalProperties.$echarts = echarts;
 
 // 글로벌 속성 설정
 app.config.globalProperties.$http = axios; // Axios를 글로벌로 설정
