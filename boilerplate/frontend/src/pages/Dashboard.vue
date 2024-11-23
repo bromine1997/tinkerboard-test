@@ -238,8 +238,5 @@ export default {
   height: 100%; /* 카드 컨테이너 높이 */
 }
 
-.v-chart {
-  width: 100%;
-  height: 100%; /* 차트가 부모의 크기에 맞도록 설정 */
-}
+
 </style>
