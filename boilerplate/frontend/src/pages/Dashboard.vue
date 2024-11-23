@@ -75,11 +75,11 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue';
+import { computed, ref ,reactive } from 'vue';
 import LineChart from '@/components/Charts/LineChart.vue'; // .vue 파일로 임포트
 import * as chartConfigs from "@/components/Charts/config";
 
-import config from "@/config";
+
 
 import { useSensorDataStore } from "@/store/sensorData";
 
@@ -99,10 +99,10 @@ export default {
 
     const mainChart = computed(() => ({
       extraOptions: chartConfigs.blueChartOptions,
-      gradientColors: config.colors.primaryGradient,
+      gradientColors: ["rgba(72,72,176,0.2)", "rgba(72,72,176,0.0)", "rgba(119,52,169,0)"], // 직접 정의
       gradientStops: [1, 0.4, 0],
-      
     }));
+
 
     const chartData = reactive({
       labels: [],
@@ -195,7 +195,6 @@ export default {
       setPoint,
       mainChart,
       monitoringMetrics,
-      gradientColors,
       chartData,
       isMonitoring,
       isPaused,
