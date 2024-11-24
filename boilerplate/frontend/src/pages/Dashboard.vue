@@ -73,17 +73,23 @@
 import { computed, ref, onMounted } from 'vue';
 import * as chartConfigs from "@/components/Charts/config";
 import { useSensorDataStore } from "@/store/sensorData";
-import { useSocketStore } from '@/store/socketStore'; // Pinia 소켓 스토어 임포트
+import { useSocketStore } from '@/store/socketStore';
 
 
 export default {
   setup() {
-    const socketStore = useSocketStore(); // 소켓 스토어 사용
-    const { emitCommand, connected, error } = socketStore; // 필요한 상태 및 메소드 추출
 
-    console.log('Socket connected:', connected.value);
 
+      // 스토어 초기화
+    const socketStore = useSocketStore();
     const sensorDataStore = useSensorDataStore();
+
+  
+
+    const connected = computed(() => socketStore.connected);
+    const error = computed(() => socketStore.error);
+    const emitCommand = socketStore.emitCommand;
+    
 
     const isMonitoring = ref(false); // 모니터링 상태
     const isPaused = ref(false); // 일시 정지 상태
@@ -182,12 +188,12 @@ export default {
       emitCommand('STOP');
     };
 
-    // 컴포넌트 마운트 시 소켓 상태 확인
     onMounted(() => {
-      console.log('소켓 연결 상태:', connected.value);
+      // error가 computed이므로 안전하게 접근 가능
       if (error.value) {
         console.error('소켓 연결 에러:', error.value);
       }
+      console.log('소켓 연결 상태:', connected.value);
     });
 
   
