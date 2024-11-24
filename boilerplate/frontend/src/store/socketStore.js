@@ -45,7 +45,7 @@ export const useSocketStore = defineStore('socket', () => {
   const emitCommand = (command) => {
     console.log(`명령 전송 시도: ${command}`);
     if (connected.value && socket.value) {
-      socket.value.emit('command', { action: command }, (response) => {
+        socket.value.emit('client_command', { action: command }, (response) => {
         console.log(`서버가 ${command} 명령을 확인했습니다:`, response);
       });
     } else {
