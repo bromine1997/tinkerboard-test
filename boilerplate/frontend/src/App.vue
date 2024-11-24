@@ -11,38 +11,53 @@
 </template>
 
 <script>
-import { useWebSocketStore } from '@/stores/websocket';
+import { useSensorDataStore } from '@/store/sensorData';
 import { onMounted, onBeforeUnmount, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { inject } from 'vue';
 
+
 export default {
   setup() {
+    
     const route = useRoute(); // Vue Router의 useRoute로 경로 정보 가져오기
-    const websocketStore = useWebSocketStore();
+    const sensorDataStore = useSensorDataStore();
     const sidebarStore = inject('sidebarStore'); // Sidebar 상태 관리
     const rtlStore = inject('rtlStore'); // RTL 상태 관리
+    const socket = inject('socket'); // WebSocket 객체
 
-    // RTL 상태 비활성화 함수
+    
+
     const disableRTL = () => {
       if (rtlStore && !rtlStore.isRTL) {
         rtlStore.disableRTL();
       }
     };
 
-    // 사이드바 토글 함수
     const toggleNavOpen = () => {
       const root = document.documentElement; // HTML 엘리먼트 가져오기
       root.classList.toggle('nav-open');
     };
 
-    // 새로운 센서 데이터 핸들러
+
     const handleNewSensorData = (data) => {
       console.log('새 센서 데이터 수신:', data);
-      // 필요 시 추가 로직 구현
     };
 
-    // 경로 변경 감지 및 RTL 비활성화
+    const handleConnect = () => {
+      console.log('웹 WebSocket 연결 성공');
+    };
+
+    const handleDisconnect = () => {
+      console.log('웹 WebSocket 연결 해제');
+    };
+
+    const handleSensorDataUpdate = (data) => {
+      //console.log('진짜 테스트 데이터:', data);
+      sensorDataStore.updateSensorData(data);
+    };
+
+    // 경로 변경 감지
     watch(
       () => route?.fullPath,
       () => {
@@ -51,7 +66,7 @@ export default {
       { immediate: true }
     );
 
-    // 사이드바 상태 변경 감지 및 네비게이션 토글
+    // Sidebar 상태 변경 감지
     watch(
       () => sidebarStore?.showSidebar,
       () => {
@@ -60,19 +75,23 @@ export default {
     );
 
     onMounted(() => {
-      // WebSocket 초기화는 스토어에서 처리
-      websocketStore.initWebSocket();
+      // WebSocket 이벤트 리스너 등록
+      if (socket) {
+        socket.on('connect', handleConnect);
+        socket.on('disconnect', handleDisconnect);
+        socket.on('sensor_data_update', handleSensorDataUpdate);
+      }
     });
 
     onBeforeUnmount(() => {
-      // WebSocket 종료는 스토어에서 처리
-      websocketStore.disconnectWebSocket();
+      if (socket) {
+        socket.off('sensor_data_update', handleSensorDataUpdate);
+      }
     });
 
     return {
       route, // route를 반환
       handleNewSensorData,
-      sendCommand: websocketStore.sendCommand, // 스토어의 sendCommand 메서드 노출
     };
   },
 };
