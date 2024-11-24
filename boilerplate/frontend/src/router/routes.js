@@ -7,6 +7,7 @@ const Profile = () => import('@/pages/Profile.vue');
 const TableList = () => import('@/pages/TableList.vue');
 const Login = () => import('@/pages/Login.vue');
 const SignUp = () => import('@/pages/SignUp.vue');
+const PressureProfileList = () => import('@/pages/PressureProfileList.vue'); // 새 페이지 컴포넌트
 
 const routes = [
   {
@@ -43,6 +44,15 @@ const routes = [
         path: 'table-list',
         name: 'table-list',
         component: TableList,
+        meta: {
+          requiresAuth: true,          // Requires authentication
+          roles: ['admin', 'operator'], // Only accessible by admin and operator
+        },
+      },
+      {
+        path: 'pressure-profiles', // 새 라우트 경로
+        name: 'pressure-profiles',
+        component: PressureProfileList, // 새 페이지 컴포넌트
         meta: {
           requiresAuth: true,          // Requires authentication
           roles: ['admin', 'operator'], // Only accessible by admin and operator

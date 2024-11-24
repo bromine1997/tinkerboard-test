@@ -15,6 +15,7 @@ export const useSensorDataStore = defineStore('sensorData', {
       setPoint: 9999,
     },
     pressureBuffer: [], // 압력 데이터 버퍼
+    
     maxPressureDataPoints: 180, // 최대 데이터 포인트 수 (예: 3시간)
   }),
   actions: {

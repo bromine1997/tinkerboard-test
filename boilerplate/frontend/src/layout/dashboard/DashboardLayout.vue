@@ -5,7 +5,7 @@
         <div class="section">
           <sidebar-link
             to="/dashboard"
-            name = "Dashborad"
+            name="Dashboard"
             icon="tim-icons icon-chart-pie-36"
             class="large-text"
           />
@@ -28,6 +28,14 @@
             class="large-text"
           />
         </div>
+        <div class="section">
+          <sidebar-link
+            to="/dashboard/pressure-profiles"  
+            name="압력 프로파일 목록"
+            icon="tim-icons icon-chart-bar-32"
+            class="large-text"
+          />
+        </div>
       </template>
     </side-bar>
     <div class="main-panel">
@@ -37,6 +45,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { inject } from 'vue';
 import ContentFooter from './ContentFooter.vue';
