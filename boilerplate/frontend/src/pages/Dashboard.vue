@@ -73,7 +73,7 @@
 import { computed, ref, onMounted } from 'vue';
 import * as chartConfigs from "@/components/Charts/config";
 import { useSensorDataStore } from "@/store/sensorData";
-import { useSocketStore } from '@/stores/socketStore'; // Pinia 소켓 스토어 임포트
+import { useSocketStore } from '@/store/socketStore'; // Pinia 소켓 스토어 임포트
 
 
 export default {

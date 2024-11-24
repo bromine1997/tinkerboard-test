@@ -73,16 +73,7 @@ export const useSensorDataStore = defineStore('sensorData', {
       //console.log('setPoint updated to', this.metrics.setPoint);
     },
 
-    sendCommand(action) {
-      const socket = inject('socket'); // 웹소켓 인스턴스 주입
-      if (socket && socket.connected) {
-        socket.emit('command', action);
-        console.log(`${action} 명령 전송`);
-      } else {
-        console.error('웹소켓 연결이 되어 있지 않습니다.');
-      }
-    },
-   
+    
   },
 
 });
