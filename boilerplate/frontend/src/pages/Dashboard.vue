@@ -82,10 +82,8 @@ export default {
 
     const socket = inject('socket'); // WebSocket 객체
 
-
     const sensorDataStore = useSensorDataStore();
-    const websocketStore = useWebSocketStore();
-
+  
 
     const isMonitoring = ref(false); // 모니터링 상태
     const isPaused = ref(false); // 일시 정지 상태
