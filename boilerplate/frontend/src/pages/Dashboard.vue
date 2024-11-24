@@ -80,6 +80,9 @@ export default {
   setup() {
     const socket = inject('socket'); // WebSocket 객체
 
+    console.log('Injected socket:', socket);
+    console.log('Socket connected:', socket?.connected);
+
     const sensorDataStore = useSensorDataStore();
 
     const isMonitoring = ref(false); // 모니터링 상태
