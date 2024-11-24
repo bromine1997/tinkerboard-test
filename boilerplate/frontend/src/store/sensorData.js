@@ -21,7 +21,6 @@ export const useSensorDataStore = defineStore('sensorData', {
   }),
   actions: {
     updateSensorData(newData) {
-    
       
       // 압력 데이터 버퍼에 추가
       this.pressureBuffer.push({
@@ -83,18 +82,7 @@ export const useSensorDataStore = defineStore('sensorData', {
         console.error('웹소켓 연결이 되어 있지 않습니다.');
       }
     },
-    startMonitoring() {
-      this.sendCommand('START');
-    },
-    pauseMonitoring() {
-      this.sendCommand('PAUSE');
-    },
-    resumeMonitoring() {
-      this.sendCommand('RESUME');
-    },
-    stopMonitoring() {
-      this.sendCommand('STOP');
-    },
+   
   },
 
 });

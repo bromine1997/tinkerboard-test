@@ -68,9 +68,7 @@ app.config.globalProperties.$rtl.disableRTL(); // RTL 비활성화
 
 // 글로벌 속성 설정
 app.config.globalProperties.$http = axios; // Axios를 글로벌로 설정
-app.config.globalProperties.$socket = socket; // Socket.IO 클라이언트를 글로벌로 설정
 
-app.provide('socket', socket);
 
 // Vue 앱 마운트
 app.mount('#app');

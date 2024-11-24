@@ -70,18 +70,18 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import * as chartConfigs from "@/components/Charts/config";
 import { useSensorDataStore } from "@/store/sensorData";
-import { inject } from 'vue';
+import { useSocketStore } from '@/stores/socketStore'; // Pinia 소켓 스토어 임포트
 
 
 export default {
   setup() {
-    const socket = inject('socket'); // WebSocket 객체
+    const socketStore = useSocketStore(); // 소켓 스토어 사용
+    const { emitCommand, connected, error } = socketStore; // 필요한 상태 및 메소드 추출
 
-    console.log('Injected socket:', socket);
-    console.log('Socket connected:', socket?.connected);
+    console.log('Socket connected:', connected.value);
 
     const sensorDataStore = useSensorDataStore();
 
@@ -158,7 +158,7 @@ export default {
 
   
 
-    // 메소드: 모니터링 시작
+  // 메소드: 모니터링 시작
     const startMonitoring = () => {
       if (isMonitoring.value) return; // 이미 모니터링 중이면 무시
       isMonitoring.value = true;
@@ -182,17 +182,13 @@ export default {
       emitCommand('STOP');
     };
 
-    // Helper function to emit commands
-    const emitCommand = (command) => {
-      if (socket && socket.connected) {
-          socket.emit('command', { action: command }, (response) => {
-          // Optional: Handle server acknowledgment
-          console.log(`Server acknowledged ${command}:`, response);
-        });
-      } else {
-        console.error('Socket is not connected. Cannot send command:', command);
+    // 컴포넌트 마운트 시 소켓 상태 확인
+    onMounted(() => {
+      console.log('소켓 연결 상태:', connected.value);
+      if (error.value) {
+        console.error('소켓 연결 에러:', error.value);
       }
-    };
+    });
 
   
 
