@@ -182,7 +182,7 @@ export default {
     // Helper function to emit commands
     const emitCommand = (command) => {
       if (socket && socket.connected) {
-        socket.emit('command', { action: command }, (response) => {
+          socket.emit('command', { action: command }, (response) => {
           // Optional: Handle server acknowledgment
           console.log(`Server acknowledged ${command}:`, response);
         });
