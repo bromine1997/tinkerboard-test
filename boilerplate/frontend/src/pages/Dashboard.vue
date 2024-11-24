@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { computed, ref, onUnmounted } from 'vue';
+import { computed, ref } from 'vue';
 import * as echarts from 'echarts';
 import * as chartConfigs from "@/components/Charts/config";
 import { useSensorDataStore } from "@/store/sensorData";
@@ -152,47 +152,43 @@ export default {
       return metrics;
     });
 
-
-    const generateRandomData = () => {
-      const newValue = parseFloat((Math.random() * 5).toFixed(2)); // 0~5 사이의 랜덤 값
-      chartData.value.value.push(newValue); // 객체의 value 배열에 데이터 추가
-      console.log('Generated new data:', newValue);
+    // 메소드: 명령어 전송을 위한 함수
+    const sendCommand = async (action) => {
+      try {
+        const response = await axios.post('/command/send', { action });
+        console.log(`${action} 명령 전송 성공:`, response.data);
+      } catch (error) {
+        console.error(`${action} 명령 전송 실패:`, error);
+      }
     };
-    let intervalId = null;
 
-    // 메소드: 모니터링 시작
+
+     // 메소드: 모니터링 시작
     const startMonitoring = () => {
       if (isMonitoring.value) return; // 이미 모니터링 중이면 무시
       isMonitoring.value = true;
       isPaused.value = false;
-      intervalId = setInterval(() => {
-        if (!isPaused.value) {
-          generateRandomData();
-        }
-      }, 1000); // 1초마다 데이터 생성
+      sendCommand('START'); // START 명령 전송
     };
 
     // 메소드: 일시 정지/재개 토글
     const togglePauseResume = () => {
       isPaused.value = !isPaused.value;
+      const action = isPaused.value ? 'PAUSE' : 'RESUME';
+      sendCommand(action); // PAUSE 또는 RESUME 명령 전송
     };
 
     // 메소드: 모니터링 정지
     const stopMonitoring = () => {
+      if (!isMonitoring.value) return; // 모니터링 중이 아니면 무시
       isMonitoring.value = false;
       isPaused.value = false;
-      if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = null;
-      }
+      sendCommand('STOP'); // STOP 명령 전송
     };
 
-    // 컴포넌트 언마운트 시 인터벌 정리
-    onUnmounted(() => {
-      if (intervalId) {
-        clearInterval(intervalId);
-      }
-    });
+
+
+  
 
     return {
       setPoint,

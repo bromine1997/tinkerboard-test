@@ -2,79 +2,35 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
 
-const apiClient = axios.create({
-  baseURL: 'http://localhost:3000/api', // 백엔드 API 기본 URL 설정
-  timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
 export const usePressureProfileStore = defineStore('pressureProfile', {
   state: () => ({
-    profiles: [],
-    loading: false,
-    error: null,
+    latestProfile: null, // 최신 프로파일을 저장할 상태
+    loading: false,      // 로딩 상태
+    error: null,         // 에러 상태
   }),
+
   getters: {
-    getProfileById: (state) => (id) => {
-      return state.profiles.find(profile => profile._id === id);
-    },
+    /**
+     * 최신 프로파일을 반환하는 게터
+     * @param {Object} state - 스토어의 상태
+     * @returns {Object|null} - 최신 프로파일 또는 null
+     */
+    getLatestProfile: (state) => state.latestProfile,
   },
+
   actions: {
-    async fetchProfiles() {
+    /**
+     * 최신 압력 프로파일을 가져오는 액션
+     * 백엔드의 /profile/latest 엔드포인트를 호출하여 데이터를 가져옵니다.
+     */
+    async fetchLatestProfile() {
       this.loading = true;
       this.error = null;
       try {
-        const response = await apiClient.get('/profile'); // 모든 프로파일 불러오기
-        this.profiles = response.data;
+        const response = await axios.get('/profile/latest'); // 전역 axios 인스턴스 사용
+        this.latestProfile = response.data;
       } catch (err) {
-        this.error = err.response ? err.response.data : err.message;
-      } finally {
-        this.loading = false;
-      }
-    },
-
-    async addProfile(newProfile) {
-      this.loading = true;
-      this.error = null;
-      try {
-        const response = await apiClient.post('/profile/save', newProfile);
-        if (response.data) {
-          this.profiles.push(response.data.profile);
-        }
-      } catch (err) {
-        this.error = err.response ? err.response.data : err.message;
-      } finally {
-        this.loading = false;
-      }
-    },
-
-    async updateProfile(id, updatedProfile) {
-      this.loading = true;
-      this.error = null;
-      try {
-        const response = await apiClient.put(`/profile/${id}`, updatedProfile);
-        if (response.data) {
-          const index = this.profiles.findIndex(profile => profile._id === id);
-          if (index !== -1) {
-            this.profiles[index] = response.data.profile;
-          }
-        }
-      } catch (err) {
-        this.error = err.response ? err.response.data : err.message;
-      } finally {
-        this.loading = false;
-      }
-    },
-
-    async deleteProfile(id) {
-      this.loading = true;
-      this.error = null;
-      try {
-        await apiClient.delete(`/profile/${id}`);
-        this.profiles = this.profiles.filter(profile => profile._id !== id);
-      } catch (err) {
+        // 에러가 있을 경우 에러 메시지를 저장
         this.error = err.response ? err.response.data : err.message;
       } finally {
         this.loading = false;
