@@ -50,8 +50,8 @@ const routes = [
         },
       },
       {
-        path: 'pressure-profiles', // 새 라우트 경로
-        name: 'pressure-profiles',
+        path: 'PressureProfileList', // 새 라우트 경로
+        name: 'PressureProfileList',
         component: PressureProfileList, // 새 페이지 컴포넌트
         meta: {
           requiresAuth: true,          // Requires authentication
