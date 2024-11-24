@@ -14,6 +14,7 @@
 import { useWebSocketStore } from '@/stores/websocket';
 import { onMounted, onBeforeUnmount, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { inject } from 'vue';
 
 export default {
   setup() {
