@@ -74,6 +74,7 @@ import { computed, ref } from 'vue';
 import * as echarts from 'echarts';
 import * as chartConfigs from "@/components/Charts/config";
 import { useSensorDataStore } from "@/store/sensorData";
+import axios from 'axios';
 
 export default {
   setup() {
