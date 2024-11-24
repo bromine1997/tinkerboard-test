@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { onMounted, onBeforeUnmount, watch, inject } from 'vue';
+import { computed,onMounted, onBeforeUnmount, watch, inject } from 'vue';
 import { useRoute } from 'vue-router';
 import { useSocketStore } from '@/store/socketStore';
 
