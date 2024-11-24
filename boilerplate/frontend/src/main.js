@@ -47,9 +47,6 @@ const app = createApp(App);
 // vue-echarts 컴포넌트를 전역으로 등록
 app.component('v-chart', VueECharts);
 
-// Socket.IO 클라이언트 제공
-app.provide('socket', socket);
-
 // Pinia 사용
 const pinia = createPinia();
 app.use(pinia);

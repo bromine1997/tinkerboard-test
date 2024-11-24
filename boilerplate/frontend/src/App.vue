@@ -61,8 +61,6 @@ export default {
     );
 
     onMounted(() => {
-      // 소켓 이벤트는 스토어에서 이미 처리하고 있으므로 추가할 필요 없음
-      // 단, 필요한 경우 스토어의 연결 상태를 확인할 수 있습니다.
       console.log('소켓 연결 상태:', connected.value);
       if (error.value) {
         console.error('소켓 연결 에러:', error.value);
