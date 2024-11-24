@@ -19,14 +19,11 @@ import { inject } from 'vue';
 
 export default {
   setup() {
-    
     const route = useRoute(); // Vue Router의 useRoute로 경로 정보 가져오기
     const sensorDataStore = useSensorDataStore();
     const sidebarStore = inject('sidebarStore'); // Sidebar 상태 관리
     const rtlStore = inject('rtlStore'); // RTL 상태 관리
     const socket = inject('socket'); // WebSocket 객체
-
-    
 
     const disableRTL = () => {
       if (rtlStore && !rtlStore.isRTL) {

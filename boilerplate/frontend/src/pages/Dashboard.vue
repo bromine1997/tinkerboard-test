@@ -71,7 +71,6 @@
 
 <script>
 import { computed, ref } from 'vue';
-import * as echarts from 'echarts';
 import * as chartConfigs from "@/components/Charts/config";
 import { useSensorDataStore } from "@/store/sensorData";
 import { inject } from 'vue';
@@ -79,11 +78,9 @@ import { inject } from 'vue';
 
 export default {
   setup() {
-
     const socket = inject('socket'); // WebSocket 객체
 
     const sensorDataStore = useSensorDataStore();
-  
 
     const isMonitoring = ref(false); // 모니터링 상태
     const isPaused = ref(false); // 일시 정지 상태
