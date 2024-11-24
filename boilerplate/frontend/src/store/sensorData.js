@@ -27,7 +27,7 @@ export const useSensorDataStore = defineStore('sensorData', {
         time: newData.elapsedTime,
         value: newData.sensorData.pressure,
       });
-      console.log('pressureBuffer 업데이트:', this.pressureBuffer);
+      //console.log('pressureBuffer 업데이트:', this.pressureBuffer);
 
       // 60번째 데이터 포인트가 들어왔을 때 압력 데이터 추가
       if (this.pressureBuffer.length >= 60) {
@@ -38,7 +38,7 @@ export const useSensorDataStore = defineStore('sensorData', {
           time: newTime,
           value: sixtiethDataPoint.value,
         });
-        console.log(`압력 데이터 집계 추가: 시간=${newTime}, 값=${sixtiethDataPoint.value}`);
+        //console.log(`압력 데이터 집계 추가: 시간=${newTime}, 값=${sixtiethDataPoint.value}`);
         
         // 최대 데이터 포인트 수 초과 시 가장 오래된 데이터 제거
         if (this.pressureData.length > this.maxPressureDataPoints) {
