@@ -13,6 +13,7 @@ import { Socket, Server } from 'socket.io';
 
 import { SensorDataService } from './sensor-data.service';
 import { SensorDataPacketDto } from './sensor-data.dto';
+import { CommandDto } from './command.dto'; // CommandDto 임포트
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 
@@ -75,6 +76,34 @@ export class WsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayD
       console.log('센서 데이터 저장 성공');
     } catch (error) {
       console.error('센서 데이터 저장 실패:', error);
+    }
+  }
+
+  // 클라이언트로부터 명령어 수신 처리
+  @SubscribeMessage('client_command')
+  async handleClientCommand(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() payload: any
+  ): Promise<void> {
+    console.log('클라이언트로부터 명령어 수신:', payload);
+
+    // CommandDto로 변환 및 유효성 검사
+    const commandDto = plainToClass(CommandDto, payload);
+    const errors = await validate(commandDto);
+
+    if (errors.length > 0) {
+      console.error('명령어 유효성 검사 실패:', errors);
+      return;
+    }
+
+    try {
+      // 모든 클라이언트에게 명령어 브로드캐스트 (발신 클라이언트를 제외한 다른 클라이언트에게 전송)
+      client.broadcast.emit('server_command', commandDto);
+      console.log('명령어 브로드캐스트 완료:', commandDto.action);
+
+      // 필요에 따라 명령어 저장 또는 추가 처리 가능
+    } catch (error) {
+      console.error('명령어 브로드캐스트 실패:', error);
     }
   }
 
