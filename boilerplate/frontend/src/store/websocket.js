@@ -12,7 +12,7 @@ export const useWebSocketStore = defineStore('websocket', () => {
   // WebSocket 초기화
   const initWebSocket = () => {
     // WebSocket 서버 URL을 설정합니다.
-    socket.value = io('http://localhost:3000', {
+    socket.value = io('http://localhost:8080', {
       // 필요한 옵션 설정 (예: 인증 토큰 등)
     });
 
