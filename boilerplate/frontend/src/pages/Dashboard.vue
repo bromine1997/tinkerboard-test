@@ -74,12 +74,13 @@ import { computed, ref } from 'vue';
 import * as echarts from 'echarts';
 import * as chartConfigs from "@/components/Charts/config";
 import { useSensorDataStore } from "@/store/sensorData";
-import axios from 'axios';
+import { useWebSocketStore } from '@/stores/websocket';
 
 export default {
   setup() {
 
     const sensorDataStore = useSensorDataStore();
+    const websocketStore = useWebSocketStore();
 
 
     const isMonitoring = ref(false); // 모니터링 상태
@@ -164,19 +165,19 @@ export default {
     };
 
 
-     // 메소드: 모니터링 시작
+      // 메소드: 모니터링 시작
     const startMonitoring = () => {
       if (isMonitoring.value) return; // 이미 모니터링 중이면 무시
       isMonitoring.value = true;
       isPaused.value = false;
-      sendCommand('START'); // START 명령 전송
+      websocketStore.sendCommand('START'); // START 명령 전송
     };
 
     // 메소드: 일시 정지/재개 토글
     const togglePauseResume = () => {
       isPaused.value = !isPaused.value;
       const action = isPaused.value ? 'PAUSE' : 'RESUME';
-      sendCommand(action); // PAUSE 또는 RESUME 명령 전송
+      websocketStore.sendCommand(action); // PAUSE 또는 RESUME 명령 전송
     };
 
     // 메소드: 모니터링 정지
@@ -184,8 +185,10 @@ export default {
       if (!isMonitoring.value) return; // 모니터링 중이 아니면 무시
       isMonitoring.value = false;
       isPaused.value = false;
-      sendCommand('STOP'); // STOP 명령 전송
+      websocketStore.sendCommand('STOP'); // STOP 명령 전송
+     
     };
+
 
 
 
