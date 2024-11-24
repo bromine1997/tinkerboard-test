@@ -74,9 +74,14 @@ import { computed, ref } from 'vue';
 import * as echarts from 'echarts';
 import * as chartConfigs from "@/components/Charts/config";
 import { useSensorDataStore } from "@/store/sensorData";
+import { inject } from 'vue';
+
 
 export default {
   setup() {
+
+    const socket = inject('socket'); // WebSocket 객체
+
 
     const sensorDataStore = useSensorDataStore();
     const websocketStore = useWebSocketStore();
@@ -153,30 +158,22 @@ export default {
       return metrics;
     });
 
-    // 메소드: 명령어 전송을 위한 함수
-    const sendCommand = async (action) => {
-      try {
-        const response = await axios.post('/command/send', { action });
-        console.log(`${action} 명령 전송 성공:`, response.data);
-      } catch (error) {
-        console.error(`${action} 명령 전송 실패:`, error);
-      }
-    };
+  
 
-
-      // 메소드: 모니터링 시작
+    // 메소드: 모니터링 시작
     const startMonitoring = () => {
       if (isMonitoring.value) return; // 이미 모니터링 중이면 무시
       isMonitoring.value = true;
       isPaused.value = false;
-      
+      emitCommand('START');
     };
 
     // 메소드: 일시 정지/재개 토글
     const togglePauseResume = () => {
+      if (!isMonitoring.value) return;
       isPaused.value = !isPaused.value;
       const action = isPaused.value ? 'PAUSE' : 'RESUME';
-      
+      emitCommand(action);
     };
 
     // 메소드: 모니터링 정지
@@ -184,12 +181,20 @@ export default {
       if (!isMonitoring.value) return; // 모니터링 중이 아니면 무시
       isMonitoring.value = false;
       isPaused.value = false;
-      
-     
+      emitCommand('STOP');
     };
 
-
-
+    // Helper function to emit commands
+    const emitCommand = (command) => {
+      if (socket && socket.connected) {
+        socket.emit('command', { action: command }, (response) => {
+          // Optional: Handle server acknowledgment
+          console.log(`Server acknowledged ${command}:`, response);
+        });
+      } else {
+        console.error('Socket is not connected. Cannot send command:', command);
+      }
+    };
 
   
 
