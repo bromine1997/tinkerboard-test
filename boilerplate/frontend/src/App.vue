@@ -1,7 +1,6 @@
 <template>
   <div>
     <notifications></notifications>
-    <!-- route 객체가 null인지 확인 후 렌더링 -->
     <router-view
       v-if="route && route.fullPath"
       :key="route.fullPath"
@@ -11,24 +10,23 @@
 </template>
 
 <script>
-import { useSensorDataStore } from '@/store/sensorData';
-import { onMounted, onBeforeUnmount, watch ,inject} from 'vue';
+import { onMounted, onBeforeUnmount, watch, inject } from 'vue';
 import { useRoute } from 'vue-router';
-import { useSocketStore } from '@/store/socketStore'; // 새로 추가된 소켓 스토어
+import { useSocketStore } from '@/store/socketStore';
 
 export default {
   setup() {
-    const route = useRoute(); // Vue Router의 useRoute로 경로 정보 가져오기
-    const sensorDataStore = useSensorDataStore();
-    const socketStore = useSocketStore(); // 소켓 스토어 사용
-
-    const { connected, error, emitCommand } = socketStore;
-
-    // Sidebar 상태 및 RTL 상태 관리는 스토어에 따라 다를 수 있습니다.
-    // 만약 기존에 sidebarStore, rtlStore를 사용하는 다른 스토어가 있다면 유지하거나 해당 스토어로 통합할 수 있습니다.
-    // 여기서는 기존 코드를 그대로 유지합니다.
-    const sidebarStore = inject('sidebarStore'); // Sidebar 상태 관리
-    const rtlStore = inject('rtlStore'); // RTL 상태 관리
+    const route = useRoute();
+    
+    // Pinia 스토어 초기화
+    const socketStore = useSocketStore();
+    
+    // 스토어에서 상태 직접 참조
+    const connected = computed(() => socketStore.connected);
+    const error = computed(() => socketStore.error);
+    
+    const sidebarStore = inject('sidebarStore');
+    const rtlStore = inject('rtlStore');
 
     const disableRTL = () => {
       if (rtlStore && !rtlStore.isRTL) {
@@ -37,13 +35,10 @@ export default {
     };
 
     const toggleNavOpen = () => {
-      const root = document.documentElement; // HTML 엘리먼트 가져오기
+      const root = document.documentElement;
       root.classList.toggle('nav-open');
     };
 
-    
-
-    // 경로 변경 감지
     watch(
       () => route?.fullPath,
       () => {
@@ -52,7 +47,6 @@ export default {
       { immediate: true }
     );
 
-    // Sidebar 상태 변경 감지
     watch(
       () => sidebarStore?.showSidebar,
       () => {
@@ -68,12 +62,15 @@ export default {
     });
 
     onBeforeUnmount(() => {
-      // 소켓 스토어에서 필요한 정리 작업이 있다면 수행
-      // 예: socketStore.disconnect(); 등
+      if (socketStore.socket) {
+        socketStore.socket.disconnect();
+      }
     });
 
     return {
-      route, // route를 반환
+      route,
+      connected,
+      error
     };
   },
 };
