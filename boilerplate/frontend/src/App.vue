@@ -14,7 +14,7 @@
 import { useSensorDataStore } from '@/store/sensorData';
 import { onMounted, onBeforeUnmount, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { useSocketStore } from '@/stores/socketStore'; // 새로 추가된 소켓 스토어
+import { useSocketStore } from '@/store/socketStore'; // 새로 추가된 소켓 스토어
 
 export default {
   setup() {
