@@ -41,13 +41,7 @@ export default {
       root.classList.toggle('nav-open');
     };
 
-    const handleNewSensorData = (data) => {
-      console.log('새 센서 데이터 수신:', data);
-    };
-
-    const handleSensorDataUpdate = (data) => {
-      sensorDataStore.updateSensorData(data);
-    };
+    
 
     // 경로 변경 감지
     watch(
@@ -82,7 +76,6 @@ export default {
 
     return {
       route, // route를 반환
-      handleNewSensorData,
     };
   },
 };
