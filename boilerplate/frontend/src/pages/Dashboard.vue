@@ -11,6 +11,9 @@
           <div class="setpoint-display mr-3">
             <strong>Set Point:</strong> {{ setPoint }}
           </div>
+          <div class="setpoint-display mr-3">
+            <strong>동작 시간:</strong> {{ elapseTime }}
+          </div>
           <div class="btn-group btn-group-toggle" data-toggle="buttons">
             <button
               class="btn btn-sm btn-primary"
@@ -95,6 +98,8 @@ export default {
     const isPaused = ref(false); // 일시 정지 상태
 
     const setPoint = computed(() => sensorDataStore.metrics.setPoint);
+
+    const elapseTime = computed(() => sensorDataStore.metrics.elapseTime);
 
     const xAxisData = Array.from({ length: 201 }, (_, i) => i);
 
@@ -200,6 +205,7 @@ export default {
 
     return {
       setPoint,
+      elapseTime,
       mainChartOptions,
       monitoringMetrics,
       isMonitoring,

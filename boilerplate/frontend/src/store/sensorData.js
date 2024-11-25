@@ -14,6 +14,7 @@ export const useSensorDataStore = defineStore('sensorData', {
       pressure: 1,
       flow: 9999,
       setPoint: 9999,
+      elapsedTime : 0,
     },
     pressureBuffer: [], // 압력 데이터 버퍼
     
@@ -71,6 +72,9 @@ export const useSensorDataStore = defineStore('sensorData', {
       
       this.metrics.setPoint = newData.setPoint;
       //console.log('setPoint updated to', this.metrics.setPoint);
+
+      this.metrics.elapsedTime = newData.elapsedTime;
+      //console.log('elapsedTime updated to', this.metrics.elapsedTime);
     },
 
     
