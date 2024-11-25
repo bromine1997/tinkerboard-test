@@ -112,6 +112,8 @@ export default {
 
     
 
+    
+
     // ECharts 옵션 계산된 속성
     const mainChartOptions = computed(() => ({
       ...chartConfigs.blueChartOptions,
