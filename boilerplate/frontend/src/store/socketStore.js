@@ -14,7 +14,7 @@ export const useSocketStore = defineStore('socket', () => {
   
   // 소켓 초기화 함수
   const initSocket = () => {
-    socket.value = io('http://localhost:8080', {
+    socket.value = io('http://192.168.0.125:8080', {
       autoConnect: true,
     });
 
