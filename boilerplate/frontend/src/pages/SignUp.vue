@@ -88,8 +88,7 @@
           placeholder="생년월일"
         />
 
-
-       <!-- 성별 선택 드롭다운 -->
+        <!-- 성별 선택 드롭다운 -->
         <label for="gender">성별</label>
         <select v-model="user.gender" id="gender">
           <option value="">성별을 선택하세요</option>
@@ -105,6 +104,19 @@
           <option value="admin">관리자</option>
           <option value="operator">운용자</option>
         </select>
+
+        <!-- 개인정보 이용동의서 체크박스 -->
+        <div class="agreement-container">
+          <label for="agreement" class="agreement-label">
+            개인정보 이용동의서에 동의합니다.
+          </label>
+          <input
+            type="checkbox"
+            id="agreement"
+            v-model="user.agreement"
+          />
+        </div>
+        <p v-if="agreementError" class="error-message">{{ agreementError }}</p>
 
         <!-- 에러 메시지 표시 -->
         <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
@@ -129,15 +141,17 @@ export default {
         name: '',
         phone: '',
         email: '',
-        birthdate: '',
+        birthDate: '', // 'birthDate'로 일관성 유지
         gender: '',
         role: '',
+        agreement: false, // 개인정보 동의 상태 추가
       },
       passwordConfirm: '',
       isUsernameAvailable: false,
       isUsernameChecked: false,
       usernameMessage: '',
       errorMessage: '',
+      agreementError: '', // 동의 체크 에러 메시지
     };
   },
   computed: {
@@ -170,7 +184,8 @@ export default {
         this.user.email &&
         this.user.birthDate &&
         this.user.gender &&
-        this.user.role
+        this.user.role &&
+        this.user.agreement // 개인정보 동의 확인 추가
       );
     }
   },
@@ -199,8 +214,15 @@ export default {
 
     // 회원가입 처리
     async signup() {
+      this.errorMessage = ''; // 기존 에러 메시지 초기화
+      this.agreementError = ''; // 동의 에러 메시지 초기화
+
       if (!this.isFormValid) {
-        this.errorMessage = '모든 필드를 입력해주세요.';
+        if (!this.user.agreement) {
+          this.agreementError = '개인정보 이용동의에 동의해주세요.';
+        } else {
+          this.errorMessage = '모든 필드를 입력해주세요.';
+        }
         return;
       }
 
@@ -395,5 +417,40 @@ button.login-link {
 button.login-link:hover {
   color: white;
   background-color: #007bff;
+}
+/* 개인정보 이용동의서 스타일 수정 */
+.agreement-container {
+  display: flex;
+  align-items: flex-start; /* 상단 정렬로 변경 */
+  margin-bottom: 15px;
+  gap: 8px; /* checkbox와 label 사이 간격 */
+}
+
+/* 체크박스 크기 조정 */
+.agreement-container input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin-top: 3px; /* 텍스트와 수직 정렬 맞추기 */
+  cursor: pointer;
+}
+
+/* 동의서 텍스트 스타일 */
+.agreement-label {
+  flex: 1;
+  text-align: left;
+  color: #bbbbbb;
+  font-weight: normal;
+  font-size: 14px; /* 글자 크기 조정 */
+  line-height: 1.4; /* 줄 간격 조정 */
+  margin: 0; /* 기존 마진 제거 */
+  word-break: keep-all; /* 단어 분리 방지 */
+}
+
+/* 에러 메시지 스타일 유지 */
+.error-message {
+  color: #ff4d4d;
+  margin-bottom: 15px;
+  font-size: 14px;
+  text-align: left;
 }
 </style>
