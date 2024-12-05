@@ -39,7 +39,7 @@ use([
 ]);
 
 // Axios 기본 URL 설정
-axios.defaults.baseURL = 'http://172.30.1.7:8080'; // 백엔드 서버 주소 (그 로컬 ip에)
+axios.defaults.baseURL = 'http://172.30.1.14:8080'; // 백엔드 서버 주소 (그 로컬 ip에)
 
 // Vue 3 앱 생성
 const app = createApp(App);
