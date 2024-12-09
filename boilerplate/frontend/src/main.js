@@ -38,6 +38,8 @@ use([
   LegendComponent,
 ]);
 
+
+
 // Axios 기본 URL 설정
 axios.defaults.baseURL = 'http://192.168.0.125:8080'; // 백엔드 서버 주소 (그 로컬 ip에)
 

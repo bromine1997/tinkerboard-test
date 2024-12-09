@@ -7,4 +7,5 @@ const socket = io(SOCKET_URL, {
   transports: ['websocket'],
 });
 
+
 export default socket;

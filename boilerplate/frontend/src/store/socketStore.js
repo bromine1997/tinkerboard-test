@@ -18,6 +18,8 @@ export const useSocketStore = defineStore('socket', () => {
       autoConnect: true,
     });
 
+
+    
     const sensorDataStore = useSensorDataStore();
 
     socket.value.on('connect', () => {
