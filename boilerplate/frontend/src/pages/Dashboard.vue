@@ -216,7 +216,7 @@ export default {
 .card-category {
   font-size: 20px;
   color: #888;
-  font-weight: 500;
+  
 }
 .card-title {
   font-size: 24px;
