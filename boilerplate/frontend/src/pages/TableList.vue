@@ -186,4 +186,36 @@ export default {
 :deep(.treatment-table tbody tr:last-child td) {
   border-bottom: none;
 }
+
+
+.table-responsive {
+  /* Firefox용 스크롤바 스타일 */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+}
+
+/* Chrome, Safari, Edge용 스크롤바 스타일 */
+.table-responsive::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 코너 부분 스타일링 */
+.table-responsive::-webkit-scrollbar-corner {
+  background: transparent;
+}
 </style>
