@@ -96,7 +96,7 @@ export default {
 
     const setPoint = computed(() => sensorDataStore.metrics.setPoint);
 
-    const xAxisData = Array.from({ length: 201 }, (_, i) => i);
+    const xAxisData = Array.from({ length: 181 }, (_, i) => i);
 
 
     // 라인 차트 데이터 관리
@@ -240,9 +240,10 @@ export default {
 }
 
 .chart-area {
-  height: 450px;
+  height: 550px;
   width: 100%;
   display: flex;
+  margin: 1rem 0;  /* 위아래 여백 추가 */
 }
 
 /* 차트 관련 스타일 추가 */
