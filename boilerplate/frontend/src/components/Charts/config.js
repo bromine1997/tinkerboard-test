@@ -64,7 +64,7 @@ export const blueChartOptions = {
     },
     axisLabel: {
       color: '#2380f7',
-      fontSize: 24, // y축 레이블 크기
+      fontSize: 32, // y축 레이블 크기
       padding: 5,
     },
     splitLine: {
@@ -92,7 +92,7 @@ export const blueChartOptions = {
     axisLabel: {
       color: '#2380f7',
       padding: 20,
-      fontSize: 24, // y축 레이블 크기
+      fontSize: 32, // y축 레이블 크기
       interval: 9,
     },
     splitLine: {
