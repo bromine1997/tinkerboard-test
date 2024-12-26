@@ -231,16 +231,16 @@ export default {
 }
 .btn-group .btn {
   margin-left: 5px;
-  font-size: 16px;  /* 버튼 텍스트 크기 증가 */
+  font-size: 24px;  /* 버튼 텍스트 크기 증가 */
 }
 .setpoint-display {
-  font-size: 20px;  /* 16px에서 20px로 증가 */
+  font-size: 24px;  /* 16px에서 20px로 증가 */
   color: #FFF;
   font-weight: 500;
 }
 
 .chart-area {
-  height: 550px;
+  height: 600px;
   width: 100%;
   display: flex;
   margin: 1rem 0;  /* 위아래 여백 추가 */
@@ -257,12 +257,12 @@ export default {
 }
 
 .card-body h5.card-category {
-  font-size: 28px;  /* 센서 이름 크기 */
+  font-size: 32px;  /* 센서 이름 크기 */
   margin-bottom: 0.5rem;
 }
 
 .card-body h3.card-title {
-  font-size: 24px;  /* 센서 값 크기 */
+  font-size: 26px;  /* 센서 값 크기 */
   
 }
 
