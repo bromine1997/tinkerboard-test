@@ -214,33 +214,54 @@ export default {
 
 <style scoped>
 .card-category {
-  font-size: 20px;
+  font-size: 24px;  /* 20px에서 24px로 증가 */
   color: #888;
-  
+  font-weight: 500;
 }
 .card-title {
-  font-size: 24px;
+  font-size: 32px;  /* 24px에서 32px로 증가 */
   margin-top: 10px;
+  font-weight: bold;
 }
 .card-body i {
-  font-size: 30px;
+  font-size: 36px;  /* 30px에서 36px로 증가 */
   margin-bottom: 10px;
   color: #007bff;
 }
 .btn-group .btn {
   margin-left: 5px;
+  font-size: 16px;  /* 버튼 텍스트 크기 증가 */
 }
 .setpoint-display {
-  font-size: 16px;
+  font-size: 20px;  /* 16px에서 20px로 증가 */
   color: #FFF;
+  font-weight: 500;
 }
 
 .chart-area {
-  height: 450px; /* 원하는 높이로 설정 */
+  height: 450px;
   width: 100%;
-  display: flex; /* 차트를 유연하게 정렬 */
+  display: flex;
 }
 
+/* 차트 관련 스타일 추가 */
+:deep(.echarts) {
+  font-size: 16px;  /* 차트 내부 텍스트 크기 증가 */
+}
 
+/* 모니터링 메트릭 카드 스타일 */
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-body h5.card-category {
+  font-size: 22px;  /* 센서 이름 크기 */
+  margin-bottom: 0.5rem;
+}
+
+.card-body h3.card-title {
+  font-size: 28px;  /* 센서 값 크기 */
+  font-weight: bold;
+}
 
 </style>
