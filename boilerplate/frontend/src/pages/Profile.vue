@@ -42,26 +42,28 @@ export default {
 </script>
 
 <style scoped>
+/* 컨테이너 스타일 */
 .profile-container {
-  padding: 3rem;  /* 2rem에서 증가 */
+  padding: 3rem;
   min-height: calc(100vh - 200px);
 }
 
 .profile-title {
-  font-size: 2.5rem;  /* 2rem에서 증가 */
+  font-size: 2.5rem;
   color: #ffffff;
-  margin-bottom: 2.5rem;  /* 2rem에서 증가 */
+  margin-bottom: 2.5rem;
   font-weight: 600;
 }
 
 .profile-card {
   background: linear-gradient(145deg, #2a2d3e, #1f2235);
-  border-radius: 20px;  /* 16px에서 증가 */
-  padding: 2.5rem;  /* 2rem에서 증가 */
+  border-radius: 20px;
+  padding: 2.5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* 로딩 상태 스타일 */
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -71,18 +73,18 @@ export default {
 }
 
 .loading-spinner {
-  width: 60px;  /* 50px에서 증가 */
-  height: 60px;  /* 50px에서 증가 */
-  border: 4px solid rgba(255, 255, 255, 0.1);  /* 3px에서 증가 */
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
   border-radius: 50%;
   border-top-color: #6c5dd3;
   animation: spin 1s ease-in-out infinite;
-  margin-bottom: 1.5rem;  /* 1rem에서 증가 */
+  margin-bottom: 1.5rem;
 }
 
 .loading-text {
   color: #8a8d98;
-  font-size: 1.3rem;  /* 1.1rem에서 증가 */
+  font-size: 1.3rem;
   font-weight: 500;
 }
 
@@ -92,54 +94,110 @@ export default {
   }
 }
 
-/* Form 내부 요소들의 기본 폰트 크기 증가 */
+/* 폼 스타일 */
 :deep(.form-group) {
-  margin-bottom: 1.5rem;  /* 폼 그룹 간격 증가 */
+  margin-bottom: 2rem;
 }
 
 :deep(.form-label) {
-  font-size: 1.2rem;  /* 라벨 폰트 크기 */
-  margin-bottom: 0.75rem;
+  display: block;
+  color: #8a8d98;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
 }
 
-:deep(.form-control) {
-  font-size: 1.2rem;  /* 입력 필드 폰트 크기 */
-  padding: 0.75rem 1rem;
+:deep(.form-control),
+:deep(.form-input),
+:deep(.form-select) {
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 0.8rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
+:deep(.form-control:focus),
+:deep(.form-input:focus),
+:deep(.form-select:focus) {
+  outline: none;
+  border-color: #6c5dd3;
+  box-shadow: 0 0 0 2px rgba(108, 93, 211, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+:deep(.form-control::placeholder) {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* 특수 입력 필드 스타일 */
+:deep(input[type="date"]) {
+  min-height: 3.5rem;
+  padding: 0.6rem 1.25rem;
+  line-height: 2;
+}
+
+:deep(select.form-select) {
+  padding-right: 2.5rem;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+}
+
+/* 버튼 스타일 */
 :deep(.btn) {
-  font-size: 1.2rem;  /* 버튼 폰트 크기 */
-  padding: 0.75rem 1.5rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 /* 반응형 디자인 */
 @media (max-width: 768px) {
   .profile-container {
-    padding: 1.5rem;  /* 1rem에서 증가 */
-  }
-
-  .profile-title {
-    font-size: 2rem;  /* 1.5rem에서 증가 */
-    margin-bottom: 2rem;
-  }
-
-  .profile-card {
-    padding: 2rem;  /* 1.5rem에서 증가 */
+    padding: 1.5rem;
   }
   
-  :deep(.form-control) {
-    font-size: 1.1rem;  /* 모바일에서의 입력 필드 폰트 크기 */
+  .profile-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .profile-card {
+    padding: 1.5rem;
+  }
+
+  :deep(.form-control),
+  :deep(.form-input),
+  :deep(.form-select) {
+    min-height: 3.2rem;
+    padding: 0.7rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  :deep(.form-label) {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
   }
 }
 
-/* 다크 테마에 최적화된 스크롤바 */
+/* 스크롤바 스타일 */
 .profile-container {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
 }
 
 .profile-container::-webkit-scrollbar {
-  width: 10px;  /* 8px에서 증가 */
+  width: 10px;
 }
 
 .profile-container::-webkit-scrollbar-track {
@@ -154,68 +212,5 @@ export default {
 
 .profile-container::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.3);
-}
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-label {
-  display: block;
-  color: #8a8d98;
-  font-size: 1.1rem;
-  margin-bottom: 0.75rem;
-}
-
-.form-input {
-  width: 100%;
-  height: auto;
-  padding: 1rem 1.25rem;  /* 상하 패딩 증가 */
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  color: #fff;
-  font-size: 1.1rem;
-  line-height: 1.5;  /* 라인 하이트 추가 */
-}
-
-.form-input:focus {
-  outline: none;
-  border-color: #6c5dd3;
-  box-shadow: 0 0 0 2px rgba(108, 93, 211, 0.2);
-}
-
-.form-select {
-  width: 100%;
-  height: auto;
-  padding: 1rem 1.25rem;  /* 상하 패딩 증가 */
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  color: #fff;
-  font-size: 1.1rem;
-  line-height: 1.5;  /* 라인 하이트 추가 */
-  cursor: pointer;
-  appearance: none;
-}
-
-.form-select:focus {
-  outline: none;
-  border-color: #6c5dd3;
-  box-shadow: 0 0 0 2px rgba(108, 93, 211, 0.2);
-}
-
-/* 날짜 입력 필드 특별 스타일 */
-input[type="date"] {
-  min-height: 3.5rem;  /* 날짜 입력 필드 높이 확보 */
-  padding: 0.5rem 1.25rem;  /* 상하 패딩 조정 */
-}
-
-/* 모바일 대응 */
-@media (max-width: 768px) {
-  .form-input,
-  .form-select {
-    padding: 0.875rem 1rem;  /* 모바일에서는 패딩 약간 줄임 */
-    font-size: 1rem;
-  }
 }
 </style>
