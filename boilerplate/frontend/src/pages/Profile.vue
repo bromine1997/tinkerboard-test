@@ -8,7 +8,7 @@
           <p class="loading-text">Loading profile...</p>
         </div>
         <div v-else-if="userProfileStore.profile" class="profile-content">
-          <h2 class="profile-title">Profile Settings</h2>
+          <h2 class="profile-title">사용자 프로필</h2>
           <div class="profile-card">
             <edit-profile-form
               :model="userProfileStore.profile"
@@ -43,21 +43,21 @@ export default {
 
 <style scoped>
 .profile-container {
-  padding: 2rem;
+  padding: 3rem;  /* 2rem에서 증가 */
   min-height: calc(100vh - 200px);
 }
 
 .profile-title {
-  font-size: 2rem;
+  font-size: 2.5rem;  /* 2rem에서 증가 */
   color: #ffffff;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;  /* 2rem에서 증가 */
   font-weight: 600;
 }
 
 .profile-card {
   background: linear-gradient(145deg, #2a2d3e, #1f2235);
-  border-radius: 16px;
-  padding: 2rem;
+  border-radius: 20px;  /* 16px에서 증가 */
+  padding: 2.5rem;  /* 2rem에서 증가 */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -71,18 +71,18 @@ export default {
 }
 
 .loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  width: 60px;  /* 50px에서 증가 */
+  height: 60px;  /* 50px에서 증가 */
+  border: 4px solid rgba(255, 255, 255, 0.1);  /* 3px에서 증가 */
   border-radius: 50%;
   border-top-color: #6c5dd3;
   animation: spin 1s ease-in-out infinite;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;  /* 1rem에서 증가 */
 }
 
 .loading-text {
   color: #8a8d98;
-  font-size: 1.1rem;
+  font-size: 1.3rem;  /* 1.1rem에서 증가 */
   font-weight: 500;
 }
 
@@ -92,19 +92,43 @@ export default {
   }
 }
 
+/* Form 내부 요소들의 기본 폰트 크기 증가 */
+:deep(.form-group) {
+  margin-bottom: 1.5rem;  /* 폼 그룹 간격 증가 */
+}
+
+:deep(.form-label) {
+  font-size: 1.2rem;  /* 라벨 폰트 크기 */
+  margin-bottom: 0.75rem;
+}
+
+:deep(.form-control) {
+  font-size: 1.2rem;  /* 입력 필드 폰트 크기 */
+  padding: 0.75rem 1rem;
+}
+
+:deep(.btn) {
+  font-size: 1.2rem;  /* 버튼 폰트 크기 */
+  padding: 0.75rem 1.5rem;
+}
+
 /* 반응형 디자인 */
 @media (max-width: 768px) {
   .profile-container {
-    padding: 1rem;
+    padding: 1.5rem;  /* 1rem에서 증가 */
   }
 
   .profile-title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 2rem;  /* 1.5rem에서 증가 */
+    margin-bottom: 2rem;
   }
 
   .profile-card {
-    padding: 1.5rem;
+    padding: 2rem;  /* 1.5rem에서 증가 */
+  }
+  
+  :deep(.form-control) {
+    font-size: 1.1rem;  /* 모바일에서의 입력 필드 폰트 크기 */
   }
 }
 
@@ -115,17 +139,17 @@ export default {
 }
 
 .profile-container::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;  /* 8px에서 증가 */
 }
 
 .profile-container::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .profile-container::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .profile-container::-webkit-scrollbar-thumb:hover {
