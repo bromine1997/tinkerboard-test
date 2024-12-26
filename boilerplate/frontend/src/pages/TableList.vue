@@ -41,7 +41,7 @@ const tableData = [
     patientName: '김철수',
     treatmentDate: '2024-09-10',
     treatmentTime: '09:00',
-    duration: 60,
+    duration: 180,
     chamberNumber: 'A1',
   },
   {
@@ -49,56 +49,56 @@ const tableData = [
     patientName: '이영희',
     treatmentDate: '2024-09-11',
     treatmentTime: '10:30',
-    duration: 45,
-    chamberNumber: 'B2',
+    duration: 180,
+    chamberNumber: 'A1',
   },
   {
     patientId: 'P1003',
     patientName: '홍길동',
-    treatmentDate: '2024-09-11',
+    treatmentDate: '2024-09-12',
     treatmentTime: '10:30',
-    duration: 45,
-    chamberNumber: 'B2',
+    duration: 180,
+    chamberNumber: 'A1',
   },
   {
     patientId: 'P1004',
     patientName: '서보민',
-    treatmentDate: '2024-09-11',
+    treatmentDate: '2024-09-13',
     treatmentTime: '10:30',
-    duration: 45,
-    chamberNumber: 'B2',
+    duration: 180,
+    chamberNumber: 'A1',
   },
   {
-    patientId: 'P1002',
-    patientName: '이영희',
-    treatmentDate: '2024-09-11',
+    patientId: 'P1005',
+    patientName: '정지훈',
+    treatmentDate: '2024-09-14',
     treatmentTime: '10:30',
-    duration: 45,
-    chamberNumber: 'B2',
+    duration: 180,
+    chamberNumber: 'A1',
   },
   {
-    patientId: 'P1002',
-    patientName: '이영희',
-    treatmentDate: '2024-09-11',
+    patientId: 'P1006',
+    patientName: '김지우',
+    treatmentDate: '2024-09-15',
     treatmentTime: '10:30',
-    duration: 45,
-    chamberNumber: 'B2',
+    duration: 180,
+    chamberNumber: 'A1',
   },
   {
-    patientId: 'P1002',
-    patientName: '이영희',
-    treatmentDate: '2024-09-11',
+    patientId: 'P1007',
+    patientName: '김연주',
+    treatmentDate: '2024-09-16',
     treatmentTime: '10:30',
-    duration: 45,
-    chamberNumber: 'B2',
+    duration: 180,
+    chamberNumber: 'A1',
   },
   {
-    patientId: 'P1002',
-    patientName: '이영희',
-    treatmentDate: '2024-09-11',
+    patientId: 'P1008',
+    patientName: '이영수',
+    treatmentDate: '2024-09-17',
     treatmentTime: '10:30',
-    duration: 45,
-    chamberNumber: 'B2',
+    duration: 180,
+    chamberNumber: 'A1',
   },
   // ... 추가 데이터
 ];
@@ -132,11 +132,11 @@ export default {
   background: #27293d;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-  padding: 1.5rem;
+  padding: 2rem;  /* 1.5rem에서 2rem으로 증가 */
 }
 
 .card-title {
-  font-size: 1.5rem;
+  font-size: 2rem;  /* 1.5rem에서 2rem으로 증가 */
   font-weight: 600;
   color: #ffffff;
   margin: 0;
@@ -148,31 +148,31 @@ export default {
 }
 
 .stats-item {
-  font-size: 0.9rem;
+  font-size: 1.2rem;  /* 0.9rem에서 1.2rem으로 증가 */
   color: #ffffff;
   background: rgba(255, 255, 255, 0.1);
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.25rem;  /* 패딩 증가 */
   border-radius: 6px;
   display: flex;
   align-items: center;
 }
 
 .treatment-table {
-  margin-top: 1rem;
+  margin-top: 1.5rem;  /* 1rem에서 1.5rem으로 증가 */
 }
 
 :deep(.treatment-table thead th) {
   background-color: #1e1e2f;
   color: #ffffff !important;
   font-weight: 600;
-  font-size: 0.875rem;
-  padding: 1rem;
+  font-size: 1.2rem;  /* 0.875rem에서 1.2rem으로 증가 */
+  padding: 1.25rem;   /* 1rem에서 1.25rem으로 증가 */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 :deep(.treatment-table tbody td) {
-  padding: 1rem;
-  font-size: 0.875rem;
+  padding: 1.25rem;   /* 1rem에서 1.25rem으로 증가 */
+  font-size: 1.2rem;  /* 0.875rem에서 1.2rem으로 증가 */
   color: rgba(255, 255, 255, 0.8);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   vertical-align: middle;
@@ -187,14 +187,12 @@ export default {
   border-bottom: none;
 }
 
-
 .table-responsive {
-  /* Firefox용 스크롤바 스타일 */
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
 }
 
-/* Chrome, Safari, Edge용 스크롤바 스타일 */
+/* 스크롤바 스타일은 기존과 동일하게 유지 */
 .table-responsive::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -214,7 +212,6 @@ export default {
   background: rgba(255, 255, 255, 0.3);
 }
 
-/* 코너 부분 스타일링 */
 .table-responsive::-webkit-scrollbar-corner {
   background: transparent;
 }
