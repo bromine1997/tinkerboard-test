@@ -155,4 +155,67 @@ export default {
 .profile-container::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.3);
 }
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  color: #8a8d98;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-input {
+  width: 100%;
+  height: auto;
+  padding: 1rem 1.25rem;  /* 상하 패딩 증가 */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.5;  /* 라인 하이트 추가 */
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #6c5dd3;
+  box-shadow: 0 0 0 2px rgba(108, 93, 211, 0.2);
+}
+
+.form-select {
+  width: 100%;
+  height: auto;
+  padding: 1rem 1.25rem;  /* 상하 패딩 증가 */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.5;  /* 라인 하이트 추가 */
+  cursor: pointer;
+  appearance: none;
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: #6c5dd3;
+  box-shadow: 0 0 0 2px rgba(108, 93, 211, 0.2);
+}
+
+/* 날짜 입력 필드 특별 스타일 */
+input[type="date"] {
+  min-height: 3.5rem;  /* 날짜 입력 필드 높이 확보 */
+  padding: 0.5rem 1.25rem;  /* 상하 패딩 조정 */
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .form-input,
+  .form-select {
+    padding: 0.875rem 1rem;  /* 모바일에서는 패딩 약간 줄임 */
+    font-size: 1rem;
+  }
+}
 </style>
