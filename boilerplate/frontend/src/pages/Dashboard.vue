@@ -217,11 +217,12 @@ export default {
   font-size: 24px;  /* 20px에서 24px로 증가 */
   color: #888;
   font-weight: 500;
+  font-weight: bold;
 }
 .card-title {
   font-size: 32px;  /* 24px에서 32px로 증가 */
   margin-top: 10px;
-  font-weight: bold;
+  
 }
 .card-body i {
   font-size: 36px;  /* 30px에서 36px로 증가 */
