@@ -256,13 +256,13 @@ export default {
 }
 
 .card-body h5.card-category {
-  font-size: 22px;  /* 센서 이름 크기 */
+  font-size: 28px;  /* 센서 이름 크기 */
   margin-bottom: 0.5rem;
 }
 
 .card-body h3.card-title {
-  font-size: 28px;  /* 센서 값 크기 */
-  font-weight: bold;
+  font-size: 24px;  /* 센서 값 크기 */
+  
 }
 
 </style>

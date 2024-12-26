@@ -51,7 +51,7 @@ export const blueChartOptions = {
     type: 'value',
     name : '압력(ATA)',
     nameTextStyle: {
-      fontSize: 16, // y축 이름 크기
+      fontSize: 28, // y축 이름 크기
       padding: [0, 0, 10, 0], // 여백 추가
       fontWeight: 'bold',
     },
@@ -78,7 +78,7 @@ export const blueChartOptions = {
     type: 'category',
     name : '시간(분)',
     nameTextStyle: {
-      fontSize: 16, // x축 이름 크기
+      fontSize: 28, // x축 이름 크기
       padding: [15, 0, 0, 0], // 여백 추가
       fontWeight: 'bold',
     },
