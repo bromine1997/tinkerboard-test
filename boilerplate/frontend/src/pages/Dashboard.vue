@@ -240,7 +240,7 @@ export default {
 }
 
 .chart-area {
-  height: 600px;
+  height: 650px;
   width: 100%;
   display: flex;
   margin: 1rem 0;  /* 위아래 여백 추가 */

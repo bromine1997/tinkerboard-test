@@ -53,7 +53,7 @@ export const blueChartOptions = {
     nameTextStyle: {
       fontSize: 28, // y축 이름 크기
       padding: [0, 0, 10, 0], // 여백 추가
-      fontWeight: 'bold',
+      
     },
     min: 0,
     max: 5,
@@ -64,7 +64,7 @@ export const blueChartOptions = {
     },
     axisLabel: {
       color: '#2380f7',
-      fontSize: 20, // y축 레이블 크기
+      fontSize: 24, // y축 레이블 크기
       padding: 5,
     },
     splitLine: {
@@ -80,7 +80,7 @@ export const blueChartOptions = {
     nameTextStyle: {
       fontSize: 28, // x축 이름 크기
       padding: [15, 0, 0, 0], // 여백 추가
-      fontWeight: 'bold',
+      
     },
     boundaryGap: false,
     axisLine: {
@@ -92,7 +92,7 @@ export const blueChartOptions = {
     axisLabel: {
       color: '#2380f7',
       padding: 20,
-      fontSize: 20, // y축 레이블 크기
+      fontSize: 24, // y축 레이블 크기
       interval: 9,
     },
     splitLine: {
