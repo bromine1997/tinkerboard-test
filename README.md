@@ -208,9 +208,6 @@ HbotChamberApp/            # Android 앱 레포 (별도)
 
 가압·감압 2채널 독립 PID 제어기:
 
-```
-P = 15.0 / I = 10.0 / D = 0.1
-```
 
 | 항목 | 측정값 | 기준값 |
 |------|--------|--------|
@@ -225,7 +222,7 @@ P = 15.0 / I = 10.0 / D = 0.1
 
 | 이벤트 | 방향 | 설명 |
 |--------|------|------|
-| `sensor_data` | Android → Server → Web | 1초 주기 센서 데이터 브로드캐스트 |
+| `sensor_data` | Android → Server → Web | 1초 주기 센서 데이터 브로드캐스트 |  
 | `client_command` | Web → Server → Android | start / pause / resume / stop 명령 |
 
 ### 센서 데이터 페이로드
